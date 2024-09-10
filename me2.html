@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearKey MPD Video Player with Shaka</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.1/shaka-player.compiled.js"></script>
+</head>
+<body>
+    <video id="video" controls></video>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const video = document.getElementById('video');
+            const manifestUri = 'https://tglmp02.akamaized.net/out/v1/06bffdc183074130a6faf73d04502eaa/manifest.mpd';
+
+            // Initialize Shaka Player
+            const player = new shaka.Player(video);
+
+            // ClearKey configuration
+            const keySystem = 'org.w3.clearkey';
+            const key = 'sub/8k2mdlSvVI/mGqa9Wg';
+            const keyId = '3rbITbTcRXi9qmHpZbNCTA';
+
+            const config = {
+                drm: {
+                    clearKeys: {
+                        [keyId]: key
+                    }
+                }
+            };
+
+            player.configure(config);
+
+            // Load the manifest
+            try {
+                await player.load(manifestUri);
+                console.log('The video has now been loaded!');
+            } catch (e) {
+                console.error('Error loading the video', e);
+            }
+        });
+    </script>
+</body>
+</html>
