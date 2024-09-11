@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClearKey MPD Video Player with Shaka</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.1/shaka-player.compiled.js"></script>
-</head>
-<body>
-    <video id="video" controls></video>
+    <meta charset="utf-8">
+    <title>Clearkey DRM instantiation example</title>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const video = document.getElementById('video');
-            const manifestUri = 'https://tglmp02.akamaized.net/out/v1/06bffdc183074130a6faf73d04502eaa/manifest.mpd';
+    <script src="https://reference.dashif.org/dash.js/nightly/dist/dash.all.debug.js"></script>
 
-            // Initialize Shaka Player
-            const player = new shaka.Player(video);
+    <!-- Bootstrap core CSS -->
+    <link href="https://reference.dashif.org/dash.js/nightly/samples/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="https://reference.dashif.org/dash.js/nightly/samples/lib/main.css" rel="stylesheet">
 
-            // ClearKey configuration
-            const keySystem = 'org.w3.clearkey';
-            const key = 'sub/8k2mdlSvVI/mGqa9Wg';
-            const keyId = '3rbITbTcRXi9qmHpZbNCTA';
+    <style>
+        video {
+            width: 640px;
+            height: 360px;
+        }
+    </style>
 
-            const config = {
-                drm: {
-                    clearKeys: {
-                        [keyId]: key
+    <script  class="code">
+        function init() {
+            const protData = {
+                "org.w3.clearkey": {
+                    "clearkeys": {
+                        "60dc08aae52f4c0b806a8e43f24a12c8": "30d5b579966d822b215ec51a91d8a271"
                     }
                 }
             };
+            var video,
+                player,
+                url = "https://tglmp02.akamaized.net/out/v1/3170252e3fb0453085f2f4b0f8401a6b/manifest.mpd";
 
-            player.configure(config);
-
-            // Load the manifest
-            try {
-                await player.load(manifestUri);
-                console.log('The video has now been loaded!');
-            } catch (e) {
-                console.error('Error loading the video', e);
+            video = document.querySelector("video");
+            player = dashjs.MediaPlayer().create();
+            player.initialize(video, url, true);
+            player.setProtectionData(protData);
+        }
+        function check() {
+            if (location.protocol === 'http:' && location.hostname !== 'localhost') {
+                var out = 'This page has been loaded under http. This might result in the EME APIs not being available to the player and any DRM-protected content will fail to play. ' +
+                    'If you wish to test manifest URLs that require EME support, then <a href=\'https:' + window.location.href.substring(window.location.protocol.length) + '\'>reload this page under https</a>.'
+                var div = document.getElementById('http-warning');
+                div.innerHTML = out;
+                div.style.display = ''
             }
-        });
+        }
     </script>
+</head>
+<body>
+
+<main>
+    <div class="container py-4">
+        <header class="pb-3 mb-4 border-bottom">
+            <img class=""
+                 src="https://reference.dashif.org/dash.js/nightly/samples/lib/img/dashjs-logo.png"
+                 width="200">
+        </header>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert" style="display: none" id="http-warning">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h3>Clearkey DRM instantiation example</h3>
+                    <p>This example shows how to use dash.js to play streams with Clearkey DRM protection. </p><p>For a detailed explanation on DRM playback in dash.js checkout the
+                    <a href="https://github.com/Dash-Industry-Forum/dash.js/wiki/Digital-Rights-Management-(DRM)-and-license-acquisition"
+                       target="_blank">Wiki</a>.</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <video controls="true"></video>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="code-output"></div>
+            </div>
+        </div>
+        <footer class="pt-3 mt-4 text-muted border-top">
+            &copy; DASH-IF
+        </footer>
+    </div>
+</main>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        check();
+        init();
+    });
+</script>
+<script src="https://reference.dashif.org/dash.js/nightly/samples/highlighter.js"></script>
 </body>
 </html>
