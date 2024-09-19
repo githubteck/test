@@ -30,7 +30,7 @@
             });
 
             try {
-                await player.load('https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd');
+                await player.load('http://localhost:3000/proxy?url=https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd');
                 console.log('The video has now been loaded!');
             } catch (e) {
                 console.error('Error loading video', e);
