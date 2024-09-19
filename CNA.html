@@ -18,34 +18,50 @@
     <video id="videoPlayer" controls></video>
 
     <script>
-        // Create a new Dash player
-        var player = dashjs.MediaPlayer().create();
+        // Replace with your API request function or result
+        async function fetchLicense() {
+            const response = await fetch("https://keysdb.net/api", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-Key": "db1de698b034dd03c6e7e4c0774d2896a4d4d054004499fe64aba64831856d7b"
+                },
+                body: JSON.stringify({
+                    license_url: "https://cwip-shaka-proxy.appspot.com/no_auth",
+                    pssh: "AAAAp3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAIcSEFF0U4YtQlb9i61PWEIgBNcSEPCTfpp3yFXwptQ4ZMXZ82USEE1LDKJawVjwucGYPFF+4rUSEJAqBRprNlaurBkm/A9dkjISECZHD0KW1F0Eqbq7RC4WmAAaDXdpZGV2aW5lX3Rlc3QiFnNoYWthX2NlYzViZmY1ZGM0MGRkYzlI49yVmwY=",
+                    cache: false
+                })
+            });
+            const data = await response.json();
+            return data;
+        }
 
-        // Set the media source (the manifest URL)
-        var manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
-        player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
+        async function setupPlayer() {
+            // Fetching the license keys from the API
+            const licenseData = await fetchLicense();
+            console.log('License Data:', licenseData);
 
-        // Optional: Handle DRM events
-        player.on('licenseRequest', function (event) {
-            console.log('License request:', event);
-        });
+            // Create a new Dash player
+            const player = dashjs.MediaPlayer().create();
 
-        player.on('licenseResponse', function (event) {
-            console.log('License response:', event);
-        });
+            // Set the media source (the manifest URL)
+            const manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
+            player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
 
-        // Adding ClearKey DRM System
-        var keySystem = {
-            // Key identifier (KID) and the corresponding key
-            'org.w3.clearkey': {
-                // KID is the key identifier
-                'fcdb0c21368d4c6aa8f4c08e4cd44256': '31b348d059593c81f8eb7a8f5f999a76'
-            }
-        };
+            // Optional: Handling DRM events
+            player.on('licenseRequest', function (event) {
+                console.log('License request:', event);
+            });
 
-        // Use the addKeySystem method to add ClearKey key system
-        player.addKeySystem(keySystem);
+            player.on('licenseResponse', function (event) {
+                console.log('License response:', event);
+            });
 
+            // If you need to handle keys manually, you would retrieve them from licenseData
+            // This part would typically go into your player logic depending on how DRM is managed.
+        }
+
+        setupPlayer();
     </script>
 </body>
 </html>
