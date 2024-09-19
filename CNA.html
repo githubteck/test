@@ -18,16 +18,40 @@
     <video id="videoPlayer" controls></video>
 
     <script>
+        const licenseUrl = "https://cwip-shaka-proxy.appspot.com/no_auth";
         const pssh = "PHH:AAAAa3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAEsIARIQ/NsMITaNTGqo9MCOTNRCVhoHa2FsdHVyYSIlZnRhX3Zhc2FudGhhbV9kYXNoXzkwZjI0Njg0YzZhYl9jbW5fMioFU0RfSEQ=";
 
-        function setupPlayer() {
+        async function fetchLicense() {
+            // Fetch the license from the specified License URL
+            const response = await fetch(licenseUrl, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // Here you can send the required license request data, 
+                    // adjust based on what the license server expects
+                    pssh: pssh,
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('License request failed with status: ' + response.status);
+            }
+
+            // Return the license data as an ArrayBuffer
+            const licenseData = await response.arrayBuffer();
+            return licenseData;
+        }
+
+        async function setupPlayer() {
             const player = dashjs.MediaPlayer().create();
 
-            // Set the media source (the manifest URL)
+            // This will attach your video element to the DASH player with the given manifest URL
             const manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
             player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
 
-            // Handle DRM events
+            // Handle DRM events for debugging
             player.on('licenseRequest', function (event) {
                 console.log('License request:', event);
             });
@@ -36,13 +60,22 @@
                 console.log('License received:', event);
             });
 
-            // Configure using the PSSH data
-            player.setProtectionData({
-                "org.w3.clearkey": {
-                    "pssh": pssh // Include the PSSH
-                }
-            });
+            // Fetch the license
+            try {
+                const licenseData = await fetchLicense();
 
+                // Set the protection data with the received license
+                player.setProtectionData({
+                    "org.w3.clearkey": {
+                        "license": licenseData,
+                        "pssh": pssh // Include the PSSH
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching license:', error);
+            }
+
+            // Attach the source with the manifest URL
             player.attachSource(manifestUrl);
         }
 
