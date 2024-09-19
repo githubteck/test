@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASH.js Player with ClearKey DRM</title>
+    <title>DASH.js Stream Player with ClearKey DRM</title>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <style>
         #videoPlayer {
@@ -18,28 +18,9 @@
     <video id="videoPlayer" controls></video>
 
     <script>
-        const licenseUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczov..."; // truncated for clarity
         const pssh = "PHH:AAAAa3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAEsIARIQ/NsMITaNTGqo9MCOTNRCVhoHa2FsdHVyYSIlZnRhX3Zhc2FudGhhbV9kYXNoXzkwZjI0Njg0YzZhYl9jbW5fMioFU0RfSEQ=";
 
-        async function fetchLicense() {
-            const response = await fetch(licenseUrl, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error('License request failed with status: ' + response.status);
-            }
-
-            const licenseData = await response.arrayBuffer();
-            return licenseData;
-        }
-
-        async function setupPlayer() {
-            const licenseData = await fetchLicense();
-
+        function setupPlayer() {
             const player = dashjs.MediaPlayer().create();
 
             // Set the media source (the manifest URL)
@@ -55,10 +36,9 @@
                 console.log('License received:', event);
             });
 
-            // Optionally configure using the PSSH data
+            // Configure using the PSSH data
             player.setProtectionData({
                 "org.w3.clearkey": {
-                    "license": licenseData,
                     "pssh": pssh // Include the PSSH
                 }
             });
