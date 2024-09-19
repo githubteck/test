@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASH.js Stream Player</title>
+    <title>DASH.js Stream Player with ClearKey DRM</title>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <style>
         #videoPlayer {
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <h1>Dash.js Stream Player</h1>
+    <h1>Dash.js Stream Player with ClearKey DRM</h1>
     <video id="videoPlayer" controls></video>
 
     <script>
@@ -25,24 +25,23 @@
         var manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
         player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
 
-        // Set the ClearKey DRM configuration
-        var keySystem = {
+        // Prepare the ClearKey DRM configuration
+        const keySystem = {
             'keySystem': 'org.w3.clearkey',
-            'initDataTypes': ['cenc'],
             'license': {
                 'fcdb0c21368d4c6aa8f4c08e4cd44256': '31b348d059593c81f8eb7a8f5f999a76'
             }
         };
 
-        // Since you're using ClearKey, we don't need a license server URL
-        player.getDRM().setKeySystem(keySystem);
-        
-        // Optional: Handle DRM events
-        player.getDRM().on('licenseRequest', function (event) {
+        // Set the key system directly on the player
+        player.setKeySystems([{ keySystem: keySystem.keySystem, license: keySystem.license }]);
+
+        // Optional: Handle DRM events (if necessary)
+        player.on('licenseRequest', function (event) {
             console.log('License request:', event);
         });
 
-        player.getDRM().on('licenseResponse', function (event) {
+        player.on('licenseResponse', function (event) {
             console.log('License response:', event);
         });
 
