@@ -22,19 +22,19 @@
         var player = dashjs.MediaPlayer().create();
 
         // Set the media source (the manifest URL)
-        var manifestUrl = "https://tglmp02.akamaized.net/out/v1/3170252e3fb0453085f2f4b0f8401a6b/manifest.mpd";
+        var manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
         player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
 
         // Set the ClearKey DRM configuration
         var keySystem = {
             'keySystem': 'org.w3.clearkey',
             'initDataTypes': ['cenc'],
-            'licenseServer': 'clearkey://',
             'license': {
-                '60dc08aae52f4c0b806a8e43f24a12c8': '30d5b579966d822b215ec51a91d8a271'
+                'fcdb0c21368d4c6aa8f4c08e4cd44256': '31b348d059593c81f8eb7a8f5f999a76'
             }
         };
 
+        // Since you're using ClearKey, we don't need a license server URL
         player.getDRM().setKeySystem(keySystem);
         
         // Optional: Handle DRM events
