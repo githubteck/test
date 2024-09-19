@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASH.js Stream Player with ClearKey DRM</title>
+    <title>DASH.js Stream Player with Widevine DRM</title>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <style>
         #videoPlayer {
@@ -14,33 +14,32 @@
     </style>
 </head>
 <body>
-    <h1>Dash.js Stream Player with ClearKey DRM</h1>
+    <h1>Dash.js Stream Player with Widevine DRM</h1>
     <video id="videoPlayer" controls></video>
 
     <script>
-        // Replace with your API request function or result
         async function fetchLicense() {
-            const response = await fetch("https://keysdb.net/api", {
-                method: "POST",
+            const licenseUrl = "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczovL3Jlc3QtYXMub3R0LmthbHR1cmEuY29tL2FwaV92My9zZXJ2aWNlL2Fzc2V0RmlsZS9hY3Rpb24vZ2V0Q29udGV4dD9rcz1kako4TVRRM2ZORUhLUXBtbkNy..."; // truncated for clarity
+            const response = await fetch(licenseUrl, {
+                method: 'POST', // typically POST for DRM license requests
                 headers: {
                     "Content-Type": "application/json",
-                    "X-API-Key": "db1de698b034dd03c6e7e4c0774d2896a4d4d054004499fe64aba64831856d7b"
+                    "pragma": "no-cache"
                 },
-                body: JSON.stringify({
-                    license_url: "https://cwip-shaka-proxy.appspot.com/no_auth",
-                    pssh: "AAAAp3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAIcSEFF0U4YtQlb9i61PWEIgBNcSEPCTfpp3yFXwptQ4ZMXZ82USEE1LDKJawVjwucGYPFF+4rUSEJAqBRprNlaurBkm/A9dkjISECZHD0KW1F0Eqbq7RC4WmAAaDXdpZGV2aW5lX3Rlc3QiFnNoYWthX2NlYzViZmY1ZGM0MGRkYzlI49yVmwY=",
-                    cache: false
-                })
             });
-            const data = await response.json();
-            return data;
+
+            if (!response.ok) {
+                throw new Error('License request failed with status: ' + response.status);
+            }
+
+            const licenseData = await response.arrayBuffer(); // Read the license response as ArrayBuffer
+            return licenseData;
         }
 
         async function setupPlayer() {
-            // Fetching the license keys from the API
+            // Fetching the license from the Widevine URL
             const licenseData = await fetchLicense();
-            console.log('License Data:', licenseData);
-
+            
             // Create a new Dash player
             const player = dashjs.MediaPlayer().create();
 
@@ -48,20 +47,40 @@
             const manifestUrl = "https://ls-mp03.eo-edgefunctions7.com/out/v1/829f8bb0f97f4bdf971c60d83f661202/manifest.mpd";
             player.initialize(document.querySelector("#videoPlayer"), manifestUrl, true);
 
-            // Optional: Handling DRM events
+            // Handle playback errors
+            player.on('error', function(e) {
+                console.error('Playback error:', e);
+            });
+
+            // Handle DRM events
             player.on('licenseRequest', function (event) {
                 console.log('License request:', event);
             });
 
             player.on('licenseResponse', function (event) {
-                console.log('License response:', event);
+                console.log('License received, Response:', event);
             });
 
-            // If you need to handle keys manually, you would retrieve them from licenseData
-            // This part would typically go into your player logic depending on how DRM is managed.
+            // Configure the DRM manager with the Widevine license request
+            player.setProtectionData({
+                "org.w3.clearkey": {
+                    "license": licenseData
+                }
+            });
+
+            // Initialize the DRM
+            player.initializeDRM({
+                "org.w3.clearkey": {
+                    // You may need to handle the key system setup here if required by your use case
+                }
+            });
+
+            player.attachSource(manifestUrl);
         }
 
-        setupPlayer();
+        setupPlayer().catch(err => {
+            console.error('Error setting up Dash.js player:', err);
+        });
     </script>
 </body>
 </html>
