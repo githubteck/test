@@ -1,53 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNA Live Stream</title>
-    <link href="//vjs.zencdn.net/7.11.4/video-js.min.css" rel="stylesheet" />
-    <script src="//vjs.zencdn.net/7.11.4/video.min.js"></script>
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-    <style>
-        #videoPlayer {
-            width: 100%;
-            height: 100%;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: #000;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup='{}'>
-            <source src="https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd" type="application/dash+xml" />
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-        </video>
-    </div>
+    // Create a Dash player instance
+    var player = dashjs.MediaPlayer().create();
 
-    <script>
-        // Create a Dash player instance
-        var player = dashjs.MediaPlayer().create();
-        player.initialize(document.querySelector("#videoPlayer"), "https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd", true);
-        
-        // Set protection data for ClearKey DRM
-        player.setProtectionData({
-            "clearkey": {
-                "key": "4ee336861eed4840a555788dc54aea6e",
-                "keyId": "f1f53644d4941d4ed31b4bb2478f8cf4"
-            }
-        });
-        
-        // Attach source to the player
-        player.attachSource("https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd");
-    </script>
-</body>
-</html>
+    // Event listener for errors
+    player.on(dashjs.MediaPlayer.events.ERROR, function (e) {
+        console.error("Error occurred: ", e);
+    });
+
+    // Initialize the player
+    player.initialize(document.querySelector("#videoPlayer"), "https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd", true);
+
+    // Set protection data for ClearKey DRM
+    player.setProtectionData({
+        "clearkey": {
+            "key": "4ee336861eed4840a555788dc54aea6e",
+            "keyId": "f1f53644d4941d4ed31b4bb2478f8cf4"
+        }
+    });
+
+    // Attach the source for playback
+    player.attachSource("https://tglmp03.akamaized.net/out/v1/43856347987b4da3890360b0d18b5dc5/manifest.mpd");
+    
+    // Additional debugging to ensure player is ready
+    player.on(dashjs.MediaPlayer.events.MANIFEST_LOADED, function() {
+        console.log('Manifest loaded successfully');
+    });
+</script>
