@@ -6,7 +6,6 @@
     <title>Movie Posters</title>
     <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
     <script defer src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
-    <link href="https://vjs.zencdn.net/8.9.0/videojs.css" rel="stylesheet" />
     <style>
         body {
             margin: 0;
@@ -30,7 +29,7 @@
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Smaller poster size */
             gap: 10px;
             padding: 20px;
         }
@@ -80,9 +79,14 @@
             width: 100%; /* Make poster image responsive */
             height: auto; /* Maintain aspect ratio */
         }
+        /* Lazy load images styling */
+        .lazy {
+            width: 100px; /* Small preview */
+            height: 150px;
+        }
         .video-js {
             width: 100%;
-            height: 400px; /* Set fixed height for the video */
+            height: 300px; /* Set fixed height for the video */
         }
     </style>
 </head>
@@ -96,7 +100,7 @@
     <div class="info-popup" id="info-popup">
         <h2 id="movie-title"></h2>
         <p id="movie-info"></p>
-        <video id="video-player" class="video-js" controls preload="auto" width="100%" height="300">
+        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="300">
             <source id="video-source" src="" type="application/vnd.apple.mpegurl">
             Your browser does not support the video tag.
         </video>
@@ -129,12 +133,19 @@
                 gridItem.setAttribute('data-year', movie.info.year); // Store year for popup
 
                 gridItem.innerHTML = `
-                    <img src="${movie.info.poster}" alt="${movie.name}">
+                    <img class="lazy" data-src="${movie.info.poster}" alt="${movie.name}">
                     <div class="movie-info">${movie.name}</div>
                     <div class="movie-info">${movie.info.year}</div>
                 `;
 
                 gridContainer.appendChild(gridItem);
+            });
+
+            // Lazy load images
+            const lazyImages = document.querySelectorAll('.lazy');
+            lazyImages.forEach(img => {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
             });
         }
 
@@ -164,15 +175,9 @@
             titleElement.textContent = movieName;
             infoElement.textContent = `Year: ${movieYear}`;
 
-            // Initialize Video.js player
-            videojs(videoPlayer, { 
-                autoplay: true, // Enable auto-load
-                controls: true,
-                responsive: true,
-                fluid: true,
-                preload: "auto" // Preload
-            }).ready(function() {
-                this.src(videoUrl);
+            // Re-initialize Video.js player for compatibility
+            videojs(videoPlayer).ready(function() {
+                this.src({ type: 'application/vnd.apple.mpegurl', src: videoUrl });
                 this.load();
                 this.play();
             });
