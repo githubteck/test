@@ -320,51 +320,61 @@
 	 </div>
     
     <script>
-        // JavaScript to manage the selected state and keyboard navigation
-        const icons = document.querySelectorAll('.icon');
-        let selectedIndex = 0;
+    // JavaScript to manage the selected state and keyboard navigation
+    const icons = document.querySelectorAll('.icon');
+    let selectedIndex = 0;
 
-        // Function to update the selected icon
-        const updateSelection = (index) => {
-            icons.forEach((icon, i) => {
-                icon.classList.remove('selected');
-                if (i === index) {
-                    icon.classList.add('selected');
-                    icon.focus(); // Focus on the selected icon
-                }
-            });
-        };
-
-        // Initial selection
-        updateSelection(selectedIndex);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                selectedIndex = (selectedIndex + 1) % icons.length; // Cycle right
-                updateSelection(selectedIndex);
-            } else if (e.key === 'ArrowLeft') {
-                selectedIndex = (selectedIndex - 1 + icons.length) % icons.length; // Cycle left
-                updateSelection(selectedIndex);
-            } else if (e.key === 'ArrowDown') {
-                const nextIndex = selectedIndex + 10; // Assumes 3 columns
-                if (nextIndex < icons.length) {
-                    selectedIndex = nextIndex; // Move down
-                    updateSelection(selectedIndex);
-                }
-            } else if (e.key === 'ArrowUp') {
-                const prevIndex = selectedIndex - 10; // Assumes 3 columns
-                if (prevIndex >= 0) {
-                    selectedIndex = prevIndex; // Move up
-                    updateSelection(selectedIndex);
-                }
-             } else if (e.key === 'Enter') {
-                // Navigate to the link of the selected icon
-                const selectedIcon = icons[selectedIndex].querySelector('a');
-                if (selectedIcon) {
-                    window.open(selectedIcon.href, '_blank'); // Open link in a new tab
-                }
+    // Function to update the selected icon
+    const updateSelection = (index) => {
+        icons.forEach((icon, i) => {
+            icon.classList.remove('selected');
+            if (i === index) {
+                icon.classList.add('selected');
+                icon.focus(); // Focus on the selected icon
             }
         });
-    </script>
+    };
+
+    // Initial selection
+    updateSelection(selectedIndex);
+
+    // Function to calculate the number of icons per row dynamically
+    const getIconsPerRow = () => {
+        const container = document.body; // Adjust as necessary to the parent of the icons
+        const iconWidth = icons[0].offsetWidth + 20; // Width of a single icon + margin (left & right combined)
+        const containerWidth = container.offsetWidth; // Width of the container
+        return Math.floor(containerWidth / iconWidth); // Calculate icons per row
+    };
+
+    document.addEventListener('keydown', (e) => {
+        const iconsPerRow = getIconsPerRow(); // Get the number of icons per row dynamically
+
+        if (e.key === 'ArrowRight') {
+            selectedIndex = (selectedIndex + 1) % icons.length; // Cycle right
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowLeft') {
+            selectedIndex = (selectedIndex - 1 + icons.length) % icons.length; // Cycle left
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowDown') {
+            const nextIndex = selectedIndex + iconsPerRow; // Move down by the number of icons in a row
+            if (nextIndex < icons.length) {
+                selectedIndex = nextIndex; // Move down
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'ArrowUp') {
+            const prevIndex = selectedIndex - iconsPerRow; // Move up by the number of icons in a row
+            if (prevIndex >= 0) {
+                selectedIndex = prevIndex; // Move up
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'Enter') {
+            // Navigate to the link of the selected icon
+            const selectedIcon = icons[selectedIndex].querySelector('a');
+            if (selectedIcon) {
+                window.open(selectedIcon.href, '_blank'); // Open link in a new tab
+            }
+        }
+    });
+</script>
 </body>
 </html>
