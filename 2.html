@@ -11,15 +11,15 @@
     </head>
     <body>
         <div>
-            <video id="videoPlayer" controls></video>
+            <video id="videoPlayer" controls muted></video>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js"></script>
         <script>
             (function(){
                 var url = "https://ls-mp03.eo-edgefunctions7.com/out/v1/be732843b7d24bada23e13810282e55f/manifest.mpd";
                 var player = dashjs.MediaPlayer().create();
-                
-                // Since you have a license URL, you might want to set the license server.
+
+                // Set license server if needed
                 player.updateSettings({
                     'streaming': {
                         'licenseServer': {
@@ -27,8 +27,9 @@
                         }
                     }
                 });
-                
-                player.initialize(document.querySelector("#videoPlayer"), url, true);
+
+                // Initialize the player without autoplay
+                player.initialize(document.querySelector("#videoPlayer"), url, false);
             })();
         </script>
     </body>
