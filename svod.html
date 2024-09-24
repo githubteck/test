@@ -30,7 +30,7 @@
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Automatically fill columns */
             gap: 10px;
             padding: 20px;
         }
@@ -96,6 +96,18 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        /* Media Queries for Responsive Layouts */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 items per row on small screens */
+            }
+        }
+        @media (max-width: 400px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 item per row on very small screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -111,7 +123,7 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal()">×</span>
             <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="300px">
                 <source id="videoSource" src="" type="application/vnd.apple.mpegurl">
                 Your browser does not support the video tag.
@@ -121,14 +133,16 @@
 
     <script>
         let movies = [];
+        let originalMovies = []; // Store the original movie list for resetting
         let currentPage = 0;
-        const moviesPerPage = 10;
+        const moviesPerPage = 22;
 
         // Fetch movies
         async function fetchMovies() {
             try {
                 const response = await fetch('https://corsproxy.io/?https://vod.pondan.workers.dev/dewanonton.json');
                 movies = await response.json();
+                originalMovies = [...movies]; // Create a copy of the original movie list
                 displayMovies();
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -169,11 +183,16 @@
         // Filter movies
         function filterMovies() {
             const filterValue = document.getElementById('filter-input').value.toLowerCase();
-            const filteredMovies = movies.filter(movie => 
-                movie.name.toLowerCase().includes(filterValue) || 
-                movie.info.year.toString().includes(filterValue)
-            );
-            movies = filteredMovies;
+            
+            if (filterValue.trim() === '') {
+                movies = [...originalMovies]; // Reset to the original movie list
+            } else {
+                movies = originalMovies.filter(movie => 
+                    movie.name.toLowerCase().includes(filterValue) || 
+                    movie.info.year.toString().includes(filterValue)
+                );
+            }
+            
             currentPage = 0; // Reset to first page
             displayMovies();
         }
