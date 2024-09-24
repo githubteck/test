@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Dash.js Rocks</title>
+        <style>
+            video {
+                width: 640px;
+                height: 360px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <video id="videoPlayer" controls></video>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js"></script>
+        <script>
+            (function(){
+                var url = "https://ls-mp03.eo-edgefunctions7.com/out/v1/be732843b7d24bada23e13810282e55f/manifest.mpd";
+                var player = dashjs.MediaPlayer().create();
+                
+                // Since you have a license URL, you might want to set the license server.
+                player.updateSettings({
+                    'streaming': {
+                        'licenseServer': {
+                            'url': 'https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczovL3Jlc3QtYXMub3R0LmthbHR1cmEuY29tL2FwaV92My9zZXJ2aWNlL2Fzc2V0RmlsZS9hY3Rpb24vZ2V0Q29udGV4dD9rcz1kako4TVRRM2ZIc2Q1OFV6c0g5ZUNtZXhuRGdMZ2xROU1XOGEtcWFMSjZPVG01UzlOTHZvaS1zLUpzTWE4UUF1ZWNDdnFWejBqWVUzbHhWS0ZSUlU5UmF3MnBKYXJsWExCOEtvZ0JsOU5xMGhzcVdwWHRzMVdMMncta2ZQTTBWSUNRZGFUbTNOR2tmcmlDNm9NNXMtTjFjLTctM1lBQUlUcnpoVjdTNWN4QmRMRjNTT0dwQ2t0N1lZblFZZzVNOE96ak4yR1RYT253Yk1qZ1BRcEJEbW5Wbi0yWi01Sm1uWlNNb05UaFZVWlc3WVpaYXRNbkNfaGg2Xy1oSDR2RVlFZlJVbzZyQ1Z6dFFKTHlSdENkNFAxYzd5TjNIa2hSWlg5eWhfUUQwNTJrQkc3empZZnV6MVdBZkRmMk4xN2J5Q0FNUjNUSHV1VzBXWG9aVUNITEtVd184TVJVd09MeTA9JmNvbnRleHRUeXBlPW5vbmUmaWQ9MTIzNjYzNDMiLCJhY2NvdW50X2lkIjoyMDgyMzExLCJjb250ZW50X2lkIjoiYWRob2Nfb2t0b2xpZGF5c19kYXNoX2Ntbl9kcm0iLCJmaWxlcyI6IiIsInVzZXJfdG9rZW4iOiJkako4TVRRM2ZIc2Q1OFV6c0g5ZUNtZXhuRGdMZ2xROU1XOGEtcWFMSjZPVG01UzlOTHZvaS1zLUpzTWE4UUF1ZWNDdnFWejBqWVUzbHhWS0ZSUlU5UmF3MnBKYXJsWExCOEtvZ0JsOU5xMGhzcVdwWHRzMVdMMncta2ZQTTBWSUNRZGFUbTNOR2tmcmlDNm9NNXMtTjFjLTctM1lBQUlUcnpoVjdTNWN4QmRMRjNTT0dwQ2t0N1lZblFZZzVNOE96ak4yR1RYT253Yk1qZ1BRcEJEbW5Wbi0yWi01Sm1uWlNNb05UaFZVWlc3WVpaYXRNbkNfaGg2Xy1oSDR2RVlFZlJVbzZyQ1Z6dFFKTHlSdENkNFAxYzd5TjNIa2hSWlg5eWhfUUQwNTJrQkc3empZZnV6MVdBZkRmMk4xN2J5Q0FNUjNUSHV1VzBXWG9aVUNITEtVd184TVJVd09MeTA9IiwidWRpZCI6IiIsImFkZGl0aW9uYWxfY2FzX3N5c3RlbSI6MTQ3fQ%3d%3d&signature=m4ZhhXaUbj9kIsMuGg%2fsm73yO4s%3d&sessionId=c2600f1c-127a-f499-b7e2-4dfdcd52b637:7c860155-9fc9-9a6d-f946-d881e5570971&clientTag=html5:v3.14.0-is-startover-patch.7&referrer=aHR0cHM6Ly93d3cubWV3YXRjaC5zZy9jaGFubmVscy9va3RvbGlkYXlzLzE4NjU3NA=='
+                        }
+                    }
+                });
+                
+                player.initialize(document.querySelector("#videoPlayer"), url, true);
+            })();
+        </script>
+    </body>
+</html>
