@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>RSS Reader</title>
+  <style>
+    /* Add some basic styling to make it look decent */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #rss-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #rss-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #rss-list li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    #rss-list li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="rss-container">
+    <h1>RSS Reader</h1>
+    <input id="rss-url" type="text" placeholder="Enter RSS URL">
+    <button id="fetch-rss">Fetch RSS</button>
+    <ul id="rss-list"></ul>
+  </div>
+
+  <script>
+    // Get the RSS feed URL from the input field
+    const rssUrlInput = document.getElementById('rss-url');
+    const rssUrl = rssUrlInput.value;
+
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Set the request method and URL
+    xhr.open('GET', rssUrl, true);
+
+    // Set the response type to XML
+    xhr.responseType = 'xml';
+
+    // Send the request
+    xhr.send();
+
+    // When the request is complete, parse the XML response
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        const rssXml = xhr.response;
+        const rssItems = rssXml.querySelector('channel').querySelectorAll('item');
+
+        // Create a container to hold the feed items
+        const feedItemsContainer = document.getElementById('rss-list');
+
+        // Loop through each feed item and create a new list item
+        rssItems.forEach((item) => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <h2>${item.querySelector('title').textContent}</h2>
+            <p>${item.querySelector('description').textContent}</p>
+          `;
+          feedItemsContainer.appendChild(listItem);
+        });
+      }
+    };
+
+    // Add an event listener to the fetch-rss button to trigger the RSS fetch
+    document.getElementById('fetch-rss').addEventListener('click', () => {
+      const rssUrlInput = document.getElementById('rss-url');
+      const rssUrl = rssUrlInput.value;
+      xhr.open('GET', rssUrl, true);
+      xhr.send();
+    });
+  </script>
+
+</body>
+</html>
