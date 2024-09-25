@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Widevine DRM instantiation example</title>
+
+  <script src="https://reference.dashif.org/dash.js/latest/dist/dash.all.debug.js"></script>
+  <!--dash.all.min.js should be used in production over dash.all.debug.js
+        Debug files are not compressed or obfuscated making the file size much larger compared with dash.all.min.js-->
+  <!--<script src="../../dist/dash.all.min.js"></script>-->
+
+  <script class="code">
+    function init() {
+      const protData = {
+        "com.widevine.alpha": {
+          "serverURL": "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczovL3Jlc3QtYXMub3R0LmthbHR1cmEuY29tL2FwaV92My9zZXJ2aWNlL2Fzc2V0RmlsZS9hY3Rpb24vZ2V0Q29udGV4dD9rcz1kako4TVRRM2ZPMjRIVTc3b09IM1hQR2d5c2M5NHIyZG52Z2NMSDJaSlNjTHM1djFMMC1pQnMwZ3lCRUFkNFRpZDVWSm5Pem5HdmFtTl9nTXVVemlFalI1MlhNTmtneFBpTEloM2N0VVc4ZzFrM2FWMVNLRmZheUpVRmxvVE5BZEI3ZWZIOGpmZzlReXlNYkdOU2FQV0dBSzlqMnZ6WEkyNzVheVN0Ri1GTWxCZ1p0SmFnMlVqbk5mRVRyRDRLekU1R0gxdVBNV2JSMUdsM1RGZmlwYUo0c2lHS3ptNGo2TFFITm1JQjJqUkVtZFg5QnIxRmJ3NWo4WHVkSFhjS0ItZU1CbWVtaWwwUDBpSVFNeC1LX0h5ME5zM1VrLUR0bDlGR052TVR3aVA2NGk0RUpza2ItdmJLZFprNWFNaGFGdjdZRkZNUXNYWUE9PSZjb250ZXh0VHlwZT1ub25lJmlkPTk4MjY5OTEiLCJhY2NvdW50X2lkIjoyMDgyMzExLCJjb250ZW50X2lkIjoiZnRhX2NoOF9kYXNoXzIwMDQ1YzQzZTllOV9jbW5fMiIsImZpbGVzIjoiIiwidXNlcl90b2tlbiI6ImRqSjhNVFEzZk8yNEhVNzdvT0gzWFBHZ3lzYzk0cjJkbnZnY0xIMlpKU2NMczV2MUwwLWlCczBneUJFQWQ0VGlkNVZKbk96bkd2YW1OX2dNdVV6aUVqUjUyWE1Oa2d4UGlMSWgzY3RVVzhnMWszYVYxU0tGZmF5SlVGbG9UTkFkQjdlZkg4amZnOVF5eU1iR05TYVBXR0FLOWoydnpYSTI3NWF5U3RGLUZNbEJnWnRKYWcyVWpuTmZFVHJENEt6RTVHSDF1UE1XYlIxR2wzVEZmaXBhSjRzaUdLem00ajZMUUhObUlCMmpSRW1kWDlCcjFGYnc1ajhYdWRIWGNLQi1lTUJtZW1pbDBQMGlJUU14LUtfSHkwTnMzVWstRHRsOUZHTnZNVHdpUDY0aTRFSnNrYi12YktkWms1YU1oYUZ2N1lGRk1Rc1hZQT09IiwidWRpZCI6IiIsImFkZGl0aW9uYWxfY2FzX3N5c3RlbSI6MTQ3fQ%3d%3d&signature=XHsQ5O9OiYnn5JNCdKrM%2bnVH2Ig%3d&sessionId=f3899759-49f8-848b-6719-b6fb06b50f84:9389bd12-90a4-16de-7bbf-fd12d489725d&clientTag=html5:v3.14.0-is-startover-patch.7&referrer=aHR0cHM6Ly93d3cubWV3YXRjaC5zZy9jaGFubmVscy9DaGFubmVsLTgtOTcxMDQ/cmVkaXJlY3Q9dHJ1ZSZjbGlja1RvUGxheT10cnVl",
+          "httpRequestHeaders": {}
+        }
+      };
+      var video,
+        player,
+        url = "https://tglmp02.akamaized.net/out/v1/423fa206c4ea458ebe83d6edd172eb10/manifest.mpd";
+      video = document.querySelector("video");
+      player = dashjs.MediaPlayer().create();
+      player.initialize(video, url, false);
+      player.setProtectionData(protData);
+    }
+  </script>
+
+  <style>
+    video {
+      width: 640px;
+      height: 360px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <video controls="true">
+    </video>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      init();
+    });
+  </script>
+</body>
+
+</html>
