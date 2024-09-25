@@ -1,57 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8" />
-  <title>Widevine DRM instantiation example</title>
-
-  <script src="https://reference.dashif.org/dash.js/latest/dist/dash.all.debug.js"></script>
-  <!--dash.all.min.js should be used in production over dash.all.debug.js
-        Debug files are not compressed or obfuscated making the file size much larger compared with dash.all.min.js-->
-  <!--<script src="../../dist/dash.all.min.js"></script>-->
-
+<!-- for non-UI builds: -->
+<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
+<!-- or, for UI builds: -->
+<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css">
   <style>
-    #player-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      text-align: center;
+    body {
+        width:100%;
+        height: 100%;
+        font-family: Poppins;
+        display:block;
+        position: absolute;
+        padding: 0px;
+        margin: 0px;
+        background: #000;
     }
+    video{
+        width:100%;
+        height: 100%;
+        display:inline-block;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+ a, a:hover, a:focus, a:active {
+      text-decoration: none;
+ }
 
-    #video-player {
-      width: 640px;
-      height: 360px;
-      margin: 0 auto;
+</style>
+    <style>
+        div a img{visibility:hidden;}
+body::before {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 10;
+        content: '';
+        height: 70px;
+        width: 110px;
+        background: url(' ') no-repeat;
+        background-size: 110px auto, auto;
+        opacity: 0.4;
     }
-  </style>
+</style>
 </head>
-
 <body>
-  <div id="player-container">
-    <video controls="true" id="video-player"></video>
-  </div>
+<center>   <div data-shaka-player-container style="max-width:40em"
+         data-shaka-player-cast-receiver-id="1BA79154">
+       <!-- The data-shaka-player tag will make the UI library use this video element.
+            If no video is provided, the UI will automatically make one inside the container div. -->
+         
+        <video autoplay data-shaka-player id="video" poster="" style="width:100%;height:100%"></video>
+    </div>
+    </div></center>
+<script>
 
-  <script class="code">
-    function init() {
-      const protData = {
-        "com.widevine.alpha": {
-          "serverURL": "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczovL3Jlc3QtYXMub3R0LmthbHR1cmEuY29tL2FwaV92My9zZXJ2aWNlL2Fzc2V0RmlsZS9hY3Rpb24vZ2V0Q29udGV4dD9rcz1kako4TVRRM2ZPMjRIVTc3b09IM1hQR2d5c2M5NHIyZG52Z2NMSDJaSlNjTHM1djFMMC1pQnMwZ3lCRUFkNFRpZDVWSm5Pem5HdmFtTl9nTXVVemlFalI1MlhNTmtneFBpTEloM2N0VVc4ZzFrM2FWMVNLRmZheUpVRmxvVE5BZEI3ZWZIOGpmZzlReXlNYkdOU2FQV0dBSzlqMnZ6WEkyNzVheVN0Ri1GTWxCZ1p0SmFnMlVqbk5mRVRyRDRLekU1R0gxdVBNV2JSMUdsM1RGZmlwYUo0c2lHS3ptNGo2TFFITm1JQjJqUkVtZFg5QnIxRmJ3NWo4WHVkSFhjS0ItZU1CbWVtaWwwUDBpSVFNeC1LX0h5ME5zM1VrLUR0bDlGR052TVR3aVA2NGk0RUpza2ItdmJLZFprNWFNaGFGdjdZRkZNUXNYWUE9PSZjb250ZXh0VHlwZT1ub25lJmlkPTk4MjY5OTEiLCJhY2NvdW50X2lkIjoyMDgyMzExLCJjb250ZW50X2lkIjoiZnRhX2NoOF9kYXNoXzIwMDQ1YzQzZTllOV9jbW5fMiIsImZpbGVzIjoiIiwidXNlcl90b2tlbiI6ImRqSjhNVFEzZk8yNEhVNzdvT0gzWFBHZ3lzYzk0cjJkbnZnY0xIMlpKU2NMczV2MUwwLWlCczBneUJFQWQ0VGlkNVZKbk96bkd2YW1OX2dNdVV6aUVqUjUyWE1Oa2d4UGlMSWgzY3RVVzhnMWszYVYxU0tGZmF5SlVGbG9UTkFkQjdlZkg4amZnOVF5eU1iR05TYVBXR0FLOWoydnpYSTI3NWF5U3RGLUZNbEJnWnRKYWcyVWpuTmZFVHJENEt6RTVHSDF1UE1XYlIxR2wzVEZmaXBhSjRzaUdLem00ajZMUUhObUlCMmpSRW1kWDlCcjFGYnc1ajhYdWRIWGNLQi1lTUJtZW1pbDBQMGlJUU14LUtfSHkwTnMzVWstRHRsOUZHTnZNVHdpUDY0aTRFSnNrYi12YktkWms1YU1oYUZ2N1lGRk1Rc1hZQT09IiwidWRpZCI6IiIsImFkZGl0aW9uYWxfY2FzX3N5c3RlbSI6MTQ3fQ%3d%3d&signature=XHsQ5O9OiYnn5JNCdKrM%2bnVH2Ig%3d&sessionId=f3899759-49f8-848b-6719-b6fb06b50f84:9389bd12-90a4-16de-7bbf-fd12d489725d&clientTag=html5:v3.14.0-is-startover-patch.7&referrer=aHR0cHM6Ly93d3cubWV3YXRjaC5zZy9jaGFubmVscy9DaGFubmVsLTgtOTcxMDQ/cmVkaXJlY3Q9dHJ1ZSZjbGlja1RvUGxheT10cnVl",
-          "httpRequestHeaders": {}
-        }
-      };
-      var player,
-        url = "https://tglmp02.akamaized.net/out/v1/423fa206c4ea458ebe83d6edd172eb10/manifest.mpd";
-      player = dashjs.MediaPlayer().create();
-      player.initialize(document.getElementById("video-player"), url, false);
-      player.setProtectionData(protData);
+const manifestUri =
+    'https://tglmp02.akamaized.net/out/v1/423fa206c4ea458ebe83d6edd172eb10/manifest.mpd';
+
+async function init() {
+  // When using the UI, the player is made automatically by the UI object.
+  const video = document.getElementById('video');
+  const ui = video['ui'];
+  const controls = ui.getControls();
+  const player = controls.getPlayer();
+
+player.configure({
+  drm: {
+    clearKeys: {
+      // 'key-id-in-hex': 'key-in-hex',
+      'a4315e7266024dfc9ddb9667727d9635': '485a55859fda05a1e3e8ae1ae63906e8',
     }
-  </script>
+  }
+});
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      init();
-    });
-  </script>
+  // Attach player and ui to the window to make it easy to access in the JS console.
+  window.player = player;
+  window.ui = ui;
+
+  // Listen for error events.
+  player.addEventListener('error', onPlayerErrorEvent);
+  controls.addEventListener('error', onUIErrorEvent);
+
+  // Try to load a manifest.
+  // This is an asynchronous process.
+  try {
+    await player.load(manifestUri);
+    // This runs if the asynchronous load is successful.
+    console.log('The video has now been loaded!');
+  } catch (error) {
+    onPlayerError(error);
+  }
+}
+
+function onPlayerErrorEvent(errorEvent) {
+  // Extract the shaka.util.Error object from the event.
+  onPlayerError(event.detail);
+}
+
+function onPlayerError(error) {
+  // Handle player error
+  console.error('Error code', error.code, 'object', error);
+}
+
+function onUIErrorEvent(errorEvent) {
+  // Extract the shaka.util.Error object from the event.
+  onPlayerError(event.detail);
+}
+
+function initFailed(errorEvent) {
+  // Handle the failure to load; errorEvent.detail.reasonCode has a
+  // shaka.ui.FailReasonCode describing why.
+  console.error('Unable to load the UI library!');
+}
+
+// Listen to the custom shaka-ui-loaded event, to wait until the UI is loaded.
+document.addEventListener('shaka-ui-loaded', init);
+// Listen to the custom shaka-ui-load-failed event, in case Shaka Player fails
+// to load (e.g. due to lack of browser support).
+document.addEventListener('shaka-ui-load-failed', initFailed);
+   </script>
 </body>
-
 </html>
