@@ -10,6 +10,27 @@
         Debug files are not compressed or obfuscated making the file size much larger compared with dash.all.min.js-->
   <!--<script src="../../dist/dash.all.min.js"></script>-->
 
+  <style>
+    #player-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+    }
+
+    #video-player {
+      width: 640px;
+      height: 360px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="player-container">
+    <video controls="true" id="video-player"></video>
+  </div>
+
   <script class="code">
     function init() {
       const protData = {
@@ -18,29 +39,14 @@
           "httpRequestHeaders": {}
         }
       };
-      var video,
-        player,
+      var player,
         url = "https://tglmp02.akamaized.net/out/v1/423fa206c4ea458ebe83d6edd172eb10/manifest.mpd";
-      video = document.querySelector("video");
       player = dashjs.MediaPlayer().create();
-      player.initialize(video, url, false);
+      player.initialize(document.getElementById("video-player"), url, false);
       player.setProtectionData(protData);
     }
   </script>
 
-  <style>
-    video {
-      width: 640px;
-      height: 360px;
-    }
-  </style>
-</head>
-
-<body>
-  <div>
-    <video controls="true">
-    </video>
-  </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       init();
