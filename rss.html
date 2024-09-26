@@ -38,6 +38,11 @@
         button {
             margin-top: 20px;
         }
+        #search-bar {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -47,14 +52,16 @@
     <!-- RSS items will be injected here -->
 </div>
 
-<div id="item-details">
+<div id="item-details" style="display: none;">
     <h1>Item Details</h1>
+    <input type="text" id="search-bar" placeholder="Search titles..." oninput="filterTitles()">
     <div id="titles-list"></div>
     <button onclick="showRSSFeed()">Go Back</button>
 </div>
 
 <script>
-    let rssItems = []; 
+    let rssItems = []; // Store all fetched RSS items
+    let collectedTitles = []; // Store titles from all fetched pages
 
     function fetchRSS() {
         const rssUrl = 'https://corsproxy.io/?https://allrss.se/dramas/'; // Updated URL with new proxy
@@ -98,7 +105,7 @@
                 link = link.replace("http://", "https://");
             }
 
-            rssItems.push({ title, description, link });
+            rssItems.push({ title, description, link }); // Store all items
 
             const itemDiv = document.createElement('div');
             itemDiv.className = 'rss-item';
@@ -116,32 +123,43 @@
             itemLink = itemLink.replace("http://", "https://");
         }
 
-        // Check if the link is a playable link
+        console.log("Attempting to fetch:", itemLink); // Debugging line
+
+        // Check if the link is a playable link (first type)
         if (itemLink.startsWith("https://v.allrss.se/v/")) {
-            const newLink = itemLink.split("?xml")[0]; // Remove "?xml" and everything after it
+            const newLink = itemLink.split("?")[0]; // Remove everything after the first ?
             window.open(newLink, '_blank'); // Open the new link in a new tab
-        } else {
-            // Use the proxy for other links
-            const corsLink = `https://corsproxy.io/?${itemLink}`;
-            fetch(corsLink)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok: " + response.statusText);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    displayTitles(data);
-                })
-                .catch(error => {
-                    console.error("There was a problem with the fetch operation:", error);
-                    document.getElementById('titles-list').innerHTML = '<p>Error fetching the enclosure content.</p>';
-                    showItemDetails();
-                });
+        }
+        else if (itemLink.startsWith("http://v.allrss.se/v/")) {
+            const newLink = itemLink.replace(/&.*$/, ''); // Remove everything after the first &
+            window.open(newLink, '_blank'); // Open the new link in a new tab
+        }
+        else {
+            // For other links, fetch their content
+            fetchEnclosurePages(itemLink);
         }
     }
 
-    function displayTitles(data) {
+    function fetchEnclosurePages(url) {
+        fetch(`https://corsproxy.io/?${url}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                accumulateTitles(data); // Collect titles from the fetched data
+                checkForNextPage(data); // Check if there are more pages
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+                document.getElementById('titles-list').innerHTML = '<p>Error fetching the enclosure content.</p>';
+                showItemDetails();
+            });
+    }
+
+    function accumulateTitles(data) {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data, "text/xml");
         const items = xmlDoc.querySelectorAll("item");
@@ -155,11 +173,8 @@
             const title = titleElement ? titleElement.textContent : 'No Title';
             let link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
 
-            // Convert http to https if the URL starts with http
-            if (link.startsWith("http://")) {
-                link = link.replace("http://", "https://");
-            }
-
+            collectedTitles.push({ title, link }); // Store titles
+            
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
             titlesList.appendChild(titleDiv);
@@ -170,9 +185,41 @@
         document.getElementById('item-details').style.display = 'block';
     }
 
+    function checkForNextPage(data) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+        const nextPageLink = xmlDoc.querySelector("enclosure[url*='page']");
+        
+        if (nextPageLink) {
+            const nextPageUrl = nextPageLink.getAttribute("url");
+            fetchEnclosurePages(nextPageUrl); // Recursively fetch the next page
+        }
+    }
+
+    function filterTitles() {
+        const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+        const titlesList = document.getElementById('titles-list');
+
+        titlesList.innerHTML = '<h2>Titles:</h2>'; // Reset titles list
+
+        const filteredTitles = collectedTitles.filter(({ title }) => title.toLowerCase().includes(searchTerm));
+
+        if (filteredTitles.length === 0) {
+            titlesList.innerHTML += '<p>No titles found.</p>';
+            return;
+        }
+
+        filteredTitles.forEach(({ title, link }) => {
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
+            titlesList.appendChild(titleDiv);
+        });
+    }
+
     function showRSSFeed() {
         document.getElementById('item-details').style.display = 'none';
         document.getElementById('rss-feed').style.display = 'block';
+        collectedTitles = []; // Clear collected titles when going back
     }
 
     fetchRSS();
