@@ -57,7 +57,7 @@
     let rssItems = []; 
 
     function fetchRSS() {
-        const rssUrl = 'https://corsproxy.io/?http://allrss.se/dramas';
+        const rssUrl = 'https://cors-anywhere.herokuapp.com/http://allrss.se/dramas';
 
         fetch(rssUrl)
             .then(response => {
@@ -106,22 +106,30 @@
     }
 
     function fetchEnclosureContent(itemLink) {
-        const corsLink = `https://corsproxy.io/?{itemLink}`;
-        fetch(corsLink)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok: " + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                displayTitles(data);
-            })
-            .catch(error => {
-                console.error("There was a problem with the fetch operation:", error);
-                document.getElementById('titles-list').innerHTML = '<p>Error fetching the enclosure content.</p>';
-                showItemDetails();
-            });
+        // Check if the link is a playable link
+        if (itemLink.startsWith("http://v.allrss.se/v/")) {
+            // Extract the new link by removing query parameters
+            const newLink = itemLink.split("?xml")[0]; // Remove "?xml" and everything after it
+            window.open(newLink, '_blank'); // Open the new link in a new tab
+        } else {
+            // Proceed with the existing behavior for other links
+            const corsLink = `https://cors-anywhere.herokuapp.com/${itemLink}`;
+            fetch(corsLink)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok: " + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    displayTitles(data);
+                })
+                .catch(error => {
+                    console.error("There was a problem with the fetch operation:", error);
+                    document.getElementById('titles-list').innerHTML = '<p>Error fetching the enclosure content.</p>';
+                    showItemDetails();
+                });
+        }
     }
 
     function displayTitles(data) {
