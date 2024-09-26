@@ -1,90 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>RSS Reader</title>
-  <style>
-    /* Add some basic styling to make it look decent */
-    body {
-      font-family: Arial, sans-serif;
-    }
-    #rss-container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    #rss-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #rss-list li {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-    #rss-list li:last-child {
-      border-bottom: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic RSS Feed Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #rss-feed, #item-details {
+            display: block;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .rss-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        .rss-item h2 {
+            margin: 0 0 5px;
+        }
+        .rss-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .rss-item p {
+            color: #555;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div id="rss-container">
-    <h1>RSS Reader</h1>
-    <input id="rss-url" type="text" placeholder="Enter RSS URL">
-    <button id="fetch-rss">Fetch RSS</button>
-    <ul id="rss-list"></ul>
-  </div>
 
-  <script>
-    // Get the RSS feed URL from the input field
-    const rssUrlInput = document.getElementById('rss-url');
-    const rssUrl = rssUrlInput.value;
+<div id="rss-feed">
+    <h1>RSS Feed</h1>
+    <!-- RSS items will be injected here -->
+</div>
 
-    // Create a new XMLHttpRequest object
-    const xhr = new XMLHttpRequest();
+<div id="item-details">
+    <h1>Item Details</h1>
+    <div id="titles-list"></div>
+    <button onclick="showRSSFeed()">Go Back</button>
+</div>
 
-    // Set the request method and URL
-    xhr.open('GET', rssUrl, true);
+<script>
+    let rssItems = []; 
 
-    // Set the response type to XML
-    xhr.responseType = 'xml';
+    function fetchRSS() {
+        const rssUrl = 'https://corsproxy.io/?http://allrss.se/dramas';
 
-    // Send the request
-    xhr.send();
+        fetch(rssUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                displayRSS(data);
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+                document.getElementById('rss-feed').innerHTML = '<p>Error fetching the RSS feed.</p>';
+            });
+    }
 
-    // When the request is complete, parse the XML response
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        const rssXml = xhr.response;
-        const rssItems = rssXml.querySelector('channel').querySelectorAll('item');
+    function displayRSS(data) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
 
-        // Create a container to hold the feed items
-        const feedItemsContainer = document.getElementById('rss-list');
+        const items = xmlDoc.querySelectorAll("item");
+        const feedContainer = document.getElementById('rss-feed');
 
-        // Loop through each feed item and create a new list item
-        rssItems.forEach((item) => {
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `
-            <h2>${item.querySelector('title').textContent}</h2>
-            <p>${item.querySelector('description').textContent}</p>
-          `;
-          feedItemsContainer.appendChild(listItem);
+        feedContainer.innerHTML = '';
+
+        items.forEach((item) => {
+            const titleElement = item.querySelector("title");
+            const enclosureElement = item.querySelector("enclosure");
+            const descriptionElement = item.querySelector("description");
+
+            const title = titleElement ? titleElement.textContent : 'No Title';
+            const link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
+            const description = descriptionElement ? descriptionElement.textContent : 'No Description';
+
+            rssItems.push({ title, description, link });
+
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'rss-item';
+            itemDiv.innerHTML = `
+                <h2><a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a></h2>
+                <p>${description.replace(/<[^>]*>/g, '')}</p>
+            `;
+            feedContainer.appendChild(itemDiv);
         });
-      }
-    };
+    }
 
-    // Add an event listener to the fetch-rss button to trigger the RSS fetch
-    document.getElementById('fetch-rss').addEventListener('click', () => {
-      const rssUrlInput = document.getElementById('rss-url');
-      const rssUrl = rssUrlInput.value;
-      xhr.open('GET', rssUrl, true);
-      xhr.send();
-    });
-  </script>
+    function fetchEnclosureContent(itemLink) {
+        const corsLink = `https://corsproxy.io/?{itemLink}`;
+        fetch(corsLink)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                displayTitles(data);
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+                document.getElementById('titles-list').innerHTML = '<p>Error fetching the enclosure content.</p>';
+                showItemDetails();
+            });
+    }
+
+    function displayTitles(data) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+        const items = xmlDoc.querySelectorAll("item");
+        const titlesList = document.getElementById('titles-list');
+
+        titlesList.innerHTML = '<h2>Titles:</h2>'; // To show titles header
+
+        items.forEach(item => {
+            const titleElement = item.querySelector("title");
+            const enclosureElement = item.querySelector("enclosure");
+            const title = titleElement ? titleElement.textContent : 'No Title';
+            const link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
+
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
+            titlesList.appendChild(titleDiv);
+        });
+
+        // Show item-details section
+        document.getElementById('rss-feed').style.display = 'none';
+        document.getElementById('item-details').style.display = 'block';
+    }
+
+    function showRSSFeed() {
+        document.getElementById('item-details').style.display = 'none';
+        document.getElementById('rss-feed').style.display = 'block';
+    }
+
+    fetchRSS();
+</script>
 
 </body>
 </html>
