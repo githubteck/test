@@ -57,7 +57,7 @@
     let rssItems = []; 
 
     function fetchRSS() {
-        const rssUrl = 'https://cors-anywhere.herokuapp.com/http://allrss.se/dramas';
+        const rssUrl = 'https://corsproxy.io/?https://allrss.se/dramas/'; // Updated URL with new proxy
 
         fetch(rssUrl)
             .then(response => {
@@ -90,8 +90,13 @@
             const descriptionElement = item.querySelector("description");
 
             const title = titleElement ? titleElement.textContent : 'No Title';
-            const link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
+            let link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
             const description = descriptionElement ? descriptionElement.textContent : 'No Description';
+
+            // Convert http to https if the URL starts with http
+            if (link.startsWith("http://")) {
+                link = link.replace("http://", "https://");
+            }
 
             rssItems.push({ title, description, link });
 
@@ -106,14 +111,18 @@
     }
 
     function fetchEnclosureContent(itemLink) {
+        // Convert http to https if the link starts with http
+        if (itemLink.startsWith("http://")) {
+            itemLink = itemLink.replace("http://", "https://");
+        }
+
         // Check if the link is a playable link
-        if (itemLink.startsWith("http://v.allrss.se/v/")) {
-            // Extract the new link by removing query parameters
+        if (itemLink.startsWith("https://v.allrss.se/v/")) {
             const newLink = itemLink.split("?xml")[0]; // Remove "?xml" and everything after it
             window.open(newLink, '_blank'); // Open the new link in a new tab
         } else {
-            // Proceed with the existing behavior for other links
-            const corsLink = `https://cors-anywhere.herokuapp.com/${itemLink}`;
+            // Use the proxy for other links
+            const corsLink = `https://corsproxy.io/?${itemLink}`;
             fetch(corsLink)
                 .then(response => {
                     if (!response.ok) {
@@ -144,7 +153,12 @@
             const titleElement = item.querySelector("title");
             const enclosureElement = item.querySelector("enclosure");
             const title = titleElement ? titleElement.textContent : 'No Title';
-            const link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
+            let link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
+
+            // Convert http to https if the URL starts with http
+            if (link.startsWith("http://")) {
+                link = link.replace("http://", "https://");
+            }
 
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
