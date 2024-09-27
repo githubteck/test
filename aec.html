@@ -1,126 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<!-- for non-UI builds: -->
-<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
-<!-- or, for UI builds: -->
-<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css">
+  <meta charset="utf-8" />
+  <title>Widevine DRM instantiation example</title>
+
+  <script src="https://reference.dashif.org/dash.js/latest/dist/dash.all.debug.js"></script>
+  <!--dash.all.min.js should be used in production over dash.all.debug.js
+        Debug files are not compressed or obfuscated making the file size much larger compared with dash.all.min.js-->
+  <!--<script src="../../dist/dash.all.min.js"></script>-->
+
+  <script class="code">
+    function init() {
+      const protData = {
+        "com.widevine.alpha": {
+          "serverURL": "https://udrmv3.kaltura.com/cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJodHRwczovL3Jlc3QtYXMub3R0LmthbHR1cmEuY29tL2FwaV92My9zZXJ2aWNlL2Fzc2V0RmlsZS9hY3Rpb24vZ2V0Q29udGV4dD9rcz1kako4TXpJd09YeFNqTDhzNE90WG1kTWN5UGZScFAyZWtzUVh3amlvQjVBZ0x3QWVjM0JqbGFIZHEzMTM4OGxGMzVTQkplUzN4ZVhNOVNFNXE4c2RNSFJwM3hDSDNHYXo0ZzZJQnlTN0RpRGcyYlQxUnRnbndQdnpUb0hNWkxKSEVmN2xhcm5fSzgzSmVocHNvalFmQlE2c29NMlFPQllpdHhlOXlROC1fLVYycTNjX0JsbG9nQlg0cGJoUmFrcnFDd1RnTno4YzM5RWZickctMUNPSkFwb1RxWTl5WGVIdHdCOUxmS1NDY0xNUnp2TTJSOG9qc2ZWNXQtbUM5cFZWUkw2NmJsbmlGdGFjaEhhUDhWaGxMOUoyUW9IWHpqYktBdXctTDFWLVVHdmRVTTdGTlZuSy1tTkhxTmVBOHZwMS1vbXdVQU9LRk54NlJ4ZktRMEloN2swaFpldExHY1Z3SnFVeGlVU1ZfZHNoMm5XemJDMGN5cFhjUlo4eXZLbkh0UUF4SFI5RGtnOTNHX1pvemIxRkpjSGhjbHJia2piUFE5eXhqV0RlNmdEOVljZWQzM1h4RUdGNXQ4NzVlaDVQMVZOaWtuTkZaNm9VdjJxbW9pLTE1V0x3V25kNzM2Q0cmY29udGV4dFR5cGU9bm9uZSZpZD0xOTE1NTg1OSIsImFjY291bnRfaWQiOjMwODk2MzMsImNvbnRlbnRfaWQiOiJmMGVmMjMzYTAwMjk0YWY0ODQzMWNhZTlhMTQ2NTExNyIsImZpbGVzIjoiIiwidXNlcl90b2tlbiI6ImRqSjhNekl3T1h4U2pMOHM0T3RYbWRNY3lQZlJwUDJla3NRWHdqaW9CNUFnTHdBZWMzQmpsYUhkcTMxMzg4bEYzNVNCSmVTM3hlWE05U0U1cThzZE1IUnAzeENIM0dhejRnNklCeVM3RGlEZzJiVDFSdGdud1B2elRvSE1aTEpIRWY3bGFybl9LODNKZWhwc29qUWZCUTZzb00yUU9CWWl0eGU5eVE4LV8tVjJxM2NfQmxsb2dCWDRwYmhSYWtycUN3VGdOejhjMzlFZmJyRy0xQ09KQXBvVHFZOXlYZUh0d0I5TGZLU0NjTE1SenZNMlI4b2pzZlY1dC1tQzlwVlZSTDY2YmxuaUZ0YWNoSGFQOFZobEw5SjJRb0hYempiS0F1dy1MMVYtVUd2ZFVNN0ZOVm5LLW1OSHFOZUE4dnAxLW9td1VBT0tGTng2UnhmS1EwSWg3azBoWmV0TEdjVndKcVV4aVVTVl9kc2gybld6YkMwY3lwWGNSWjh5dktuSHRRQXhIUjlEa2c5M0dfWm96YjFGSmNIaGNscmJramJQUTl5eGpXRGU2Z0Q5WWNlZDMzWHhFR0Y1dDg3NWVoNVAxVk5pa25ORlo2b1V2MnFtb2ktMTVXTHdXbmQ3MzZDRyIsInVkaWQiOiIwNTVjNDE3NS1kMmRkLTRlZDYtYjFjZi02NDIxYjA3NmVmZTJfV0VCLWRkMjM2MDk4LTkxNTctNmNiNS1iNDViLWNlOTczMmM2YWZhYyIsImFkZGl0aW9uYWxfY2FzX3N5c3RlbSI6MzIwOX0%3d&signature=2O4JcR8JXPFOTjFOCHhpMOY7boA%3d&sessionId=aa8faca2-c132-1761-3b8a-04065fdbce83:296ee1ee-30da-25b4-5b6a-dc4613139b70&clientTag=html5:v3.17.21&referrer=aHR0cHM6Ly9zb29rYS5teS9lbi9wbGF5L2FlYy1oZC8xNDk3ODI0L3BsYXllcj9saW5lYXJJZD0xMDMxOTA0MTcmaXNMaXZlPXRydWU=",
+          "httpRequestHeaders": {}
+        }
+      };
+      var video,
+        player,
+        url = "https://d3qvd6o7n7wgpa.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/AEC_Production/masterCH1.mpd";
+      video = document.querySelector("video");
+      player = dashjs.MediaPlayer().create();
+      player.initialize(video, url, false);
+      player.setProtectionData(protData);
+    }
+  </script>
+
   <style>
-    body {
-        width:100%;
-        height: 100%;
-        font-family: Poppins;
-        display:block;
-        position: absolute;
-        padding: 0px;
-        margin: 0px;
-        background: #000;
+    video {
+      width: 640px;
+      height: 360px;
     }
-    video{
-        width:100%;
-        height: 100%;
-        display:inline-block;
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        -ms-user-select:none;
-        user-select:none;
-    }
- a, a:hover, a:focus, a:active {
-      text-decoration: none;
- }
-
-</style>
-    <style>
-        div a img{visibility:hidden;}
-body::before {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        z-index: 10;
-        content: '';
-        height: 70px;
-        width: 110px;
-        background: url(' ') no-repeat;
-        background-size: 110px auto, auto;
-        opacity: 0.4;
-    }
-</style>
+  </style>
 </head>
+
 <body>
-<center>   <div data-shaka-player-container style="max-width:40em"
-         data-shaka-player-cast-receiver-id="1BA79154">
-       <!-- The data-shaka-player tag will make the UI library use this video element.
-            If no video is provided, the UI will automatically make one inside the container div. -->
-         
-        <video autoplay data-shaka-player id="video" poster="" style="width:100%;height:100%"></video>
-    </div>
-    </div></center>
-<script>
-
-const manifestUri =
-    'https://a2ef74f67b1f43689b5bef947c40d9ed.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/AEC_Production/masterCH1.mpd?aws.sessionId=d4495c6e-f394-425f-b2e1-43fd560a12c4';
-
-async function init() {
-  // When using the UI, the player is made automatically by the UI object.
-  const video = document.getElementById('video');
-  const ui = video['ui'];
-  const controls = ui.getControls();
-  const player = controls.getPlayer();
-
-player.configure({
-  drm: {
-    clearKeys: {
-      // 'key-id-in-hex': 'key-in-hex',
-      '01eb1168208940f8b270b4e0994570e7': 'e75165d38b909567c03353ae4b27b6f8',
-    }
-  }
-});
-
-  // Attach player and ui to the window to make it easy to access in the JS console.
-  window.player = player;
-  window.ui = ui;
-
-  // Listen for error events.
-  player.addEventListener('error', onPlayerErrorEvent);
-  controls.addEventListener('error', onUIErrorEvent);
-
-  // Try to load a manifest.
-  // This is an asynchronous process.
-  try {
-    await player.load(manifestUri);
-    // This runs if the asynchronous load is successful.
-    console.log('The video has now been loaded!');
-  } catch (error) {
-    onPlayerError(error);
-  }
-}
-
-function onPlayerErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-
-function onPlayerError(error) {
-  // Handle player error
-  console.error('Error code', error.code, 'object', error);
-}
-
-function onUIErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-
-function initFailed(errorEvent) {
-  // Handle the failure to load; errorEvent.detail.reasonCode has a
-  // shaka.ui.FailReasonCode describing why.
-  console.error('Unable to load the UI library!');
-}
-
-// Listen to the custom shaka-ui-loaded event, to wait until the UI is loaded.
-document.addEventListener('shaka-ui-loaded', init);
-// Listen to the custom shaka-ui-load-failed event, in case Shaka Player fails
-// to load (e.g. due to lack of browser support).
-document.addEventListener('shaka-ui-load-failed', initFailed);
-   </script>
+  <div>
+    <video controls="true">
+    </video>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      init();
+    });
+  </script>
 </body>
+
 </html>
