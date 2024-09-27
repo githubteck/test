@@ -56,12 +56,13 @@
     <h1>Item Details</h1>
     <input type="text" id="search-bar" placeholder="Search titles..." oninput="filterTitles()">
     <div id="titles-list"></div>
-    <button onclick="showRSSFeed()">Go Back</button>
+    <button onclick="goBack()">Go Back</button>
 </div>
 
 <script>
     let rssItems = []; // Store all fetched RSS items
     let collectedTitles = []; // Store titles from all fetched pages
+    let navigationHistory = []; // Store history of enclosure links
 
     function fetchRSS() {
         const rssUrl = 'https://corsproxy.io/?https://allrss.se/dramas/'; // Updated URL with new proxy
@@ -124,6 +125,9 @@
         }
 
         console.log("Attempting to fetch:", itemLink); // Debugging line
+
+        // Push the link to navigation history
+        navigationHistory.push(itemLink);
 
         // Check if the link is a playable link (first type)
         if (itemLink.startsWith("https://v.allrss.se/v/")) {
@@ -216,10 +220,27 @@
         });
     }
 
+    function goBack() {
+        if (navigationHistory.length > 1) {
+            // Remove the current item from navigation history
+            navigationHistory.pop(); 
+
+            // Get the previous item on the history stack
+            const previousLink = navigationHistory[navigationHistory.length - 1];
+
+            // Fetch and display the previous enclosure content
+            fetchEnclosurePages(previousLink);
+        } else {
+            // If no previous item exists, just show the RSS feed
+            showRSSFeed();
+        }
+    }
+
     function showRSSFeed() {
         document.getElementById('item-details').style.display = 'none';
         document.getElementById('rss-feed').style.display = 'block';
         collectedTitles = []; // Clear collected titles when going back
+        navigationHistory = []; // Clear navigation history as well
     }
 
     fetchRSS();
