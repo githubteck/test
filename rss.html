@@ -8,8 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: #f4f4f4;
+            height: 100vh; /* Full screen height */
+            overflow: hidden; /* Prevent scrolling on body */
         }
         #rss-feed, #item-details {
             display: block;
@@ -17,31 +19,54 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin: 0 auto;
-            max-width: 600px;
+            margin: 0;
+            height: calc(100vh - 40px); /* Full height minus padding */
+            overflow-y: auto; /* Enable scrolling within the sections */
+            position: relative; /* For fixed positioning of children */
         }
-        .rss-item {
+        .rss-item, .child-title {
             margin-bottom: 20px;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 10px;
+            padding: 10px;
+            background-color: #eaeaea; /* Light background for items */
+            border-radius: 10px; /* Rounded corners */
+            display: flex; /* Flexbox layout for image and title */
+            align-items: center; /* Center items vertically */
         }
-        .rss-item h2 {
-            margin: 0 0 5px;
+        .rss-item img, .child-title img {
+            width: 180px; /* Set a fixed width for images */
+            height: 120px; /* Set a fixed height to make them square */
+            border-radius: 10px; /* Rounded corners */
+            margin-right: 10px; /* Space between image and title */
         }
-        .rss-item a {
+        .rss-item h2, .child-title h2 {
+            margin: 0;
+            flex-grow: 1; /* Allow the title to grow */
+        }
+        .rss-item a, .child-title a {
             text-decoration: none;
             color: #007bff;
         }
-        .rss-item p {
-            color: #555;
+        #search-container {
+            position: fixed; /* Make search bar position fixed */
+            top: 0; /* Stick to the top */
+            left: 0; /* Align with the left edge */
+            right: 0; /* Align with the right edge */
+            background-color: white; /* Background color for better visibility */
+            z-index: 1; /* Ensure it remains above other content */
+            padding: 10px; /* Padding for spacing */
+            border-bottom: 1px solid #ccc; /* Optional bottom border */
         }
         button {
-            margin-top: 20px;
+            margin-top: 10px;
         }
         #search-bar {
             margin-bottom: 10px;
             padding: 5px;
-            width: 100%;
+            width: calc(100% - 20px); /* Full width minus padding */
+            box-sizing: border-box; /* Include padding in width */
+        }
+        #item-details {
+            padding-top: 60px; /* Add padding to push content below the fixed container */
         }
     </style>
 </head>
@@ -53,10 +78,12 @@
 </div>
 
 <div id="item-details" style="display: none;">
+    <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search titles..." oninput="filterTitles()">
+        <button onclick="goBack()">Go Back</button>
+    </div>
     <h1>Item Details</h1>
-    <input type="text" id="search-bar" placeholder="Search titles..." oninput="filterTitles()">
     <div id="titles-list"></div>
-    <button onclick="goBack()">Go Back</button>
 </div>
 
 <script>
@@ -101,16 +128,22 @@
             let link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
             const description = descriptionElement ? descriptionElement.textContent : 'No Description';
 
+            // Extract image from description
+            const imgRegex = /<img[^>]+src=['"]([^'"]+)['"]/i;
+            const imgMatch = description.match(imgRegex);
+            const imageUrl = imgMatch ? imgMatch[1] : ''; // Get the image URL or set to empty if not found
+
             // Convert http to https if the URL starts with http
             if (link.startsWith("http://")) {
                 link = link.replace("http://", "https://");
             }
 
-            rssItems.push({ title, description, link }); // Store all items
+            rssItems.push({ title, description, link, imageUrl }); // Store all items including image URL
 
             const itemDiv = document.createElement('div');
             itemDiv.className = 'rss-item';
             itemDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${title} Image" ${imageUrl ? '' : 'style="display:none;"'}/>
                 <h2><a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a></h2>
                 <p>${description.replace(/<[^>]*>/g, '')}</p>
             `;
@@ -133,18 +166,16 @@
         if (itemLink.startsWith("https://v.allrss.se/v/")) {
             const newLink = itemLink.split("?")[0]; // Remove everything after the first ?
             window.open(newLink, '_blank'); // Open the new link in a new tab
-        }
-        else if (itemLink.startsWith("http://v.allrss.se/v/")) {
+        } else if (itemLink.startsWith("http://v.allrss.se/v/")) {
             const newLink = itemLink.replace(/&.*$/, ''); // Remove everything after the first &
             window.open(newLink, '_blank'); // Open the new link in a new tab
-        }
-        else {
+        } else {
             // For other links, fetch their content
-            fetchEnclosurePages(itemLink);
+            fetchEnclosurePages(itemLink, true); // Indicate that this is a manual fetch
         }
     }
 
-    function fetchEnclosurePages(url) {
+    function fetchEnclosurePages(url, isManual = false) {
         fetch(`https://corsproxy.io/?${url}`)
             .then(response => {
                 if (!response.ok) {
@@ -153,7 +184,7 @@
                 return response.text();
             })
             .then(data => {
-                accumulateTitles(data); // Collect titles from the fetched data
+                accumulateTitles(data, isManual); // Collect titles from the fetched data
                 checkForNextPage(data); // Check if there are more pages
             })
             .catch(error => {
@@ -163,13 +194,15 @@
             });
     }
 
-    function accumulateTitles(data) {
+    function accumulateTitles(data, isManual) {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data, "text/xml");
         const items = xmlDoc.querySelectorAll("item");
         const titlesList = document.getElementById('titles-list');
 
-        titlesList.innerHTML = '<h2>Titles:</h2>'; // To show titles header
+        if (isManual) {
+            titlesList.innerHTML = '<h2>Titles:</h2>'; // Reset titles list for manual fetch
+        }
 
         items.forEach(item => {
             const titleElement = item.querySelector("title");
@@ -177,10 +210,21 @@
             const title = titleElement ? titleElement.textContent : 'No Title';
             let link = enclosureElement ? enclosureElement.getAttribute("url") : '#';
 
-            collectedTitles.push({ title, link }); // Store titles
+            // Extract image from description if applicable
+            const imgRegex = /<img[^>]+src=['"]([^'"]+)['"]/i;
+            const descriptionElement = item.querySelector("description");
+            const description = descriptionElement ? descriptionElement.textContent : '';
+            const imgMatch = description.match(imgRegex);
+            const imageUrl = imgMatch ? imgMatch[1] : ''; // Get the image URL or set to empty if not found
+
+            collectedTitles.push({ title, link, imageUrl }); // Store titles including image URL
             
             const titleDiv = document.createElement('div');
-            titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
+            titleDiv.className = 'child-title'; // Applying different class for children titles
+            titleDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${title} Image" ${imageUrl ? '' : 'style="display:none;"'}/>
+                <h2><a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a></h2>
+            `;
             titlesList.appendChild(titleDiv);
         });
 
@@ -196,7 +240,7 @@
         
         if (nextPageLink) {
             const nextPageUrl = nextPageLink.getAttribute("url");
-            fetchEnclosurePages(nextPageUrl); // Recursively fetch the next page
+            fetchEnclosurePages(nextPageUrl, false); // Recursively fetch the next page
         }
     }
 
@@ -204,7 +248,7 @@
         const searchTerm = document.getElementById('search-bar').value.toLowerCase();
         const titlesList = document.getElementById('titles-list');
 
-        titlesList.innerHTML = '<h2>Titles:</h2>'; // Reset titles list
+        titlesList.innerHTML = '<h2>Titles:</h2>'; // Reset titles list for filtered search
 
         const filteredTitles = collectedTitles.filter(({ title }) => title.toLowerCase().includes(searchTerm));
 
@@ -213,9 +257,13 @@
             return;
         }
 
-        filteredTitles.forEach(({ title, link }) => {
+        filteredTitles.forEach(({ title, link, imageUrl }) => {
             const titleDiv = document.createElement('div');
-            titleDiv.innerHTML = `<a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a>`;
+            titleDiv.className = 'child-title'; // Apply the same styling for filtered results
+            titleDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${title} Image" ${imageUrl ? '' : 'style="display:none;"'}/>
+                <h2><a href="#" onclick="fetchEnclosureContent('${link}'); return false;">${title}</a></h2>
+            `;
             titlesList.appendChild(titleDiv);
         });
     }
@@ -229,7 +277,7 @@
             const previousLink = navigationHistory[navigationHistory.length - 1];
 
             // Fetch and display the previous enclosure content
-            fetchEnclosurePages(previousLink);
+            fetchEnclosurePages(previousLink, true); // Manually fetch the previous link
         } else {
             // If no previous item exists, just show the RSS feed
             showRSSFeed();
