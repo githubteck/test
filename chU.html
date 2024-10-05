@@ -1,60 +1,67 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- for non-UI builds: -->
-<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
-<!-- or, for UI builds: -->
-<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css">
-  <style>
-    body {
-        width:100%;
-        height: 100%;
-        font-family: Poppins;
-        display:block;
-        position: absolute;
-        padding: 0px;
-        margin: 0px;
-        background: #000;
-    }
-    video{
-        width:100%;
-        height: 100%;
-        display:inline-block;
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        -ms-user-select:none;
-        user-select:none;
-    }
- a, a:hover, a:focus, a:active {
-      text-decoration: none;
- }
-
-</style>
+    <!-- for non-UI builds: -->
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
+    <!-- or, for UI builds: -->
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css">
     <style>
-        div a img{visibility:hidden;}
-body::before {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        z-index: 10;
-        content: '';
-        height: 70px;
-        width: 110px;
-        background: url(' ') no-repeat;
-        background-size: 110px auto, auto;
-        opacity: 0.4;
-    }
-</style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Poppins, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Flex container to center video player */
+        .video-container {
+            width: 100%;
+            height: 100%;
+            position: relative; /* Allow absolute positioning of the video element */
+        }
+
+        /* Make video fill the entire container */
+        video {
+            position: absolute; /* Position it absolutely */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+        }
+
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+        }
+
+        div a img {
+            visibility: hidden; /* Hide the image in links */
+        }
+
+        body::before {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 10;
+            content: '';
+            height: 70px;
+            width: 110px;
+            background: url(' ') no-repeat;
+            background-size: 110px auto, auto;
+            opacity: 0.4;
+        }
+    </style>
 </head>
 <body>
-<center>   <div data-shaka-player-container style="max-width:40em"
-         data-shaka-player-cast-receiver-id="1BA79154">
-       <!-- The data-shaka-player tag will make the UI library use this video element.
-            If no video is provided, the UI will automatically make one inside the container div. -->
-         
-        <video autoplay data-shaka-player id="video" poster="" style="width:100%;height:100%"></video>
+    <div class="video-container" data-shaka-player-container>
+        <video autoplay data-shaka-player id="video" poster=""></video>
     </div>
-    </div></center>
 <script>
 
 const manifestUri =
