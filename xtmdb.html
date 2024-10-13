@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies and TV Show Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            padding-bottom: 80px; /* Space for pagination at the bottom */
+        }
+        #container {
+            margin: 20px;
+        }
+        /* Trending items layout */
+        .trending-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .trending-item img {
+            max-width: 120px;
+            border-radius: 4px;
+            margin-right: 20px; /* Space between image and details */
+        }
+        /* Regular items layout for search results */
+        .item {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            cursor: pointer;
+            flex: 1 1 calc(20% - 20px);
+        }
+        .item img {
+            max-width: 120px;
+            border-radius: 4px;
+        }
+        #trending {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 80px; /* Space for pagination */
+        }
+        #search-container {
+            margin-bottom: 20px;
+            text-align: center; /* Center align */
+            position: fixed;    /* Fixed position for the search bar */
+            top: 20px;         /* Offset from top */
+            left: 0;
+            right: 0;          /* Center it */
+            z-index: 10;       /* Ensure it stays above other elements */
+        }
+        #search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+        }
+        #pagination {
+            text-align: center; /* Center align pagination */
+            position: fixed;    /* Fixed position for pagination */
+            bottom: 20px;       /* Offset from bottom */
+            left: 0;
+            right: 0;
+            z-index: 10;        /* Ensure it stays above other elements */
+        }
+        #pagination button {
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        #pagination button:disabled {
+            background-color: gray;
+        }
+        .back-button {
+            margin: 10px 0;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        h3 {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        p {
+            font-size: 14px;
+            margin: 2px 0;
+        }
+        #items {
+            margin-bottom: 80px; /* Space for pagination */
+            padding-bottom: 20px; /* Additional padding if needed */
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+<div id="search-container">
+    <input type="text" id="search-input" placeholder="Enter movie or TV show title..." />
+</div>
+
+<div id="container">
+    <h1 id="trending-header">Trending This Week</h1>
+    <div id="trending"></div>
+    <h1 style="display: none;" id="movies-header">Movies and TV Shows</h1>
+    <div id="items"></div>
+    <div id="details" style="display: none;"></div>
+    <div id="pagination"></div>
+    <div class="tmdb-credit">
+        Data provided by <a href="https://www.themoviedb.org/" target="_blank">TMDB</a>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    const resultsPerPage = 20; 
+    let currentItems = [];
+    let searchTitle = '';
+    let previousPageItems = [];
+    let currentTvId = null; // Keep track of the current TV show ID
+    let currentSeasonId = null; // Keep track of the current season
+    let historyStack = []; // Stack to manage back navigation
+
+    // Fetch trending items
+    const fetchTrending = async () => {
+        const apiKey = '5187c1e6d16f4e109e8263654e747ab4';
+        const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            renderTrending(data.results);
+        } catch (error) {
+            console.error('Error fetching trending items:', error);
+            document.getElementById('trending').innerText = "An error occurred. Please try again later.";
+        }
+    }
+
+    const renderTrending = (trendingItems) => {
+        const trendingDiv = document.getElementById('trending');
+        trendingDiv.innerHTML = ''; 
+
+        trendingItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'trending-item';
+            
+            const year = item.release_date ? item.release_date.split('-')[0] : (item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A');
+
+            itemDiv.innerHTML = `
+                <img src="${item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : 'https://via.placeholder.com/120x180?text=No+Image'}" alt="${item.title || item.name} Poster">
+                <div>
+                    <h3>${item.title || item.name} (${year})</h3>
+                    <p>Overview: ${item.overview || "No overview available."}</p>
+                    <p>TMDB ID: ${item.id}</p>
+                </div>
+            `;
+
+            // Set up click functionality to fetch details
+            itemDiv.addEventListener('click', () => {
+                if (item.media_type === 'tv') {
+                    currentTvId = item.id;  // Store the current TV show ID
+                    fetchSeasons(item.id);
+                } else if (item.media_type === 'movie') {
+                    window.open(`https://vidsrc.icu/embed/movie/${item.id}`, '_blank'); // Open movie link
+                }
+            });
+
+            trendingDiv.appendChild(itemDiv);
+        });
+    }
+
+    const fetchItems = async (query, page = 1) => {
+        if (!query) return;
+
+        const apiKey = '5187c1e6d16f4e109e8263654e747ab4';
+        const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${encodeURIComponent(query)}&page=${page}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.results.length > 0) {
+                currentItems = data.results;
+                currentItems.sort((a, b) => {
+                    const dateA = a.release_date || a.first_air_date || '';
+                    const dateB = b.release_date || b.first_air_date || '';
+                    return new Date(dateB) - new Date(dateA);
+                });
+                previousPageItems = currentItems;
+                renderItems();
+                renderPagination(data.total_results);
+                // Hide trending and show items
+                document.getElementById('trending').style.display = 'none';
+                document.getElementById('movies-header').style.display = 'block'; // Show movies header when searching
+                document.getElementById('trending-header').style.display = 'none'; // Hide trending header
+            } else {
+                document.getElementById('items').innerText = "No items found.";
+            }
+        } catch (error) {
+            console.error('Error fetching items:', error);
+            document.getElementById('items').innerText = "An error occurred. Please try again later.";
+        }
+    }
+
+    const renderItems = () => {
+        const itemsDiv = document.getElementById('items');
+        itemsDiv.innerHTML = ''; 
+
+        currentItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'item';
+            const isMovie = item.media_type === 'movie';
+            const genreList = item.genre_ids ? item.genre_ids.map(id => getGenreById(id)).join(', ') : 'N/A';
+            const year = isMovie ? item.release_date ? item.release_date.split('-')[0] : 'N/A' : item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A';
+
+            itemDiv.innerHTML = `
+                <img src="${item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : 'https://via.placeholder.com/120x180?text=No+Image'}" alt="${item.title || item.name} Poster">
+                <h3>${item.title || item.name} (${isMovie ? 'Movie' : 'TV Show'})</h3>
+                <p>${year}</p>
+                <p>Genres: ${genreList}</p>
+                <p>TMDB ID: ${item.id}</p>
+            `;
+
+            // Set up click functionality to fetch seasons
+            itemDiv.addEventListener('click', () => {
+                if (isMovie) {
+                    window.open(`https://vidsrc.icu/embed/movie/${item.id}`, '_blank'); // Open the movie link
+                } else {
+                    currentTvId = item.id;  // Store the current TV show ID
+                    historyStack.push('items'); // Store navigation state
+                    fetchSeasons(item.id);
+                }
+            });
+
+            itemsDiv.appendChild(itemDiv);
+        });
+    }
+
+    const fetchSeasons = async (tvId) => {
+        const apiKey = '5187c1e6d16f4e109e8263654e747ab4';
+        const url = `https://api.themoviedb.org/3/tv/${tvId}?api_key=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            renderSeasons(data.seasons, data.id);
+        } catch (error) {
+            console.error('Error fetching seasons:', error);
+            document.getElementById('details').innerHTML = ''; 
+        }
+    }
+
+    const renderSeasons = (seasons, tvId) => {
+        const itemsDiv = document.getElementById('items');
+        itemsDiv.innerHTML = '';
+
+        const backButton = document.createElement('button');
+        backButton.className = 'back-button';
+        backButton.innerText = 'Back to Shows';
+        backButton.onclick = goBack; // Use goBack function for navigation
+        itemsDiv.appendChild(backButton);
+
+        seasons.forEach(season => {
+            const seasonDiv = document.createElement('div');
+            seasonDiv.className = 'season-details item';
+            seasonDiv.innerHTML = `
+                <h2>Season ${season.season_number}: ${season.name}</h2>
+                <p>TMDB ID: ${tvId}, Season Number: ${season.season_number}</p> 
+            `;
+
+            // Click functionality to fetch episodes
+            seasonDiv.addEventListener('click', () => {
+                fetchEpisodes(tvId, season.season_number);
+                currentSeasonId = season.season_number;  // Store the current season number
+            });
+
+            itemsDiv.appendChild(seasonDiv);
+        });
+    }
+
+    const fetchEpisodes = async (tvId, seasonNumber) => {
+        const apiKey = '5187c1e6d16f4e109e8263654e747ab4';
+        const url = `https://api.themoviedb.org/3/tv/${tvId}/season/${seasonNumber}?api_key=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            renderEpisodes(data.episodes, tvId);
+            historyStack.push(currentTvId);
+        } catch (error) {
+            console.error('Error fetching episodes:', error);
+            document.getElementById('details').innerHTML = ''; 
+        }
+    }
+
+    const renderEpisodes = (episodes, tvId) => {
+        const itemsDiv = document.getElementById('items');
+        itemsDiv.innerHTML = ''; 
+
+        const backButton = document.createElement('button');
+        backButton.className = 'back-button';
+        backButton.innerText = 'Back to Seasons';
+        backButton.onclick = goBack; // Use goBack function for navigation
+        itemsDiv.appendChild(backButton);
+
+        episodes.forEach(episode => {
+            const episodeDiv = document.createElement('div');
+            episodeDiv.className = 'episode-details item';
+            episodeDiv.innerHTML = `
+                <h2>Episode ${episode.episode_number}: ${episode.name}</h2>
+                <p>TMDB ID: ${episode.id}</p> 
+            `;
+
+            // Click to open episode link
+            episodeDiv.addEventListener('click', () => {
+                window.open(`https://vidsrc.icu/embed/tv/${tvId}/${currentSeasonId}/${episode.episode_number}`, '_blank');
+            });
+
+            itemsDiv.appendChild(episodeDiv);
+        });
+    }
+
+    const getGenreById = (id) => {
+        const genres = {
+            28: 'Action',
+            12: 'Adventure',
+            16: 'Animation',
+            35: 'Comedy',
+            80: 'Crime',
+            99: 'Documentary',
+            18: 'Drama',
+            27: 'Horror',
+            10402: 'Music',
+            9648: 'Mystery',
+            10749: 'Romance',
+            878: 'Science Fiction',
+            10770: 'TV Movie',
+            53: 'Thriller',
+            10752: 'War',
+            37: 'Western',
+        };
+        return genres[id] || 'Unknown Genre';
+    }
+
+    const renderPagination = (totalResults) => {
+        const paginationDiv = document.getElementById('pagination');
+        paginationDiv.innerHTML = '';
+
+        const totalPages = Math.ceil(totalResults / resultsPerPage);
+
+        if (totalPages > 1) {
+            const prevButton = document.createElement('button');
+            prevButton.innerText = 'Previous';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    fetchItems(searchTitle, currentPage);
+                }
+            });
+            paginationDiv.appendChild(prevButton);
+
+            const nextButton = document.createElement('button');
+            nextButton.innerText = 'Next';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    fetchItems(searchTitle, currentPage);
+                }
+            });
+            paginationDiv.appendChild(nextButton);
+        }
+    }
+
+    const goBack = () => {
+        if (historyStack.length > 0) {
+            const previousState = historyStack.pop(); // Remove the last state
+            if (previousState === 'items') {
+                // Show items again
+                renderItems();
+            } else if (typeof previousState === 'number') {
+                fetchSeasons(previousState); // Fetch and display seasons for the TV show
+            }
+        } else {
+            // If no history, fall back to refreshing the trending section
+            document.getElementById('items').innerHTML = '';
+            document.getElementById('trending').style.display = 'block'; // Show trending again
+            document.getElementById('movies-header').style.display = 'none'; // Hide movies header
+            document.getElementById('trending-header').style.display = 'block'; // Show trending header again
+            fetchTrending(); // Fetch trending again
+        }
+    }
+
+    const debounce = (func, delay) => {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+
+    document.getElementById('search-input').addEventListener('input', debounce((e) => {
+        searchTitle = e.target.value;
+
+        if (searchTitle.trim() === '') {
+            // Show trending header and items
+            document.getElementById('trending').style.display = 'block'; // Show trending again
+            document.getElementById('movies-header').style.display = 'none'; // Hide movies header
+            document.getElementById('items').innerHTML = ''; // Clear items
+            fetchTrending(); // Fetch trending again
+            // Show the "Trending This Week" header again
+            document.getElementById('trending-header').style.display = 'block'; // Show trending header
+        } else {
+            currentPage = 1;
+            fetchItems(searchTitle, currentPage);
+            // Hide the "Trending This Week" header when searching
+            document.getElementById('trending-header').style.display = 'none'; // Hide trending header
+            document.getElementById('movies-header').style.display = 'block'; // Show movies header when searching
+        }
+    }, 300));
+
+    // Fetch trending items on initial load
+    fetchTrending();
+
+</script>
+
+</body>
+</html>
