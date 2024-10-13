@@ -181,7 +181,7 @@
                     currentTvId = item.id;  // Store the current TV show ID
                     fetchSeasons(item.id);
                 } else if (item.media_type === 'movie') {
-                    window.open(`https://zmov.vercel.app/watch/movie/${item.id}`, '_blank'); // Open movie link
+                    window.open(`https://vidlink.pro//movie/${item.id}`, '_blank'); // Open movie link
                 }
             });
 
@@ -244,7 +244,7 @@
             // Set up click functionality to fetch seasons
             itemDiv.addEventListener('click', () => {
                 if (isMovie) {
-                    window.open(`https://zmov.vercel.app/watch/movie/${item.id}`, '_blank'); // Open the movie link
+                    window.open(`https://vidlink.pro//movie/${item.id}`, '_blank'); // Open the movie link
                 } else {
                     currentTvId = item.id;  // Store the current TV show ID
                     historyStack.push('items'); // Store navigation state
@@ -333,7 +333,7 @@
 
             // Click to open episode link
             episodeDiv.addEventListener('click', () => {
-                window.open(`https://zmov.vercel.app/watch/tv/${tvId}/${currentSeasonId}/${episode.episode_number}`, '_blank');
+                window.open(`https://vidlink.pro//tv/${tvId}/${currentSeasonId}/${episode.episode_number}`, '_blank');
             });
 
             itemsDiv.appendChild(episodeDiv);
