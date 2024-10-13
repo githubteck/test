@@ -68,6 +68,15 @@
             border-radius: 4px;
             width: 300px;
         }
+        #home-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-right: 10px; /* Space between button and search bar */
+        }
         #pagination {
             text-align: center; /* Center align pagination */
             position: fixed;    /* Fixed position for pagination */
@@ -116,6 +125,7 @@
 <body>
 
 <div id="search-container">
+    <button id="home-button">Home</button>
     <input type="text" id="search-input" placeholder="Enter movie or TV show title..." />
 </div>
 
@@ -175,14 +185,13 @@
                 </div>
             `;
 
-            // Set up click functionality to fetch details
+            // Set up click functionality to populate the search bar and fetch results
             itemDiv.addEventListener('click', () => {
-                if (item.media_type === 'tv') {
-                    currentTvId = item.id;  // Store the current TV show ID
-                    fetchSeasons(item.id);
-                } else if (item.media_type === 'movie') {
-                    window.open(`https://vidsrc.icu/embed/movie/${item.id}`, '_blank'); // Open movie link
-                }
+                const title = item.title || item.name;
+                document.getElementById('search-input').value = title; // Populate the search bar
+                searchTitle = title; // Set the search title for fetching
+                currentPage = 1; // Reset to the first page
+                fetchItems(title, currentPage); // Fetch items for that title
             });
 
             trendingDiv.appendChild(itemDiv);
@@ -439,6 +448,18 @@
             document.getElementById('movies-header').style.display = 'block'; // Show movies header when searching
         }
     }, 300));
+
+    // Home button functionality
+    document.getElementById('home-button').addEventListener('click', () => {
+        document.getElementById('search-input').value = ''; // Clear search input
+        searchTitle = ''; // Reset search title
+        currentPage = 1; // Reset to the first page
+        fetchTrending(); // Fetch trending items
+        document.getElementById('trending').style.display = 'block'; // Show trending section
+        document.getElementById('movies-header').style.display = 'none'; // Hide movies header
+        document.getElementById('items').innerHTML = ''; // Clear items
+        document.getElementById('trending-header').style.display = 'block'; // Show trending header
+    });
 
     // Fetch trending items on initial load
     fetchTrending();
