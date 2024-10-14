@@ -253,7 +253,7 @@
             // Set up click functionality to fetch seasons
             itemDiv.addEventListener('click', () => {
                 if (isMovie) {
-                    window.open(`https://player.vidsrc.nl/embed/movie/${item.id}`, '_blank'); // Open the movie link
+                    window.open(`https://vidsrc.icu//embed/movie/${item.id}`, '_blank'); // Open the movie link
                 } else {
                     currentTvId = item.id;  // Store the current TV show ID
                     historyStack.push('items'); // Store navigation state
@@ -342,7 +342,7 @@
 
             // Click to open episode link
             episodeDiv.addEventListener('click', () => {
-                window.open(`https://player.vidsrc.nl/embed/tv/${tvId}/${currentSeasonId}/${episode.episode_number}`, '_blank');
+                window.open(`https://vidsrc.icu//embed/tv/${tvId}/${currentSeasonId}/${episode.episode_number}`, '_blank');
             });
 
             itemsDiv.appendChild(episodeDiv);
