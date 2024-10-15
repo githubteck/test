@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOD BFZY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #search-container {
+            margin-bottom: 20px;
+        }
+        #search-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px; /* space between grid items */
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Rounded edges */
+            text-align: center; /* Center items */
+            background-color: #f9f9f9; /* Light background for visibility */
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit text color */
+            transition: box-shadow 0.2s; /* Smooth transition for shadow */
+        }
+        .result-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow on hover */
+        }
+        .result-img {
+            width: 100%; /* Full width */
+            height: 250px; /* Fixed height for uniformity, you can adjust as needed */
+            object-fit: contain; /* Fit image within the container while maintaining aspect ratio */
+            border-radius: 10px 10px 0 0; /* Round top corners */
+        }
+        .vod-name {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+        .vod-id, .vod-year, .vod-type {
+            color: #666; /* Gray color for ID */
+        }
+        .vod-class {
+            color: #007bff; /* Example color for class */
+            font-style: italic; /* Italicize the class text */
+        }
+    </style>
+</head>
+<body>
+    <h1>VOD Fetch Test</h1>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search VOD..." />
+    </div>
+    <div id="results"></div>
+
+    <script>
+        // Function to fetch the data based on the search term
+        async function fetchAllVODData(searchTerm) {
+            const baseUrl = 'https://bfzyapi.com/api.php/provide/vod/list?ac=list&wd=';
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+            
+            if (!searchTerm) {
+                return; // If search term is empty, do nothing
+            }
+
+            try {
+                const url = `${baseUrl}${encodeURIComponent(searchTerm)}`;
+                const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
+                const response = await fetch(proxyUrl + url);
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                if (!data.list || data.list.length === 0) {
+                    resultsDiv.innerHTML = '<p>No results found.</p>'; // Show no results message
+                    return;
+                }
+
+                // Complete map of type_id to their descriptions
+                const typeMap = {
+                    30: '连续剧',
+                    37: '海外剧',
+                    38: '泰国剧',
+                    33: '香港剧',
+                    34: '韩国剧',
+                    35: '台湾剧',
+                    36: '日本剧',
+                    32: '欧美剧',
+                    31: '国产剧',
+                    39: '动漫片',
+                    41: '日韩动漫',
+                    42: '欧美动漫',
+                    43: '港台动漫',
+                    44: '海外动漫',
+                    40: '国产动漫',
+                    45: '综艺片',
+                    49: '欧美综艺',
+                    46: '大陆综艺',
+                    47: '港台综艺',
+                    48: '日韩综艺',
+                    51: '电影解说',
+                    52: '预告片',
+                    53: '体育赛事',
+                    54: '足球',
+                    55: '篮球',
+                    56: '网球',
+                    57: '斯诺克',
+                    20: '电影片',
+                    29: '理论片',
+                    28: '纪录片',
+                    27: '战争片',
+                    26: '剧情片',
+                    25: '爱情片',
+                    24: '科幻片',
+                    23: '恐怖片',
+                    22: '喜剧片',
+                    21: '动作片',
+                    50: '动画片',
+                };
+
+                // Display results
+                data.list.forEach(vod => {
+                    const resultItem = document.createElement('a'); // Use <a> for links
+                    resultItem.className = 'result-item';
+                    resultItem.href = `https://bfzy.tv/index.php/vod/detail/id/${vod.vod_id}.html`; // Set href based on vod_id
+                    resultItem.target = "_blank"; // Open link in a new tab
+
+                    const imageUrl = vod.vod_pic; // Adjust based on actual field name
+                    const typeDescription = typeMap[vod.type_id] || 'Unknown Type';
+
+                    resultItem.innerHTML = `
+                        <img class="result-img" src="${imageUrl}" alt="${vod.vod_name}">
+                        <div class="vod-name">${vod.vod_name}</div>
+                        <div class="vod-id">ID: ${vod.vod_id}</div>
+                        <div class="vod-year">Year: ${vod.vod_year}</div>
+                        <div class="vod-type">Type: ${typeDescription}</div>
+                        <div class="vod-class">Class: ${vod.vod_class}</div>
+                    `;
+                    resultsDiv.appendChild(resultItem);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
+            }
+        }
+
+        let typingTimer; // Timer identifier
+        const searchInput = document.getElementById('search-input');
+
+        // Event listener for input change
+        searchInput.addEventListener('input', function() {
+            clearTimeout(typingTimer); // Clear the previous timer
+            const currentSearchTerm = this.value.trim(); // Get trimmed value of input
+            typingTimer = setTimeout(() => fetchAllVODData(currentSearchTerm), 300); // Set a short delay to avoid excessive requests
+        });
+
+        // Optional: You can fetch default data on page load if desired
+        fetchAllVODData('');
+    </script>
+</body>
+</html>
