@@ -11,6 +11,8 @@
         }
         #search-container {
             margin-bottom: 20px;
+            display: flex; /* Use flexbox to align elements */
+            align-items: center; /* Center items vertically */
         }
         #search-input {
             padding: 10px;
@@ -19,55 +21,236 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        #latest-button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745; /* Green color for the button */
+            color: white;
+            cursor: pointer;
+            margin-left: 10px; /* Add some spacing */
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        #latest-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        #type-buttons {
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-gap: 10px;
+        }
+        .type-button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .type-button:hover {
+            background-color: #0056b3;
+        }
         #results {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px; /* space between grid items */
+            gap: 20px;
             margin-top: 20px;
         }
         .result-item {
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 10px; /* Rounded edges */
-            text-align: center; /* Center items */
-            background-color: #f9f9f9; /* Light background for visibility */
-            text-decoration: none; /* Remove underline from links */
-            color: inherit; /* Inherit text color */
-            transition: box-shadow 0.2s; /* Smooth transition for shadow */
+            border-radius: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s;
         }
         .result-item:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow on hover */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .result-img {
-            width: 100%; /* Full width */
-            height: 250px; /* Fixed height for uniformity, you can adjust as needed */
-            object-fit: contain; /* Fit image within the container while maintaining aspect ratio */
-            border-radius: 10px 10px 0 0; /* Round top corners */
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 10px 10px 0 0;
         }
         .vod-name {
             font-weight: bold;
             margin: 10px 0 5px;
         }
         .vod-id, .vod-year, .vod-type {
-            color: #666; /* Gray color for ID */
+            color: #666;
         }
         .vod-class {
-            color: #007bff; /* Example color for class */
-            font-style: italic; /* Italicize the class text */
+            color: #007bff;
+            font-style: italic;
+        }
+        #pagination-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #pagination-controls button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: none; /* Initially hide buttons */
+        }
+        #pagination-controls button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>VOD Fetch Test</h1>
+    <h1>VOD</h1>
     <div id="search-container">
         <input type="text" id="search-input" placeholder="Search VOD..." />
+        <button id="latest-button">Latest</button>
     </div>
+    <div id="type-buttons"></div>
     <div id="results"></div>
+    <div id="pagination-controls">
+        <button id="prev-button">Previous</button>
+        <button id="next-button">Next</button>
+    </div>
 
     <script>
+        const typeMap = {
+            30: '连续剧',
+            37: '海外剧',
+            38: '泰国剧',
+            33: '香港剧',
+            34: '韩国剧',
+            35: '台湾剧',
+            36: '日本剧',
+            32: '欧美剧',
+            31: '国产剧',
+            39: '动漫片',
+            41: '日韩动漫',
+            42: '欧美动漫',
+            43: '港台动漫',
+            44: '海外动漫',
+            40: '国产动漫',
+            45: '综艺片',
+            49: '欧美综艺',
+            46: '大陆综艺',
+            47: '港台综艺',
+            48: '日韩综艺',
+            51: '电影解说',
+            52: '预告片',
+            53: '体育赛事',
+            54: '足球',
+            55: '篮球',
+            56: '网球',
+            57: '斯诺克',
+            20: '电影片',
+            29: '理论片',
+            28: '纪录片',
+            27: '战争片',
+            26: '剧情片',
+            25: '爱情片',
+            24: '科幻片',
+            23: '恐怖片',
+            22: '喜剧片',
+            21: '动作片',
+            50: '动画片',
+        };
+
+        let currentPage = 1; // Current page index
+        let totalPages = 1; // Total pages fetched
+        let currentTypeId; // Type ID of the selected category
+        let currentSearchTerm = ''; // Store current search term
+        let searchMode = false; // Flag to indicate if in search mode
+        let currentSearchPage = 1; // Current page index for search results
+        let latestPage = 1; // Current page index for latest results
+
+        function createTypeButtons() {
+            const typeButtonsDiv = document.getElementById('type-buttons');
+            Object.keys(typeMap).forEach(typeId => {
+                const button = document.createElement('button');
+                button.className = 'type-button';
+                button.textContent = typeMap[typeId];
+                button.addEventListener('click', () => {
+                    currentTypeId = typeId; // Set the current selected type
+                    currentPage = 1; // Reset to the first page
+                    searchMode = false; // Reset back to type mode
+                    fetchVODByType(currentTypeId, currentPage); // Fetch results for the first page
+                });
+                typeButtonsDiv.appendChild(button);
+            });
+        }
+
+        async function fetchLatestVOD(page) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&h=24&pg=${page}`;
+
+            try {
+                const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
+                const response = await fetch(proxyUrl + baseUrl);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                
+                if (data.list && data.list.length > 0) {
+                    totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
+                    displayResults(data.list); // Display the latest results
+                } else {
+                    resultsDiv.innerHTML = '<p>No results found.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
+            }
+            togglePaginationButtons();
+        }
+
+        async function fetchVODByType(typeId, page) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&t=${typeId}&pg=${page}`;
+
+            try {
+                const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
+                const response = await fetch(proxyUrl + baseUrl);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                
+                if (data.list && data.list.length > 0) {
+                    totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
+                    displayResults(data.list); // Display the current page results
+                } else {
+                    resultsDiv.innerHTML = '<p>No results found.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
+            }
+            togglePaginationButtons();
+        }
+
         // Function to fetch the data based on the search term
-        async function fetchAllVODData(searchTerm) {
-            const baseUrl = 'https://bfzyapi.com/api.php/provide/vod/list?ac=list&wd=';
+        async function fetchAllVODData(searchTerm, page) {
+            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&wd=${encodeURIComponent(searchTerm)}&pg=${page}`;
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = ''; // Clear previous results
             
@@ -76,9 +259,8 @@
             }
 
             try {
-                const url = `${baseUrl}${encodeURIComponent(searchTerm)}`;
                 const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
-                const response = await fetch(proxyUrl + url);
+                const response = await fetch(proxyUrl + baseUrl);
                 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -90,86 +272,108 @@
                     return;
                 }
 
-                // Complete map of type_id to their descriptions
-                const typeMap = {
-                    30: '连续剧',
-                    37: '海外剧',
-                    38: '泰国剧',
-                    33: '香港剧',
-                    34: '韩国剧',
-                    35: '台湾剧',
-                    36: '日本剧',
-                    32: '欧美剧',
-                    31: '国产剧',
-                    39: '动漫片',
-                    41: '日韩动漫',
-                    42: '欧美动漫',
-                    43: '港台动漫',
-                    44: '海外动漫',
-                    40: '国产动漫',
-                    45: '综艺片',
-                    49: '欧美综艺',
-                    46: '大陆综艺',
-                    47: '港台综艺',
-                    48: '日韩综艺',
-                    51: '电影解说',
-                    52: '预告片',
-                    53: '体育赛事',
-                    54: '足球',
-                    55: '篮球',
-                    56: '网球',
-                    57: '斯诺克',
-                    20: '电影片',
-                    29: '理论片',
-                    28: '纪录片',
-                    27: '战争片',
-                    26: '剧情片',
-                    25: '爱情片',
-                    24: '科幻片',
-                    23: '恐怖片',
-                    22: '喜剧片',
-                    21: '动作片',
-                    50: '动画片',
-                };
+                totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
+                currentPage = page; // Set the current page for search results
+                displayResults(data.list); // Display the results
 
-                // Display results
-                data.list.forEach(vod => {
-                    const resultItem = document.createElement('a'); // Use <a> for links
-                    resultItem.className = 'result-item';
-                    resultItem.href = `https://bfzy.tv/index.php/vod/detail/id/${vod.vod_id}.html`; // Set href based on vod_id
-                    resultItem.target = "_blank"; // Open link in a new tab
-
-                    const imageUrl = vod.vod_pic; // Adjust based on actual field name
-                    const typeDescription = typeMap[vod.type_id] || 'Unknown Type';
-
-                    resultItem.innerHTML = `
-                        <img class="result-img" src="${imageUrl}" alt="${vod.vod_name}">
-                        <div class="vod-name">${vod.vod_name}</div>
-                        <div class="vod-id">ID: ${vod.vod_id}</div>
-                        <div class="vod-year">Year: ${vod.vod_year}</div>
-                        <div class="vod-type">Type: ${typeDescription}</div>
-                        <div class="vod-class">Class: ${vod.vod_class}</div>
-                    `;
-                    resultsDiv.appendChild(resultItem);
-                });
             } catch (error) {
                 console.error('Error fetching data:', error);
                 resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
             }
+            togglePaginationButtons();
         }
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            results.forEach(vod => {
+                const resultItem = document.createElement('a'); // Use <a> for links
+                resultItem.className = 'result-item';
+                resultItem.href = `https://bfzy.tv/index.php/vod/detail/id/${vod.vod_id}.html`; // Set href based on vod_id
+                resultItem.target = "_blank"; // Open link in a new tab
+
+                const imageUrl = vod.vod_pic; // Adjust based on actual field name
+                const typeDescription = typeMap[vod.type_id] || 'Unknown Type';
+
+                resultItem.innerHTML = `
+                    <img class="result-img" src="${imageUrl}" alt="${vod.vod_name}">
+                    <div class="vod-name">${vod.vod_name}</div>
+                    <div class="vod-id">ID: ${vod.vod_id}</div>
+                    <div class="vod-year">Year: ${vod.vod_year}</div>
+                    <div class="vod-type">Type: ${typeDescription}</div>
+                    <div class="vod-class">Class: ${vod.vod_class}</div>
+                `;
+                resultsDiv.appendChild(resultItem);
+            });
+        }
+
+        function togglePaginationButtons() {
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+
+            prevButton.style.display = (searchMode && currentSearchPage > 1) ? 'block' : 'none';
+            nextButton.style.display = (searchMode && currentSearchPage < totalPages) ? 'block' : 'none';
+
+            // For latest results
+            if (!searchMode) {
+                prevButton.style.display = (latestPage > 1) ? 'block' : 'none';
+                nextButton.style.display = (latestPage < totalPages) ? 'block' : 'none';
+            }
+        }
+
+        const nextButton = document.getElementById('next-button');
+        const prevButton = document.getElementById('prev-button');
+        const latestButton = document.getElementById('latest-button');
+
+        nextButton.addEventListener('click', () => {
+            if (searchMode && currentSearchPage < totalPages) {
+                currentSearchPage++;
+                fetchAllVODData(currentSearchTerm, currentSearchPage);
+            } else if (!searchMode && latestPage < totalPages) {
+                latestPage++;
+                fetchLatestVOD(latestPage);
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (searchMode && currentSearchPage > 1) {
+                currentSearchPage--;
+                fetchAllVODData(currentSearchTerm, currentSearchPage);
+            } else if (!searchMode && latestPage > 1) {
+                latestPage--;
+                fetchLatestVOD(latestPage);
+            }
+        });
+
+        // Fetch latest VODs when the button is clicked
+        latestButton.addEventListener('click', () => {
+            currentSearchTerm = ''; // Reset search term
+            searchMode = false; // Set to not in search mode
+            latestPage = 1; // Reset latest page
+            fetchLatestVOD(latestPage); // Fetch the first page of latest VODs
+        });
 
         let typingTimer; // Timer identifier
         const searchInput = document.getElementById('search-input');
 
-        // Event listener for input change
         searchInput.addEventListener('input', function() {
             clearTimeout(typingTimer); // Clear the previous timer
-            const currentSearchTerm = this.value.trim(); // Get trimmed value of input
-            typingTimer = setTimeout(() => fetchAllVODData(currentSearchTerm), 300); // Set a short delay to avoid excessive requests
+            currentSearchTerm = this.value.trim(); // Get trimmed value of input
+            typingTimer = setTimeout(() => {
+                if (currentSearchTerm) {
+                    searchMode = true; // Set to search mode
+                    currentSearchPage = 1; // Reset to first page for new search
+                    fetchAllVODData(currentSearchTerm, currentSearchPage);
+                } else {
+                    // Optionally reset search mode and displayed results if input is empty
+                    searchMode = false;
+                    currentPage = 1; // Reset current page for type mode
+                    fetchVODByType(currentTypeId, currentPage); // Re-fetch category results in type mode if applicable
+                }
+            }, 300); // Set a short delay to avoid excessive requests
         });
 
-        // Optional: You can fetch default data on page load if desired
-        fetchAllVODData('');
+        // Create type buttons on page load
+        createTypeButtons();
     </script>
 </body>
 </html>
