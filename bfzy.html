@@ -119,16 +119,41 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            background-color: rgba(0,0,0,0.6); /* Darker overlay */
             padding-top: 60px;
         }
         .popup-content {
-            background-color: #fefefe;
-            margin: 5% auto; /* 15% from the top and centered */
+            background-color: #fff; /* White content background */
+            margin: 5% auto; /* Center content */
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 80%; /* Width of 80% */
+            max-width: 600px; /* Max width for better appearance */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+        #episode-links {
+            margin-top: 15px; /* Space above episode links */
+        }
+        #episode-links div {
+            margin: 5px 0; /* Space between links */
+            padding: 10px;
+            background-color: #f1f1f1; /* Light background for links */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.2s; /* Smooth transition */
+            cursor: pointer; /* Pointer on hover */
+        }
+        #episode-links div:hover {
+            background-color: #e0e0e0; /* Darker background on hover */
+        }
+        #close-popup {
+            cursor: pointer;
+            padding: 5px; /* Padding around close button */
+            font-size: 20px; /* Slightly larger close button */
+            color: #888; /* Gray color */
+        }
+        #close-popup:hover {
+            color: #f00; /* Red color on hover */
         }
     </style>
 </head>
@@ -148,7 +173,7 @@
     <!-- Popup for multi-play URLs -->
     <div id="popup">
         <div class="popup-content">
-            <span id="close-popup" style="cursor: pointer; float: right;">&times;</span>
+            <span id="close-popup">×</span>
             <h2>Select an Episode</h2>
             <div id="episode-links"></div>
         </div>
@@ -360,7 +385,6 @@
 
                 const link = document.createElement('div');
                 link.textContent = title;
-                link.style.cursor = 'pointer';
                 link.onclick = () => {
                     const externalLink = `https://vip.vipuuvip.com/?url=${url}`;
                     window.open(externalLink, '_blank'); // Open in a new tab
