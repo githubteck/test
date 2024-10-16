@@ -11,8 +11,8 @@
         }
         #search-container {
             margin-bottom: 20px;
-            display: flex; /* Use flexbox to align elements */
-            align-items: center; /* Center items vertically */
+            display: flex;
+            align-items: center;
         }
         #search-input {
             padding: 10px;
@@ -25,15 +25,15 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #28a745; /* Green color for the button */
+            background-color: #28a745;
             color: white;
             cursor: pointer;
-            margin-left: 10px; /* Add some spacing */
+            margin-left: 10px;
             font-size: 16px;
             transition: background-color 0.3s;
         }
         #latest-button:hover {
-            background-color: #218838; /* Darker green on hover */
+            background-color: #218838;
         }
         #type-buttons {
             margin: 20px 0;
@@ -104,14 +104,14 @@
             color: white;
             cursor: pointer;
             font-size: 16px;
-            display: none; /* Initially hide buttons */
+            display: none;
         }
         #pagination-controls button:hover {
             background-color: #0056b3;
         }
         /* Popup styles */
         #popup {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             z-index: 1;
             left: 0;
@@ -119,41 +119,41 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.6); /* Darker overlay */
+            background-color: rgba(0,0,0,0.6);
             padding-top: 60px;
         }
         .popup-content {
-            background-color: #fff; /* White content background */
-            margin: 5% auto; /* Center content */
+            background-color: #fff;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Width of 80% */
-            max-width: 600px; /* Max width for better appearance */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         #episode-links {
-            margin-top: 15px; /* Space above episode links */
+            margin-top: 15px;
         }
         #episode-links div {
-            margin: 5px 0; /* Space between links */
+            margin: 5px 0;
             padding: 10px;
-            background-color: #f1f1f1; /* Light background for links */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.2s; /* Smooth transition */
-            cursor: pointer; /* Pointer on hover */
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            cursor: pointer;
         }
         #episode-links div:hover {
-            background-color: #e0e0e0; /* Darker background on hover */
+            background-color: #e0e0e0;
         }
         #close-popup {
             cursor: pointer;
-            padding: 5px; /* Padding around close button */
-            font-size: 20px; /* Slightly larger close button */
-            color: #888; /* Gray color */
+            padding: 5px;
+            font-size: 20px;
+            color: #888;
         }
         #close-popup:hover {
-            color: #f00; /* Red color on hover */
+            color: #f00;
         }
     </style>
 </head>
@@ -221,13 +221,24 @@
             50: '动画片',
         };
 
-        let currentPage = 1; // Current page index
-        let totalPages = 1; // Total pages fetched
-        let currentTypeId; // Type ID of the selected category
-        let currentSearchTerm = ''; // Store current search term
-        let searchMode = false; // Flag to indicate if in search mode
-        let currentSearchPage = 1; // Current page index for search results
-        let latestPage = 1; // Current page index for latest results
+        let currentPage = 1;
+        let totalPages = 1;
+        let currentTypeId;
+        let currentSearchTerm = '';
+        let searchMode = false;
+
+        const fetchURL = (mode, param, page) => {
+            let baseUrl = 'https://bfzyapi.com/api.php/provide/vod/list?ac=detail';
+            if (mode === 'type') {
+                return `${baseUrl}&t=${param}&pg=${page}`;
+            }
+            if (mode === 'latest') {
+                return `${baseUrl}&h=24&pg=${page}`;
+            }
+            if (mode === 'search') {
+                return `${baseUrl}&wd=${encodeURIComponent(param)}&pg=${page}`;
+            }
+        };
 
         function createTypeButtons() {
             const typeButtonsDiv = document.getElementById('type-buttons');
@@ -236,101 +247,35 @@
                 button.className = 'type-button';
                 button.textContent = typeMap[typeId];
                 button.addEventListener('click', () => {
-                    currentTypeId = typeId; // Set the current selected type
-                    currentPage = 1; // Reset to the first page
-                    searchMode = false; // Reset back to type mode
-                    fetchVODByType(currentTypeId, currentPage); // Fetch results for the first page
+                    currentTypeId = typeId;
+                    currentPage = 1;
+                    searchMode = false;
+                    fetchData('type', currentTypeId, currentPage);
                 });
                 typeButtonsDiv.appendChild(button);
             });
         }
 
-        async function fetchLatestVOD(page) {
+        async function fetchData(mode, param, page) {
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = ''; // Clear previous results
-
-            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&h=24&pg=${page}`;
+            const url = fetchURL(mode, param, page);
 
             try {
                 const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
-                const response = await fetch(proxyUrl + baseUrl);
+                const response = await fetch(proxyUrl + url);
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
 
                 const data = await response.json();
-                
                 if (data.list && data.list.length > 0) {
-                    totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
-                    displayResults(data.list); // Display the latest results
+                    totalPages = Math.ceil(data.total / 20);
+                    displayResults(data.list);
                 } else {
                     resultsDiv.innerHTML = '<p>No results found.</p>';
                 }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
-            }
-            togglePaginationButtons();
-        }
-
-        async function fetchVODByType(typeId, page) {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // Clear previous results
-
-            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&t=${typeId}&pg=${page}`;
-
-            try {
-                const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
-                const response = await fetch(proxyUrl + baseUrl);
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                
-                if (data.list && data.list.length > 0) {
-                    totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
-                    displayResults(data.list); // Display the current page results
-                } else {
-                    resultsDiv.innerHTML = '<p>No results found.</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
-            }
-            togglePaginationButtons();
-        }
-
-        // Function to fetch the data based on the search term
-        async function fetchAllVODData(searchTerm, page) {
-            const baseUrl = `https://bfzyapi.com/api.php/provide/vod/list?ac=detail&wd=${encodeURIComponent(searchTerm)}&pg=${page}`;
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // Clear previous results
-            
-            if (!searchTerm) {
-                return; // If search term is empty, do nothing
-            }
-
-            try {
-                const proxyUrl = 'https://corsproxy.io/?'; // Change this if needed
-                const response = await fetch(proxyUrl + baseUrl);
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                if (!data.list || data.list.length === 0) {
-                    resultsDiv.innerHTML = '<p>No results found.</p>'; // Show no results message
-                    return;
-                }
-
-                totalPages = Math.ceil(data.total / 20); // Assuming the API returns a total count
-                currentPage = page; // Set the current page for search results
-                displayResults(data.list); // Display the results
-
             } catch (error) {
                 console.error('Error fetching data:', error);
                 resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
@@ -341,11 +286,11 @@
         function displayResults(results) {
             const resultsDiv = document.getElementById('results');
             results.forEach(vod => {
-                const resultItem = document.createElement('div'); // Use <div> for the item
+                const resultItem = document.createElement('div');
                 resultItem.className = 'result-item';
-                resultItem.onclick = () => handleVodClick(vod); // Add click handler
+                resultItem.onclick = () => handleVodClick(vod);
 
-                const imageUrl = vod.vod_pic; // Adjust based on actual field name
+                const imageUrl = vod.vod_pic;
                 const typeDescription = typeMap[vod.type_id] || 'Unknown Type';
 
                 resultItem.innerHTML = `
@@ -365,53 +310,42 @@
             const urlsArray = vodPlayUrl.split('#');
 
             if (urlsArray.length === 1) {
-                // Open directly if there's only one play URL
-                const singleUrl = urlsArray[0].split('$')[1]; // Extract the actual URL part
+                const singleUrl = urlsArray[0].split('$')[1];
                 const externalLink = `https://vip.vipuuvip.com/?url=${singleUrl}`;
                 window.open(externalLink, '_blank');
             } else {
-                // Show a popup with episode links if multiple URLs
                 showEpisodePopup(urlsArray);
             }
         }
 
         function showEpisodePopup(urlsArray) {
             const episodeLinksDiv = document.getElementById('episode-links');
-            episodeLinksDiv.innerHTML = ''; // Clear previous contents
+            episodeLinksDiv.innerHTML = '';
 
-            // Loop through each URL entry and create a link
             urlsArray.forEach(urlEntry => {
-                const [title, url] = urlEntry.split('$'); // Split title and URL
-
+                const [title, url] = urlEntry.split('$');
                 const link = document.createElement('div');
                 link.textContent = title;
                 link.onclick = () => {
                     const externalLink = `https://vip.vipuuvip.com/?url=${url}`;
-                    window.open(externalLink, '_blank'); // Open in a new tab
+                    window.open(externalLink, '_blank');
                 };
                 episodeLinksDiv.appendChild(link);
             });
 
-            // Display the popup
             document.getElementById('popup').style.display = 'block';
         }
 
         document.getElementById('close-popup').onclick = function() {
-            document.getElementById('popup').style.display = 'none'; // Hide popup when clicked
+            document.getElementById('popup').style.display = 'none';
         };
 
         function togglePaginationButtons() {
             const prevButton = document.getElementById('prev-button');
             const nextButton = document.getElementById('next-button');
 
-            prevButton.style.display = (searchMode && currentSearchPage > 1) ? 'block' : 'none';
-            nextButton.style.display = (searchMode && currentSearchPage < totalPages) ? 'block' : 'none';
-
-            // For latest results
-            if (!searchMode) {
-                prevButton.style.display = (latestPage > 1) ? 'block' : 'none';
-                nextButton.style.display = (latestPage < totalPages) ? 'block' : 'none';
-            }
+            prevButton.style.display = (currentPage > 1) ? 'block' : 'none';
+            nextButton.style.display = (currentPage < totalPages) ? 'block' : 'none';
         }
 
         const nextButton = document.getElementById('next-button');
@@ -419,54 +353,46 @@
         const latestButton = document.getElementById('latest-button');
 
         nextButton.addEventListener('click', () => {
-            if (searchMode && currentSearchPage < totalPages) {
-                currentSearchPage++;
-                fetchAllVODData(currentSearchTerm, currentSearchPage);
-            } else if (!searchMode && latestPage < totalPages) {
-                latestPage++;
-                fetchLatestVOD(latestPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchData(searchMode ? 'search' : (currentTypeId ? 'type' : 'latest'), searchMode ? currentSearchTerm : currentTypeId || '', currentPage);
             }
         });
 
         prevButton.addEventListener('click', () => {
-            if (searchMode && currentSearchPage > 1) {
-                currentSearchPage--;
-                fetchAllVODData(currentSearchTerm, currentSearchPage);
-            } else if (!searchMode && latestPage > 1) {
-                latestPage--;
-                fetchLatestVOD(latestPage);
+            if (currentPage > 1) {
+                currentPage--;
+                fetchData(searchMode ? 'search' : (currentTypeId ? 'type' : 'latest'), searchMode ? currentSearchTerm : currentTypeId || '', currentPage);
             }
         });
 
-        // Fetch latest VODs when the button is clicked
         latestButton.addEventListener('click', () => {
-            currentSearchTerm = ''; // Reset search term
-            searchMode = false; // Set to not in search mode
-            latestPage = 1; // Reset latest page
-            fetchLatestVOD(latestPage); // Fetch the first page of latest VODs
+            currentSearchTerm = '';
+            searchMode = false;
+            currentPage = 1;
+            fetchData('latest', null, currentPage);
         });
 
-        let typingTimer; // Timer identifier
+        let typingTimer;
         const searchInput = document.getElementById('search-input');
 
         searchInput.addEventListener('input', function() {
-            clearTimeout(typingTimer); // Clear the previous timer
-            currentSearchTerm = this.value.trim(); // Get trimmed value of input
+            clearTimeout(typingTimer);
+            currentSearchTerm = this.value.trim();
             typingTimer = setTimeout(() => {
                 if (currentSearchTerm) {
-                    searchMode = true; // Set to search mode
-                    currentSearchPage = 1; // Reset to first page for new search
-                    fetchAllVODData(currentSearchTerm, currentSearchPage);
+                    searchMode = true;
+                    currentPage = 1;
+                    fetchData('search', currentSearchTerm, currentPage);
                 } else {
-                    // Optionally reset search mode and displayed results if input is empty
                     searchMode = false;
-                    currentPage = 1; // Reset current page for type mode
-                    fetchVODByType(currentTypeId, currentPage); // Re-fetch category results in type mode if applicable
+                    currentTypeId = undefined; // Reset type ID
+                    currentPage = 1; // Reset to first page for new type fetch
+                    fetchData('latest', null, currentPage); // Optionally reset to latest
                 }
-            }, 300); // Set a short delay to avoid excessive requests
+            }, 300);
         });
 
-        // Create type buttons on page load
         createTypeButtons();
     </script>
 </body>
