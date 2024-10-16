@@ -314,7 +314,7 @@
 
                 resultItem.innerHTML = `
                     <img class="result-img" src="${imageUrl}" alt="${vod.vod_name}">
-                    <div class="vod-name">${vod.vod_name}</div>
+                    <div class="vod-name">${vod.vod_name}${vod.vod_remarks ? ` (${vod.vod_remarks})` : ''}</div>
                     <div class="vod-id">ID: ${vod.vod_id}</div>
                     <div class="vod-year">Year: ${vod.vod_year}</div>
                     <div class="vod-type">Type: ${typeDescription}</div>
