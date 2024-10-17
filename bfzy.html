@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOD BFZY</title>
+    <title>VOD bfzy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -175,7 +175,7 @@
     </style>
 </head>
 <body>
-    <h1>点播</h1>
+    <h1>点播 (暴风资源)</h1>
     <div id="search-container">
         <input type="text" id="search-input" placeholder="搜寻标题..." />
         <button id="latest-button">新上架</button>
@@ -183,8 +183,8 @@
     <div id="type-buttons"></div>
     <div id="results"></div>
     <div id="pagination-controls">
-        <button id="prev-button">Previous</button>
-        <button id="next-button">Next</button>
+        <button id="prev-button">上一页</button>
+        <button id="next-button">下一页</button>
     </div>
 
     <!-- Popup for multi-play URLs -->
@@ -248,7 +248,6 @@
 71: '都市脑洞',
 72: '古装仙侠',
 73: '福利',
-
         };
 
         let currentPage = 1;
@@ -258,7 +257,7 @@
         let searchMode = false;
 
         const fetchURL = (mode, param, page) => {
-            let baseUrl = 'https://bfzyapi.com/api.php/provide/vod/list?ac=detail';
+            let baseUrl = 'https://bfzyapi.com/api.php/provide/vod?ac=detail';
             if (mode === 'type') {
                 return `${baseUrl}&t=${param}&pg=${page}`;
             }
@@ -277,10 +276,13 @@
                 button.className = 'type-button';
                 button.textContent = typeMap[typeId];
                 button.addEventListener('click', () => {
-                    currentTypeId = typeId;
-                    currentPage = 1;
-                    searchMode = false;
-                    fetchData('type', currentTypeId, currentPage);
+                    // Clear the search bar and reset search state
+                    document.getElementById('search-input').value = '';
+                    currentSearchTerm = ''; // Clear current search term
+                    searchMode = false; // Reset search mode
+                    currentTypeId = typeId; // Set the type ID
+                    currentPage = 1; // Reset page to 1
+                    fetchData('type', currentTypeId, currentPage); // Fetch data based on type
                 });
                 typeButtonsDiv.appendChild(button);
             });
@@ -329,7 +331,6 @@
                     <div class="vod-id">ID: ${vod.vod_id}</div>
                     <div class="vod-year">Year: ${vod.vod_year}</div>
                     <div class="vod-type">Type: ${typeDescription}</div>
-                    <div class="vod-class">Class: ${vod.vod_class}</div>
                 `;
                 resultsDiv.appendChild(resultItem);
             });
@@ -341,7 +342,7 @@
 
             if (urlsArray.length === 1) {
                 const singleUrl = urlsArray[0].split('$')[1];
-                const externalLink = `https://vip.vipuuvip.com/?url=${singleUrl}`;
+                const externalLink = `https://bfzyplayer.com/player/?url=${singleUrl}`;
                 window.open(externalLink, '_blank');
             } else {
                 showEpisodePopup(urlsArray);
@@ -357,7 +358,7 @@
                 const link = document.createElement('div');
                 link.textContent = title;
                 link.onclick = () => {
-                    const externalLink = `https://vip.vipuuvip.com/?url=${url}`;
+                    const externalLink = `https://bfzyplayer.com/player/?url=${url}`;
                     window.open(externalLink, '_blank');
                 };
                 episodeLinksDiv.appendChild(link);
@@ -397,9 +398,11 @@
         });
 
         latestButton.addEventListener('click', () => {
-            currentSearchTerm = '';
-            searchMode = false;
-            currentPage = 1;
+            // Clear search bar and reset search states when "新上架" button is clicked
+            document.getElementById('search-input').value = '';
+            currentSearchTerm = ''; // Clear current search term
+            searchMode = false; // Reset search mode
+            currentPage = 1; // Reset page to 1
             fetchData('latest', null, currentPage);
         });
 
