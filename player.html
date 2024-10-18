@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@clappr/core@latest/dist/clappr.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        #player {
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@clappr/core@latest/dist/clappr.min.js"></script>
+    <script>
+        // Function to get query parameters
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get the m3u8 URL from the query parameter
+        const m3u8URL = getQueryParameter('url');
+
+        // Check if the m3u8 URL is provided
+        if (m3u8URL) {
+            // Initialize the Clappr player
+            const player = new Clappr.Player({
+                source: m3u8URL,
+                autoPlay: true,
+                width: '100%',
+                height: '100%',
+                parentId: '#player',
+                // Other Clappr options can be added here
+            });
+        } else {
+            document.body.innerHTML = '<h1 style="color: white;">No Video URL Provided. Please add ?url=YOUR_M3U8_LINK to the URL.</h1>';
+        }
+    </script>
+</body>
+</html>
