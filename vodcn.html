@@ -92,7 +92,7 @@
         .vod-id, .vod-year, .vod-type {
             color: #666;
         }
-        .vou-class {
+        .vod-class {
             color: #007bff;
             font-style: italic;
         }
@@ -165,8 +165,11 @@
     <h1>点播</h1>
     
     <div id="source-buttons">
-        <button class="source-button" id="source-ok">OK资源</button>
+        <!-- Source buttons -->
         <button class="source-button" id="source-heimu">黑木耳</button>
+        <button class="source-button" id="source-huawei">华为吧</button>
+        <button class="source-button" id="source-baofeng">暴风资源</button>
+        <button class="source-button" id="source-ok">OK资源</button>
     </div>
 
     <div id="search-container">
@@ -188,48 +191,85 @@
     </div>
 
     <script>
-        const okTypeMap = {
-            1:"电影", 2:"电视剧", 3:"综艺", 4:"动漫", 
-            6:"动作片", 7:"喜剧片", 8:"爱情片", 9:"科幻片", 
-            10:"恐怖片", 11:"剧情片", 12:"战争片", 13:"国产剧", 
-            14:"欧美剧", 15:"韩剧", 16:"日剧", 17:"港剧", 
-            18:"台剧", 19:"泰剧", 20:"纪录片", 23:"海外剧", 
-            25:"大陆综艺", 26:"日韩综艺", 27:"港台综艺", 
-            28:"欧美综艺", 29:"国产动漫", 30:"日韩动漫", 
-            31:"欧美动漫", 39:"动画片", 44:"港台动漫", 
-            45:"海外动漫", 47:"演唱会", 48:"体育赛事", 
-            49:"篮球", 50:"足球", 51:"预告片", 52:"斯诺克", 
-            53:"影视解说", 54:"爽文短剧", 55:"伦理", 
-            56:"港台三级", 57:"韩国伦理", 58:"西方伦理", 
-            59:"日本伦理", 60:"两性课堂", 61:"写真热舞", 
-            62:"4K电影", 63:"有声动漫", 64:"女频恋爱", 
-            65:"反转爽剧", 66:"古装仙侠", 67:"年代穿越", 
-            68:"脑洞悬疑", 69:"现代都市", 70:"邵氏电影"
-        };
-        
+        // Type maps for the sources
         const heimuTypeMap = {
-          1:"电影", 2:"电视剧", 3:"动漫", 4:"综艺", 
-          6:"剧情片", 7:"动作片", 8:"冒险片", 9:"同性片", 
-          10:"喜剧片", 11:"奇幻片", 12:"恐怖片", 13:"国产剧", 
-          14:"港剧", 15:"韩剧", 16:"日剧", 20:"悬疑片", 
-          21:"惊悚片", 22:"灾难片", 23:"爱情片", 24:"犯罪片", 
-          25:"科幻片", 26:"动画电影", 27:"短剧", 28:"泰剧", 
-          29:"台剧", 30:"欧美剧", 31:"新马剧", 32:"其他剧", 
-          33:"歌舞片", 34:"战争片", 35:"经典片", 36:"网络电影", 
-          37:"其它片", 38:"国产综艺", 39:"港台综艺", 
-          40:"韩国综艺", 41:"日本综艺", 42:"欧美综艺", 
-          43:"新马泰综艺", 44:"其他综艺", 45:"古装短剧", 
-          46:"虐恋短剧", 47:"逆袭短剧", 48:"悬疑短剧", 
-          49:"神豪短剧", 50:"重生短剧", 51:"复仇短剧", 
-          52:"穿越短剧", 53:"甜宠短剧", 54:"强者短剧", 
-          55:"萌宝短剧", 56:"其它短剧", 57:"欧美动漫", 
-          58:"日本动漫", 59:"韩国动漫", 60:"国产动漫", 
-          61:"港台动漫", 62:"新马泰动漫", 63:"其它动漫", 
-          64:"合集短剧"
+            1: "电影", 2: "电视剧", 3: "动漫", 4: "综艺", 
+            6: "剧情片", 7: "动作片", 8: "冒险片", 9: "同性片", 
+            10: "喜剧片", 11: "奇幻片", 12: "恐怖片", 13: "国产剧", 
+            14: "港剧", 15: "韩剧", 16: "日剧", 20: "悬疑片", 
+            21: "惊悚片", 22: "灾难片", 23: "爱情片", 24: "科幻片", 
+            25: "犯罪片", 26: "经典片", 27: "网络电影", 28: "战争片", 
+            29: "伦理片", 30: "欧美剧", 31: "日剧", 32: "韩剧", 
+            33: "台剧", 34: "泰剧", 35: "国产剧", 36: "港剧", 
+            37: "新马剧", 38: "其他剧", 39: "动漫", 40: "综艺", 
+            41: "体育", 42: "纪录片", 43: "篮球", 44: "足球", 
+            45: "网球", 46: "斯诺克", 47: "欧美动漫", 48: "日韩动漫", 
+            49: "国产动漫", 50: "新马泰动漫", 51: "港台动漫", 
+            52: "其他动漫", 53: "国产综艺", 54: "日韩综艺", 
+            55: "欧美综艺", 56: "新马泰综艺", 57: "港台综艺", 
+            58: "其他综艺", 59: "短剧", 60: "预告片"
         };
 
-        let currentTypeMap = okTypeMap; // Default to OK资源
-        let currentBaseUrl = 'https://okzyw9.com/api.php/provide/vod/?ac=detail';
+        const huaweiTypeMap = {
+            20: "电影", 22: "冒险片", 24: "剧情片", 26: "动作片", 
+            28: "动画电影", 30: "同性片", 32: "喜剧片", 
+            34: "奇幻片", 36: "恐怖片", 38: "悬疑片", 
+            40: "惊悚片", 42: "歌舞片", 44: "灾难片", 
+            46: "爱情片", 48: "科幻片", 50: "犯罪片", 
+            52: "经典片", 54: "网络电影", 56: "战争片", 
+            58: "伦理片", 60: "电视剧", 62: "欧美剧", 
+            64: "日剧", 66: "韩剧", 68: "台剧", 70: "泰剧", 
+            72: "国产剧", 74: "港剧", 76: "新马剧", 
+            78: "其他剧", 80: "动漫", 82: "综艺", 
+            84: "体育", 86: "纪录片", 88: "篮球", 
+            90: "足球", 92: "网球", 94: "斯诺克", 
+            96: "欧美动漫", 98: "日韩动漫", 100: "国产动漫", 
+            102: "新马泰动漫", 104: "港台动漫", 106: "其他动漫", 
+            108: "国产综艺", 110: "日韩综艺", 
+            112: "欧美综艺", 114: "新马泰综艺", 
+            116: "港台综艺", 118: "其他综艺", 120: "短剧", 
+            122: "预告片"
+        };
+
+        const baofengTypeMap = {
+            20: '电影', 21: '动作片', 22: '喜剧片', 23: '恐怖片', 
+            24: '科幻片', 25: '爱情片', 26: '剧情片', 27: '战争片', 
+            28: '纪录片', 29: '理论片', 30: '连续剧', 31: '国产剧', 
+            32: '欧美剧', 33: '香港剧', 34: '韩国剧', 35: '台湾剧', 
+            36: '日本剧', 37: '海外剧', 38: '泰国剧', 39: '动漫片', 
+            40: '国产动漫', 41: '日韩动漫', 42: '欧美动漫', 
+            43: '港台动漫', 44: '海外动漫', 45: '综艺片', 
+            46: '大陆综艺', 47: '港台综艺', 48: '日韩综艺', 
+            49: '欧美综艺', 50: '动画片', 51: '电影解说', 
+            52: '预告片', 53: '体育赛事', 54: '足球', 
+            55: '篮球', 56: '网球', 57: '斯诺克', 
+            58: '短剧大全', 65: '重生民国', 66: '穿越年代', 
+            67: '现代言情', 68: '反转爽文', 69: '女恋总裁', 
+            70: '闪婚离婚', 71: '都市脑洞', 72: '古装仙侠', 
+            73: '福利'
+        };
+
+        const okTypeMap = {
+            1: "电影", 2: "电视剧", 3: "综艺", 4: "动漫", 
+            6: "动作片", 7: "喜剧片", 8: "爱情片", 9: "科幻片", 
+            10: "恐怖片", 11: "剧情片", 12: "战争片", 13: "国产剧", 
+            14: "欧美剧", 15: "韩剧", 16: "日剧", 17: "港剧", 
+            18: "台剧", 19: "泰剧", 20: "纪录片", 23: "海外剧", 
+            25: "大陆综艺", 26: "日韩综艺", 27: "港台综艺", 
+            28: "欧美综艺", 29: "国产动漫", 30: "日韩动漫", 
+            31: "欧美动漫", 39: "动画片", 44: "港台动漫", 
+            45: "海外动漫", 47: "演唱会", 48: "体育赛事", 
+            49: "篮球", 50: "足球", 51: "预告片", 52: "斯诺克", 
+            53: "影视解说", 54: "爽文短剧", 55: "伦理", 
+            56: "港台三级", 57: "韩国伦理", 58: "西方伦理", 
+            59: "日本伦理", 60: "两性课堂", 61: "写真热舞", 
+            62: "4K电影", 63: "有声动漫", 64: "女频恋爱", 
+            65: "反转爽剧", 66: "古装仙侠", 67: "年代穿越", 
+            68: "脑洞悬疑", 69: "现代都市", 70: "邵氏电影"
+        };
+
+        let currentTypeMap = heimuTypeMap; // Set default to 黑木耳
+        let currentBaseUrl = 'https://json.heimuer.xyz/api.php/provide/vod?ac=detail';
         
         let currentPage = 1;
         let totalPages = 1;
@@ -412,26 +452,12 @@
         });
 
         // Set up source buttons
-        document.getElementById('source-ok').onclick = () => {
-            currentBaseUrl = 'https://okzyw9.com/api.php/provide/vod/?ac=detail';
-            currentTypeMap = okTypeMap;
-
-            // Add active class to the selected source button
-            document.querySelectorAll('.source-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById('source-ok').classList.add('active');
-            
-            document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
-            createTypeButtons(); // Recreate type buttons
-            document.getElementById('results').innerHTML = ''; // Clear previous results
-            currentPage = 1; // Reset page to 1
-            fetchData('latest', null, currentPage); // Fetch latest data
-        };
-
         document.getElementById('source-heimu').onclick = () => {
             currentBaseUrl = 'https://json.heimuer.xyz/api.php/provide/vod?ac=detail';
             currentTypeMap = heimuTypeMap;
+
+            // Change the search input placeholder
+            document.getElementById('search-input').placeholder = '搜寻标题...';
 
             // Add active class to the selected source button
             document.querySelectorAll('.source-button').forEach(btn => {
@@ -446,7 +472,67 @@
             fetchData('latest', null, currentPage); // Fetch latest data
         };
 
-        createTypeButtons(); // Initial creation of type buttons for the default source
+        document.getElementById('source-huawei').onclick = () => {
+            currentBaseUrl = 'https://cjhwba.com/api.php/provide/vod/?ac=detail';
+            currentTypeMap = huaweiTypeMap;
+
+            // Change the search input placeholder
+            document.getElementById('search-input').placeholder = '搜寻标题...';
+
+            // Add active class to the selected source button
+            document.querySelectorAll('.source-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('source-huawei').classList.add('active');
+            
+            document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
+            createTypeButtons(); // Recreate type buttons
+            document.getElementById('results').innerHTML = ''; // Clear previous results
+            currentPage = 1; // Reset page to 1
+            fetchData('latest', null, currentPage); // Fetch latest data
+        };
+
+        document.getElementById('source-baofeng').onclick = () => {
+            currentBaseUrl = 'https://bfzyapi.com/api.php/provide/vod?ac=detail';
+            currentTypeMap = baofengTypeMap;
+
+            // Change the search input placeholder
+            document.getElementById('search-input').placeholder = '搜寻标题...';
+
+            // Add active class to the selected source button
+            document.querySelectorAll('.source-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('source-baofeng').classList.add('active');
+            
+            document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
+            createTypeButtons(); // Recreate type buttons
+            document.getElementById('results').innerHTML = ''; // Clear previous results
+            currentPage = 1; // Reset page to 1
+            fetchData('latest', null, currentPage); // Fetch latest data
+        };
+
+        document.getElementById('source-ok').onclick = () => {
+            currentBaseUrl = 'https://okzyw9.com/api.php/provide/vod/?ac=detail';
+            currentTypeMap = okTypeMap;
+
+            // Change the search input placeholder
+            document.getElementById('search-input').placeholder = '暂不支持搜寻';
+
+            // Add active class to the selected source button
+            document.querySelectorAll('.source-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('source-ok').classList.add('active');
+            
+            document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
+            createTypeButtons(); // Recreate type buttons
+            document.getElementById('results').innerHTML = ''; // Clear previous results
+            currentPage = 1; // Reset page to 1
+            fetchData('latest', null, currentPage); // Fetch latest data
+        };
+
+        createTypeButtons(); // Initial creation of type buttons for the default source (黑木耳)
     </script>
 </body>
 </html>
