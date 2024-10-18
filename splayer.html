@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HLS Video Player</title>
+    <title>Oplayer HLS Video Player</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/oplayer@latest/dist/css/oplayer.min.css">
     <style>
         body {
             margin: 0;
@@ -21,60 +22,42 @@
             outline: none; /* Remove outline when focused */
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.0/controls.css">
 </head>
 <body>
-    <video id="video" controls autoplay></video> <!-- Autoplay attribute added -->
+    <div id="oplayer" class="oplayer">
+        <video id="video" controls autoplay></video> <!-- Autoplay attribute added -->
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/oplayer@latest/dist/js/oplayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // Initialize Shaka Player
-        async function initShakaPlayer() {
-            if (shaka.Player.isBrowserSupported()) {
-                const video = document.getElementById('video');
-                const player = new shaka.Player(video);
-                
-                // Handle error
-                player.addEventListener('error', onErrorEvent);
-
-                // Get the video URL from the query parameter
-                const m3u8URL = getQueryParameter('url');
-                if (m3u8URL) {
-                    try {
-                        // Load the manifest or streaming URL
-                        await player.load(m3u8URL);
-                        console.log('The video has now been loaded!');
-                    } catch (error) {
-                        console.error('Error loading video:', error);
-                        document.body.innerHTML = '<h1 style="color: white;">Error Loading Video</h1>';
-                    }
-                } else {
-                    document.body.innerHTML = '<h1 style="color: white;">No Video URL Provided. Please add ?url=YOUR_M3U8_LINK to the URL.</h1>';
-                }
-            } else {
-                document.body.innerHTML = '<h1 style="color: white;">Your browser does not support Shaka Player.</h1>';
-            }
-        }
-
-        // Function to handle error events
-        function onErrorEvent(event) {
-            // Handle error
-            onError(event.detail);
-        }
-
-        function onError(error) {
-            console.error('Error code', error.code, 'object', error);
-            document.body.innerHTML = '<h1 style="color: white;">Playback Error Occurred</h1>';
-        }
-
         // Function to get query parameters
         function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
 
-        // Initialize the Shaka Player on page load
-        window.onload = initShakaPlayer;
+        const m3u8URL = getQueryParameter('url');
+        const video = document.getElementById('video');
+
+        if (m3u8URL) {
+            // Check if HLS can be played natively
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = m3u8URL; // Use the native HLS support in the browser
+            } else if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(m3u8URL);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    video.play();
+                });
+            } else {
+                // If HLS is not supported
+                document.body.innerHTML = '<h1 style="color: white;">Your browser does not support HLS playback.</h1>';
+            }
+        } else {
+            document.body.innerHTML = '<h1 style="color: white;">No Video URL Provided. Please add ?url=YOUR_M3U8_LINK to the URL.</h1>';
+        }
     </script>
 </body>
 </html>
