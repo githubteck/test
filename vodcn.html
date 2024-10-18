@@ -38,7 +38,7 @@
         #source-buttons {
             margin-bottom: 20px;
         }
-        .source-button {
+        .source-button, .type-button {
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -47,30 +47,20 @@
             cursor: pointer;
             font-size: 16px;
             margin-right: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        .source-button:hover {
+        .source-button:hover, .type-button:hover {
             background-color: #0056b3;
+        }
+        .active {
+            background-color: #0056b3; /* Darker blue for active buttons */
+            transform: scale(1.05); /* Slightly enlarge the active button */
         }
         #type-buttons {
             margin: 20px 0;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             grid-gap: 10px;
-        }
-        .type-button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            text-align: center;
-        }
-        .type-button:hover {
-            background-color: #0056b3;
         }
         #results {
             display: grid;
@@ -84,8 +74,6 @@
             border-radius: 10px;
             text-align: center;
             background-color: #f9f9f9;
-            text-decoration: none;
-            color: inherit;
             transition: box-shadow 0.2s;
         }
         .result-item:hover {
@@ -104,7 +92,7 @@
         .vod-id, .vod-year, .vod-type {
             color: #666;
         }
-        .vod-class {
+        .vou-class {
             color: #007bff;
             font-style: italic;
         }
@@ -268,6 +256,7 @@
                 const button = document.createElement('button');
                 button.className = 'type-button';
                 button.textContent = typeMap[typeId];
+
                 button.addEventListener('click', () => {
                     // Clear the search bar and reset search state
                     document.getElementById('search-input').value = '';
@@ -276,6 +265,13 @@
                     currentTypeId = typeId; // Set the type ID
                     currentPage = 1; // Reset page to 1
                     document.getElementById('results').innerHTML = ''; // Clear previous results
+
+                    // Ensure only the selected button is active
+                    document.querySelectorAll('.type-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active'); // Add active class to the selected type button
+                    
                     fetchData('type', currentTypeId, currentPage); // Fetch data based on type
                 });
                 typeButtonsDiv.appendChild(button);
@@ -419,6 +415,13 @@
         document.getElementById('source-ok').onclick = () => {
             currentBaseUrl = 'https://okzyw9.com/api.php/provide/vod/?ac=detail';
             currentTypeMap = okTypeMap;
+
+            // Add active class to the selected source button
+            document.querySelectorAll('.source-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('source-ok').classList.add('active');
+            
             document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
             createTypeButtons(); // Recreate type buttons
             document.getElementById('results').innerHTML = ''; // Clear previous results
@@ -429,6 +432,13 @@
         document.getElementById('source-heimu').onclick = () => {
             currentBaseUrl = 'https://json.heimuer.xyz/api.php/provide/vod?ac=detail';
             currentTypeMap = heimuTypeMap;
+
+            // Add active class to the selected source button
+            document.querySelectorAll('.source-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('source-heimu').classList.add('active');
+            
             document.getElementById('type-buttons').innerHTML = ''; // Clear existing type buttons
             createTypeButtons(); // Recreate type buttons
             document.getElementById('results').innerHTML = ''; // Clear previous results
