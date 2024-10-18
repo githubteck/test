@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .icon {
+            width: 120px; /* Fixed width of the icon */
+            height: 120px; /* Fixed height */
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #ccc; /* Border around each icon */
+            border-radius: 10px; /* Rounded corners */
+            display: flex; /* Flexbox to center content */
+            flex-direction: column; /* Align items in a column */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+            position: relative;
+            transition: border-color 0.3s;
+            outline: none; /* Remove default focus outline */
+        }
+        .icon img {
+            max-width: 60%; /* Image size */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 5px; /* Space between image and text */
+        }
+        .icon p {
+            margin: 0; /* Remove margin for text */
+            font-size: 14px; /* Font size */
+        }
+        .icon a {
+            text-decoration: none;
+            color: black;
+            transition: transform 0.3s;
+            width: 100%; /* Full width of the link */
+            height: 100%; /* Full height of the link */
+            display: flex; /* Use flex to center items */
+            flex-direction: column; /* Align items vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+        }
+        .icon a:hover {
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+        .selected {
+            border-color: blue; /* Change border color for selected icon */
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Glow effect */
+        }
+        #video-container {
+            width: 100%;
+            max-width: 768px; /* Maximum width for video */
+            margin: 20px auto; /* Center video in the container */
+        }
+        #video {
+            width: 100%; /* Full width of video player */
+            height: auto; /* Responsive height */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.2.0/controls.css">
+</head>
+<body>
+
+<div id="video-container" style="display:none;">
+    <video id="video" controls></video>
+</div>
+
+<div class="icon" data-url="https://yourstreamingurl.com/mtv">
+    <a href="javascript:void(0);" onclick="playStream('https://yourstreamingurl.com/mtv')">
+        <img src="https://www.tvmalaysia.live/images/mtv-live-streaming-online.webp" alt="Icon 1">
+        <p>MTV Live HD</p>
+    </a>
+</div>
+
+<div class="icon" data-url="https://yourstreamingurl.com/cinemax">
+    <a href="javascript:void(0);" onclick="playStream('https://yourstreamingurl.com/cinemax')">
+        <img src="https://www.tvmalaysia.live/images/cinemax-live-streaming-online.webp" alt="Icon 5">
+        <p>Cinemax</p>
+    </a>
+</div>
+
+<!-- Repeat for other icons, changing the URLs appropriately -->
+
+<script>
+    // Initialize Shaka Player
+    async function initShakaPlayer() {
+        if (shaka.Player.isBrowserSupported()) {
+            const video = document.getElementById('video');
+            const player = new shaka.Player(video);
+            window.player = player; // Keep reference to player for external use
+
+            // Error handling
+            player.addEventListener('error', onErrorEvent);
+        } else {
+            console.error('Browser not supported!');
+        }
+    }
+
+    // Function to play stream
+    function playStream(url) {
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.style.display = 'block'; // Show video container
+
+        // Load manifest or stream URL
+        window.player.load(url).then(() => {
+            console.log('The video has now been loaded!');
+        }).catch(onError); // Handle load errors
+    }
+
+    // Error handling function
+    function onErrorEvent(event) {
+        // Handle error
+        onError(event.detail);
+    }
+
+    function onError(error) {
+        console.error('Error code', error.code, 'object', error);
+    }
+
+    // Initialize the Shaka Player on page load
+    window.onload = initShakaPlayer;
+    
+    // JavaScript to manage the selected state and keyboard navigation
+    const icons = document.querySelectorAll('.icon');
+    let selectedIndex = 0;
+
+    // Function to update the selected icon
+    const updateSelection = (index) => {
+        icons.forEach((icon, i) => {
+            icon.classList.remove('selected');
+            if (i === index) {
+                icon.classList.add('selected');
+                icon.focus(); // Focus on the selected icon
+            }
+        });
+    };
+
+    // Initial selection
+    updateSelection(selectedIndex);
+
+    // Function to calculate the number of icons per row dynamically
+    const getIconsPerRow = () => {
+        const container = document.body; // Adjust as necessary to the parent of the icons
+        const iconWidth = icons[0].offsetWidth + 20; // Width of a single icon + margin (left & right combined)
+        const containerWidth = container.offsetWidth; // Width of the container
+        return Math.floor(containerWidth / iconWidth); // Calculate icons per row
+    };
+
+    document.addEventListener('keydown', (e) => {
+        const iconsPerRow = getIconsPerRow(); // Get the number of icons per row dynamically
+
+        if (e.key === 'ArrowRight') {
+            selectedIndex = (selectedIndex + 1) % icons.length; // Cycle right
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowLeft') {
+            selectedIndex = (selectedIndex - 1 + icons.length) % icons.length; // Cycle left
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowDown') {
+            const nextIndex = selectedIndex + iconsPerRow; // Move down by the number of icons in a row
+            if (nextIndex < icons.length) {
+                selectedIndex = nextIndex; // Move down
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'ArrowUp') {
+            const prevIndex = selectedIndex - iconsPerRow; // Move up by the number of icons in a row
+            if (prevIndex >= 0) {
+                selectedIndex = prevIndex; // Move up
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'Enter') {
+            // Navigate to the stream of the selected icon
+            const selectedIcon = icons[selectedIndex];
+            const url = selectedIcon.getAttribute('data-url');
+            if (url) {
+                playStream(url); // Play the stream using Shaka Player
+            }
+        }
+    });
+</script>
+</body>
+</html>
