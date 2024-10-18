@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #search-container {
+            margin-bottom: 20px;
+            display: flex; 
+            align-items: center; 
+        }
+        #search-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #latest-button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745; 
+            color: white;
+            cursor: pointer;
+            margin-left: 10px; 
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        #latest-button:hover {
+            background-color: #218838; 
+        }
+        #type-buttons {
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-gap: 10px;
+        }
+        .type-button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .type-button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s;
+        }
+        .result-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .result-img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 10px 10px 0 0;
+        }
+        .vod-name {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+        .vod-id, .vod-year, .vod-type {
+            color: #666;
+        }
+        .vod-class {
+            color: #007bff;
+            font-style: italic;
+        }
+        /* Popup styles */
+        #popup {
+            display: none; 
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;  
+            align-items: center;  
+        }
+        .popup-content {
+            background-color: #fff; 
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 600px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+        }
+        .popup-header {
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            padding: 10px; 
+            background-color: #f1f1f1; 
+            border-bottom: 1px solid #ccc; 
+        }
+        #episode-links {
+            margin-top: 5px; 
+        }
+        #episode-links div {
+            margin: 5px 0; 
+            padding: 10px;
+            background-color: #f1f1f1; 
+            border-radius: 5px; 
+            transition: background-color 0.2s; 
+            cursor: pointer; 
+        }
+        #episode-links div:hover {
+            background-color: #e0e0e0; 
+        }
+        #close-popup {
+            cursor: pointer;
+            padding: 5px; 
+            font-size: 20px; 
+            color: #888; 
+            width: 100%;
+            text-align: right; 
+        }
+        #close-popup:hover {
+            color: #f00; 
+        }
+        .scrollable-content {
+            max-height: 400px; 
+            overflow-y: auto; 
+            padding: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>点播 (华为吧)</h1>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="搜寻标题..." />
+        <button id="latest-button">新上架</button>
+    </div>
+    <div id="type-buttons"></div>
+    <div id="results"></div>
+
+    <!-- Popup for multi-play URLs -->
+    <div id="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span id="close-popup">关闭</span>
+                <h2>选集</h2>
+            </div>
+            <div id="episode-links" class="scrollable-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const typeMap = {
+            20: "电影",
+22: "冒险片",
+24: "剧情片",
+26: "动作片",
+28: "动画电影",
+30: "同性片",
+32: "喜剧片",
+34: "奇幻片",
+36: "恐怖片",
+38: "悬疑片",
+40: "惊悚片",
+42: "歌舞片",
+44: "灾难片",
+46: "爱情片",
+48: "科幻片",
+50: "犯罪片",
+52: "经典片",
+54: "网络电影",
+56: "战争片",
+58: "伦理片",
+60: "电视剧",
+62: "欧美剧",
+64: "日剧",
+66: "韩剧",
+68: "台剧",
+70: "泰剧",
+72: "国产剧",
+74: "港剧",
+76: "新马剧",
+78: "其他剧",
+80: "动漫",
+82: "综艺",
+84: "体育",
+86: "纪录片",
+88: "篮球",
+90: "足球",
+92: "网球",
+94: "斯诺克",
+96: "欧美动漫",
+98: "日韩动漫",
+100: "国产动漫",
+102: "新马泰动漫",
+104: "港台动漫",
+106: "其他动漫",
+108: "国产综艺",
+110: "日韩综艺",
+112: "欧美综艺",
+114: "新马泰综艺",
+116: "港台综艺",
+118: "其他综艺",
+120: "短剧",
+122: "预告片",
+
+        };
+
+        let currentPage = 1;
+        let totalPages = 1;
+        let currentTypeId;
+        let currentSearchTerm = '';
+        let searchMode = false;
+
+        const fetchURL = (mode, param, page) => {
+            let baseUrl = 'https://cjhwba.com/api.php/provide/vod/?ac=detail';
+            if (mode === 'type') {
+                return `${baseUrl}&t=${param}&pg=${page}`;
+            }
+            if (mode === 'latest') {
+                return `${baseUrl}&h=24&pg=${page}`;
+            }
+            if (mode === 'search') {
+                return `${baseUrl}&wd=${encodeURIComponent(param)}&pg=${page}`;
+            }
+        };
+
+        function createTypeButtons() {
+            const typeButtonsDiv = document.getElementById('type-buttons');
+            Object.keys(typeMap).forEach(typeId => {
+                const button = document.createElement('button');
+                button.className = 'type-button';
+                button.textContent = typeMap[typeId];
+                button.addEventListener('click', () => {
+                    // Clear the search bar and reset search state
+                    document.getElementById('search-input').value = '';
+                    currentSearchTerm = ''; // Clear current search term
+                    searchMode = false; // Reset search mode
+                    currentTypeId = typeId; // Set the type ID
+                    currentPage = 1; // Reset page to 1
+                    document.getElementById('results').innerHTML = ''; // Clear previous results
+                    fetchData('type', currentTypeId, currentPage); // Fetch data based on type
+                });
+                typeButtonsDiv.appendChild(button);
+            });
+        }
+
+        async function fetchData(mode, param, page) {
+            const resultsDiv = document.getElementById('results');
+            const url = fetchURL(mode, param, page);
+
+            try {
+                const proxyUrl = 'https://corsproxy.io/?';
+                const response = await fetch(proxyUrl + url);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                if (data.list && data.list.length > 0) {
+                    totalPages = Math.ceil(data.total / 20);
+                    displayResults(data.list);
+                } else {
+                    if (currentPage === 1) {
+                        resultsDiv.innerHTML = '<p>No results found.</p>';
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                resultsDiv.innerHTML = '<p>Error fetching data. Please check the console for details.</p>';
+            }
+        }
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            results.forEach(vod => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.onclick = () => handleVodClick(vod);
+
+                const imageUrl = vod.vod_pic;
+                const typeDescription = typeMap[vod.type_id] || 'Unknown Type';
+
+                resultItem.innerHTML = `
+                    <img class="result-img" src="${imageUrl}" alt="${vod.vod_name}">
+                    <div class="vod-name">${vod.vod_name}${vod.vod_remarks ? ` (${vod.vod_remarks})` : ''}</div>
+                    <div class="vod-id">ID: ${vod.vod_id}</div>
+                    <div class="vod-year">Year: ${vod.vod_year}</div>
+                    <div class="vod-type">Type: ${typeDescription}</div>
+                `;
+                resultsDiv.appendChild(resultItem);
+            });
+        }
+
+        function handleVodClick(vod) {
+            const vodPlayUrl = vod.vod_play_url;
+            const urlsArray = vodPlayUrl.split('#');
+
+            if (urlsArray.length === 1) {
+                const singleUrl = urlsArray[0].split('$')[1];
+                const externalLink = `https://player.dphw8.com/player?url=${singleUrl}`;
+                window.open(externalLink, '_blank');
+            } else {
+                showEpisodePopup(urlsArray);
+            }
+        }
+
+        function showEpisodePopup(urlsArray) {
+            const episodeLinksDiv = document.getElementById('episode-links');
+            episodeLinksDiv.innerHTML = '';
+
+            urlsArray.forEach(urlEntry => {
+                const [title, url] = urlEntry.split('$');
+                const link = document.createElement('div');
+                link.textContent = title;
+                link.onclick = () => {
+                    const externalLink = `https://player.dphw8.com/player?url=${url}`;
+                    window.open(externalLink, '_blank');
+                };
+                episodeLinksDiv.appendChild(link);
+            });
+
+            document.getElementById('popup').style.display = 'flex';  // Use flex to center
+        }
+
+        document.getElementById('close-popup').onclick = function() {
+            document.getElementById('popup').style.display = 'none'; 
+        };
+
+        const latestButton = document.getElementById('latest-button');
+
+        latestButton.addEventListener('click', () => {
+            // Clear search bar and reset search states when "新上架" button is clicked
+            document.getElementById('search-input').value = '';
+            currentSearchTerm = ''; // Clear current search term
+            searchMode = false; // Reset search mode
+            currentPage = 1; // Reset page to 1
+            document.getElementById('results').innerHTML = ''; // Clear previous results
+            fetchData('latest', null, currentPage);
+        });
+
+        let typingTimer;
+        const searchInput = document.getElementById('search-input');
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(typingTimer);
+            currentSearchTerm = this.value.trim();
+            typingTimer = setTimeout(() => {
+                if (currentSearchTerm) {
+                    searchMode = true;
+                    currentPage = 1;
+                    document.getElementById('results').innerHTML = ''; // Clear previous results
+                    fetchData('search', currentSearchTerm, currentPage);
+                } else {
+                    searchMode = false;
+                    currentTypeId = undefined; 
+                    currentPage = 1; 
+                    document.getElementById('results').innerHTML = ''; // Clear previous results
+                    fetchData('latest', null, currentPage); 
+                }
+            }, 300);
+        });
+
+        // Scroll event listener to detect when to load next or previous results
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const resultsDiv = document.getElementById('results');
+
+            if (scrollPosition >= document.body.offsetHeight - 500 && currentPage < totalPages) {
+                // Scroll down reaches near the bottom
+                currentPage++;
+                fetchData(searchMode ? 'search' : (currentTypeId ? 'type' : 'latest'), searchMode ? currentSearchTerm : currentTypeId || '', currentPage);
+            } else if (scrollPosition <= 500 && currentPage > 1) {
+                // Scroll up reaches near the top
+                currentPage--;
+                fetchData(searchMode ? 'search' : (currentTypeId ? 'type' : 'latest'), searchMode ? currentSearchTerm : currentTypeId || '', currentPage);
+            }
+        });
+
+        createTypeButtons();
+    </script>
+</body>
+</html>
