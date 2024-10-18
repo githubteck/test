@@ -6,25 +6,24 @@
     <title>HLS Video Player</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             background-color: #000;
             color: white;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
         }
         #video {
-            width: 80%;
-            max-width: 800px;
-            height: auto;
-            background: black;
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            outline: none; /* Remove outline when focused */
         }
     </style>
 </head>
 <body>
-    <video id="video" controls></video>
+    <video id="video" controls autoplay></video> <!-- Autoplay attribute added -->
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
@@ -45,11 +44,19 @@
                 const hls = new Hls();
                 hls.loadSource(m3u8URL);
                 hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
                     video.play();
                 });
+
+                // Enable captions if available
+                hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, function (event, data) {
+                    if (data && data.length) {
+                        // Automatically select the first available subtitle track
+                        hls.subtitleTrack = 0;
+                    }
+                });
             } else {
-                // If not supported, show a message
+                // If HLS is not supported
                 document.body.innerHTML = '<h1 style="color: white;">Your browser does not support HLS playback.</h1>';
             }
         } else {
