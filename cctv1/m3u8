@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-ALLOW-CACHE:NO
+#EXT-X-TARGETDURATION:4
+#EXT-X-MEDIA-SEQUENCE:432348077
+
+#EXTINF:4.000,
+https://githubteck.github.io/ldncctvwbcd/cdrmldcctv13_1_720P/509079.ts?wsApp=HLS
+#EXTINF:4.000,
+https://githubteck.github.io/ldncctvwbcd/cdrmldcctv13_1_720P/509080.ts?wsApp=HLS
+#EXTINF:4.000,
+https://githubteck.github.io/ldncctvwbcd/cdrmldcctv13_1_720P/509081.ts?wsApp=HLS
