@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JW Player</title>
+    <script src="https://content.jwplatform.com/libraries/Z79JsmAO.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        font-family: Poppins, sans-serif;
+      }
+      #jwplayerDiv {
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="jwplayerDiv"></div>
+
+    <script>
+      // Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(window.location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      // Retrieve parameters from URL
+      const videoUrl = getUrlParameter("url"); // Video file URL
+      const clearKey = getUrlParameter("key"); // ClearKey
+      const clearKeyId = getUrlParameter("keyid"); // ClearKey ID
+
+      // Validate parameters
+      if (!videoUrl) {
+        alert(
+          'Error: No video URL provided. Please add "?url=<video_url>" to the URL.'
+        );
+      } else if (clearKey && !clearKeyId) {
+        alert(
+          'Error: ClearKey ID is required if a key is provided. Please add "?keyid=<key_id>" to the URL.'
+        );
+      } else {
+        // Set up the player
+        jwplayer("jwplayerDiv").setup({
+          file: videoUrl,
+          width: "100%",
+          height: "100%",
+          aspectratio: "16:9", // Maintains aspect ratio
+          tracks: [
+            {
+              file: "https://path_to_your_caption_file.vtt",
+              label: "English",
+              kind: "captions",
+              default: true,
+            },
+          ],
+          drm:
+            clearKey && clearKeyId
+              ? {
+                  clearkey: {
+                    key: clearKey,
+                    keyId: clearKeyId,
+                  },
+                }
+              : {},
+        });
+      }
+    </script>
+  </body>
+</html>
