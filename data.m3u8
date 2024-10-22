@@ -85,7 +85,7 @@ https://linears-playback.astro.com.my/vsg/41iFhU-KKqyLW0EM61UfnvAcGwJByAU4N2R_D_
 Category: Local
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"hCVpDEhE+7AbXq5wa8L3xg", "kid":"2xozj3HUAYb1mXywhbs/EA" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="335.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/CCTV4_v1.png" group-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/385_144.png" group-title="Astro",CCTV4
+#EXTINF:-1 tvg-id="335.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/385_144.png" group-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/385_144.png" group-title="Astro",CCTV4
 https://linearjitp-playback.astro.com.my/dash-wv/linear/403/default_primary.mpd
 Category: China
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -110,7 +110,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/1006/default_primary.mpd
 Category: China
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"/Wvhzqn6I8mPIPGyq8ridg", "kid":"UXwwjvZBmxdn6a5xDIl3EA" } ], "type":"temporary" } 
-#EXTINF:-1 tvg-id="325.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/Phoenix_v1.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Phoenix
+#EXTINF:-1 tvg-id="325.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/382_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Phoenix
 https://linearjitp-playback.astro.com.my/dash-wv/linear/400/default_primary.mpd
 Category: China
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -360,7 +360,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2511/default_primary.mpd
 Category: Kids
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"tKu+6Vtps+gKDRQScshw2w", "kid":"+mUiDJ925CQXOJnfUzptEA" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="617.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/logo_10000498_v1.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Nickelodeon Junior 
+#EXTINF:-1 tvg-id="617.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/392_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Nickelodeon Junior 
 https://linearjitp-playback.astro.com.my/dash-wv/linear/9982/default_primary.mpd
 Category: Kids
 #KODIPROP:inputstream.adaptive.license_type=clearkey
