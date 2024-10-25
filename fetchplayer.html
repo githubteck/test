@@ -105,6 +105,10 @@
             return;
         }
 
+        // Clear existing data when fetching a new URL
+        allChannels = [];
+        filteredChannels = [];
+
         fetch(inputUrl)
             .then(response => {
                 if (!response.ok) {
