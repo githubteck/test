@@ -583,7 +583,7 @@ Category: News
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"btySxJvoTKei8ye+r7zK5g", "kid":"Gv3K9BmL/TIAWERp/D5REA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="549.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/472_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Love Nature 4K
-https://linearjitp-playback.astro.com.my/dash-wv/linear/5097/default_primary.mpd
+https://linearjitp-playback.astro.com.my/dash-wv/linear/5097/manifest.mpd
 Category: Lifestyle & Knowledge
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
