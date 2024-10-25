@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel to m3u8 Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            white-space: pre-wrap; /* Preserve white space in output */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Excel to m3u8 Converter</h1>
+<input type="file" id="fileInput" accept=".xlsx, .xls" />
+
+<button id="copyButton">Copy Output</button>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>#</th> <!-- Serial number column -->
+            <th>License Type</th>
+            <th>License Key</th>
+            <th>TVG ID</th>
+            <th>TVG Logo</th>
+            <th>Group Logo</th>
+            <th>Group Title</th>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Row data will be appended here -->
+    </tbody>
+</table>
+
+<h2>Output</h2>
+<div id="output"></div>
+
+<script>
+function convert() {
+    const table = document.getElementById('dataTable');
+    const rows = Array.from(table.rows).slice(1); // Skip header row
+    let output = '';
+
+    rows.forEach(row => {
+        const cells = Array.from(row.cells).slice(1); // Skip serial number column
+        const licenseType = cells[0].innerText;
+        const licenseKey = cells[1].innerText;
+        const tvgId = cells[2].innerText;
+        const tvgLogo = cells[3].innerText;
+        const groupLogo = cells[4].innerText;
+        const groupTitle = cells[5].innerText;
+        const title = cells[6].innerText;
+        const url = cells[7].innerText;
+        const category = cells[8].innerText;
+
+        // Build the output
+        output += `#KODIPROP:inputstream.adaptive.license_type=${licenseType}\n`;
+        output += `#KODIPROP:inputstream.adaptive.license_key=${licenseKey}\n`;
+        output += `#EXTINF:-1 tvg-id="${tvgId}" tvg-logo="${tvgLogo}" group-logo="${groupLogo}" group-title="${groupTitle}",${title}\n`;
+        output += `${url}\nCategory: ${category}\n\n`; // Include Category: in the output
+    });
+
+    document.getElementById('output').innerText = output;
+}
+
+// Function to copy all output values to clipboard
+function copyToClipboard() {
+    const outputElement = document.getElementById('output');
+    const outputText = outputElement.innerText;
+
+    navigator.clipboard.writeText(outputText)
+        .then(() => {
+            alert('All output copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+}
+
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+            const tableBody = document.getElementById('dataTable').querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+            
+            jsonData.forEach((row, index) => {
+                if (index === 0) return; // Skip header
+                const newRow = document.createElement('tr');
+                
+                // Create a new cell for the serial number
+                const serialCell = document.createElement('td');
+                serialCell.textContent = index; // Use the current index as serial number (1-based numbering)
+                newRow.appendChild(serialCell);
+                
+                row.forEach(cell => {
+                    const cellElement = document.createElement('td');
+                    cellElement.textContent = cell != null ? cell.toString().trim() : '';
+                    newRow.appendChild(cellElement);
+                });
+                tableBody.appendChild(newRow);
+            });
+
+            // Automatically convert after new data is loaded
+            convert();
+        };
+        reader.readAsArrayBuffer(file);
+    } else {
+        alert("Please upload a valid Excel file.");
+    }
+});
+
+// Add event listener to the copy button
+document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+</script>
+
+</body>
+</html>
