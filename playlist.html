@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Channels</title>
+    <title>Playlist</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,11 +42,15 @@
             overflow: hidden;
             border: 1px solid #ccc;
             text-align: center;
+            cursor: pointer; /* Set cursor for card */
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02); /* Slightly enlarge card on hover */
         }
         .card img {
             max-width: 100%;
             border-radius: 15px 15px 0 0;
-            cursor: pointer;
         }
         .group-title {
             padding: 10px;
@@ -68,7 +72,7 @@
 </head>
 <body>
 
-<h1>Video Channels</h1>
+<h1>Playlist</h1>
 
 <div id="url-input-container">
     <input type="text" id="url-input" placeholder="Enter M3U URL" size="30" oninput="fetchData()">
@@ -208,12 +212,13 @@
         channels.forEach(channel => {
             const card = document.createElement('div');
             card.className = 'card';
+            card.onclick = () => openChannel(channel.url, base64ToHex(channel.key), base64ToHex(channel.kid)); // Set click event for the whole card
 
             const hexKey = channel.key ? base64ToHex(channel.key) : 'N/A';
             const hexKid = channel.kid ? base64ToHex(channel.kid) : 'N/A';
 
             card.innerHTML = `
-                <img src="${channel.image}" alt="${channel.title}" onclick="openChannel('${channel.url}', '${hexKey}', '${hexKid}')">
+                <img src="${channel.image}" alt="${channel.title}" style="cursor: pointer;">
                 <div class="group-title">${channel.title}</div>
                 <div class="hex-info" style="display: none;">Key (Hex): ${hexKey}</div>
                 <div class="hex-info" style="display: none;">Key ID (Hex): ${hexKid}</div>
