@@ -1,310 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist</title>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-        }
-        #filter-buttons {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .filter-button {
-            padding: 10px 15px;
-            margin: 5px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .filter-button:hover {
-            background-color: #0056b3;
-        }
-        #grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
-            width: 80%;
-            margin-top: 20px;
-        }
-        .card {
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #ccc;
-            text-align: center;
-            cursor: pointer; /* Set cursor for card */
-        }
-        .card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transform: scale(1.02); /* Slightly enlarge card on hover */
-        }
-        .card img {
-            max-width: 100%;
-            border-radius: 15px 15px 0 0;
-        }
-        .group-title {
-            padding: 10px;
-            background-color: #f8f8f8;
-            border-top: 1px solid #ccc;
-        }
-        .hex-info {
-            font-size: 12px;
-            color: #555;
-            padding: 5px;
-        }
-        #url-input-container, #playlist-container {
-            margin: 20px;
-        }
-        #save-button, #delete-button {
-            margin-left: 10px;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Poppins, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      a,
+      a:hover,
+      a:focus,
+      a:active {
+        text-decoration: none;
+      }
+
+      div a img {
+        visibility: hidden;
+      }
+
+      body::before {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 10;
+        content: "";
+        height: 70px;
+        width: 110px;
+        background: url(" ") no-repeat;
+        background-size: 110px auto, auto;
+        opacity: 0.4;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="video-container" data-shaka-player-container>
+      <video autoplay data-shaka-player id="video" poster=""></video>
+    </div>
+    <script>
+      async function init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const manifestUri = urlParams.get("url");
+        const clearKey = urlParams.get("keyid");
+        const clearKeyValue = urlParams.get("key");
 
-<h1>Playlist</h1>
+        const video = document.getElementById("video");
+        const ui = video["ui"];
+        const controls = ui.getControls();
+        const player = controls.getPlayer();
 
-<div id="url-input-container">
-    <input type="text" id="url-input" placeholder="Enter M3U URL" size="30" oninput="fetchData()">
-    <button id="save-button" class="filter-button" onclick="savePlaylist()">Save Playlist</button>
-    <button id="delete-button" class="filter-button" onclick="deletePlaylist()">Delete Playlist</button>
-</div>
-
-<div id="playlist-container">
-    <label for="playlist-select">Select Playlist:</label>
-    <select id="playlist-select" onchange="loadPlaylist()">
-        <option value="">--Select Playlist--</option>
-    </select>
-</div>
-
-<div id="filter-buttons">
-    <button class="filter-button" onclick="filterChannels('All')">All</button>
-</div>
-
-<div id="grid"></div>
-
-<script>
-    let allChannels = [];
-    let filteredChannels = [];
-    let categories = new Set();
-    let playlists = {};
-
-    function fetchData() {
-        const inputUrl = document.getElementById('url-input').value.trim();
-        if (!inputUrl) {
-            // Clear previous channels if input URL is empty
-            allChannels = [];
-            filteredChannels = [];
-            displayChannels([]);
-            return;
+        if (clearKey && clearKeyValue) {
+          player.configure({
+            drm: {
+              clearKeys: {
+                [clearKey]: clearKeyValue,
+              },
+            },
+          });
         }
 
-        // Clear existing data when fetching a new URL
-        allChannels = [];
-        filteredChannels = [];
+        window.player = player;
+        window.ui = ui;
 
-        fetch(inputUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => parseData(data))
-            .catch(error => console.error('Error fetching the data:', error));
-    }
+        player.addEventListener("error", onPlayerErrorEvent);
+        controls.addEventListener("error", onUIErrorEvent);
 
-    function parseData(data) {
-        const lines = data.split('\n');
-        let currentCategory = null;
-        let currentKey = null; // To hold the current key
-        let currentKid = null; // To hold the current kid
+        try {
+          await player.load(manifestUri);
+          console.log("The video has now been loaded!");
 
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i].trim();
-
-            // Extract the key and kid from KODIPROP line
-            if (line.startsWith('#KODIPROP:inputstream.adaptive.license_key=')) {
-                const keyMatch = /"k":"([^"]+)"/.exec(line);
-                const kidMatch = /"kid":"([^"]+)"/.exec(line);
-                if (keyMatch) currentKey = keyMatch[1];
-                if (kidMatch) currentKid = kidMatch[1];
-            }
-
-            if (line.startsWith('#EXTINF:')) {
-                const parts = line.split(' ');
-                const tvgLogoMatch = parts.find(part => part.startsWith('tvg-logo="'));
-                const groupTitleMatch = parts.find(part => part.startsWith('group-title="'));
-                const tvgLogo = tvgLogoMatch ? tvgLogoMatch.slice(10, -1) : '';
-
-                const titleMatch = line.match(/,(.*)$/);
-                const title = titleMatch ? titleMatch[1].trim() : '';
-
-                const groupTitle = groupTitleMatch ? groupTitleMatch.split('=')[1].slice(1, -1) : '';
-                const url = lines[i + 1] ? lines[i + 1].trim() : '';
-
-                if (tvgLogo && title && url) {
-                    allChannels.push({
-                        image: tvgLogo,
-                        title: title,
-                        url: url,
-                        category: currentCategory,
-                        key: currentKey,
-                        kid: currentKid
-                    });
-                }
-            }
-
-            if (line.startsWith('Category:')) {
-                currentCategory = line.split(':')[1].trim();
-                if (allChannels.length > 0) {
-                    allChannels[allChannels.length - 1].category = currentCategory;
-                    categories.add(currentCategory);
-                }
-            }
+          // Enable text track visibility
+          player.setTextTrackVisibility(true);
+          // Attach player and ui to the window to make it easy to access in the JS console.
+          window.player = player;
+          window.ui = ui;
+        } catch (error) {
+          onPlayerError(error);
         }
+      }
 
-        filteredChannels = allChannels;
-        displayChannels(filteredChannels);
-        setupCategoryButtons();
-    }
+      function onPlayerErrorEvent(errorEvent) {
+        onPlayerError(errorEvent.detail);
+      }
 
-    function setupCategoryButtons() {
-        const filterButtonsContainer = document.getElementById('filter-buttons');
-        filterButtonsContainer.innerHTML = '<button class="filter-button" onclick="filterChannels(\'All\')">All</button>'; // Reset to only All button
-        
-        // Create a button only if there are actual categories
-        categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'filter-button';
-            button.onclick = () => filterChannels(category);
-            button.textContent = category;
-            filterButtonsContainer.appendChild(button);
-        });
-    }
+      function onPlayerError(error) {
+        console.error("Error code", error.code, "object", error);
+      }
 
-    function base64ToHex(base64) {
-        const rawData = atob(base64);
-        return Array.from(rawData)
-                     .map(char => char.charCodeAt(0).toString(16).padStart(2, '0'))
-                     .join('');
-    }
+      function onUIErrorEvent(errorEvent) {
+        onPlayerError(errorEvent.detail);
+      }
 
-    function displayChannels(channels) {
-        const grid = document.getElementById('grid');
-        grid.innerHTML = '';
+      function initFailed(errorEvent) {
+        console.error("Unable to load the UI library!");
+      }
 
-        if (channels.length === 0) {
-            grid.innerHTML = '<p>No channels available.</p>';
-            return;
-        }
-
-        channels.forEach(channel => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.onclick = () => openChannel(channel.url, base64ToHex(channel.key), base64ToHex(channel.kid)); // Set click event for the whole card
-
-            const hexKey = channel.key ? base64ToHex(channel.key) : 'N/A';
-            const hexKid = channel.kid ? base64ToHex(channel.kid) : 'N/A';
-
-            card.innerHTML = `
-                <img src="${channel.image}" alt="${channel.title}" style="cursor: pointer;">
-                <div class="group-title">${channel.title}</div>
-                <div class="hex-info" style="display: none;">Key (Hex): ${hexKey}</div>
-                <div class="hex-info" style="display: none;">Key ID (Hex): ${hexKid}</div>
-            `;
-
-            grid.appendChild(card);
-        });
-    }
-
-    function openChannel(url, key, kid) {
-        let fullUrl;
-
-        if (url.includes('.m3u8')) {
-            fullUrl = `https://zhfjpl.csb.app?url=${encodeURIComponent(url)}`;
-        } else {
-            fullUrl = `https://czks4d.csb.app/?url=${url}&key=${key || "N/A"}&keyid=${kid || "N/A"}`;
-        }
-
-        console.log(`Opening URL: ${fullUrl}`); // For debugging
-        window.open(fullUrl, '_blank'); // Open in a new window
-    }
-
-    function filterChannels(category) {
-        if (category === 'All') {
-            filteredChannels = allChannels;
-        } else {
-            filteredChannels = allChannels.filter(channel => channel.category === category);
-        }
-        displayChannels(filteredChannels);
-    }
-
-    function savePlaylist() {
-        const playlistName = prompt('Enter a name for the playlist:');
-        if (!playlistName) return;
-
-        playlists[playlistName] = allChannels.map(channel => ({ ...channel })); // Deep copy of channels
-        updatePlaylistDropdown();
-        alert('Playlist saved!');
-    }
-
-    function deletePlaylist() {
-        const playlistSelect = document.getElementById('playlist-select');
-        const selectedPlaylist = playlistSelect.value;
-
-        if (!selectedPlaylist) {
-            alert('Please select a playlist to delete.');
-            return;
-        }
-
-        if (confirm(`Are you sure you want to delete the playlist "${selectedPlaylist}"?`)) {
-            delete playlists[selectedPlaylist];
-            updatePlaylistDropdown();
-            alert('Playlist deleted successfully!');
-        }
-    }
-
-    function updatePlaylistDropdown() {
-        const playlistSelect = document.getElementById('playlist-select');
-        playlistSelect.innerHTML = '<option value="">--Select Playlist--</option>'; // Reset options
-
-        Object.keys(playlists).forEach(name => {
-            const option = document.createElement('option');
-            option.value = name;
-            option.textContent = name;
-            playlistSelect.appendChild(option);
-        });
-    }
-
-    function loadPlaylist() {
-        const selectedPlaylist = document.getElementById('playlist-select').value;
-        if (!selectedPlaylist) return;
-
-        filteredChannels = playlists[selectedPlaylist];
-        categories = new Set(); // Reset categories
-
-        // Collect categories from the selected playlist
-        filteredChannels.forEach(channel => {
-            if (channel.category) {
-                categories.add(channel.category);
-            }
-        });
-
-        displayChannels(filteredChannels);
-        setupCategoryButtons(); // Setup category buttons for the selected playlist
-    }
-</script>
-
-</body>
+      document.addEventListener("shaka-ui-loaded", init);
+      document.addEventListener("shaka-ui-load-failed", initFailed);
+    </script>
+  </body>
 </html>
