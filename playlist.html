@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.compiled.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/shaka-player.ui.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/3.2.0/controls.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Poppins, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+            text-decoration: none;
+        }
+
+        div a img {
+            visibility: hidden;
+        }
+
+        body::before {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 10;
+            content: "";
+            height: 70px;
+            width: 110px;
+            background: url(" ") no-repeat;
+            background-size: 110px auto, auto;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container" data-shaka-player-container>
+        <video autoplay data-shaka-player id="video" poster=""></video>
+    </div>
+    <script>
+        async function init() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let manifestUri = urlParams.get("url");
+            const clearKey = urlParams.get("keyid");
+            const clearKeyValue = urlParams.get("key");
+
+            // Retrieve the complete query string excluding 'keyid' and anything following 'key='
+            const paramsArray = [];
+            for (const [key, value] of urlParams.entries()) {
+                if (key === 'key') break; // Stop collecting parameters if 'key' is encountered
+                if (key !== 'keyid') {
+                    paramsArray.push(`${key}=${value}`); // Include valid parameters
+                }
+            }
+
+            // Join the parameters
+            const additionalParams = paramsArray.join('&');
+
+            // Ensure we append the additional parameters to the manifest URI, if it exists
+            if (manifestUri) {
+                // Append parameters only if we have them
+                if (additionalParams) {
+                    manifestUri += (manifestUri.includes('?') ? '&' : '?') + additionalParams;
+                }
+            }
+
+            const video = document.getElementById("video");
+            const ui = video["ui"];
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+
+            if (clearKey && clearKeyValue) {
+                player.configure({
+                    drm: {
+                        clearKeys: {
+                            [clearKey]: clearKeyValue,
+                        },
+                    },
+                });
+            }
+
+            window.player = player;
+            window.ui = ui;
+
+            player.addEventListener("error", onPlayerErrorEvent);
+            controls.addEventListener("error", onUIErrorEvent);
+
+            try {
+                await player.load(manifestUri);
+                console.log("The video has now been loaded!");
+
+                // Enable text track visibility
+                player.setTextTrackVisibility(true);
+            } catch (error) {
+                onPlayerError(error);
+            }
+        }
+
+        function onPlayerErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function onPlayerError(error) {
+            console.error("Error code", error.code, "object", error);
+        }
+
+        function onUIErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function initFailed(errorEvent) {
+            console.error("Unable to load the UI library!");
+        }
+
+        document.addEventListener("shaka-ui-loaded", init);
+        document.addEventListener("shaka-ui-load-failed", initFailed);
+    </script>
+</body>
+</html>
