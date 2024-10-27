@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to Base64 Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Hex to Base64 Converter</h1>
+<textarea id="hex-input" placeholder="Paste your hex data here, one entry per line..."></textarea>
+<button onclick="convertHexToBase64()">Convert</button>
+
+<h2>Converted Data:</h2>
+<pre id="output"></pre>
+
+<script>
+    function hexToBase64(hex) {
+        // Convert hex to binary
+        const binary = hex.match(/.{1,2}/g) // Split hex string into pairs of two
+            .map(byte => String.fromCharCode(parseInt(byte, 16))) // Convert each pair to a character
+            .join('');
+        // Convert binary string to base64
+        return btoa(binary);
+    }
+
+    function convertHexToBase64() {
+        const input = document.getElementById('hex-input').value.trim();
+        const output = document.getElementById('output');
+        output.innerHTML = ''; // Clear previous output
+
+        const lines = input.split('\n');
+        lines.forEach(line => {
+            const match = line.match(/#KODIPROP:inputstream.adaptive.license_key=(.*?):(.*)$/);
+            if (match) {
+                const kidHex = match[1];
+                const keyHex = match[2];
+
+                const kidBase64 = hexToBase64(kidHex);
+                const keyBase64 = hexToBase64(keyHex);
+
+                const convertedLine = `#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"${keyBase64}", "kid":"${kidBase64}" } ], "type":"temporary" }`;
+                output.innerHTML += convertedLine + '\n'; // Append the converted line
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
