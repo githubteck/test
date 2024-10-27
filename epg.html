@@ -20,13 +20,27 @@
             flex: 1;
         }
         .on-air {
-            font-weight: bold;
-            color: green;
             background-color: #eafaf1; /* Light green background */
             border: 1px solid #b6e2c9; /* Border for emphasis */
             padding: 10px;
             margin-bottom: 15px; /* Space below the on-air program */
-            height: 100%; /* Take full height of the sidebar area */
+            text-align: center; /* Center the contents */
+        }
+        .on-air .image-container {
+            width: 100%; /* Make the image container fit the width */
+            aspect-ratio: 1; /* Maintain square aspect ratio */
+            overflow: hidden; /* Prevent overflow */
+            margin-bottom: 10px; /* Space between image and title box */
+        }
+        .on-air img {
+            width: 100%; /* Image fits the width of the container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Prevent bottom whitespace */
+        }
+        .info-container {
+            border: 1px solid #ccc; /* Border for the info container */
+            padding: 10px;
+            text-align: center; /* Center text for the info container */
         }
         .programme {
             margin-bottom: 15px;
@@ -53,7 +67,14 @@
     <div class="sidebar">
         <h2>On Air Now</h2>
         <div class="on-air" id="onAirSection">
-            <strong>No program is currently on air.</strong>
+            <div class="image-container">
+                <img src="" alt="On Air Icon" id="onAirImage" style="display: none;">
+            </div>
+            <div class="info-container">
+                <strong id="onAirTitle">No program is currently on air.</strong><br>
+                <span class="time" id="onAirStartTime"></span><br>
+                <span id="onAirDescription"></span>
+            </div>
         </div>
     </div>
 
@@ -159,6 +180,7 @@ async function fetchEPG() {
                 const stopTime = parseDateTime(stopStr);
                 const title = programmeElements[i].getElementsByTagName("title")[0].textContent;
                 const description = programmeElements[i].getElementsByTagName("desc")[0].textContent; 
+                const iconSrc = programmeElements[i].getElementsByTagName("icon")[0]?.getAttribute('src') || ''; // Get icon source
 
                 const formattedDate = formatDateToDDMMMYYYY(startTime);
 
@@ -171,6 +193,7 @@ async function fetchEPG() {
                     startTime,
                     stopTime,
                     description,
+                    iconSrc,
                     isOnAir: startTime <= currentTime && stopTime >= currentTime
                 });
             }
@@ -192,16 +215,25 @@ function displayEPG(selectedDateString) {
 
     // Update the On Air section
     const onAirSection = document.getElementById("onAirSection");
+    const onAirImage = document.getElementById("onAirImage");
+    const onAirTitle = document.getElementById("onAirTitle");
+    const onAirStartTime = document.getElementById("onAirStartTime");
+    const onAirDescription = document.getElementById("onAirDescription");
+
     if (onAirProgramme.length > 0) {
         const program = onAirProgramme[0]; // Only display the first on-air program
         const startTimeFormatted = formatTime(program.startTime);
-        onAirSection.innerHTML = `
-            <strong>${program.title}</strong><br>
-            Start: <span class="time">${startTimeFormatted}</span><br>
-            Description: ${program.description}<br>
-        `;
+        onAirImage.src = program.iconSrc || ''; // Display icon if available
+        onAirImage.style.display = program.iconSrc ? "block" : "none"; // Show image only if src exists
+        
+        onAirTitle.textContent = program.title;
+        onAirStartTime.textContent = `Start: ${startTimeFormatted}`;
+        onAirDescription.textContent = program.description;
     } else {
-        onAirSection.innerHTML = `<strong>No program is currently on air.</strong>`;
+        onAirImage.style.display = "none"; // No image
+        onAirTitle.textContent = "No program is currently on air.";
+        onAirStartTime.textContent = "";
+        onAirDescription.textContent = "";
     }
 
     // Display all programmes, including the on-air one
