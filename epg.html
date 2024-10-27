@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today's EPG - 306.astro</title>
+    <title>Today's EPG</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            margin-right: 30px;
+        }
+        .main-content {
+            flex: 1;
         }
         .on-air {
             font-weight: bold;
@@ -15,6 +25,8 @@
             background-color: #eafaf1; /* Light green background */
             border: 1px solid #b6e2c9; /* Border for emphasis */
             padding: 10px;
+            margin-bottom: 15px; /* Space below the on-air program */
+            height: 100%; /* Take full height of the sidebar area */
         }
         .programme {
             margin-bottom: 15px;
@@ -27,116 +39,193 @@
             border-bottom: 2px solid #ccc;
             padding-bottom: 5px;
         }
+        .time {
+            color: #1a73e8; /* Different color for the time */
+            font-weight: bold; /* Bold time */
+        }
     </style>
 </head>
 <body>
 
-<h1>Today's EPG for 306.astro</h1>
-<div class="epg" id="epg"></div>
+<h1>Today's EPG</h1>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>On Air Now</h2>
+        <div class="on-air" id="onAirSection">
+            <strong>No program is currently on air.</strong>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="channelSelect">Select Channel:</label>
+            <select id="channelSelect" onchange="fetchEPG()"></select>
+        </div>
+
+        <div class="epg" id="epg"></div>
+    </div>
+</div>
 
 <script>
-    // URL of the XML feed
-    const xmlFeedUrl = 'https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml';
-    let programmesByDate = {};
+// URL of the XML feed
+const xmlFeedUrl = 'https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml';
+let programmesByDate = {};
+let channelsList = [];
 
-    // Function to parse start and stop times from given format
-    function parseDateTime(dateTimeString) {
-        const datetimeWithoutTimezone = dateTimeString.split(' ')[0];
-        const year = datetimeWithoutTimezone.slice(0, 4);
-        const month = datetimeWithoutTimezone.slice(4, 6);
-        const day = datetimeWithoutTimezone.slice(6, 8);
-        const hour = datetimeWithoutTimezone.slice(8, 10);
-        const minute = datetimeWithoutTimezone.slice(10, 12);
-        // Add seconds for full Date object
-        const second = datetimeWithoutTimezone.slice(12, 14);
-        return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}`);
-    }
+// Function to parse start and stop times from given format
+function parseDateTime(dateTimeString) {
+    const datetimeWithoutTimezone = dateTimeString.split(' ')[0];
+    const year = datetimeWithoutTimezone.slice(0, 4);
+    const month = datetimeWithoutTimezone.slice(4, 6);
+    const day = datetimeWithoutTimezone.slice(6, 8);
+    const hour = datetimeWithoutTimezone.slice(8, 10);
+    const minute = datetimeWithoutTimezone.slice(10, 12);
+    const second = datetimeWithoutTimezone.slice(12, 14);
+    return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}`);
+}
 
-    // Function to format date to DD-MMM-YYYY
-    function formatDateToDDMMMYYYY(date) {
-        const options = { day: '2-digit', month: 'short', year: 'numeric' };
-        return date.toLocaleDateString('en-GB', options).replace(/ /g, '-');
-    }
-    
-    // Function to format time to hh:mm AM/PM
-    function formatTime(date) {
-        const options = { hour: '2-digit', minute: '2-digit', hour12: true };
-        return date.toLocaleTimeString('en-US', options);
-    }
+// Function to format date to DD-MMM-YYYY
+function formatDateToDDMMMYYYY(date) {
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+}
 
-    // Function to fetch XML and display today's EPG information
-    async function fetchEPG() {
-        try {
-            const response = await fetch(xmlFeedUrl);
-            const data = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(data, "text/xml");
-            const programmeElements = xmlDoc.getElementsByTagName("programme");
+// Function to format time to hh:mm AM/PM
+function formatTime(date) {
+    const options = { hour: '2-digit', minute: '2-digit', hour12: true };
+    return date.toLocaleTimeString('en-US', options);
+}
 
-            programmesByDate = {}; // Reset the programmesByDate object
-            const currentTime = new Date(); // Get the current local time
-            const todayDateString = formatDateToDDMMMYYYY(currentTime); // Format today's date
+// Function to fetch XML and populate channel dropdown
+async function fetchChannels() {
+    try {
+        const response = await fetch(xmlFeedUrl);
+        const data = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+        const channelElements = xmlDoc.getElementsByTagName("channel");
 
-            for (let i = 0; i < programmeElements.length; i++) {
-                const channelAttr = programmeElements[i].getAttribute('channel');
+        channelsList = []; // Clear previous channels
+        for (let i = 0; i < channelElements.length; i++) {
+            const channelId = channelElements[i].getAttribute('id');
+            const displayName = channelElements[i].getElementsByTagName("display-name")[0]?.textContent;
 
-                if (channelAttr === '306.astro') {
-                    const startStr = programmeElements[i].getAttribute('start');
-                    const stopStr = programmeElements[i].getAttribute('stop');
-                    const startTime = parseDateTime(startStr);
-                    const stopTime = parseDateTime(stopStr);
-                    const title = programmeElements[i].getElementsByTagName("title")[0].textContent;
-                    const description = programmeElements[i].getElementsByTagName("desc")[0].textContent; // Get description
-
-                    const formattedDate = formatDateToDDMMMYYYY(startTime);
-
-                    if (!programmesByDate[formattedDate]) {
-                        programmesByDate[formattedDate] = [];
-                    }
-
-                    programmesByDate[formattedDate].push({
-                        title,
-                        startTime,
-                        stopTime,
-                        description,
-                        isOnAir: startTime <= currentTime && stopTime >= currentTime
-                    });
-                }
+            if (channelId && displayName) {
+                channelsList.push({ id: channelId, name: displayName });
             }
-
-            // Display today's EPG
-            displayEPG(todayDateString);
-        } catch (error) {
-            console.error('Error fetching EPG data:', error);
-            document.getElementById('epg').innerHTML = 'Error fetching EPG data.';
         }
+        populateChannelDropdown();
+        fetchEPG(); // Call to fetch EPG for the first channel
+    } catch (error) {
+        console.error('Error fetching channel data:', error);
+    }
+}
+
+// Function to populate the dropdown with channel IDs and their display names
+function populateChannelDropdown() {
+    const channelSelect = document.getElementById("channelSelect");
+    channelSelect.innerHTML = ''; // Clear existing options
+
+    channelsList.forEach(channel => {
+        const option = document.createElement('option');
+        option.value = channel.id;
+        option.textContent = channel.name; // Use the display name here
+        channelSelect.appendChild(option);
+    });
+}
+
+// Function to fetch XML and display today's EPG information
+async function fetchEPG() {
+    const selectedChannel = document.getElementById("channelSelect").value;
+    try {
+        const response = await fetch(xmlFeedUrl);
+        const data = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+        const programmeElements = xmlDoc.getElementsByTagName("programme");
+
+        programmesByDate = {};
+        const currentTime = new Date();
+        const todayDateString = formatDateToDDMMMYYYY(currentTime);
+
+        for (let i = 0; i < programmeElements.length; i++) {
+            const channelAttr = programmeElements[i].getAttribute('channel');
+
+            if (channelAttr === selectedChannel) {
+                const startStr = programmeElements[i].getAttribute('start');
+                const stopStr = programmeElements[i].getAttribute('stop');
+                const startTime = parseDateTime(startStr);
+                const stopTime = parseDateTime(stopStr);
+                const title = programmeElements[i].getElementsByTagName("title")[0].textContent;
+                const description = programmeElements[i].getElementsByTagName("desc")[0].textContent; 
+
+                const formattedDate = formatDateToDDMMMYYYY(startTime);
+
+                if (!programmesByDate[formattedDate]) {
+                    programmesByDate[formattedDate] = [];
+                }
+
+                programmesByDate[formattedDate].push({
+                    title,
+                    startTime,
+                    stopTime,
+                    description,
+                    isOnAir: startTime <= currentTime && stopTime >= currentTime
+                });
+            }
+        }
+
+        displayEPG(todayDateString);
+    } catch (error) {
+        console.error('Error fetching EPG data:', error);
+        document.getElementById('epg').innerHTML = 'Error fetching EPG data.';
+    }
+}
+
+function displayEPG(selectedDateString) {
+    const programmes = programmesByDate[selectedDateString];
+    let epgHtml = `<div class="date-header">Today's Programmes (${selectedDateString})</div>`;
+
+    // Filter to find the on-air programme
+    const onAirProgramme = programmes ? programmes.filter(program => program.isOnAir) : [];
+
+    // Update the On Air section
+    const onAirSection = document.getElementById("onAirSection");
+    if (onAirProgramme.length > 0) {
+        const program = onAirProgramme[0]; // Only display the first on-air program
+        const startTimeFormatted = formatTime(program.startTime);
+        onAirSection.innerHTML = `
+            <strong>${program.title}</strong><br>
+            Start: <span class="time">${startTimeFormatted}</span><br>
+            Description: ${program.description}<br>
+        `;
+    } else {
+        onAirSection.innerHTML = `<strong>No program is currently on air.</strong>`;
     }
 
-    function displayEPG(selectedDateString) {
-        const programmes = programmesByDate[selectedDateString];
-        let epgHtml = `<div class="date-header">Today's Programmes (${selectedDateString})</div>`;
+    // Display all programmes, including the on-air one
+    if (programmes) {
+        programmes.forEach(program => {
+            const startTimeFormatted = formatTime(program.startTime);
+            const programTitle = program.title;
 
-        if (programmes) {
-            programmes.forEach(program => {
-                const startTimeFormatted = formatTime(program.startTime);
-                const programTitle = program.isOnAir ? `On Now: ${program.title}` : program.title;
-
-                epgHtml += `
-                    <div class="programme ${program.isOnAir ? 'on-air' : ''}">
-                        <strong>${programTitle}</strong><br>
-                        Start: ${startTimeFormatted}<br>
-                        Description: ${program.description}<br> <!-- Added description -->
-                    </div>
-                `;
-            });
-        } else {
-            epgHtml += `<div>No programmes available for today.</div>`;
-        }
-
-        document.getElementById('epg').innerHTML = epgHtml;
+            epgHtml += `
+                <div class="programme ${program.isOnAir ? 'on-air' : ''}">
+                    <strong>${programTitle}</strong><br>
+                    Start: <span class="time">${startTimeFormatted}</span><br>
+                    Description: ${program.description}<br>
+                </div>
+            `;
+        });
+    } else {
+        epgHtml += `<div>No programmes available for today.</div>`;
     }
 
-    fetchEPG(); // Call the function to fetch and display EPG
+    document.getElementById('epg').innerHTML = epgHtml;
+}
+
+fetchChannels(); // Call the function to fetch channel data and populate dropdown
 </script>
 
 </body>
