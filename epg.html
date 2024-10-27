@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's EPG - 306.astro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .on-air {
+            font-weight: bold;
+            color: green;
+            background-color: #eafaf1; /* Light green background */
+            border: 1px solid #b6e2c9; /* Border for emphasis */
+            padding: 10px;
+        }
+        .programme {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .date-header {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Today's EPG for 306.astro</h1>
+<div class="epg" id="epg"></div>
+
+<script>
+    // URL of the XML feed
+    const xmlFeedUrl = 'https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml';
+    let programmesByDate = {};
+
+    // Function to parse start and stop times from given format
+    function parseDateTime(dateTimeString) {
+        const datetimeWithoutTimezone = dateTimeString.split(' ')[0];
+        const year = datetimeWithoutTimezone.slice(0, 4);
+        const month = datetimeWithoutTimezone.slice(4, 6);
+        const day = datetimeWithoutTimezone.slice(6, 8);
+        const hour = datetimeWithoutTimezone.slice(8, 10);
+        const minute = datetimeWithoutTimezone.slice(10, 12);
+        // Add seconds for full Date object
+        const second = datetimeWithoutTimezone.slice(12, 14);
+        return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}`);
+    }
+
+    // Function to format date to DD-MMM-YYYY
+    function formatDateToDDMMMYYYY(date) {
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        return date.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+    }
+    
+    // Function to format time to hh:mm AM/PM
+    function formatTime(date) {
+        const options = { hour: '2-digit', minute: '2-digit', hour12: true };
+        return date.toLocaleTimeString('en-US', options);
+    }
+
+    // Function to fetch XML and display today's EPG information
+    async function fetchEPG() {
+        try {
+            const response = await fetch(xmlFeedUrl);
+            const data = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data, "text/xml");
+            const programmeElements = xmlDoc.getElementsByTagName("programme");
+
+            programmesByDate = {}; // Reset the programmesByDate object
+            const currentTime = new Date(); // Get the current local time
+            const todayDateString = formatDateToDDMMMYYYY(currentTime); // Format today's date
+
+            for (let i = 0; i < programmeElements.length; i++) {
+                const channelAttr = programmeElements[i].getAttribute('channel');
+
+                if (channelAttr === '306.astro') {
+                    const startStr = programmeElements[i].getAttribute('start');
+                    const stopStr = programmeElements[i].getAttribute('stop');
+                    const startTime = parseDateTime(startStr);
+                    const stopTime = parseDateTime(stopStr);
+                    const title = programmeElements[i].getElementsByTagName("title")[0].textContent;
+                    const description = programmeElements[i].getElementsByTagName("desc")[0].textContent; // Get description
+
+                    const formattedDate = formatDateToDDMMMYYYY(startTime);
+
+                    if (!programmesByDate[formattedDate]) {
+                        programmesByDate[formattedDate] = [];
+                    }
+
+                    programmesByDate[formattedDate].push({
+                        title,
+                        startTime,
+                        stopTime,
+                        description,
+                        isOnAir: startTime <= currentTime && stopTime >= currentTime
+                    });
+                }
+            }
+
+            // Display today's EPG
+            displayEPG(todayDateString);
+        } catch (error) {
+            console.error('Error fetching EPG data:', error);
+            document.getElementById('epg').innerHTML = 'Error fetching EPG data.';
+        }
+    }
+
+    function displayEPG(selectedDateString) {
+        const programmes = programmesByDate[selectedDateString];
+        let epgHtml = `<div class="date-header">Today's Programmes (${selectedDateString})</div>`;
+
+        if (programmes) {
+            programmes.forEach(program => {
+                const startTimeFormatted = formatTime(program.startTime);
+                const programTitle = program.isOnAir ? `On Now: ${program.title}` : program.title;
+
+                epgHtml += `
+                    <div class="programme ${program.isOnAir ? 'on-air' : ''}">
+                        <strong>${programTitle}</strong><br>
+                        Start: ${startTimeFormatted}<br>
+                        Description: ${program.description}<br> <!-- Added description -->
+                    </div>
+                `;
+            });
+        } else {
+            epgHtml += `<div>No programmes available for today.</div>`;
+        }
+
+        document.getElementById('epg').innerHTML = epgHtml;
+    }
+
+    fetchEPG(); // Call the function to fetch and display EPG
+</script>
+
+</body>
+</html>
