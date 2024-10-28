@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert EXT File to Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>EXT File to Table Converter</h1>
+    <input type="file" id="fileInput" accept=".ext">
+    <button id="convertButton">Convert</button>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>license_type</th>
+                <th>license_key</th>
+                <th>tvg-id</th>
+                <th>tvg-logo</th>
+                <th>group-logo</th>
+                <th>group-title</th>
+                <th>Title</th>
+                <th>url</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById('convertButton').onclick = function () {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please upload a .ext file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const content = event.target.result;
+                const lines = content.split('\n');
+                const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                let licenseType = '';
+                let licenseKey = '';
+                let category = '';
+                let count = 0;
+
+                lines.forEach(line => {
+                    line = line.trim(); // Trim whitespace
+                    
+                    if (line.startsWith('#KODIPROP:inputstream.adaptive.license_type=')) {
+                        licenseType = line.split('=').pop().trim();
+                    } 
+                    else if (line.startsWith('#KODIPROP:inputstream.adaptive.license_key=')) {
+                        licenseKey = line.split('=').pop().trim();
+                    } 
+                    else if (line.startsWith('#EXTINF:')) {
+                        const extInfo = line.split(',');
+                        const properties = extInfo[0].split(' ');
+
+                        const url = lines[count + 1].trim(); // The URL is always the next line
+                        const tvgId = properties.find(p => p.includes('tvg-id')).split('=')[1].replace(/"/g, '').trim();
+                        const tvgLogo = properties.find(p => p.includes('tvg-logo')).split('=')[1].replace(/"/g, '').trim();
+                        const groupLogo = properties.find(p => p.includes('group-logo')).split('=')[1].replace(/"/g, '').trim();
+                        const groupTitle = properties.find(p => p.includes('group-title')).split('=')[1].replace(/"/g, '').split(',')[0].trim();
+                        const title = extInfo[1].trim();
+
+                        category = lines[count + 2] && lines[count + 2].startsWith('Category:') ? lines[count + 2].split(':').pop().trim() : '';
+
+                        tableBody.innerHTML += `<tr>
+                            <td>${licenseType}</td>
+                            <td>${licenseKey}</td>
+                            <td>${tvgId}</td>
+                            <td>${tvgLogo}</td>
+                            <td>${groupLogo}</td>
+                            <td>${groupTitle}</td>
+                            <td>${title}</td>
+                            <td>${url}</td>
+                            <td>${category}</td>
+                        </tr>`;
+                    }
+                    count++;
+                });
+            };
+            reader.readAsText(file);
+        };
+    </script>
+</body>
+</html>
