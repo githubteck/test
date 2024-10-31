@@ -840,7 +840,7 @@ Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=Y2M1YzUwMTEtMWYxYi0zYjAxLTg2M2YtZjJmZTA2MWIyM2Nh
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://unifi.com.my/tv/sites/default/files/2023-02/unifisports-new.png" group-logo="NA" group-title="Unifi",Unifi Sports 1 HD
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-02/unifisports-new.png" group-logo="NA" group-title="Unifi",Unifi Sports 1 HD
 https://unifi-live11.secureswiftcontent.com/UnifiHD/live11.mpd
 Category: Unifi
 
