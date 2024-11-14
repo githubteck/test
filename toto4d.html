@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4D Data Fetcher</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .permutation-table {
+            margin-bottom: 30px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        #best-guess-btn {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #best-guess-popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #dddddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 20px;
+            width: 300px;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .close-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            float: right;
+            margin-top: -10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>4D Data Fetcher</h1>
+    <input type="text" id="input-number" placeholder="Enter 4-digit number" maxlength="4" />
+    <label>
+        <input type="checkbox" id="permutation-checkbox"> Allow Permutations
+    </label>
+    <button id="fetch-btn">Fetch and Unzip 4D Data</button>
+    <button id="best-guess-btn">Best Guess</button>
+    
+    <div id="data"></div>
+
+    <div id="overlay"></div>
+    <div id="best-guess-popup">
+        <button class="close-btn" onclick="closePopup()">X</button>
+        <h3>Next Draw Possible Result</h3>
+        <div id="best-guess-results"></div>
+    </div>
+
+    <script>
+        let allResults = []; // To store all the parsed results
+        let frequencyMap = {}; // To store the frequency of each number
+
+        document.getElementById("fetch-btn").addEventListener("click", async () => {
+            try {
+                const response = await fetch("https://corsproxy.io/?https://www.sportstoto.com.my/upload/4D.zip");
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const zipBlob = await response.blob();
+                const zip = await JSZip.loadAsync(zipBlob);
+
+                let txtFileContent = '';
+                for (const filename in zip.files) {
+                    if (filename.endsWith('.txt')) {
+                        txtFileContent = await zip.files[filename].async("text");
+                        break;
+                    }
+                }
+
+                if (!txtFileContent) {
+                    document.getElementById("data").innerText = "No TXT file found in the ZIP.";
+                    return;
+                }
+
+                const lines = txtFileContent.split('\n').map(line => line.split(','));
+                const headers = lines[0];
+                allResults = lines.slice(1).map(line => {
+                    return headers.reduce((obj, header, index) => {
+                        obj[header] = line[index];
+                        return obj;
+                    }, {});
+                });
+
+                // Calculate frequency of each number
+                calculateFrequency();
+
+                displayResults(); // Call to display results based on input
+
+            } catch (error) {
+                console.error('Error fetching or processing the ZIP file:', error);
+                document.getElementById("data").innerText = "An error occurred while fetching the data.";
+            }
+        });
+
+        document.getElementById("input-number").addEventListener("input", displayResults);
+        document.getElementById("permutation-checkbox").addEventListener("change", displayResults);
+        
+        document.getElementById("best-guess-btn").addEventListener("click", showPopup);
+
+        function calculateFrequency() {
+            frequencyMap = {}; // Reset the frequency map
+            allResults.forEach(result => {
+                // Count frequencies for all winning prize numbers
+                [
+                    result["1stPrizeNo"],
+                    result["2ndPrizeNo"],
+                    result["3rdPrizeNo"],
+                    result["SpecialNo1"],
+                    result["SpecialNo2"],
+                    result["SpecialNo3"],
+                    result["SpecialNo4"],
+                    result["SpecialNo5"],
+                    result["SpecialNo6"],
+                    result["SpecialNo7"],
+                    result["SpecialNo8"],
+                    result["SpecialNo9"],
+                    result["SpecialNo10"],
+                    result["ConsolationNo1"],
+                    result["ConsolationNo2"],
+                    result["ConsolationNo3"],
+                    result["ConsolationNo4"],
+                    result["ConsolationNo5"],
+                    result["ConsolationNo6"],
+                    result["ConsolationNo7"],
+                    result["ConsolationNo8"],
+                    result["ConsolationNo9"],
+                    result["ConsolationNo10"]
+                ].forEach(num => {
+                    if (num) {
+                        frequencyMap[num] = (frequencyMap[num] || 0) + 1; // Increment frequency
+                    }
+                });
+            });
+        }
+
+        function displayResults() {
+            const inputNumber = document.getElementById("input-number").value.trim();
+            const allowPermutation = document.getElementById("permutation-checkbox").checked;
+
+            // Clear previous results
+            document.getElementById("data").innerHTML = ""; 
+
+            if (inputNumber.length === 4) {
+                // Get target numbers based on permutations
+                const targetNumbers = allowPermutation ? getPermutations(inputNumber) : [inputNumber];
+
+                // For each target number, filter results and create a table
+                targetNumbers.forEach(perm => {
+                    const resultsForPerm = allResults.filter(result => {
+                        return result["1stPrizeNo"] === perm || 
+                               result["2ndPrizeNo"] === perm || 
+                               result["3rdPrizeNo"] === perm || 
+                               result["SpecialNo1"] === perm || 
+                               result["SpecialNo2"] === perm ||
+                               result["SpecialNo3"] === perm ||
+                               result["SpecialNo4"] === perm ||
+                               result["SpecialNo5"] === perm ||
+                               result["SpecialNo6"] === perm ||
+                               result["SpecialNo7"] === perm ||
+                               result["SpecialNo8"] === perm ||
+                               result["SpecialNo9"] === perm ||
+                               result["SpecialNo10"] === perm ||
+                               result["ConsolationNo1"] === perm ||
+                               result["ConsolationNo2"] === perm ||
+                               result["ConsolationNo3"] === perm ||
+                               result["ConsolationNo4"] === perm ||
+                               result["ConsolationNo5"] === perm ||
+                               result["ConsolationNo6"] === perm ||
+                               result["ConsolationNo7"] === perm ||
+                               result["ConsolationNo8"] === perm ||
+                               result["ConsolationNo9"] === perm ||
+                               result["ConsolationNo10"] === perm;
+                    });
+
+                    // Render results in a separate table for each permutation
+                    if (resultsForPerm.length > 0) {
+                        renderPermutationTable(resultsForPerm, perm);
+                    }
+                });
+            }
+        }
+
+        function renderPermutationTable(results, perm) {
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // Create table headers
+            let headerRow = document.createElement('tr');
+            const headers = ["DrawNo", "DrawDate", "4D Number", "Prize Type"];
+            
+            headers.forEach(header => {
+                let th = document.createElement('th');
+                th.innerText = header;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Fill the table with filtered results
+            results.forEach(result => {
+                let row = document.createElement('tr');
+                
+                // Determine which prize type the perm number corresponds to
+                let prizeType = '';
+
+                if (result["1stPrizeNo"] === perm) prizeType = "1st Prize";
+                else if (result["2ndPrizeNo"] === perm) prizeType = "2nd Prize";
+                else if (result["3rdPrizeNo"] === perm) prizeType = "3rd Prize";
+                else if (result["SpecialNo1"] === perm || 
+                         result["SpecialNo2"] === perm || 
+                         result["SpecialNo3"] === perm || 
+                         result["SpecialNo4"] === perm || 
+                         result["SpecialNo5"] === perm || 
+                         result["SpecialNo6"] === perm || 
+                         result["SpecialNo7"] === perm || 
+                         result["SpecialNo8"] === perm || 
+                         result["SpecialNo9"] === perm || 
+                         result["SpecialNo10"] === perm) {
+                    prizeType = "Special";
+                } else if (result["ConsolationNo1"] === perm || 
+                           result["ConsolationNo2"] === perm || 
+                           result["ConsolationNo3"] === perm || 
+                           result["ConsolationNo4"] === perm || 
+                           result["ConsolationNo5"] === perm || 
+                           result["ConsolationNo6"] === perm || 
+                           result["ConsolationNo7"] === perm || 
+                           result["ConsolationNo8"] === perm || 
+                           result["ConsolationNo9"] === perm || 
+                           result["ConsolationNo10"] === perm) {
+                    prizeType = "Consolation";
+                }
+
+                row.appendChild(createCell(result["DrawNo"]));
+                row.appendChild(createCell(result["DrawDate"]));
+                row.appendChild(createCell(perm)); // Show the current permutation number
+                row.appendChild(createCell(prizeType)); // Show the prize type
+                
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            table.className = "permutation-table"; // Add class for styling
+
+            // Add results header with count and probability
+            const resultsHeader = document.createElement('h3');
+            const hitCount = results.length;
+            const hitProbability = getProbability(perm);
+            resultsHeader.innerText = `Results for ${perm} (No of Hits: ${hitCount}) (${hitProbability.toFixed(2)}%)`;
+            document.getElementById("data").appendChild(resultsHeader); // Title for each permutation results
+            
+            document.getElementById("data").appendChild(table); // Add new table
+        }
+
+        // Helper function to create table cells
+        function createCell(value) {
+            const cell = document.createElement('td');
+            cell.innerText = value || ''; // Display empty if undefined
+            return cell;
+        }
+
+        // Calculate the probability of the number appearing in the next draw
+        function getProbability(number) {
+            const totalDraws = allResults.length;
+            const hits = frequencyMap[number] || 0;
+            return totalDraws > 0 ? ((hits / totalDraws) * 100) : 0; // Return probability as percentage
+        }
+
+        // Function to get permutations of the input number
+        function getPermutations(str) {
+            if (str.length < 2) return [str];
+            let permutations = [];
+            for (let i = 0; i < str.length; i++) {
+                const char = str[i];
+                const remainingChars = str.slice(0, i) + str.slice(i + 1);
+                for (const permutation of getPermutations(remainingChars)) {
+                    permutations.push(char + permutation);
+                }
+            }
+            return Array.from(new Set(permutations)); // Remove duplicates
+        }
+
+        function showPopup() {
+            const bestGuessResults = document.getElementById("best-guess-results");
+            bestGuessResults.innerHTML = ""; // Clear previous results
+
+            // Generate random results
+            const firstPrize = getRandomNumber();
+            const secondPrize = getRandomNumber();
+            const thirdPrize = getRandomNumber();
+            
+            let specialPrizes = [];
+            let consolationPrizes = [];
+
+            for (let i = 0; i < 10; i++) {
+                specialPrizes.push(getRandomNumber());
+                consolationPrizes.push(getRandomNumber());
+            }
+
+            // Display the results in the popup
+            bestGuessResults.innerHTML = `
+                <strong>First Prize:</strong> ${firstPrize}<br>
+                <strong>Second Prize:</strong> ${secondPrize}<br>
+                <strong>Third Prize:</strong> ${thirdPrize}<br>
+                <strong>Special Prizes:</strong> ${specialPrizes.join(', ')}<br>
+                <strong>Consolation Prizes:</strong> ${consolationPrizes.join(', ')}<br>
+            `;
+
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("best-guess-popup").style.display = "block";
+        }
+
+        function getRandomNumber() {
+            return Math.floor(1000 + Math.random() * 9000).toString().padStart(4, '0'); // Generates a 4-digit random number
+        }
+
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("best-guess-popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
