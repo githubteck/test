@@ -774,13 +774,13 @@ Category: Korea
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"nW94h2Z3tUPNThjIRqokgQ==", "kid":"lGY+ZO+B6Qqd7rDxmTzhHA==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://unifi.com.my/tv/sites/default/files/2023-01/beinsports4.png" group-logo="NA" group-title="Unifi",BEIN SPORTS 4 | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-01/beinsports4.png" group-logo="NA" group-title="Unifi",BEIN SPORTS 4 | UNIFI
 https://pop5clustera00de07172379a62d6189.hypp.tv:443/PLTV/88888888/224/3221227937/3221227937.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=U0v281lovZMLWzqtXjPtYuOXwQCoIQRk449J%2BBUCcawRjfkMvdAX9TZ5I%2BbsmfrU7%2B8kYXzOcpo3wc%2BwgB1By0rcymHBIhx5oJP4jv2fPK0%3D%3A20230206102855%3AUTC%2C1003663983%2C115.164.187.20%2C20230206102855%2Curn:Huawei:liveTV:XTV57682031%2C1003663983%2C-1%2C0%2C1%2C%2C%2C2%2C593%2C%2C%2C2%2C1343117%2C0%2C248412%2C47562943%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOwY6CMBRF_6bLpn10wC660piYTHASGbfmUR6VWKi2QDJ_P6K4vfeemzNGtHTYGRKbPMu0shsAVdu2FlDkYNtMo4RaS5boUQYDzKL33eDK0CzY-bS9SMEFB5BcAquWu71Hty7Lqa8pmuyDnSjOnSXTpJbPmDg6F8nh2IWB_3j8-41-nTCqVjWZF1-5FqoApTQbl7TCdHs27IppG_o7Rmq-g3sBpkWfiN3R3tBRiT2ZYfL-zR1j87T5B0NkEFD0AAAA&tenantId=6001
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=Y2M1YzUwMTEtMWYxYi0zYjAxLTg2M2YtZjJmZTA2MWIyM2Nh
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://unifi.com.my/tv/sites/default/files/2023-02/unifisports-new.png" group-logo="NA" group-title="Unifi",Unifi Sports 1 HD
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-02/unifisports-new.png" group-logo="NA" group-title="Unifi",Unifi Sports 1 HD
 https://unifi-live11.secureswiftcontent.com/UnifiHD/live11.mpd
 Category: Unifi
 
