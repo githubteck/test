@@ -857,12 +857,6 @@ https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01553-blueantmediaasi-jellyjam-da
 Category: Sooka
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"8ir0Lq73M1yeKu5ElVA7Pg", "kid":"rBQGeGyFQRmd4/rdQG8rXw" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="NA" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SOOKA TEST1
-https://751fc2472ca44c968caf5552bc0385c8.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/SOOKASSAI_CH2_DASH/masterCH2.mpd
-Category: Sooka
-
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key=NA
 #EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/98fb95419ca16069cfce4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SOOKA TEST2
 https://a3fa98952a294b74a3e604cccce04d82.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/SOOKASSAI_CH1_DASH/masterCH3.mpd
