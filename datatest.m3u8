@@ -774,7 +774,7 @@ Category: Korea
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"nW94h2Z3tUPNThjIRqokgQ==", "kid":"lGY+ZO+B6Qqd7rDxmTzhHA==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-01/beinsports4.png" group-logo="NA" group-title="Unifi",BEIN SPORTS 4 | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-01/beinsports4.png" group-logo="NA" group-title="Unifi",BEIN SPORTS 4
 https://pop5clustera00de07172379a62d6189.hypp.tv:443/PLTV/88888888/224/3221227937/3221227937.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=U0v281lovZMLWzqtXjPtYuOXwQCoIQRk449J%2BBUCcawRjfkMvdAX9TZ5I%2BbsmfrU7%2B8kYXzOcpo3wc%2BwgB1By0rcymHBIhx5oJP4jv2fPK0%3D%3A20230206102855%3AUTC%2C1003663983%2C115.164.187.20%2C20230206102855%2Curn:Huawei:liveTV:XTV57682031%2C1003663983%2C-1%2C0%2C1%2C%2C%2C2%2C593%2C%2C%2C2%2C1343117%2C0%2C248412%2C47562943%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOwY6CMBRF_6bLpn10wC660piYTHASGbfmUR6VWKi2QDJ_P6K4vfeemzNGtHTYGRKbPMu0shsAVdu2FlDkYNtMo4RaS5boUQYDzKL33eDK0CzY-bS9SMEFB5BcAquWu71Hty7Lqa8pmuyDnSjOnSXTpJbPmDg6F8nh2IWB_3j8-41-nTCqVjWZF1-5FqoApTQbl7TCdHs27IppG_o7Rmq-g3sBpkWfiN3R3tBRiT2ZYfL-zR1j87T5B0NkEFD0AAAA&tenantId=6001
 Category: Unifi
 
@@ -786,49 +786,31 @@ Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"iufx5gNexvvK1RtSLmH8HA==", "kid":"ZQSj5tp8m98dOz3enr1AdQ==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Cartoonito_-_Logo_2021.svg/250px-Cartoonito_-_Logo_2021.svg.png" group-logo="NA" group-title="Unifi",Cartoonito | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-07/148x84_Cartoonito_2023-web.png" group-logo="NA" group-title="Unifi",Cartoonito
 https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227534/3221227534.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=tnUM3pus6bSh1mr%2FQqP7gS%2BLhDQRCdSHNpB7NvbJKHORk%2F7o9ZSvEMcHdX5yljqg9BPtBbwcQhknqc39VUJpD%2FHl2ogHz3eAyG2k7xToFQmJBU24%2BKwsNeA0VE3pRwoj%3A20221124094239%3AUTC%2C1001767137%2C115.164.56.153%2C20221124094239%2Curn:Huawei:liveTV:SP0010059884%2C1001767137%2C-1%2C0%2C1%2C%2C%2C2%2C595%2C%2C%2C2%2C1612403%2C0%2C517698%2C2706399750%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOUQuCMBzEv80exzaHtoc9FUEQFmS9xt_5d4nT1aZC3z4tezq4u99xQwCDh50uJcs4T6DeGClnUSZLZFIyxoSCjEsS8ZV7LYgB55re5r5asNtle-eMMioEp1yQYpnbO7BrMx-7EoNO_tgFw9QY1FWs6QSRgrUBLQyN7-nZwfsa3FohWKzXeJoqoVjGUqUkGRa3gNjOCXlA3PruCQGro7dfQNfgIpInmBYs5tCh7kfnftwpVPObD9dw2Of0AAAA&tenantId=6001
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"9NCy8QdiSp7EeDBM0ZkN7w==", "kid":"mtjH8QB3BefeupiLjc2EtQ==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7051/CPS/images/universal/film/logo/202208/20220811/20220811020901814w9o.png" group-logo="NA" group-title="Unifi",Animax | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2022-08/logo-Animax.png" group-logo="NA" group-title="Unifi",Animax
 https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227925/3221227925.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=tnUM3pus6bSh1mr%2FQqP7gS%2BLhDQRCdSHNpB7NvbJKHO13ekK2bj%2FEqhmZsgCb487VK201C73xHPJjGvTHv3JiPHl2ogHz3eAyG2k7xToFQmJBU24%2BKwsNeA0VE3pRwoj%3A20221124082916%3AUTC%2C1001767137%2C115.164.56.153%2C20221124082916%2Curn:Huawei:liveTV:XTV57622558%2C1001767137%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C1612403%2C0%2C517698%2C2706399750%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOy2rDMBRE_0ZLoUcqOQutUgKB4gbidlvG1rViIlup5ATy941bdzszZzhzRkeHVwctoavqRWmvN0a0sBslWrLopRWwhhX6rpNTrEOMwxTq5Bfs87T7koILrpTkUrFmudtHhHVZ38aWstP_2InyfejI-dLzOwpHCJkC5iFN_Bjx-MhxnTBqVjVpzFZVRkpj7ZbNS9qgXJ4NO6Ps0nhFJv-Wwi_gesRC7IrugkA1RnLTLcY_7j37p80PI8646_QAAAA&tenantId=6001
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"mzwdDvzWcEwoAnn9TmHYQw==", "kid":"r/J+svl6UM2FJ6YrJ6OyUQ==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://unifi.com.my/tv/sites/default/files/2022-08/dreamworks_0.png" group-logo="NA" group-title="Unifi",Dreamworks HD | UNIFI
-https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227596/3221227596.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=U0v281lovZMLWzqtXjPtYuOXwQCoIQRk449J%2BBUCcaz%2FQhodL6fA33kc7vjOyeC7jXPIQCQ%2B0bspkHw6nXsPQkrcymHBIhx5oJP4jv2fPK0%3D%3A20230206082306%3AUTC%2C1003663983%2C115.164.187.20%2C20230206082306%2Curn:Huawei:liveTV:SP0010745304%2C1003663983%2C-1%2C0%2C1%2C%2C%2C2%2C593%2C%2C%2C2%2C1343117%2C0%2C248412%2C47562943%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOyw6CMBRE_6bLBopQXHSlMTExaCK6NWN7qYRCtUUT_17xsZ2ZMzljgKb1UqVlRiiLOc65mUHmAMksEc1cSJNrkizSrfJKMA3n2sFW3kzYcb84pQlPuBApTwWrp7uVg_0tq3t_pqCyP7an8Gg1KRMb_kDksDaQxdj6ge8cnofgfhNG9V-tkHlRimxWCpmwcUprxO7dsAviwvdXBDIbbz-AauAisSt0B0sVelLD3bkvtw3mbfMCVDlv4_QAAAA&tenantId=6001
-Category: Unifi
-
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"QjspamKaAbHZdHGy0WAD2Q==", "kid":"8B2kdQCH8u5QPPRthiSIDA==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7042/CPS/images/universal/film/logo/201907/20190708/201907080716212262b1.png" group-logo="NA" group-title="Unifi",Nick Jr | UNIFI
-https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227697/3221227697.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=U0v281lovZMLWzqtXjPtYuOXwQCoIQRk449J%2BBUCcaz%2FQhodL6fA33kc7vjOyeC7dEYTA1To7vwUkpGQmKDRC0rcymHBIhx5oJP4jv2fPK0%3D%3A20230206082306%3AUTC%2C1003663983%2C115.164.187.20%2C20230206082306%2Curn:Huawei:liveTV:iptv10843%2C1003663983%2C-1%2C0%2C1%2C%2C%2C2%2C593%2C%2C%2C2%2C1343117%2C0%2C248412%2C47562943%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOy27DIBRE_4YlAvyKF6xSRapUuZXidFuN4UKsYJOCE6l_n7h1tzNzRmdJMPT6omuUTgzVULVoSlfI1tpKNQJKCDG41rBM313UihmEMM6-i3bFPo_7Lym44EpJLhXr17tDgN-W3W0aKOniHztSuo-GtM2O35E5vE_ksYxx5h8BP6cUtgmjflOTdVPVu6IU5a5u2LKmPfLl2bAz8j5OVySyb9H_AtohZGJXmAs8dZhIz7cQ_rj3ZJ82D-ZhsvT0AAAA&tenantId=6001
-Category: Unifi
-
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"j1qxlX0ehZK9qmfgRvryWg==", "kid":"fMV5BgWnOmmCjBHU3e5jew==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="http://playtv.unifi.com.my:7040/CPS/images/universal/film/logo/202109/20210926/20210926024214242p95.png" group-logo="NA" group-title="Unifi",GEM | UNIFI
-https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227869/3221227869.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=tAj9noBYJ2skybq0Yc3wzUPfVVgVyDuUJP2cH3Vl1NgUtbNv16v%2BzieVWwImkNgeg1kTVq%2B8T3u5TGgBhmCcgUAyF9cjp90m2RAyA0sYZtgzq5XlKJ7JMabmxeM83fZv%3A20230921113509%3AUTC%2C1005926113%2C203.106.139.128%2C20230921113509%2Curn:Huawei:liveTV:XTV51882374%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C1615850%2C0%2C521145%2C3533104136%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOy2rDMBRE_0ZLoYft4oVWKYVAcAtxuy0j6Voxka1UcgL9-8aNs52ZM5wlw9H-1QhtAaek87apYHWrqEJTC6usGkRTs0I_XTKKOcQ4zqFLfsW-jrtvKbjgSkmuNOvXu7eIsC2762QpG_nEjpRvoyPjy8BvKBwhZApYxjTzj4jfzxy3CaN-U5NNW2tR6falEoIta9qjnO8NO6Hs0nRBJn9I4R8wA2IhdoE7I1CHicx8jfHBvWd_t_kD2trVRPQAAAA&tenantId=6001
-Category: Unifi
-
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"G6miTZuS5f6OQZsWYWqa4w==", "kid":"SJp1A9snEUaUzkFrCgMvwQ==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7051/CPS/images/universal/film/logo/201907/20190716/201907160641140646da.png" group-logo="NA" group-title="Unifi",Now Jelli HD | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2022-08/nowjelli_0.png" group-logo="NA" group-title="Unifi",Now Jelli HD
 https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227559/3221227559.mpd?rrsip=web.hypp.tv&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=qD%2FGhg01YduJJVCux%2B5ixF6lBrrzvU1Q2%2B8sLqGChu40fF7WRczKep1ijxO3BzygK7IGCYvN70sbDo5pVRv846haXUJR5R32mBb1BUUaHHv17QezgK4lI66BNld%2BWvWSl1Gu6dfQIjZRtiMM1k%2B5qA%3D%3D%3A20230704185240%3AUTC%2C1004320541%2C14.1.254.135%2C20230704185240%2Curn:Huawei:liveTV:iptv28981%2C1004320541%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C3692854%2C0%2C2611154%2C2b9f924f-2e21-e330-87b4-2daffcd7b85b%2C%2C%2C2%2C1%2CEND&GuardEncType=2&tenantId=6003&from=5&ocs=2_1.9.62.159_80&hms_devid=1793&mount=1000002&targetdev=1793&it=H4sIAAAAAAAAA0XMQQvCIBiA4X-zo6jT4Q6eiqCLBKuu8amfIrhJugb9-1gE3d_nXSs4PB_1OAjFgCrrLAhJ-Sg9DxCkZEpwaoeu4dMU3XcOck5LNMXv7D4dHowSSjhnpJfddd-dMkTNv6V5zRbrn01Yt-RQ-xbIBo1AjBUjrKks5JLhfav5l3wAYjwnx5kAAAA
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"+7/9gmQ8PHC4RU6BbCZiug==", "kid":"qMzhdNoi/FJMXhk4rq0Nzw==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7053/CPS/images/universal/film/logo/201907/20190708/20190708073838956juy.png" group-logo="NA" group-title="Unifi",SETI | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2022-08/seti_0.png" group-logo="NA" group-title="Unifi",SETI
 https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227529/3221227529.mpd?rrsip=centerrrs.hypp.tv&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=qD%2FGhg01YduJJVCux%2B5ixM7skkMcbNa9ZSweWCAIO9g0fF7WRczKep1ijxO3BzygK7IGCYvN70sbDo5pVRv84yjyfs9%2FU5xlEkKXfSpcw0b%2FVw%2BAVLY2IaG%2BJfr8AXAzl1Gu6dfQIjZRtiMM1k%2B5qA%3D%3D%3A20230704185934%3AUTC%2C1004320541%2C14.1.254.132%2C20230704185934%2Curn:Huawei:liveTV:iptv8417%2C1004320541%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C3692854%2C0%2C2611154%2C2b9f924f-2e21-e330-87b4-2daffcd7b85b%2C%2C%2C2%2C1%2CEND&GuardEncType=2&tenantId=6003&from=5&ocs=2_1.9.62.177_80&hms_devid=1685&mount=1000002&targetdev=1685&it=H4sIAAAAAAAAA0WMsQrCMBQA_yZjSNJU0iGTIrgUoeoqry8vIZA2mNSCf68VwemWu1sKIJ0O1nzQoTedpFajU8Z7Jx3uWmxgBC1YpUefbcMQUopz6LPbstuwv0vBBVdKcqnZZdsdEwSrvmb_nEYq_2ygskYk66rnK1QOIRQKsMQ883OC17Wkn_IGgSNJiJkAAAA
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"T9yVcaslRWNxuipXE1iA4Q==", "kid":"BdyC/UAydl2Q5X5+6qwwHg==" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7051/CPS/images/universal/film/logo/202208/20220816/20220816023117758jev.png" group-logo="NA" group-title="Unifi",Siar HD | UNIFI
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2023-01/siar-.png" group-logo="NA" group-title="Unifi",Siar HD
 https://pop5clustera00de07172379a62d6189.hypp.tv/PLTV/88888888/224/3221227948/3221227948.mpd?rrsip=web.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=nR3IWnuvgquP%2F8My8iyxx%2BoxnuQhQQA9yraVG9ZBgJG7lGYp3EaTqDAXfA4S%2BPVgQpTIHrOhXCgOoaP1Jv59qvHl2ogHz3eAyG2k7xToFQmJBU24%2BKwsNeA0VE3pRwoj%3A20221124221801%3AUTC%2C1001767138%2C27.125.242.143%2C20221124221801%2Curn:Huawei:liveTV:XTV56919296%2C1001767138%2C-1%2C0%2C1%2C%2C%2C2%2C595%2C%2C%2C2%2C1612403%2C0%2C517698%2C3073678270%2C%2C%2C2%2C1%2CEND&GuardEncType=2&it=H4sIAAAAAAAAADWOywrCMBRE_ybLkEfjY5GVIghSBatbuUluY2naaFIF_16rdTszZzhDAovbtXa1xDmzxihbFMViaRTjzjFVc4NWMiAZ72XUglgIoel9Gd2InY-rC2eUUSE45YJU490mgJ-W5aMzmLT8Y0dMz8aidrmmT8gUvE_oYWhiTw8BXqcUpgnBalLjs9lSSrVQc6kEGca0gtx-GnKFvIrdDRK6XfRfQNcQMpIb2BY8ltCh7h8h_Lh9ch-bN5RyWgv0AAAA&tenantId=6001
 Category: Unifi
 
@@ -846,13 +828,343 @@ Category: hls
 
 #KODIPROP:inputstream.adaptive.license_type=hls
 #KODIPROP:inputstream.adaptive.license_key=NA
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7041/CPS/images/universal/film/logo/201907/20190716/20190716074123890vav.png" group-logo="NA" group-title="Unifi",Dunia Sinema HD
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2022-08/dunia-sinema_0.png" group-logo="NA" group-title="Unifi",Dunia Sinema HD
 https://unifi-live01.secureswiftcontent.com/UnifiHD/live27-1080FHD.m3u8
 Category: Unifi
 
 #KODIPROP:inputstream.adaptive.license_type=hls
 #KODIPROP:inputstream.adaptive.license_key=NA
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://playtv.unifi.com.my:7041/CPS/images/universal/film/logo/201907/20190716/20190716073823792x3y.png" group-logo="NA" group-title="Unifi",Travel Channel HD
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://corsproxy.io/?https://unifi.com.my/tv/sites/default/files/2022-08/travelchannel_0.png" group-logo="NA" group-title="Unifi",Travel Channel HD
 https://raw.githubusercontent.com/subirkumarpaul/My-iptv/main/Travel-Channel.m3u8
 Category: Unifi
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/0c41a0b455c9348edb392.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Free Movie
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01553-blueantmediaasi-freemovies-dash-sooka-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/ef2daa3ec829e54a6e13d.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Pet Club
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01076-lightningintern-petclub-astro-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/0a1e0b802beb7be122f38.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Jelly Jam World
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01553-blueantmediaasi-jellyjam-dash-sooka-test-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"8ir0Lq73M1yeKu5ElVA7Pg", "kid":"rBQGeGyFQRmd4/rdQG8rXw" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="NA" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SOOKA TEST1
+https://751fc2472ca44c968caf5552bc0385c8.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/SOOKASSAI_CH2_DASH/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/98fb95419ca16069cfce4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SOOKA TEST2
+https://a3fa98952a294b74a3e604cccce04d82.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/SOOKASSAI_CH1_DASH/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"ckOT6D0LbLAaL/S6sqKLxA","kid":"z++3hRtXT1KiSBMs74mo2w"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/fdf5dc4c972b4b3350667.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",iQIYI HD
+https://linear12-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"268WzBXKOAtPdM13+X3GbA","kid":"ueUsgFrxQ7y/Inkw4xz96Q"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/34c852f11f68f59af5699.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",AXN HD
+https://linear11-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"zWfk+67JzZLoR5X7nymAcg","kid":"yZv161y8TI+G+/tA4aKwZQ"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/1e15632be0a2240ef732c.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",BBC Earth
+https://linear13-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"zWfk+67JzZLoR5X7nymAcg","kid":"yZv161y8TI+G+/tA4aKwZQ"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/5b8c41513424d1b154a88.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",BBC Lifestyle HD
+https://linear12-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"Q9DpRhHrixCC3qY/JiP1dw","kid":"EbV3VQkcQDah00TnDjUtcg"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/5715a7286a67669db999f.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",CBeebies
+https://linear13-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"fyDO3UFf7yr9P6YcmIfNQQ","kid":"vdJUXGfHS9+UbiE+3+JiJQ"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/0ff4fd815a54861a9f45c.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Global Trekker
+https://linear14-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"0HNv8GRw6YQQgfQA4GNyFA","kid":"GUUd3198TxWiC0y/WIdXOg"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/ee9f952ab359e6bc756b6.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Dreamworks
+https://linear13-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"dWUwh+p3kjJOizf9XdAnnw","kid":"5k3uC5JSQtiba4J0rwsthA"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/93211594d20f9ea471ec9.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Love Nature HD
+https://linear11-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"MXMN67RxFHXCLn6wv9osew","kid":"wDQGo+6AQXui/y5g7rLehA"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/ed43468ae09f6fc2c6bd9.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Al Jazeera English HD
+https://linear12-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"MzelSiFBhegbrXJyLYBAPg","kid":"jRzcbupSRsqLETsmxapKQw"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/1bd44ed23f0b2e4ef52d5.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",CNA HD
+https://linear12-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"Po90DuQwygkKnK0KDQrpfA","kid":"LkC1SSAjT8utpdXHk453UQ"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/4a10b804de489dfe818af.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",CCTV4 HD
+https://linear10-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"hsLWIm312SenwadaSIf4fA","kid":"AH8s5nWHSxCvxgkEagCd/A"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/1f94653020273c36a030e.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Phoenix Chinese Channel HD
+https://linear11-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"+R76Z2G2ei9U89YSmHfLaw","kid":"HiYEzRjYQjSukQr/bd6Fng"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/b400ba4cddee51706c418.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",CTI Asia HD
+https://linear10-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"D1azPU2+4uYlt6ZiFt1Y3Q","kid":"rELqZssITzqweJyipX/ubA"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/acaa5134a9a55745ffae5.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Phoenix Info News HD
+https://linear13-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"5hbmpnJ5zVru7DPM6eLHjQ","kid":"wYaJZ34KRiuUparLy8cddA"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/5f83d4104ac9817a9b239.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",CGTN HD
+https://linear11-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/b641200da0212a83a4f53.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Oh My Ceria
+https://linearfast07.playback.sooka.my/v1/dash/7d6144f66f990e10fc667942d522b82f89ae5cd9/FAST_7_Ad/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"/2UXT47F1MiOjYohloVjzw", "kid":"DW0qGsjRThmxdFVlB3DNmQ" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/45ebb716daee3d1107421.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TVS
+https://linear10-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"NY+SYxfeT9aO+e5sI9XmlQ", "kid":"433koxZ5QEONqMhUeVvHdw" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/390db16ccf28ea54c4cc7.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TVB Jade
+https://linear09-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"4ojjMKH4k09wLmaH3df+yw", "kid":"rmrD9jQZTySNIufwwJO6cA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/8b00ee775c388fc38469c.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TVB Classic HD
+https://linear09-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"p4q3pLjyp0Zjf9C/iAiEOA", "kid":"pGCE+WsDTiCj1kfwp76NXA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/7f3f3c64928e57133a1e0.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TVB Entertainment News HD
+https://linear09-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"YdE0MzWw3b+r4oGNlS/gZg", "kid":"RGeTkQFyTPeWOjLKvPenwA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/2f2b64e9f0dd2dc964361.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TVB Xing He HD
+https://linear10-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"xPNRHhKT5X4xz0IoNVUaag", "kid":"bvJHEbeaTBOk/m1Ndg2EPA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/ab4779ded9411f381bd84.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro AOD
+https://linear07-playback.sooka.my/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"UGsB5FPcqbzg3Ag+0B/MQA", "kid":"8NnVKgwkRB2zzoLvypx4Pg" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/e5f799e7bb561e6234e5b.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Oasis HD
+https://linear09-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/98fb95419ca16069cfce4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Jom Ngaji
+https://linearfast06.playback.sooka.my/v1/dash/7d6144f66f990e10fc667942d522b82f89ae5cd9/FAST_6_Ad/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/463016c93514bbbbca3c9.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TAYO+
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg00640-lydnetwork-tayoplus-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/cfc9e70ed92b4ef8e8c1d.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Tastemade
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg00047-tastemade-tastemadeintlaus-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/5519c33486348b23ffeca.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Gusto TV
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01077-gustoworldwidem-gustotv-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/86f0c6bc32983a530650f.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Infamous TV
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01324-infamousmedia-infamoustv-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/e711100096d172ddc8928.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",YRF Music
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg00223-unisysinfo-yrf-music-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/669b22c4fd46abd9ca4f8.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",MTRSPT1
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg02873-kravemedia-mtrspt1-sooka-dash-sooka/index.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"F/ut5qlPUnGmp8VjdL9tjg", "kid":"UmLL6+rWT0KqgxfjyxMQbA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/670a6c2c2f87754f6c8ec.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TV1
+https://linear08-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"6GP3FJ5S91Jr90QDTifOjQ", "kid":"977qwgCvQNWIbf6Y1y/PyA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/a449990e1f2d0a6ac8ec6.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TV2
+https://linear08-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"d/ZWTWoqiWiVgbvEaF2fug", "kid":"ngdsLhf9SLS+J83Aj+IYfw" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/5d45ee71e76d1e0d19199.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TV Okey
+https://linear08-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/0c4afb9624d691ef282a4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",DRAMA HEBAT
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_1/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/6c1ea8ba4e4fd18681306.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",FILEM MANTAP
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_2/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/1621221a6795938224b62.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",LAWAK SENTRAL
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_3/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/d58fe99a006c3ad4b9e24.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",DRAMA HOTPOT
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_4/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=NA
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/071ec21b298280a2e418c.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",TRAVEL & TASTE
+https://b27a6dd8a86c3e4ba93fbae22aaaac64.pmqrop.channel-assembly.mediatailor.ap-southeast-1.amazonaws.com/v1/channel/FAST_5/dash.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"BlwQgpbXjVGoVEzEKhqnaA", "kid":"/ElXO0+WS+C0BTRJjOjWLg" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/0cae52fdf1540e0d84455.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",HITS NOW
+https://linear05-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"qtosuCCLhbJxrcmyT4MSWg", "kid":"Wa0gWlhRQDmr6UD+G9K8lQ" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/94a14183b17e8749173fa.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",HITS MOVIES HD
+https://linear05-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"xN10vdm0ZXlLH7Eqq2WW+A", "kid":"rPtLDx9ZRr+nw/LnwtYNAA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/1ff29df0932fb7ad48ce3.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",HITS HD
+https://linear05-playback.sooka.my/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"ZBfCZe7/U326G8VBjwB60g", "kid":"QdoJWBnHSzCqlNryuDzjeQ" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/5321408ef53c4cafba7c7bfe20edefac/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Moonbug
+https://linear14-playback.sooka.my/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"bhcdw24jVsJOTlmxm8mPxQ", "kid":"aXljcdxORX2Y+isCXqv8lA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://iili.io/1NC5v9.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",One HD
+https://linear05-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"kDHO+thTx4plwgIIIVMvPQ", "kid":"5VhM/9YVSROXuM3tXmecGQ" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/4d0a8c3434f44f8a46573.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",KBS World
+https://linear03-playback.sooka.my/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"+TZMA5oAfez1lcmKWMMjCQ", "kid":"fLhAK8wnRmOYFYmFcQMnNA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/670c09c6465e840e4e566.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",K-Plus
+https://linear08-playback.sooka.my/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"tPEppE661kuiVHX9L66wMg", "kid":"ziR/uJnPTyilAR4YBpyHcg" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/01d964c23e6ac296490a4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",tvN
+https://linear03-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"uOkanQqlnHxVmGwq5qtvZA", "kid":"SxonztiBTmWnYRg+1uT85g" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/017abfae80104df23085c.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",tvN Movies
+https://linear08-playback.sooka.my/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"HO5FQCla5tbFGcUEGoDxwA", "kid":"jQKveknkSzGXZNgR0BjF6A" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/ec444fecfcb3a20cd6aa4.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Supersport Plus
+https://linear03-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"GZBKr+idRaQB1cqtnYQadw", "kid":"T8ES+SqfTrmJob14DT495g" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/91b060a9fbca0526d338f.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Awani
+https://linear03-playback.sooka.my/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"BlwQgpbXjVGoVEzEKhqnaA", "kid":"/ElXO0+WS+C0BTRJjOjWLg" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/f993d12db524ff75fe0ac.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",beIN Rugby
+https://linear05-playback.sooka.my/CH3/masterCH3.mpd
+Category: Sooka
 
