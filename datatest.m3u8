@@ -179,15 +179,15 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5016/default_primary.mpd
 Category: Chinese
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"51Fl04uQlWfAM1OuSye2+A", "kid":"AesRaCCJQPiycLTgmUVw5w" } ], "type":"temporary" }
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"jacsqFAaTetL/Dgf4XN+9A==", "kid":"BighV9pOj5diOnDtAX+tEA==" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="306.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/182_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Astro AEC HD
-https://d1yws6emo43ny.cloudfront.net/CH1/masterCH1.mpd
+https://linears-playback.astro.com.my/vsg/417J9yJlJG7UhfIqwsnYWGbv7gGJI6lVWo9bbPba-Sfuo=Yxao/dash-wv/jitp-linearwm/2400/default_primary.mpd
 Category: Chinese
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"AiI5ZeM/e/HmwhJ4Bju1CA", "kid":"sOfb4l5sSfm1JeYU/EqmDA" } ], "type":"temporary" }
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"nV4DYJS7d8uviGfTJyxm0A==", "kid":"id5xzzm+CUbeyCjt/4TQEA==" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="308.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/158_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Astro QJ
-https://d1yws6emo43ny.cloudfront.net/CH4/masterCH4.mpd
+https://linears-playback.astro.com.my/vsg/413fll2sRaGMI-yznui-aeRZr0bnxRIxsgY2o0P_orAM4=srqj/dash-wv/jitp-linearwm/2507/default_primary.mpd
 Category: Chinese
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
