@@ -1143,3 +1143,117 @@ Category: Sooka
 #EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/6f760a647ef349babea2b66630ac70a2/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Awani
 https://linear03-playback.sooka.my/CH5/masterCH5.mpd
 Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"51Fl04uQlWfAM1OuSye2+A" "kid":"AesRaCCJQPiycLTgmUVw5w" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/948bafbe79e1483ca678e88b9e11dff9/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",AEC HD
+https://d1yws6emo43ny.cloudfront.net/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"AiI5ZeM/e/HmwhJ4Bju1CA" "kid":"sOfb4l5sSfm1JeYU/EqmDA" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/f0a992fdc7ee4d3fafc5bf828ba611f9/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",QJ HD
+https://d1yws6emo43ny.cloudfront.net/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"CabPBCTxDnbaSsMHt+f/BA" "kid":"JK6Gd03wQo+0bxU+gWZGYg" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/cfb6898addd34e30aa9cc875a20270d3/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Arena
+https://d277c08tzca9og.cloudfront.net/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"JK1H9zyM//xpYdR6pVG4gg" "kid":"G15RVjjeQkO2ukmEPQvnYw" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/32f74d263a364fdba34731718fbf7609/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Arena 2
+https://dcqkiaqc3sngm.cloudfront.net/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"4dQox/HKgjOabPodB1dCjg" "kid":"dIHT43OMRnaPE44gj+6Qdg" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/b94ead53c9d64ea2888246c2190e9401/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Arena Bola
+https://d1fk7kbmz4il3.cloudfront.net/CH1/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"eTnjNb+Mu9aIL59cnN6+GQ" "kid":"mWhVRUkdQLSTs6SyY8ckXg" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/61395a9708084a3683b3e85f241a2e86/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Arena Bola 2
+https://d1fk7kbmz4il3.cloudfront.net/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"O+3QvNEXVgFsmjzL559mZQ" "kid":"xeZBeMM+QYWjQG2EJSzXoA" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/efa91075dbc74e1fa5aa980f1ef10287/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Grandstand
+https://d2wna8g6s24110.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/ASSP3_Production/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"lofZG3/WR6iBg9CkzJJfdw" "kid":"s8z3OnpmT4WudBE2f/svpw" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/42662e53c0c94f84ba76c722ae75d6a6/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Premier League
+https://dzzr0p1jvj2ui.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/ASSP_Production/masterCH1.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"QfI0+4hZCvOw0iQRGmG/cQ" "kid":"jx2jmTJSR+ymrN17r7lfog" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/742a4a0c17694225925ce860121ec66d/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Premier League 2
+https://d2xpsrw5fp20um.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/ASSP2_Production/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"+xL2YdZA5OvfOOMSMCJg6w" "kid":"vaf3S4QvTw6xQjldrdkfBw" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/f7d73759949147a780fb6daf7b941c03/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Football
+https://d28hkm6kpym1e4.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/ASSP4_Production/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"VYm6JmXI2v2p+5fz1+9Sbg" "kid":"bxWpsvJ7StqpWQUNtgPAjw" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/c6b53f6075cb43f3863ab44e992d35f4/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Badminton
+https://don8126x2e6f3.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/badminton_Production/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"WcllzrtbniMpcIa+VhBooA" "kid":"GhAZKH43Q3mqtelBRkoMIA" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/9d974334f45846cc9b3740d8b1011fb6/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Sports Plus
+https://d2e27gsr9y6c4h.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/sportplus_Production/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct" "k":"xZPC7upidCKFuZ5Nh7HISg" "kid":"qOsPFSxuQpynpT85mq3yVw" } ] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/a5b7c993c5814c7c8335a71207e53d98/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",ASTRO CRICKET HD
+https://d1sz44a1d86dgq.cloudfront.net/v1/dash/4ad19442a5c36709752f44aae3b98db617a3c3d7/Cricket_Production/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"x56Rb533occYBeOc2jDZOw" "kid":"n5n/otJ6TPugW4O5HbhG3w" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/15f6917d3b0f4e1c9d64e58bff38ad24/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",W-Sport
+https://d3j4fjrwclc3o8.cloudfront.net/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"KsTvR0StICr8wuhz19w5Fg" "kid":"4r0pp0ZaSuSGp1ACMFgKbg" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/251ca39a5da748d29ab60e6e731d25b4/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SPOTV
+https://d1fk7kbmz4il3.cloudfront.net/CH2/masterCH2.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"ZfiPZoUB9++nXCW+WY90Vg" "kid":"pXcYTtbGRWC+uHyW7nj3uA" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/a60268b0e05949e3bc4ecba4a7833c9e/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",SPOTV2
+https://dcqkiaqc3sngm.cloudfront.net/CH3/masterCH3.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"SziYvIpv/Ytcs0p82QbcNQ" "kid":"n7/9H/ITQBaaWhFCvPTdrQ" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/52e97207761941d4b37c5262316a799b/version/0/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",beIN SPORTS
+https://dcqkiaqc3sngm.cloudfront.net/CH5/masterCH5.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"xSfUpbPUNkMSpOeLnenogA" "kid":"XLBdFMjdRWO5VuN9Cg8Rdw" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/a71f8dc3fb554106ba93cf03af6d7499/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",beIN SPORTS 2
+https://dcqkiaqc3sngm.cloudfront.net/CH4/masterCH4.mpd
+Category: Sooka
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[{ "kty":"oct" "k":"ubYV/h3VVgYX3hkdJTwCvA" "kid":"5Uay6K31Toe3u2wM1szC2g" }] "type":"temporary" }
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/a6eeadb42ec6443fb027e24d6180c790/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",beIN SPORTS 3
+https://dcqkiaqc3sngm.cloudfront.net/CH2/masterCH2.mpd
+Category: Sooka
