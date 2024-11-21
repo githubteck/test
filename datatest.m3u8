@@ -990,7 +990,7 @@ Category: Sooka
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"UGsB5FPcqbzg3Ag+0B/MQA", "kid":"8NnVKgwkRB2zzoLvypx4Pg" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="NA" tvg-logo="https://telegra.ph/file/e5f799e7bb561e6234e5b.png" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",Astro Oasis HD
+#EXTINF:-1 tvg-id="NA" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/2023b7b6c668429cb351c68e3b06d9ee/version/1/width/500/height/280" group-logo="https://telegra.ph/file/5231dea66798aba2c94b7.png" group-title="Sooka",OASIS HD
 https://linear09-playback.sooka.my/CH1/masterCH1.mpd
 Category: Sooka
 
