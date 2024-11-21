@@ -181,13 +181,13 @@ Category: Chinese
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"jacsqFAaTetL/Dgf4XN+9A==", "kid":"BighV9pOj5diOnDtAX+tEA==" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="306.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/182_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Astro AEC HD
-https://linears-playback.astro.com.my/vsg/417J9yJlJG7UhfIqwsnYWGbv7gGJI6lVWo9bbPba-Sfuo=Yxao/dash-wv/jitp-linearwm/2400/default_primary.mpd
+https://linears-playback.astro.com.my/vsg/412EF9atScc1YHxHYRS84_oNi1SBJuY-4nqg4WybrA7SI=EDCs/dash-wv/jitp-linearwm/2400/default_primary.mpd
 Category: Chinese
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"nV4DYJS7d8uviGfTJyxm0A==", "kid":"id5xzzm+CUbeyCjt/4TQEA==" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="308.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/158_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Astro QJ
-https://linears-playback.astro.com.my/vsg/413fll2sRaGMI-yznui-aeRZr0bnxRIxsgY2o0P_orAM4=srqj/dash-wv/jitp-linearwm/2507/default_primary.mpd
+https://linears-playback.astro.com.my/vsg/41R4yy8YTF6a1CD5yDLQlUL2F1jOZTkE5Xsg6Mh05C_ck=ZkbP/dash-wv/jitp-linearwm/2507/default_primary.mpd
 Category: Chinese
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -283,7 +283,7 @@ Category: Malay
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"N2sAl5bkrVDqj2jXlmdmkg==", "kid":"P3Jv1cu/WURDek2/q0MbEA==" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="104.astro" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/193_144.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Astro",Astro Ria HD
-https://linears-playback.astro.com.my/vsg/41RSHvwT_0tUBHCVVbIlsbAD-9D-JTWavisowDM2nMTO0=WsQf/dash-wv/jitp-linearwm/1004/default_primary.mpd
+https://linears-playback.astro.com.my/vsg/41g0e7itaC7AhEEiHzRdm-GN56AEmuY5KxpsmjcJ6BZnY=iU-F/dash-wv/jitp-linearwm/1004/default_primary.mpd
 Category: Malay
 
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
