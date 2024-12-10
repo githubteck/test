@@ -277,7 +277,7 @@
             const url = fetchURL(mode, param, page);
 
             try {
-                const proxyUrl = 'https://corsproxy.io/?';
+                const proxyUrl = '';
                 const response = await fetch(proxyUrl + url);
 
                 if (!response.ok) {
