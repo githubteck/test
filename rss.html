@@ -100,7 +100,7 @@
         }
 
         currentFetchController = new AbortController();
-        const rssUrl = 'https://corsproxy.io/?https://allrss.se/dramas/'; // Updated URL with new proxy
+        const rssUrl = 'https://corsproxy.io/?url=https://allrss.se/dramas/'; // Updated URL with new proxy
 
         fetch(rssUrl, { signal: currentFetchController.signal })
             .then(response => {
