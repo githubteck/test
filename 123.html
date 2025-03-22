@@ -51,7 +51,7 @@
             let output = '';
             let authorizationToken = '';
             let licenseType = '';
-            let licenseKeyObject = {};
+            let licenseKeys = [];  // Array to hold multiple keys if needed
 
             for (let line of lines) {
                 if (line.startsWith('#KODIPROP:inputstream.adaptive.common_headers')) {
@@ -62,20 +62,19 @@
                 }
 
                 if (line.startsWith('#KODIPROP:inputstream.adaptive.drm_legacy')) {
+                    // Assuming the license key format: 'type|key1:value1,key2:value2'
                     const match = line.split('=')[1];
                     if (match) {
                         const segments = match.split('|');
                         licenseType = segments[0];
-                        const keyValuePairs = segments[1].split(',');
-                        for (let kv of keyValuePairs) {
+                        const keys = segments[1].split(',');
+                        licenseKeys = keys.map(kv => {
                             const [key, value] = kv.split(':');
-                            if (key && value) {
-                                licenseKeyObject[key] = value;
-                            }
-                        }
+                            return { key: key.trim(), value: value.trim() }; // Store as objects for better management
+                        });
                     }
                 }
-
+                
                 if (line.startsWith('#EXTINF')) {
                     output += '#KODIPROP:inputstreamaddon=inputstream.adaptive\n';
                     output += '#EXTHTTP:{"User-agent":"Android"}\n';
@@ -84,10 +83,12 @@
                     }
                     output += '#KODIPROP:inputstream.adaptive.manifest_type=dash\n';
                     if (licenseType) {
-                        output += `#KODIPROP:inputstream.adaptive.license_type=${licenseType}\n`;
+                        output += `#KODIPROP:inputstream.adaptive.license_type="${licenseType}"\n`;
                     }
-                    if (Object.keys(licenseKeyObject).length > 0) {
-                        output += `#KODIPROP:inputstream.adaptive.license_key=${JSON.stringify(licenseKeyObject)}\n`;
+                    if (licenseKeys.length > 0) {
+                        // Format keys with quotes
+                        const formattedKeys = licenseKeys.map(k => `"${k.key}":"${k.value}"`).join(', ');
+                        output += `#KODIPROP:inputstream.adaptive.license_key={${formattedKeys}}\n`;
                     }
                     output += line + '\n';
                 } else if (line.startsWith('https://')) {
