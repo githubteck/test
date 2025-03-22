@@ -88,14 +88,14 @@
         }
 
         function downloadData(data) {
-            // Create a Blob from the transformed data
-            const blob = new Blob([data], { type: 'text/plain' });
+            // Create a Blob from the transformed data for M3U8 file
+            const blob = new Blob([data], { type: 'application/vnd.apple.mpegurl' });
             const url = URL.createObjectURL(blob);
             
             // Create a link element and trigger the download
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'transformed_data.txt'; // Set the name of the downloaded file
+            a.download = 'transformed_data.m3u8'; // Set the name of the downloaded file
             document.body.appendChild(a);
             a.click();
 
