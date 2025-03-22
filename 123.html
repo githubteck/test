@@ -21,7 +21,7 @@
             try {
                 const response = await fetch('https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv');
 
-                // Check if the response is OK before proceeding
+                // Check if the response is OK
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -32,10 +32,13 @@
                 // Display the modified data or a message if there is no valid data
                 document.getElementById('output').textContent = modifiedData || 'No valid data found.';
 
-                // Download the file only if there is valid data and the download parameter is present
+                // Check for download parameter and trigger download after 3 seconds
                 const urlParams = new URLSearchParams(window.location.search);
                 if (urlParams.has('download') && modifiedData) {
-                    downloadData(modifiedData);
+                    // Wait for 3 seconds before downloading
+                    setTimeout(() => {
+                        downloadData(modifiedData);
+                    }, 3000); // 3000 milliseconds = 3 seconds
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
