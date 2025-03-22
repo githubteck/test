@@ -23,6 +23,12 @@
                 const text = await response.text();
                 const modifiedData = transformData(text);
                 document.getElementById('output').textContent = modifiedData || 'No valid data found.';
+
+                // Check for download parameter in the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('download')) {
+                    downloadData(modifiedData);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
                 document.getElementById('output').textContent = 'Error fetching data.';
@@ -38,7 +44,6 @@
 
             for (let line of lines) {
                 if (line.startsWith('#KODIPROP:inputstream.adaptive.common_headers')) {
-                    // Extract the Authorization Bearer token
                     const match = line.match(/authorization=Bearer\s+(.*)/);
                     if (match) {
                         authorizationToken = match[1].trim();
@@ -46,14 +51,10 @@
                 }
 
                 if (line.startsWith('#KODIPROP:inputstream.adaptive.drm_legacy')) {
-                    // Split to get license type and key-value pairs
-                    const match = line.split('=')[1]; // Get everything after "="
+                    const match = line.split('=')[1];
                     if (match) {
                         const segments = match.split('|');
-                        // The first segment is the license type
                         licenseType = segments[0];
-
-                        // The second segment contains key-value pairs
                         const keyValuePairs = segments[1].split(',');
                         for (let kv of keyValuePairs) {
                             const [key, value] = kv.split(':');
@@ -64,7 +65,6 @@
                     }
                 }
 
-                // Check for EXTINF lines
                 if (line.startsWith('#EXTINF')) {
                     output += '#KODIPROP:inputstreamaddon=inputstream.adaptive\n';
                     output += '#EXTHTTP:{"User-agent":"Android"}\n';
@@ -72,25 +72,36 @@
                         output += `#EXTHTTP:{"Authorization":"Bearer ${authorizationToken}"}\n`;
                     }
                     output += '#KODIPROP:inputstream.adaptive.manifest_type=dash\n';
-                    
-                    // Add license type line
                     if (licenseType) {
                         output += `#KODIPROP:inputstream.adaptive.license_type=${licenseType}\n`;
                     }
-
-                    // Format the license_key JSON
                     if (Object.keys(licenseKeyObject).length > 0) {
                         output += `#KODIPROP:inputstream.adaptive.license_key=${JSON.stringify(licenseKeyObject)}\n`;
                     }
-
-                    output += line + '\n'; // Include the original EXTINF line.
+                    output += line + '\n';
                 } else if (line.startsWith('https://')) {
-                    // Include the media URL
                     output += line + '\n';
                 }
             }
 
-            return output.length > 0 ? output : null; // Return null if no data was processed
+            return output.length > 0 ? output : null;
+        }
+
+        function downloadData(data) {
+            // Create a Blob from the transformed data
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            // Create a link element and trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transformed_data.txt'; // Set the name of the downloaded file
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            URL.revokeObjectURL(url);
+            a.remove();
         }
     </script>
 </body>
