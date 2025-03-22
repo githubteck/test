@@ -51,7 +51,7 @@
             let output = '';
             let authorizationToken = '';
             let licenseType = '';
-            let licenseKeys = [];  // Array to hold multiple keys if needed
+            let licenseKeys = {};  // Use an object to hold multiple key-value pairs
 
             for (let line of lines) {
                 // Retain any information that starts with #EXTM3U
@@ -71,17 +71,20 @@
                     if (match) {
                         const segments = match.split('|');
                         licenseType = segments[0];
+                        // Format license keys directly into the dictionary
                         const keys = segments[1].split(',');
-                        licenseKeys = keys.map(kv => {
+                        keys.forEach(kv => {
                             const [key, value] = kv.split(':');
-                            return { key: key.trim(), value: value.trim() }; // Store as objects for better management
+                            if (key && value) {
+                                licenseKeys[key.trim()] = value.trim(); // Store keys directly in the object
+                            }
                         });
                     }
                 }
                 
                 if (line.startsWith('#EXTINF')) {
                     // Add a blank line before each #EXTINF entry
-                    output += '\n'; // Adding a space line
+                    output += '\n';
                     output += line + '\n';
                     output += '#KODIPROP:inputstreamaddon=inputstream.adaptive\n';
                     output += '#EXTHTTP:{"User-agent":"Android"}\n';
@@ -91,17 +94,18 @@
                         output += `#EXTHTTP:{"Authorization":"Bearer ${authorizationToken}"}\n`;
                     }
 
+                    // Add license properties before the stream URL
                     output += '#KODIPROP:inputstream.adaptive.manifest_type=dash\n';
                     if (licenseType) {
                         output += `#KODIPROP:inputstream.adaptive.license_type="${licenseType}"\n`;
                     }
-                    if (licenseKeys.length > 0) {
-                        // Format keys with quotes
-                        const formattedKeys = licenseKeys.map(k => `"${k.key}":"${k.value}"`).join(', ');
-                        output += `#KODIPROP:inputstream.adaptive.license_key={${formattedKeys}}\n`;
+                    if (Object.keys(licenseKeys).length > 0) {
+                        // Format license keys as a JSON object without extra escapes
+                        const formattedKeys = JSON.stringify(licenseKeys);
+                        output += `#KODIPROP:inputstream.adaptive.license_key=${formattedKeys}\n`;
                     }
                 } else if (line.startsWith('https://')) {
-                    output += line + '\n';  // Stream URL
+                    output += line + '\n';  // Stream URL comes after all KODIPROP entries
                 }
             }
 
