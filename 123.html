@@ -17,13 +17,16 @@
             padding: 10px;
             background: #fff;
         }
-        pre {
+        pre, textarea {
             background-color: #efefef;
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
+            width: 100%;
+            max-height: 400px; /* Limit height */
+            overflow-y: auto; /* Add scroll if needed */
         }
-        #download-button {
+        #download-button, #update-button, #copy-button {
             margin: 20px 0;
             padding: 10px 15px;
             background-color: #007bff;
@@ -32,7 +35,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        #download-button:hover {
+        #download-button:hover, #update-button:hover, #copy-button:hover {
             background-color: #0056b3;
         }
     </style>
@@ -40,8 +43,18 @@
 <body>
 
 <h1>TV Channels</h1>
-<div id="channel-list"></div>
+
+<!-- Moving buttons to the top -->
+<button id="update-button">Update</button> <!-- Update Button -->
+<button id="copy-button" style="display:none;">Copy</button> <!-- Copy Button -->
 <button id="download-button" onclick="downloadM3U8()">Download as M3U8</button>
+
+<div id="channel-list"></div>
+
+<div id="m3u-container" class="entry" style="display:none;">
+    <h2>M3U Data</h2>
+    <textarea id="m3u-data" rows="20" readonly></textarea>
+</div> <!-- Container for displaying M3U data -->
 
 <script>
     let channelData = ''; // To hold formatted channel data for downloading
@@ -53,14 +66,7 @@
             const channels = parseChannels(textData);
             channelData = channels.join("\n"); // Keep the formatted data for download
 
-            // Check if the URL contains 'download=1'
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('download') === '1') {
-                // Trigger the download if the parameter is present
-                downloadM3U8();
-            } else {
-                displayChannels(channels); // Otherwise, display channels
-            }
+            displayChannels(channels); // Display channels
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -73,80 +79,73 @@
 
         for (const line of lines) {
             if (line.trim() === '') continue; // Ignore empty lines
-
-            // Handle independent lines starting with #☯☯
             if (line.startsWith("#☯☯")) {
                 if (channelInfo.length > 0) {
                     channels.push(channelInfo.join("\n")); // Push previous channel's info
                     channelInfo = []; // Reset for a new channel
                 }
-                channelInfo.push(line.trim()); // Keep independent line
-                continue; // Skip further processing of this line
+                channelInfo.push(line.trim());
+                continue;
             }
-
-            // Handle KODIPROP for authorization headers
             if (line.startsWith("#KODIPROP:inputstream.adaptive.common_headers")) {
                 const tokenMatch = line.match(/authorization=Bearer (.+)$/);
                 if (tokenMatch && tokenMatch[1]) {
                     const token = tokenMatch[1];
                     const extHttpLine = `#EXTHTTP:{"Authorization":"Bearer ${token}"}`;
-                    channelInfo.push(extHttpLine); // Add formatted token line
-                    continue; // Skip the original line
+                    channelInfo.push(extHttpLine);
+                    continue;
                 }
             }
-
-            // Handle KODIPROP for DRM properties
             if (line.startsWith("#KODIPROP:inputstream.adaptive.drm_legacy")) {
-                const drmParts = line.split('=')[1];
+                const drmParts = line.split('=')[1];  // Get the part after '='
                 const parts = drmParts.split(',');
-                const licenseKey = {};
-                
-                parts.forEach(part => {
-                    const [key, value] = part.split(':');
-                    // Remove 'org.w3.clearkey|' prefix if it exists
-                    const cleanKey = key.replace(/^org\.w3\.clearkey\|/, '');
 
-                    if (cleanKey && value) {
-                        licenseKey[cleanKey] = value; // Construct the license key object without prefix
-                    }
-                });
+                if (line.includes('org.w3.clearkey')) { // Handle clearkey
+                    const licenseKey = {};
+                    
+                    parts.forEach(part => {
+                        const [key, value] = part.split(':');
+                        const cleanKey = key.replace(/^org\.w3\.clearkey\|/, '');
+                        if (cleanKey && value) {
+                            licenseKey[cleanKey] = value;
+                        }
+                    });
 
-                channelInfo.push('#KODIPROP:inputstream.adaptive.manifest_type=dash');
-                
-                // Include the correct license type
-                channelInfo.push('#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey');
-                channelInfo.push(`#KODIPROP:inputstream.adaptive.license_key=${JSON.stringify(licenseKey)}`);
-                continue; // Skip the original line
+                    channelInfo.push('#KODIPROP:inputstream.adaptive.manifest_type=dash');
+                    channelInfo.push('#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey');
+                    channelInfo.push(`#KODIPROP:inputstream.adaptive.license_key=${JSON.stringify(licenseKey)}`);
+                } else if (line.includes('com.widevine.alpha')) { // Handle widevine
+                    // Correctly capture the full Widevine license URL, including any special characters
+                    const widevineLicenseUrl = line.split('|')[1].trim(); // Capture everything after '|'
+                    channelInfo.push('#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha');
+                    channelInfo.push(`#KODIPROP:inputstream.adaptive.license_key=${widevineLicenseUrl}`); // Ensure no quotes around the URL
+                }
+                continue;
             }
-
-            // Handle EXTINF lines and push channel info
             if (line.startsWith("#EXTINF")) {
                 if (channelInfo.length > 0) {
                     channels.push(channelInfo.join("\n")); // Push previous channel's info
-                    channelInfo = []; // Reset for new channel
+                    channelInfo = [];
                 }
             }
-
-            channelInfo.push(line.trim()); // Keep the line
+            channelInfo.push(line.trim());
         }
-
-        // Push last channel's information if available
         if (channelInfo.length > 0) {
             channels.push(channelInfo.join("\n"));
         }
-
         return channels;
     }
 
     function displayChannels(channels) {
         const channelList = document.getElementById('channel-list');
+        channelList.innerHTML = ""; // Clear previous channels
 
         channels.forEach(channel => {
             const channelDiv = document.createElement('div');
             channelDiv.className = 'entry';
 
             const contentElement = document.createElement('pre');
-            contentElement.textContent = channel; // Display original formatting
+            contentElement.textContent = channel;
             channelDiv.appendChild(contentElement);
             channelList.appendChild(channelDiv);
         });
@@ -158,16 +157,30 @@
         
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'channels.m3u8'; // The name of the file to download
+        a.download = 'channels.m3u8';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        
-        // Clean up the URL object
         URL.revokeObjectURL(url);
     }
 
-    // Fetch TV data and process
+    document.getElementById('update-button').addEventListener('click', function() {
+        // Populate the textarea with M3U data
+        const m3uDataElement = document.getElementById('m3u-data');
+        m3uDataElement.value = channelData; // Set value to M3U data
+        document.getElementById('m3u-container').style.display = 'block'; // Make the container visible
+        document.getElementById('copy-button').style.display = 'inline-block'; // Show the copy button
+    });
+
+    document.getElementById('copy-button').addEventListener('click', function() {
+        const m3uDataElement = document.getElementById('m3u-data');
+        m3uDataElement.select(); // Select the text in the textarea
+        document.execCommand('copy'); // Copy the selected text to the clipboard
+
+        alert('M3U data copied to clipboard!'); // Alert user
+    });
+
+    // Fetch TV data and process on initial load
     fetchTVData();
 </script>
 
