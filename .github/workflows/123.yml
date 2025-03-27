@@ -34,7 +34,6 @@ jobs:
         python3 <<EOF
         import requests
         import base64
-        import json
         
         repo_owner = 'githubteck'  # Your GitHub username
         repo_name = 'test'  # Your GitHub repository name
@@ -59,38 +58,45 @@ jobs:
                     transformed_lines.append('')  # Preserve empty lines
                     continue
         
-                # Handle #KODIPROP for ClearKey format transformation
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=org.w3.clearkey"):
-                    parts = stripped_line.split('=')
-                    if len(parts) == 2:
-                        license_info = parts[1].split(':')
-                        if len(license_info) == 2:
-                            key_values = license_info[1].split(',')
-                            license_key_dict = {}
-                            for key_value in key_values:
-                                key, value = key_value.split(':')
-                                license_key_dict[key.strip()] = value.strip()
-                            
-                            # ClearKey Transformation
-                            transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_info[0]}')
-                            transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={json.dumps(license_key_dict)}')
+                # Handle #KODIPROP for authorization
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
+                    # Extract the authorization part of the common headers
+                    headers = stripped_line.split('=')
+                    if len(headers) > 2:  # Ensure we have more than one '='
+                        auth_header = '='.join(headers[2:]).strip()  # Get everything after the first '='
+                        if auth_header.startswith("Bearer "):  # Check if it starts with "Bearer"
+                            token = auth_header[len("Bearer "):]  # Extract the token by removing "Bearer "
+                            transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
                         else:
-                            transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
+                            print("Unexpected authorization format")
+                    continue  # Skip to the next iteration
         
-                # Handle #KODIPROP for Widevine format transformation
-                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=com.widevine.alpha"):
+                # Handle #KODIPROP for drm_legacy (common formats)
+                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
                     parts = stripped_line.split('=')
-                    if len(parts) == 2:
-                        license_info = parts[1].split('|')
-                        if len(license_info) == 2:
-                            license_type = license_info[0].strip()  # e.g. com.widevine.alpha
-                            license_key = license_info[1].strip()  # e.g. the URL with device info
-                            
-                            # Widevine Transformation
-                            transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
-                            transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
-                        else:
-                            transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
+                    if len(parts) != 2:
+                        transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
+                        continue
+        
+                    license_info = parts[1].split('|')
+                    license_type = license_info[0].strip()  # e.g. org.w3.clearkey
+                    license_keys = license_info[1].strip()  # e.g. the URL or keys
+        
+                    if ',' in license_keys:
+                        key_pairs = license_keys.split(',')
+                        license_key_dict = {}
+                        for key_pair in key_pairs:
+                            key, value = key_pair.split(':')
+                            license_key_dict[key.strip()] = value.strip()
+        
+                        license_key_json = str(license_key_dict).replace("'", '"')  # Convert to JSON-like string
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key_json}')
+                    else:
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_keys}')
+        
+                    continue
         
                 # For any lines that don't match the transformation criteria, keep them unchanged
                 transformed_lines.append(stripped_line)
@@ -103,7 +109,6 @@ jobs:
             api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
             headers = {'Authorization': f'token {access_token}'}
             response = requests.get(api_url, headers=headers)
-            
             sha = response.json().get('sha') if response.status_code == 200 else None
         
             if sha:
