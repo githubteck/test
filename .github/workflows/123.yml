@@ -36,7 +36,7 @@ jobs:
         repo_owner = 'githubteck'  # Replace with your GitHub username
         repo_name = 'test'  # Replace with your GitHub repository name
         file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-        access_token = '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'  # Your GitHub personal access token
+        access_token = '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'  # Your GitHub personal access token
 
         def fetch_tv_data():
             """Fetch the raw TV data from the URL."""
