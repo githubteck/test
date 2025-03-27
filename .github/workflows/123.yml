@@ -32,8 +32,8 @@ jobs:
       - name: Run Python script
         run: |
           python3 <<EOF
-import requests
-import base64
+          import requests
+          import base64
 
 repo_owner = 'githubteck'  # Your GitHub username
 repo_name = 'test'  # Your GitHub repository name
@@ -44,9 +44,11 @@ access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Sec
 def fetch_tv_data():
     data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
     response = requests.get(data_url)
-    return response.text if response.status_code == 200 else None
+    if response.status_code == 200:
+        return response.text
+    return None
 
-# Parse data
+# Parse data with transformation
 def parse_channels(data):
     """Parse the TV data and convert it to the required format."""
     lines = data.split('\\n')
@@ -58,40 +60,40 @@ def parse_channels(data):
             transformed_lines.append('')  # Preserve empty lines
             continue
 
-        # Handle #KODIPROP for authorization
+        # Transform #KODIPROP:inputstream.adaptive.common_headers
         if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
             token = stripped_line.split('=')[1]
             transformed_lines.append(f'#EXTHTTP:{{"Authorization":"{token}"}}')
             continue
 
-        # Handle #KODIPROP for drm_legacy (common formats)
+        # Transform #KODIPROP:inputstream.adaptive.drm_legacy
         elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
             parts = stripped_line.split('=')
             if len(parts) != 2:
-                transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
+                transformed_lines.append(stripped_line)  # Keep original if format is invalid
                 continue
             
             license_info = parts[1].split('|')
-            license_type = license_info[0].strip()  # e.g. org.w3.clearkey
-            license_keys = license_info[1].strip()  # e.g. the URL or keys
+            license_type = license_info[0].strip()
+            license_keys = license_info[1].strip() if len(license_info) > 1 else ''
 
-            if ',' in license_keys:
+            transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+
+            if ', ' in license_keys:
                 key_pairs = license_keys.split(',')
                 license_key_dict = {}
                 for key_pair in key_pairs:
-                    key, value = key_pair.split(':')
-                    license_key_dict[key.strip()] = value.strip()
-
-                license_key_json = str(license_key_dict).replace("'", '"')  # Convert to JSON-like string
-                transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                    if ':' in key_pair:
+                        key, value = key_pair.split(':')
+                        license_key_dict[key.strip()] = value.strip()
+                license_key_json = str(license_key_dict).replace("'", '"')
                 transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key_json}')
             else:
-                transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
                 transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_keys}')
 
             continue
 
-        # For any lines that don't match the transformation criteria, keep them unchanged
+        # Keep all other lines unchanged
         transformed_lines.append(stripped_line)
 
     return '\\n'.join(transformed_lines)
@@ -101,19 +103,27 @@ def upload_to_github(content):
     file_content = base64.b64encode(content.encode()).decode()
     api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
     headers = {'Authorization': f'token {access_token}'}
+    
+    # Check for existing content
     response = requests.get(api_url, headers=headers)
     sha = response.json().get('sha') if response.status_code == 200 else None
     
+    # Prevent unnecessary uploads if content hasn't changed
     if sha:
         existing_content = requests.get(api_url, headers=headers).json().get('content')
         if existing_content and base64.b64decode(existing_content).decode() == content:
             print("No changes detected. Skipping upload.")
             return
 
-    data = {'message': 'Update channels.m3u8 file', 'content': file_content}
+    # Create data payload
+    data = {
+        'message': 'Update channels.m3u8 file',
+        'content': file_content
+    }
     if sha:
         data['sha'] = sha
 
+    # Submit the update
     upload_response = requests.put(api_url, json=data, headers=headers)
 
     if upload_response.status_code in [200, 201]:
