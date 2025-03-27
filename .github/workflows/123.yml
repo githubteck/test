@@ -35,122 +35,77 @@ jobs:
         import requests
         import base64
         
-       # GitHub API details
-repo_owner = 'githubteck'  # Replace with your GitHub username
-repo_name = 'test'  # Replace with your GitHub repository name
-file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
+        # GitHub API details
+        repo_owner = 'githubteck'  # Replace with your GitHub username
+        repo_name = 'test'  # Replace with your GitHub repository name
+        file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
+        access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
+        
+        def fetch_tv_data():
+            """Fetch the raw TV data from the URL."""
+            data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
+            response = requests.get(data_url)
+            if response.status_code == 200:
+                return response.text
+            else:
+                print(f"Failed to fetch the raw data: {response.status_code}")
+                return None
+        
+        def parse_channels(data):
+            """Parse the TV data and convert it to M3U8 format."""
+            lines = data.split('\n')
+            channels = []
+            channel_info = []
 
-def fetch_tv_data():
-    """Fetch the raw TV data from the URL."""
-    response = requests.get(data_url)
-    if response.status_code == 200:
-        return response.text
-    else:
-        print(f"Failed to fetch the raw data: {response.status_code}")
-        return None
+            for line in lines:
+                if line.strip() == '':
+                    continue  # Ignore empty lines
+                # Handle the start of a new channel (identified by "#☯☯")
+                if line.startswith("#☯☯"):
+                    if channel_info:
+                        channels.append("\n".join(channel_info))  # Save the previous channel data
+                    channel_info = [line.strip()]  # Start a new channel
+                    continue
+                channels.append(line.strip())
+            return channels
+        
+        def upload_to_github(content):
+            """Upload the M3U8 data to GitHub."""
+            file_content = base64.b64encode(content.encode()).decode()
 
-def parse_channels(data):
-    """Parse the TV data and convert it to M3U8 format."""
-    lines = data.split('\\n')
-    channels = []
-    channel_info = []
+            # Check if the file exists
+            api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+            headers = {
+                'Authorization': f'token {access_token}'
+            }
 
-    for line in lines:
-        if line.strip() == '':
-            continue  # Ignore empty lines
+            response = requests.get(api_url, headers=headers)
+            sha = None
+            if response.status_code == 200:
+                sha = response.json().get('sha')  # Get the current sha of the file
 
-        # Handle the start of a new channel (identified by "#☯☯")
-        if line.startswith("#☯☯"):
-            if channel_info:
-                channels.append("\\n".join(channel_info))  # Save the previous channel data
-            channel_info = [line.strip()]  # Start a new channel
-            continue
+            # Prepare the data for the file upload
+            data = {
+                'message': 'Upload channels.m3u8 file',
+                'content': file_content  # Base64 encoded content
+            }
 
-        # Handle input stream headers (authentication or DRM)
-        if line.startswith("#KODIPROP:inputstream.adaptive.common_headers"):
-            token_match = line.match(r'authorization=Bearer (.+)')
-            if token_match and token_match[1]:
-                token = token_match[1]
-                ext_http_line = f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}'
-                channel_info.append(ext_http_line)
-            continue
+            if sha:
+                data['sha'] = sha  # Include sha if the file exists and we're updating it
 
-        # Handle DRM logic (clearkey and widevine)
-        if line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy"):
-            drm_parts = line.split('=')[1]  # Get the part after '='
-            parts = drm_parts.split(',')
+            upload_response = requests.put(api_url, json=data, headers=headers)
 
-            if 'org.w3.clearkey' in line:  # Handle clearkey
-                license_key = {}
+            if upload_response.status_code == 201 or upload_response.status_code == 200:
+                print("File uploaded successfully!")
+            else:
+                print(f"Failed to upload file. Status Code: {upload_response.status_code}")
+                print(f"Response Content: {upload_response.text}")  # Print the response content for debugging
 
-                for part in parts:
-                    key, value = part.split(':')
-                    clean_key = key.replace(/^org\\.w3\\.clearkey\\|/, '')
-                    if clean_key and value:
-                        license_key[clean_key] = value
+        # Main execution
+        raw_data = fetch_tv_data()
+        if raw_data:
+            channels = parse_channels(raw_data)
+            m3u8_content = "\n".join(channels)
+            upload_to_github(m3u8_content)
 
-                channel_info.append('#KODIPROP:inputstream.adaptive.manifest_type=dash')
-                channel_info.append('#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey')
-                channel_info.append(f'#KODIPROP:inputstream.adaptive.license_key={json.dumps(license_key)}')
-
-            elif 'com.widevine.alpha' in line:  # Handle widevine
-                widevine_license_url = line.split('|')[1].strip()  # Capture everything after '|'
-                channel_info.append('#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha')
-                channel_info.append(f'#KODIPROP:inputstream.adaptive.license_key={widevine_license_url}')
-            continue
-
-        # Handle channel information
-        if line.startswith("#EXTINF"):
-            if channel_info:
-                channels.append("\\n".join(channel_info))  # Save the previous channel data
-            channel_info = [line.strip()]
-            continue
-
-        channel_info.append(line.strip())  # Add current line to the current channel
-
-    if channel_info:
-        channels.append("\\n".join(channel_info))  # Append the last channel's info
-
-    return channels
-
-def upload_to_github(content):
-    """Upload the M3U8 data to GitHub."""
-    file_content = base64.b64encode(content.encode()).decode()
-
-    # Check if the file exists
-    api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
-    headers = {
-        'Authorization': f'token {access_token}'
-    }
-
-    response = requests.get(api_url, headers=headers)
-    sha = None
-    if response.status_code == 200:
-        sha = response.json().get('sha')  # Get the current sha of the file
-
-    # Prepare the data for the file upload
-    data = {
-        'message': 'Upload channels.m3u8 file',
-        'content': file_content  # Base64 encoded content
-    }
-
-    if sha:
-        data['sha'] = sha  # Include sha if the file exists and we're updating it
-
-    upload_response = requests.put(api_url, json=data, headers=headers)
-
-    if upload_response.status_code == 201 or upload_response.status_code == 200:
-        print("File uploaded successfully!")
-    else:
-        print(f"Failed to upload file. Status Code: {upload_response.status_code}")
-        print(f"Response Content: {upload_response.text}")  # Print the response content for debugging
-
-# Main execution
-raw_data = fetch_tv_data()
-if raw_data:
-    channels = parse_channels(raw_data)
-    m3u8_content = "\\n".join(channels)
-    upload_to_github(m3u8_content)
-
-EOF
+        EOF
