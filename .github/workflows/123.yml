@@ -31,7 +31,7 @@ jobs:
       # Step 4: Run Python script to fetch, parse, and upload M3U8 data
       - name: Run Python script
         run: |
-          python3 <<EOF
+          python3 - <<EOF
 import requests
 import json
 import base64
@@ -41,7 +41,7 @@ data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/hea
 
 # GitHub API details
 repo_owner = 'githubteck'  # Replace with your GitHub username
-repo_name = 'github'  # Replace with your GitHub repository name
+repo_name = 'test'  # Replace with your GitHub repository name
 file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
 access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
 
@@ -56,7 +56,7 @@ def fetch_tv_data():
 
 def parse_channels(data):
     """Parse the TV data and convert it to M3U8 format."""
-    lines = data.split('\n')
+    lines = data.split('\\n')
     channels = []
     channel_info = []
 
@@ -67,7 +67,7 @@ def parse_channels(data):
         # Handle the start of a new channel (identified by "#☯☯")
         if line.startswith("#☯☯"):
             if channel_info:
-                channels.append("\n".join(channel_info))  # Save the previous channel data
+                channels.append("\\n".join(channel_info))  # Save the previous channel data
             channel_info = [line.strip()]  # Start a new channel
             continue
 
@@ -90,7 +90,7 @@ def parse_channels(data):
 
                 for part in parts:
                     key, value = part.split(':')
-                    clean_key = key.replace(/^org\.w3\.clearkey\|/, '')
+                    clean_key = key.replace(/^org\\.w3\\.clearkey\\|/, '')
                     if clean_key and value:
                         license_key[clean_key] = value
 
@@ -107,14 +107,14 @@ def parse_channels(data):
         # Handle channel information
         if line.startswith("#EXTINF"):
             if channel_info:
-                channels.append("\n".join(channel_info))  # Save the previous channel data
+                channels.append("\\n".join(channel_info))  # Save the previous channel data
             channel_info = [line.strip()]
             continue
 
         channel_info.append(line.strip())  # Add current line to the current channel
 
     if channel_info:
-        channels.append("\n".join(channel_info))  # Append the last channel's info
+        channels.append("\\n".join(channel_info))  # Append the last channel's info
 
     return channels
 
@@ -154,7 +154,7 @@ def upload_to_github(content):
 raw_data = fetch_tv_data()
 if raw_data:
     channels = parse_channels(raw_data)
-    m3u8_content = "\n".join(channels)
+    m3u8_content = "\\n".join(channels)
     upload_to_github(m3u8_content)
 
 EOF
