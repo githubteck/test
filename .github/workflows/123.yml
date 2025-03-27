@@ -21,12 +21,11 @@ jobs:
         with:
           python-version: '3.x'  # You can specify the version here as needed
 
-      # Step to install dependencies (if you have any)
+      # Step to install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Add any other dependencies you might need
-          # e.g., pip install requests
+          pip install -r requirements.txt  # Install the packages listed in requirements.txt
 
       # Step to run the Python script
       - name: Run Python script
