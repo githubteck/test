@@ -1,12 +1,11 @@
-# script.py
-
 import requests
 import base64
+import os
 
 repo_owner = 'githubteck'  # Your GitHub username
 repo_name = 'test'  # Your GitHub repository name
 file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
+access_token = os.environ.get("ABC")  # Access the token securely from GitHub Secrets
 
 # Fetch raw data
 def fetch_tv_data():
@@ -17,7 +16,7 @@ def fetch_tv_data():
 # Parse data
 def parse_channels(data):
     """Parse the TV data and convert it to M3U8 format."""
-    lines = data.split('\\n')
+    lines = data.split('\n')  # Changed to single \n
     channels = []
 
     for line in lines:
@@ -39,8 +38,8 @@ def parse_channels(data):
                 continue
             
             license_info = parts[1].split('|')
-            license_type = license_info[0].strip()  
-            license_keys = license_info[1].strip()  
+            license_type = license_info[0].strip()
+            license_keys = license_info[1].strip()
 
             if ',' in license_keys:
                 key_pairs = license_keys.split(',')
@@ -68,14 +67,21 @@ def upload_to_github(content):
     file_content = base64.b64encode(content.encode()).decode()
     api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
     headers = {'Authorization': f'token {access_token}'}
+
+    # Get existing file to check for modifications
     response = requests.get(api_url, headers=headers)
-    sha = response.json().get('sha') if response.status_code == 200 else None
-    
-    if sha:
-        existing_content = requests.get(api_url, headers=headers).json().get('content')
+    if response.status_code == 200:
+        sha = response.json().get('sha')
+        existing_content = response.json().get('content')
+
         if existing_content and base64.b64decode(existing_content).decode() == content:
             print("No changes detected. Skipping upload.")
             return
+    elif response.status_code == 404:
+        sha = None  # File doesn't exist, proceed to create it
+    else:
+        print(f"Error fetching existing file: {response.status_code} {response.text}")
+        return
 
     data = {'message': 'Upload channels.m3u8 file', 'content': file_content}
     if sha:
@@ -93,5 +99,5 @@ def upload_to_github(content):
 raw_data = fetch_tv_data()
 if raw_data:
     channels = parse_channels(raw_data)
-    m3u8_content = "\\n".join(channels)
+    m3u8_content = "\n".join(channels)  # Changed to single \n
     upload_to_github(m3u8_content)
