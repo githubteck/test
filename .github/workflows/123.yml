@@ -30,4 +30,4 @@ jobs:
 
       # Step 4: Run the Python script
       - name: Run Python script
-        run: python 123.py
+        run: python githubteck/test/123.py
