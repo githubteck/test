@@ -52,13 +52,13 @@ jobs:
             """Parse the TV data and convert it to the required format."""
             lines = data.split('\\n')
             transformed_lines = []
-
+        
             for line in lines:
                 stripped_line = line.strip()
                 if stripped_line == '':
                     transformed_lines.append('')  # Preserve empty lines
                     continue
-
+        
                 # Handle #KODIPROP for ClearKey format transformation
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=org.w3.clearkey"):
                     parts = stripped_line.split('=')
@@ -76,7 +76,7 @@ jobs:
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={json.dumps(license_key_dict)}')
                         else:
                             transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
-
+        
                 # Handle #KODIPROP for Widevine format transformation
                 elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=com.widevine.alpha"):
                     parts = stripped_line.split('=')
@@ -91,12 +91,12 @@ jobs:
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
                         else:
                             transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
-
+        
                 # For any lines that don't match the transformation criteria, keep them unchanged
                 transformed_lines.append(stripped_line)
-
+        
             return '\\n'.join(transformed_lines)
-
+        
         # Upload data to GitHub
         def upload_to_github(content):
             file_content = base64.b64encode(content.encode()).decode()
