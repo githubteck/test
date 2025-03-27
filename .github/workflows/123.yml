@@ -35,8 +35,8 @@ jobs:
         import base64
         
         # GitHub API details
-        repo_owner = 'your-username'  # Replace with your GitHub username
-        repo_name = 'your-repository'  # Replace with your GitHub repository name
+        repo_owner = 'githubteck'  # Replace with your GitHub username
+        repo_name = 'test'  # Replace with your GitHub repository name
         file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
         access_token = "${{ secrets.GH_TOKEN }}"  # Access the token securely from GitHub Secrets
         
