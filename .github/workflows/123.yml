@@ -12,34 +12,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    # Step 1: Checkout the repository code
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      # Step 2: Set up Python
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+    # Step 2: Set up Python
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      # Step 3: Install necessary Python dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+    # Step 3: Install necessary Python dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
 
-      # Step 4: Run Python script to fetch, parse, and upload M3U8 data
-      - name: Run Python script
-        run: |
-          python3 - <<EOF
-import requests
-import json
-import base64
-
-# URL of the external data source
-data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
-
-# GitHub API details
+    # Step 4: Run the Python script to fetch, parse, and upload M3U8 data
+    - name: Run Python script
+      run: |
+        python3 <<EOF
+        import requests
+        import base64
+        
+       # GitHub API details
 repo_owner = 'githubteck'  # Replace with your GitHub username
 repo_name = 'test'  # Replace with your GitHub repository name
 file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
