@@ -33,26 +33,23 @@ jobs:
         python3 <<EOF
         import requests
         import base64
-        import re  # Import the re module for regular expressions
-
-        # URL of the external data source (same as the one used in your HTML)
-        data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
-
+        
         # GitHub API details
-        repo_owner = 'githubteck'  # Replace with your GitHub username
-        repo_name = 'test'  # Replace with your GitHub repository name
+        repo_owner = 'your-username'  # Replace with your GitHub username
+        repo_name = 'your-repository'  # Replace with your GitHub repository name
         file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-        access_token = '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'  # Your GitHub personal access token
-
+        access_token = "${{ secrets.GH_TOKEN }}"  # Access the token securely from GitHub Secrets
+        
         def fetch_tv_data():
             """Fetch the raw TV data from the URL."""
+            data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
             response = requests.get(data_url)
             if response.status_code == 200:
                 return response.text
             else:
                 print(f"Failed to fetch the raw data: {response.status_code}")
                 return None
-
+        
         def parse_channels(data):
             """Parse the TV data and convert it to M3U8 format."""
             lines = data.split('\n')
@@ -62,78 +59,56 @@ jobs:
             for line in lines:
                 if line.strip() == '':
                     continue  # Ignore empty lines
-                
                 # Handle the start of a new channel (identified by "#☯☯")
                 if line.startswith("#☯☯"):
                     if channel_info:
                         channels.append("\n".join(channel_info))  # Save the previous channel data
                     channel_info = [line.strip()]  # Start a new channel
                     continue
-                
-                # Handle input stream headers (authentication or DRM)
-                if line.startswith("#KODIPROP:inputstream.adaptive.common_headers"):
-                    # Use re.search() instead of match()
-                    token_match = re.search(r'authorization=Bearer (.+)', line)  # Corrected line
-                    if token_match and token_match.group(1):
-                        token = token_match.group(1)
-                        ext_http_line = f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}'
-                        channel_info.append(ext_http_line)
-                    continue
-
-                # Handle the EXTINF line and end of the channel info
-                if line.startswith("#EXTINF"):
-                    if channel_info:
-                        channels.append("\n".join(channel_info))  # Save the previous channel data
-                    channel_info = [line.strip()]  # Start a new channel info section
-                    continue
-                
-                # Add all other lines to channel info
-                channel_info.append(line.strip())
-
-            # Append the final channel info if any
-            if channel_info:
-                channels.append("\n".join(channel_info))
-
+                channels.append(line.strip())
             return channels
-
+        
         def upload_to_github(content):
             """Upload the M3U8 data to GitHub."""
             file_content = base64.b64encode(content.encode()).decode()
 
+            # Check if the file exists
             api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
-            data = {
-                'message': 'Upload channels.m3u8 file',  # Commit message
-                'content': file_content  # Base64 encoded content
-            }
-
             headers = {
                 'Authorization': f'token {access_token}'
             }
 
-            # Send the request to upload the file
+            response = requests.get(api_url, headers=headers)
+            sha = None
+            if response.status_code == 200:
+                sha = response.json().get('sha')  # Get the current sha of the file
+
+            # Prepare the data for the file upload
+            data = {
+                'message': 'Upload channels.m3u8 file',
+                'content': file_content  # Base64 encoded content
+            }
+
+            if sha:
+                data['sha'] = sha  # Include sha if the file exists and we're updating it
+
             upload_response = requests.put(api_url, json=data, headers=headers)
 
-            if upload_response.status_code == 201:
+            if upload_response.status_code == 201 or upload_response.status_code == 200:
                 print("File uploaded successfully!")
             else:
-                print(f"Failed to upload file: {upload_response.content}")
+                print(f"Failed to upload file. Status Code: {upload_response.status_code}")
+                print(f"Response Content: {upload_response.text}")  # Print the response content for debugging
 
-        def main():
-            # Step 1: Fetch the TV data from the external source
-            raw_data = fetch_tv_data()
-            if raw_data:
-                # Step 2: Parse the raw data into channels
-                channels = parse_channels(raw_data)
+        # Main execution
+        raw_data = fetch_tv_data()
+        if raw_data:
+            channels = parse_channels(raw_data)
+            m3u8_content = "\n".join(channels)
+            upload_to_github(m3u8_content)
 
-                # Step 3: Prepare the M3U8 content by joining channels
-                m3u8_content = "#EXTM3U\n" + "\n".join(channels)
-
-                # Step 4: Upload the M3U8 content to GitHub
-                upload_to_github(m3u8_content)
-
-        if __name__ == "__main__":
-            main()
         EOF
+
 
     # Step 5: Final confirmation
     - name: Action completed
