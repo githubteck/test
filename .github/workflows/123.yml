@@ -1,121 +1,140 @@
-name: Fetch and Upload M3U8 File
+name: Upload M3U8 File to GitHub
 
 on:
-  schedule:
-    - cron: '0 * * * *'  # Runs every hour (adjust as needed)
-  workflow_dispatch:  # Allows manual trigger of the workflow
+  push:
+    branches:
+      - main  # Adjust this to the branch you want to trigger the action on
+  workflow_dispatch: # This allows you to trigger it manually from GitHub's UI
 
 jobs:
   upload_m3u8:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout the repository code
     - name: Checkout repository
-      uses: actions/checkout@v2  # Checkout the repository so we can upload the file
+      uses: actions/checkout@v2
 
-    - name: Set up Python
+    # Step 2: Set up Python
+    - name: Set up Python 3.x
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Use Python 3.x
+        python-version: '3.x'
 
+    # Step 3: Install necessary Python dependencies
     - name: Install dependencies
       run: |
-        pip install requests  # Install the required dependencies, such as the `requests` library
+        python -m pip install --upgrade pip
+        pip install requests
 
-    - name: Fetch, Parse, and Upload M3U8
+    # Step 4: Run the Python script to fetch, parse, and upload M3U8 data
+    - name: Run Python script
       run: |
         python3 <<EOF
-        # Python script content here
-import requests
-import base64
-import re  # Import the re module for regular expressions
+        import requests
+        import base64
+        import re  # Import the re module for regular expressions
 
-# URL of the external data source (same as the one used in your HTML)
-data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
+        # URL of the external data source (same as the one used in your HTML)
+        data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
 
-# GitHub API details
-repo_owner = 'githubteck'  # Replace with your GitHub username
-repo_name = 'test'  # Replace with your GitHub repository name
-file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-access_token = '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'  # Your GitHub personal access token
+        # GitHub API details
+        repo_owner = 'githubteck'  # Replace with your GitHub username
+        repo_name = 'test'  # Replace with your GitHub repository name
+        file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
+        access_token = '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'  # Your GitHub personal access token
 
-def fetch_tv_data():
-    """Fetch the raw TV data from the URL."""
-    response = requests.get(data_url)
-    if response.status_code == 200:
-        return response.text
-    else:
-        print(f"Failed to fetch the raw data: {response.status_code}")
-        return None
+        def fetch_tv_data():
+            """Fetch the raw TV data from the URL."""
+            response = requests.get(data_url)
+            if response.status_code == 200:
+                return response.text
+            else:
+                print(f"Failed to fetch the raw data: {response.status_code}")
+                return None
 
-def parse_channels(data):
-    """Parse the TV data and convert it to M3U8 format."""
-    lines = data.split('\n')
-    channels = []
-    channel_info = []
+        def parse_channels(data):
+            """Parse the TV data and convert it to M3U8 format."""
+            lines = data.split('\n')
+            channels = []
+            channel_info = []
 
-    for line in lines:
-        if line.strip() == '':
-            continue  # Ignore empty lines
-        
-        # Handle the start of a new channel (identified by "#☯☯")
-        if line.startswith("#☯☯"):
+            for line in lines:
+                if line.strip() == '':
+                    continue  # Ignore empty lines
+                
+                # Handle the start of a new channel (identified by "#☯☯")
+                if line.startswith("#☯☯"):
+                    if channel_info:
+                        channels.append("\n".join(channel_info))  # Save the previous channel data
+                    channel_info = [line.strip()]  # Start a new channel
+                    continue
+                
+                # Handle input stream headers (authentication or DRM)
+                if line.startswith("#KODIPROP:inputstream.adaptive.common_headers"):
+                    # Use re.search() instead of match()
+                    token_match = re.search(r'authorization=Bearer (.+)', line)  # Corrected line
+                    if token_match and token_match.group(1):
+                        token = token_match.group(1)
+                        ext_http_line = f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}'
+                        channel_info.append(ext_http_line)
+                    continue
+
+                # Handle the EXTINF line and end of the channel info
+                if line.startswith("#EXTINF"):
+                    if channel_info:
+                        channels.append("\n".join(channel_info))  # Save the previous channel data
+                    channel_info = [line.strip()]  # Start a new channel info section
+                    continue
+                
+                # Add all other lines to channel info
+                channel_info.append(line.strip())
+
+            # Append the final channel info if any
             if channel_info:
-                channels.append("\n".join(channel_info))  # Save the previous channel data
-            channel_info = [line.strip()]  # Start a new channel
-            continue
-        
-        # Handle input stream headers (authentication or DRM)
-        if line.startswith("#KODIPROP:inputstream.adaptive.common_headers"):
-            # Use re.search() instead of match()
-            token_match = re.search(r'authorization=Bearer (.+)', line)  # Corrected line
-            if token_match and token_match.group(1):
-                token = token_match.group(1)
-                ext_http_line = f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}'
-                channel_info.append(ext_http_line)
-            continue
+                channels.append("\n".join(channel_info))
 
-    # Append the final channel info if any
-    if channel_info:
-        channels.append("\n".join(channel_info))
+            return channels
 
-    return channels
+        def upload_to_github(content):
+            """Upload the M3U8 data to GitHub."""
+            file_content = base64.b64encode(content.encode()).decode()
 
-def upload_to_github(content):
-    """Upload the M3U8 data to GitHub."""
-    file_content = base64.b64encode(content.encode()).decode()
+            api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+            data = {
+                'message': 'Upload channels.m3u8 file',  # Commit message
+                'content': file_content  # Base64 encoded content
+            }
 
-    api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
-    data = {
-        'message': 'Upload channels.m3u8 file',  # Commit message
-        'content': file_content  # Base64 encoded content
-    }
+            headers = {
+                'Authorization': f'token {access_token}'
+            }
 
-    headers = {
-        'Authorization': f'token {access_token}'
-    }
+            # Send the request to upload the file
+            upload_response = requests.put(api_url, json=data, headers=headers)
 
-    # Send the request to upload the file
-    upload_response = requests.put(api_url, json=data, headers=headers)
+            if upload_response.status_code == 201:
+                print("File uploaded successfully!")
+            else:
+                print(f"Failed to upload file: {upload_response.content}")
 
-    if upload_response.status_code == 201:
-        print("File uploaded successfully!")
-    else:
-        print(f"Failed to upload file: {upload_response.content}")
+        def main():
+            # Step 1: Fetch the TV data from the external source
+            raw_data = fetch_tv_data()
+            if raw_data:
+                # Step 2: Parse the raw data into channels
+                channels = parse_channels(raw_data)
 
-def main():
-    # Step 1: Fetch the TV data from the external source
-    raw_data = fetch_tv_data()
-    if raw_data:
-        # Step 2: Parse the raw data into channels
-        channels = parse_channels(raw_data)
+                # Step 3: Prepare the M3U8 content by joining channels
+                m3u8_content = "#EXTM3U\n" + "\n".join(channels)
 
-        # Step 3: Prepare the M3U8 content by joining channels
-        m3u8_content = "\n".join(channels)
+                # Step 4: Upload the M3U8 content to GitHub
+                upload_to_github(m3u8_content)
 
-        # Step 4: Upload the M3U8 content to GitHub
-        upload_to_github(m3u8_content)
-
-if __name__ == "__main__":
-    main()
+        if __name__ == "__main__":
+            main()
         EOF
+
+    # Step 5: Final confirmation
+    - name: Action completed
+      run: echo "M3U8 file has been uploaded to GitHub"
