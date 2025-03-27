@@ -92,10 +92,10 @@ jobs:
                         key, value = license_keys.split(':')
                         license_key_dict[key.strip()] = value.strip()
                     
-                    # Create a JSON-like structure for license keys
-                    license_key_json = str({f'"{k}"': v for k, v in license_key_dict.items()}).replace("'", '"')
+                    # Create a JSON-like structure for license keys without extra braces
+                    license_key_json = ', '.join([f'"{k}": "{v}"' for k, v in license_key_dict.items()])  # Only single layer of braces
                     transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
-                    transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {license_key_json} }}')
+                    transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {license_key_json} }}')  # Correct format
         
                     continue
         
