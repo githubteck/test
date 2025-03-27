@@ -17,7 +17,6 @@ jobs:
       uses: actions/checkout@v2
 
     # Step 2: Set up Python
-    - name: Set up Python 3.x
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
@@ -59,27 +58,10 @@ jobs:
                     transformed_lines.append('')  # Preserve empty lines
                     continue
 
-                # Handle #KODIPROP for authorization (for Bearer token)
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
-                    # Extract the authorization part of the common headers
-                    headers = stripped_line.split('=')
-                    if len(headers) > 2:  # Ensure we have more than one '='
-                        auth_header = '='.join(headers[2:]).strip()  # Get everything after the first '='
-                        if auth_header.startswith("Bearer "):  # Check if it starts with "Bearer"
-                            token = auth_header[len("Bearer "):]  # Extract the token by removing "Bearer "
-                            transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
-                        else:
-                            print("Unexpected authorization format")
-                    continue  # Skip to the next iteration
-
                 # Handle #KODIPROP for ClearKey format transformation
-                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=org.w3.clearkey"):
-                    try:
-                        parts = stripped_line.split('=')
-                        if len(parts) != 2:
-                            transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
-                            continue
-                        
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=org.w3.clearkey"):
+                    parts = stripped_line.split('=')
+                    if len(parts) == 2:
                         license_info = parts[1].split(':')
                         if len(license_info) == 2:
                             key_values = license_info[1].split(',')
@@ -88,41 +70,26 @@ jobs:
                                 key, value = key_value.split(':')
                                 license_key_dict[key.strip()] = value.strip()
                             
-                            # Create the ClearKey transformation lines
+                            # ClearKey Transformation
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_info[0]}')
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={json.dumps(license_key_dict)}')
                         else:
                             transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
 
-                    except ValueError as ve:
-                        print(f"ValueError encountered while parsing ClearKey line: {stripped_line} - {ve}")
-                        transformed_lines.append(stripped_line)  # Keep the original line in case of error
-                    continue  # Skip to the next iteration
-
-                # Handle #KODIPROP for widevine format transformation
+                # Handle #KODIPROP for Widevine format transformation
                 elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=com.widevine.alpha"):
-                    try:
-                        parts = stripped_line.split('=')
-                        if len(parts) != 2:
-                            transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
-                            continue
-                        
-                        # For widevine specific transformation
+                    parts = stripped_line.split('=')
+                    if len(parts) == 2:
                         license_info = parts[1].split('|')
                         if len(license_info) == 2:
                             license_type = license_info[0].strip()  # e.g. com.widevine.alpha
                             license_key = license_info[1].strip()  # e.g. the URL with device info
                             
-                            # Create the widevine transformation lines
+                            # Widevine Transformation
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
                             transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
                         else:
                             transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
-
-                    except ValueError as ve:
-                        print(f"ValueError encountered while parsing Widevine line: {stripped_line} - {ve}")
-                        transformed_lines.append(stripped_line)  # Keep the original line in case of error
-                    continue  # Skip to the next iteration
 
                 # For any lines that don't match the transformation criteria, keep them unchanged
                 transformed_lines.append(stripped_line)
