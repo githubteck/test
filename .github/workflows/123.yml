@@ -34,35 +34,71 @@ jobs:
         python3 <<EOF
         import requests
         import base64
-        
-        repo_owner = 'githubteck'  # Replace with your GitHub username
-        repo_name = 'test'  # Replace with your GitHub repository name
+
+        repo_owner = 'githubteck'  # Your GitHub username
+        repo_name = 'test'  # Your GitHub repository name
         file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
         access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
-        
+
         # Fetch raw data
         def fetch_tv_data():
             data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
             response = requests.get(data_url)
             return response.text if response.status_code == 200 else None
-        
+
         # Parse data
         def parse_channels(data):
-            lines = data.split('\n')
+            """Parse the TV data and convert it to M3U8 format."""
+            lines = data.split('\\n')
             channels = []
             channel_info = []
 
             for line in lines:
                 if line.strip() == '':
+                    continue  # Ignore empty lines
+
+                # Handle #KODIPROP for authorization
+                if line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
+                    # Extract the token and format it
+                    token = line.split('=')[1]
+                    formatted_line = f'#EXTHTTP:{{"Authorization":"{token}"}}'
+                    channels.append(formatted_line)
                     continue
-                if line.startswith("#☯☯"):
-                    if channel_info:
-                        channels.append("\n".join(channel_info))
-                    channel_info = [line.strip()]
+
+                # Handle #KODIPROP for drm_legacy (common formats)
+                elif line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
+                    parts = line.split('=')
+                    if len(parts) != 2:
+                        continue
+                    
+                    # Split on "|"
+                    license_info = parts[1].split('|')
+                    license_type = license_info[0].strip()  # e.g. com.widevine.alpha
+                    license_keys = license_info[1].strip()  # e.g. the URL or keys
+
+                    if ',' in license_keys:
+                        # Handle multiple keys
+                        key_pairs = license_keys.split(',')
+                        license_key_dict = {}
+                        for key_pair in key_pairs:
+                            key, value = key_pair.split(':')
+                            license_key_dict[key.strip()] = value.strip()
+
+                        license_key_json = str(license_key_dict).replace("'", '"')  # Convert to JSON-like string
+                        channels.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                        channels.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key_json}')
+                    else:
+                        # If only a single key, just format accordingly
+                        channels.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                        channels.append(f'#KODIPROP:inputstream.adaptive.license_key={license_keys}')
+
                     continue
-                channels.append(line.strip())
+
+                # If the line does not match any special formats, handle it as normal
+                channel_info.append(line.strip())  # Assuming it's a normal line that we want to keep
+
             return channels
-        
+
         # Upload data to GitHub
         def upload_to_github(content):
             file_content = base64.b64encode(content.encode()).decode()
@@ -93,7 +129,7 @@ jobs:
         raw_data = fetch_tv_data()
         if raw_data:
             channels = parse_channels(raw_data)
-            m3u8_content = "\n".join(channels)
+            m3u8_content = "\\n".join(channels)
             upload_to_github(m3u8_content)
 
         EOF
