@@ -59,7 +59,7 @@ jobs:
                     continue
         
                 # Handle #KODIPROP for authorization
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
+                if stripped_line.startswith("KODIPROP:inputstream.adaptive.common_headers=authorization="):
                     # Extract the token using split
                     token_parts = stripped_line.split('=')
                     if len(token_parts) > 1:
