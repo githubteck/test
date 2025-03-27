@@ -60,9 +60,13 @@ jobs:
         
                 # Handle #KODIPROP for authorization
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
-                    token = stripped_line.split('=')[1]
-                    transformed_lines.append(f'#EXTHTTP:{{"Authorization":"{token}"}}')
-                    continue
+                    # Extract the token using split
+                    token_parts = stripped_line.split('=')
+                    if len(token_parts) > 1:
+                        token = token_parts[1].strip()  # Get everything after the '='
+                        # Apply 'Bearer' prefix to the token
+                        transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
+                    continue  # Skip to the next iteration
         
                 # Handle #KODIPROP for drm_legacy (common formats)
                 elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
@@ -103,7 +107,7 @@ jobs:
             headers = {'Authorization': f'token {access_token}'}
             response = requests.get(api_url, headers=headers)
             sha = response.json().get('sha') if response.status_code == 200 else None
-            
+        
             if sha:
                 existing_content = requests.get(api_url, headers=headers).json().get('content')
                 if existing_content and base64.b64decode(existing_content).decode() == content:
