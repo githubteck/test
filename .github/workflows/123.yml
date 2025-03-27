@@ -59,12 +59,11 @@ jobs:
                     continue
         
                 # Handle #KODIPROP for authorization
-                if stripped_line.startswith("KODIPROP:inputstream.adaptive.common_headers=authorization="):
-                    # Extract the token using split
-                    token_parts = stripped_line.split('=')
-                    if len(token_parts) > 1:
-                        token = token_parts[1].strip()  # Get everything after the '='
-                        # Apply 'Bearer' prefix to the token
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
+                    # Extract the value by splitting on '=' and capturing everything after the second '='
+                    headers = stripped_line.split('=')
+                    if len(headers) > 2:
+                        token = '='.join(headers[2:]).strip()  # Join everything after the first '=' to get the full token
                         transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
                     continue  # Skip to the next iteration
         
@@ -74,7 +73,7 @@ jobs:
                     if len(parts) != 2:
                         transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
                         continue
-                    
+        
                     license_info = parts[1].split('|')
                     license_type = license_info[0].strip()  # e.g. org.w3.clearkey
                     license_keys = license_info[1].strip()  # e.g. the URL or keys
