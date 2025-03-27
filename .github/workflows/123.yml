@@ -58,7 +58,7 @@ jobs:
                     transformed_lines.append('')  # Preserve empty lines
                     continue
 
-                # Handle #KODIPROP for authorization
+                # Handle #KODIPROP for authorization (for Bearer token)
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
                     # Extract the authorization part of the common headers
                     headers = stripped_line.split('=')
@@ -71,7 +71,7 @@ jobs:
                             print("Unexpected authorization format")
                     continue  # Skip to the next iteration
 
-                # Handle #KODIPROP for drm_legacy (common formats)
+                # Handle #KODIPROP for clearkey format
                 elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
                     parts = stripped_line.split('=')
                     if len(parts) != 2:
@@ -79,12 +79,44 @@ jobs:
                         continue
 
                     license_info = parts[1].split('|')
-                    license_type = license_info[0].strip()  # e.g. com.widevine.alpha
-                    license_key = license_info[1].strip()  # e.g. https://ottweb.hypp.tv:8064/?deviceId=...
-
-                    # Create new lines for the transformed data
+                    license_type = license_info[0].strip()  # e.g. org.w3.clearkey
+                    license_keys = license_info[1].strip()  # e.g. the URL or keys
+                    
+                    license_key_dict = {}
+                    if ',' in license_keys:
+                        key_pairs = license_keys.split(',')
+                        for key_pair in key_pairs:
+                            key, value = key_pair.split(':')
+                            license_key_dict[key.strip()] = value.strip()  # Standard key-value pair
+                    else:
+                        key, value = license_keys.split(':')
+                        license_key_dict[key.strip()] = value.strip()
+                    
+                    # Create a JSON-like structure for license keys without extra braces
+                    license_key_json = ', '.join([f'"{k}": "{v}"' for k, v in license_key_dict.items()])  # Only single layer of braces
                     transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
-                    transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
+                    transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {license_key_json} }}')  # Correct format
+                    
+                    continue  # Skip to the next iteration
+                
+                # Handle #KODIPROP for widevine format
+                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
+                    parts = stripped_line.split('=')
+                    if len(parts) != 2:
+                        transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
+                        continue
+                    
+                    # For widevine specific transformation
+                    license_info = parts[1].split('|')
+                    if len(license_info) == 2:
+                        license_type = license_info[0].strip()  # e.g. com.widevine.alpha
+                        license_key = license_info[1].strip()  # e.g. the URL with device info
+                        
+                        # Create the widevine transformation
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_type={license_type}')
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
+                    else:
+                        transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
 
                     continue  # Skip to the next iteration
 
