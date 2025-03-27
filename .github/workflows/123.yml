@@ -99,15 +99,9 @@ jobs:
                     
                     continue  # Skip to the next iteration
                 
-                # Handle #KODIPROP for widevine format
-                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
-                    parts = stripped_line.split('=')
-                    if len(parts) != 2:
-                        transformed_lines.append(stripped_line)  # Keep the original line if format is not valid
-                        continue
-                    
-                    # For widevine specific transformation
-                    license_info = parts[1].split('|')
+                # NEW: Handle #KODIPROP for widevine format
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy=com.widevine.alpha"):
+                    license_info = stripped_line.split('=')[1].strip().split('|')
                     if len(license_info) == 2:
                         license_type = license_info[0].strip()  # e.g. com.widevine.alpha
                         license_key = license_info[1].strip()  # e.g. the URL with device info
@@ -117,7 +111,7 @@ jobs:
                         transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={license_key}')
                     else:
                         transformed_lines.append(stripped_line)  # Keep the original line if format is incorrect
-
+                    
                     continue  # Skip to the next iteration
 
                 # For any lines that don't match the transformation criteria, keep them unchanged
