@@ -60,11 +60,15 @@ jobs:
         
                 # Handle #KODIPROP for authorization
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
-                    # Extract the value by splitting on '=' and capturing everything after the second '='
+                    # Extract the authorization part of the common headers
                     headers = stripped_line.split('=')
-                    if len(headers) > 2:
-                        token = '='.join(headers[2:]).strip()  # Join everything after the first '=' to get the full token
-                        transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
+                    if len(headers) > 2:  # Ensure we have more than one '='
+                        auth_header = '='.join(headers[2:]).strip()  # Get everything after the first '='
+                        if auth_header.startswith("Bearer "):  # Check if it starts with "Bearer"
+                            token = auth_header[len("Bearer "):]  # Extract the token by removing "Bearer "
+                            transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
+                        else:
+                            print("Unexpected authorization format")
                     continue  # Skip to the next iteration
         
                 # Handle #KODIPROP for drm_legacy (common formats)
