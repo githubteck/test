@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *'  # Run once every day at midnight (UTC)
+    - cron: '0 * * * *'  # Run every hour at minute 0
 
 jobs:
   upload_m3u8:
