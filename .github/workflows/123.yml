@@ -1,32 +1,33 @@
-name: Run Python Script
+name: Update M3U8 File
 
 on:
   push:
     branches:
-      - main  # Adjust if your default branch is different
-  workflow_dispatch:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # Run every hour at minute 0
 
 jobs:
-  run_script:
+  upload_m3u8:
     runs-on: ubuntu-latest
 
     steps:
-      # Step to check out the repository
+      # Step 1: Checkout the repository code
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step to set up Python
-      - name: Set up Python
+      # Step 2: Set up Python
+      - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # You can specify the version here as needed
+          python-version: '3.x'
 
-      # Step to install dependencies
+      # Step 3: Install necessary Python dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Install the packages listed in requirements.txt
+          pip install requests  # Installing requests directly
 
-      # Step to run the Python script
+      # Step 4: Run the Python script
       - name: Run Python script
-        run: python 123.py  # Reference the script directly by its name
+        run: python 123.py  # Directly referencing the script
