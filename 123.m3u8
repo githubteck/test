@@ -2,7 +2,7 @@
 
 #EXTM3U refresh="15" billed-msg="⚠️ THIS PLAYLIST DOESN'T WORK ON OTT | PLEASE DOWNLOAD KODI 22 FROM THE README PAGE! ⚠️"
 
-#☯☯ || THIS PLAYLIST IS FOR KODI 22 ONLY, ALL CHANNELS ONLY WORK WITH KODI 22 ON ANDROID DEVICE i.e Nvidia Shield || ☯☯
+#☯☯ || THIS PLAYLIST IS FOR KODI 22 ONLY ALL CHANNELS ARE TESTED WORKING WITH KODI 22 ON ANDROID & WINDOWS OS || ☯☯
 
 #########################################################################################################################
 #############  ##########################################################################################################
@@ -20,8 +20,9 @@
 #############   #########################################################################################################
 #########################################################################################################################
 
-# WARNING 1: Most Channels DONT WORK on Windows, OTT, TiviMate, OKTV, PerfectTV, VLC or other apps even on Kodi 21 or lower
-# WARNING 2: The playlist will be updated twice daily with different tokens. Do not copy into your m3u, instaed do below:-
+# WARNING 1: Most Channels DONT WORK on OTT Navigator, TiviMate, OKTV, PerfectTV, VLC or other apps or lower than Kodi 22
+# WARNING 2: Enjoy AstroSports UHD in 4K with SOUND only on Kodi with this playlist. Sound is muted on other applications
+# WARNING 3: The playlist will be updated twice daily with different tokens. Do not copy into your m3u, instaed do below:-
 # INSTRUCTION : Add this short url = https://aseanic.github.io/tv into iptvmerge and run merge. It's auto hourly refresh.
 
 #########################################################################################################################
@@ -57,7 +58,7 @@ https://d25tgymtnqzu8s.cloudfront.net/smil:tv2/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "3bc3f0e518aed92e80a98118e5bc2c10": "5fce364fbc4499856597b19a96f44648"  }
 #https://linearjitp-playback.astro.com.my/dash-wv/linear/809/default_primary.mpd
-https://tonton-live-switch-ssar.akamaized.net/stream-tv3/master_1080.m3u8?bpkio_serviceid=6c0958d82a830a02ca0936d9cfab8311
+https://live-ssar-01.tonton.com.my/stream-tv3/master_1080.m3u8?bpkio_serviceid=6c0958d82a830a02ca0936d9cfab8311
 
 #EXTINF:-1 group-title="MYTV" tvg-id="114.astro" tvg-logo="https://pictr.com/images/2025/01/14/x1tcWA.png",AlHijrah
 #KODIPROP:contentlookup=False
@@ -123,13 +124,38 @@ https://d25tgymtnqzu8s.cloudfront.net/smil:okey/manifest.mpd
 https://d25tgymtnqzu8s.cloudfront.net/event/smil:event1/chunklist_b2596000_slENG.m3u8
 
 #EXTINF:-1 group-title="MYTV" tvg-id="Local.Programming.Dummy.us" tvg-logo="https://pictr.com/images/2025/01/14/x1tbwx.png",Selangor TV
-#plugin://plugin.video.youtube/play/?video_id=Aih3kslsV8g&live=1
+plugin://plugin.video.youtube/play/?video_id=qtsDbnWUjos&live=1
 
 #EXTINF:-1 group-title="MYTV" tvg-id="Local.Programming.Dummy.us" tvg-logo="https://www.xtra.com.my/live-tv/assets/img/dramasangat.png",Drama Sangat
 #KODIPROP:contentlookup=False
 #KODIPROP:mimetype=application/vnd.apple.mpegurl
 #KODIPROP:inputstream=inputstream.adaptive
-#https://tonton-live-sg3.akamaized.net/live-hls/tonton10_720p/index.m3u8
+https://live-03.tonton.com.my/live-hls/tonton10_720p/index.m3u8?exp=1745057933&hmac=0x15ec4ed1682f5336e4ac2c92a3c4500f258861de3c79a8909b19460af6a32e50
+
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/SNAP_CHANNEL.jpg" group-title="MYTV", RTM Snap
+https://d1sq2slp9afh7o.cloudfront.net/smil:snap/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/LEAD_CHANNEL.jpg" group-title="MYTV", RTM Lead
+https://d1sq2slp9afh7o.cloudfront.net/smil:lead/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/APETITO_CHANNEL.jpg" group-title="MYTV", RTM Apetito
+https://d1sq2slp9afh7o.cloudfront.net/smil:apetito/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/FITRAH_CHANNEL.jpg" group-title="MYTV", RTM Fitrah
+https://d1sq2slp9afh7o.cloudfront.net/smil:fitrah/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/JR_CHANNEL.jpg" group-title="MYTV", RTM Junior
+https://d1sq2slp9afh7o.cloudfront.net/smil:jr/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/ROLL_CHANNEL.jpg" group-title="MYTV", RTM Roll
+https://d1sq2slp9afh7o.cloudfront.net/smil:roll/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/fast_channel/AURA_CHANNEL.jpg" group-title="MYTV", RTM Aura
+https://d1sq2slp9afh7o.cloudfront.net/smil:aura/chunklist_b2596000_slENG.m3u8
+
+#EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://rtm-images.glueapi.io/320x0/live_channel/SeniWarisanZonTimur.png" group-title="MYTV", RTM Borak
+https://d30aylox5wvifh.cloudfront.net/event/smil:ag1/chunklist_b2596000_slENG.m3u8
 
 
 #☯☯ || SOOKA CHANNELS || ☯☯
@@ -1846,8 +1872,8 @@ http://fash2043.cloudycdn.services//slive/_definst_/ftv_ftv_4k_hevc_73d_42080_de
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "1afdcaf4198bfd3200584469fc3e5110": "6edc92c49be84ca7a2f327beafbccae6"  }
-#https://linearjitp-playback.astro.com.my/dash-wv/linear/5097/default_primary.mpd
-https://d18dyiwu97wm6q.cloudfront.net/playlist2160p.m3u8
+https://linearjitp-playback.astro.com.my/dash-wv/linear/5097/default_primary.mpd
+#https://d18dyiwu97wm6q.cloudfront.net/playlist2160p.m3u8
 
 #EXTINF:-1 tvg-id="Local.Programming.Dummy.us" tvg-logo="https://pictr.com/images/2025/02/24/xLJd9V.jpg" group-title="4K",Loupe 4K
 https://d2dw21aq0j0l5c.cloudfront.net/playlist_3840x2160.m3u8
