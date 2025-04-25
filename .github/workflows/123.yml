@@ -57,7 +57,11 @@ jobs:
                 if stripped_line == '':
                     transformed_lines.append('')  # Preserve empty lines
                     continue
-        
+
+                # Insert user-agent line before the authorization header
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=authorization=Bearer"):
+                    transformed_lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile')
+                
                 # Check for user-agent line and transform it
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=user-agent="):
                     user_agent = stripped_line.split('=')[-1].strip()
