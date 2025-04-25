@@ -58,6 +58,12 @@ jobs:
                     transformed_lines.append('')  # Preserve empty lines
                     continue
         
+                # Check for user-agent line and transform it
+                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=user-agent="):
+                    user_agent = stripped_line.split('=')[1].strip()
+                    transformed_lines.append(f'#EXTVLCOPT:http-user-agent={user_agent}')
+                    continue
+                
                 # Handle #KODIPROP for authorization
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
                     headers = stripped_line.split('=')
