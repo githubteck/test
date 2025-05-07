@@ -12,24 +12,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Permissions for the default GITHUB_TOKEN. We'll be using a PAT (secrets.ABC)
-    # for the API call, but good practice to define permissions.
     permissions:
       contents: write # Needed if you were using the default token to commit
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3 # Use v3 for better compatibility
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x' # Use a recent Python version
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests beautifulsoup4
+        pip install requests beautifulsoup4 jq # Install jq here
 
     - name: Run script and generate cn.m3u8
       run: |
@@ -43,28 +41,28 @@ jobs:
         fi
 
     - name: Get file SHA if it exists
-      id: get_sha
       run: |
         SHA=""
         API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
         RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ABC }}" "$API_URL")
-        # Use jq to parse the JSON response and extract the SHA if the file exists
-        # Install jq if it's not available on the runner
-        sudo apt-get update && sudo apt-get install -y jq
+
+        # Check if the file exists and extract the SHA using jq
         FILE_EXISTS=$(echo "$RESPONSE" | jq -e '.sha' > /dev/null 2>&1; echo $?)
         if [ $FILE_EXISTS -eq 0 ]; then
           SHA=$(echo "$RESPONSE" | jq -r '.sha')
-          echo "::set-output name=sha::$SHA"
           echo "File exists. SHA: $SHA"
+          # Write the SHA to the GITHUB_ENV file to make it available to subsequent steps
+          echo "FILE_SHA=$SHA" >> $GITHUB_ENV
         else
           echo "File does not exist."
-          echo "::set-output name=sha::" # Output empty SHA if file doesn't exist
+          echo "FILE_SHA=" >> $GITHUB_ENV # Write an empty string if file doesn't exist
         fi
 
     - name: Upload/Update cn.m3u8 via GitHub API
       run: |
         FILE_CONTENT_BASE64=$(base64 -w 0 cn.m3u8) # Base64 encode the file content
-        SHA="${{ steps.get_sha.outputs.sha }}"
+        # Access the SHA from the environment variable set in the previous step
+        SHA="${{ env.FILE_SHA }}"
         COMMIT_MESSAGE="Update cn.m3u8"
         API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
 
@@ -73,7 +71,7 @@ jobs:
           "content": "'"$FILE_CONTENT_BASE64"'"
         }'
 
-        # Add SHA to payload if the file exists
+        # Add SHA to payload if the file exists (SHA is not empty)
         if [ -n "$SHA" ]; then
           PAYLOAD=$(echo "$PAYLOAD" | jq --arg sha "$SHA" '. + {sha: $sha}')
         fi
@@ -85,7 +83,3 @@ jobs:
           -H "Authorization: token ${{ secrets.ABC }}" \
           -H "Content-Type: application/json" \
           -d "$PAYLOAD"
-      env:
-        # jq is needed for parsing and constructing the JSON payload
-        # Ensure it's installed in the previous step
-        JQ_INSTALLED: true # Just a marker, actual install is in get_sha step
