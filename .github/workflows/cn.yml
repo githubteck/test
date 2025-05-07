@@ -1,0 +1,91 @@
+name: Generate M3U8 Playlist and Upload to Repo
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch name if it's not 'main'
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual triggering from the GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Permissions for the default GITHUB_TOKEN. We'll be using a PAT (secrets.ABC)
+    # for the API call, but good practice to define permissions.
+    permissions:
+      contents: write # Needed if you were using the default token to commit
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3 # Use v3 for better compatibility
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x' # Use a recent Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4
+
+    - name: Run script and generate cn.m3u8
+      run: |
+        python cn.py > cn.m3u8 # Assuming your script prints the M3U8 to stdout
+
+    - name: Check if cn.m3u8 was created
+      run: |
+        if [ ! -f cn.m3u8 ]; then
+          echo "Error: cn.m3u8 file was not created by cn.py"
+          exit 1
+        fi
+
+    - name: Get file SHA if it exists
+      id: get_sha
+      run: |
+        SHA=""
+        API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
+        RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ABC }}" "$API_URL")
+        # Use jq to parse the JSON response and extract the SHA if the file exists
+        # Install jq if it's not available on the runner
+        sudo apt-get update && sudo apt-get install -y jq
+        FILE_EXISTS=$(echo "$RESPONSE" | jq -e '.sha' > /dev/null 2>&1; echo $?)
+        if [ $FILE_EXISTS -eq 0 ]; then
+          SHA=$(echo "$RESPONSE" | jq -r '.sha')
+          echo "::set-output name=sha::$SHA"
+          echo "File exists. SHA: $SHA"
+        else
+          echo "File does not exist."
+          echo "::set-output name=sha::" # Output empty SHA if file doesn't exist
+        fi
+
+    - name: Upload/Update cn.m3u8 via GitHub API
+      run: |
+        FILE_CONTENT_BASE64=$(base64 -w 0 cn.m3u8) # Base64 encode the file content
+        SHA="${{ steps.get_sha.outputs.sha }}"
+        COMMIT_MESSAGE="Update cn.m3u8"
+        API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
+
+        PAYLOAD='{
+          "message": "'"$COMMIT_MESSAGE"'",
+          "content": "'"$FILE_CONTENT_BASE64"'"
+        }'
+
+        # Add SHA to payload if the file exists
+        if [ -n "$SHA" ]; then
+          PAYLOAD=$(echo "$PAYLOAD" | jq --arg sha "$SHA" '. + {sha: $sha}')
+        fi
+
+        # Use jq to format the payload correctly before sending
+        PAYLOAD=$(echo "$PAYLOAD" | jq tostring -c)
+
+        curl -X PUT "$API_URL" \
+          -H "Authorization: token ${{ secrets.ABC }}" \
+          -H "Content-Type: application/json" \
+          -d "$PAYLOAD"
+      env:
+        # jq is needed for parsing and constructing the JSON payload
+        # Ensure it's installed in the previous step
+        JQ_INSTALLED: true # Just a marker, actual install is in get_sha step
