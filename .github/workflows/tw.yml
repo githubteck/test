@@ -1,0 +1,145 @@
+name: Generate and Update M3U8 Playlist
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Write and run Python script
+        run: |
+          cat << 'EOF' > generate_m3u8.py
+          import requests
+          import base64
+          import os
+          import gzip
+
+          repo_owner = "githubteck"
+          repo_name = "test"
+          file_path = "tw.m3u8"
+
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+          access_token = os.environ.get("MY_GITHUB_TOKEN")
+
+          if not access_token:
+              print("Error: MY_GITHUB_TOKEN environment variable not found!")
+              exit(1)
+
+          headers = {
+              "Authorization": f"token {access_token}",
+              "Accept": "application/vnd.github.v3+json",
+          }
+
+          channel_list_url = "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/refs/heads/main/%E4%B8%93%E5%8C%BA/%E2%99%AA%E5%8F%B0%E6%B9%BE%E5%8F%B0.txt"
+          epg_urls = [
+              "https://epg.112114.xyz/pp.xml",
+              "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
+              "https://epg.112114.xyz/pp.xml.gz",
+              "https://raw.githubusercontent.com/sparkssssssssss/sparkssssssssss/main/pp.xml.gz"
+          ]
+
+          def fetch_data(url):
+              try:
+                  response = requests.get(url)
+                  response.raise_for_status()
+                  print(f"Fetched: {url}")
+                  if url.endswith(".gz"):
+                      return gzip.decompress(response.content).decode("utf-8")
+                  else:
+                      return response.text
+              except requests.RequestException as e:
+                  print(f"Failed to fetch {url}: {e}")
+                  return None
+
+          def parse_itvlist(raw_data):
+              channels = []
+              if raw_data:
+                  lines = raw_data.strip().split("\n")
+                  current_group = "Other"
+                  for line in lines:
+                      line = line.strip()
+                      if not line:
+                          continue
+                      if "#EXTINF" in line:
+                          parts = line.split(",")
+                          if len(parts) >= 3:
+                              channel_name = parts[1].strip()
+                              stream_url = parts[2].strip()
+                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                      elif line.endswith(",#genre#"):
+                          current_group = line.replace(",#genre#", "").strip()
+                      else:
+                          parts = line.split(",")
+                          if len(parts) == 2:
+                              channel_name = parts[0].strip()
+                              stream_url = parts[1].strip()
+                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+              return channels
+
+          def convert_data_to_m3u8(channels):
+              m3u8_content = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
+              for channel in channels:
+                  channel_name = channel.get("name", "Unknown Channel")
+                  stream_url = channel.get("url")
+                  group_title = channel.get("group", "Other")
+                  logo_url = f"https://assets.livednow.com/logo/{channel_name}.png"
+                  if stream_url:
+                      m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
+                      m3u8_content += f"{stream_url}\n"
+              return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
+
+          def upload_to_github(content):
+              if content is None:
+                  print("No content to upload.")
+                  return
+              try:
+                  response = requests.get(api_url, headers=headers)
+                  sha = response.json()["sha"] if response.status_code == 200 else None
+
+                  encoded_content = base64.b64encode(content.encode()).decode()
+                  data = {
+                      "message": "Update cn.m3u8 playlist [skip ci]",
+                      "content": encoded_content,
+                  }
+                  if sha:
+                      data["sha"] = sha
+
+                  response = requests.put(api_url, json=data, headers=headers)
+                  response.raise_for_status()
+                  print("Upload successful.")
+              except requests.RequestException as e:
+                  print(f"Upload error: {e}")
+                  exit(1)
+
+          print("Start process...")
+          raw_channel_data = fetch_data(channel_list_url)
+          channels = parse_itvlist(raw_channel_data)
+          m3u8_content = convert_data_to_m3u8(channels)
+          upload_to_github(m3u8_content)
+          print("Finished.")
+          EOF
+
+          python generate_m3u8.py
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
