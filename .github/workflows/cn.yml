@@ -24,8 +24,8 @@ jobs:
         with:
           python-version: '3.x' # Or your preferred Python version
 
-      - name: Install dependencies (needed for requests and potentially other libraries)
-        run: pip install requests beautifulsoup4 gzip # Added beautifulsoup4 and gzip based on your URLs
+      - name: Install dependencies (needed for requests and beautifulsoup4)
+        run: pip install requests beautifulsoup4 # Removed gzip
 
       - name: Generate and upload cn.m3u8 (embedded Python with data handling)
         run: |
@@ -33,7 +33,7 @@ jobs:
           import base64
           import os
           from bs4 import BeautifulSoup
-          import gzip
+          import gzip # This is a built-in module, no need to install with pip
           import re
 
           # GitHub repository details
