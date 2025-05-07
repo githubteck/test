@@ -33,9 +33,7 @@ jobs:
           import requests
           import base64
           import os
-          from bs4 import BeautifulSoup
           import gzip
-          import re
 
           repo_owner = "githubteck"
           repo_name = "test"
@@ -54,7 +52,6 @@ jobs:
           }
 
           channel_list_url = "https://raw.githubusercontent.com/ssili126/tv/refs/heads/main/itvlist.txt"
-          logo_guide_url = "https://assets.livednow.com/guide.html"
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
@@ -100,26 +97,13 @@ jobs:
                               channels.append({"name": channel_name, "url": stream_url, "group": current_group})
               return channels
 
-          def parse_logo_guide(raw_html):
-              logos = {}
-              if raw_html:
-                  soup = BeautifulSoup(raw_html, "html.parser")
-                  for item in soup.select(".channel-item"):
-                      channel_name_element = item.select_one(".channel-name")
-                      logo_element = item.select_one(".channel-logo img")
-                      if channel_name_element and logo_element and "src" in logo_element.attrs:
-                          channel_name = channel_name_element.get_text(strip=True)
-                          logo_url = logo_element["src"]
-                          logos[channel_name] = logo_url
-              return logos
-
-          def convert_data_to_m3u8(channels, logos):
+          def convert_data_to_m3u8(channels):
               m3u8_content = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
               for channel in channels:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
-                  logo_url = logos.get(channel_name, "")
+                  logo_url = f"https://assets.livednow.com/logo/{channel_name}.png"
                   if stream_url:
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
@@ -150,10 +134,8 @@ jobs:
 
           print("Start process...")
           raw_channel_data = fetch_data(channel_list_url)
-          raw_logo_html = fetch_data(logo_guide_url)
           channels = parse_itvlist(raw_channel_data)
-          logos = parse_logo_guide(raw_logo_html)
-          m3u8_content = convert_data_to_m3u8(channels, logos)
+          m3u8_content = convert_data_to_m3u8(channels)
           upload_to_github(m3u8_content)
           print("Finished.")
           EOF
