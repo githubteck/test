@@ -1,238 +1,209 @@
-name: Generate and Update M3U8 Playlist
-
-on:
-  push:
-    branches:
-      - main # Trigger on push to the main branch
-  schedule:
-    - cron: '0 * * * *' # Run every hour (adjust cron schedule as needed)
-  workflow_dispatch: # Allow manual triggering
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write # Grant permissions to write to the repository
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x' # Or your preferred Python version
-
-      - name: Install dependencies (needed for requests and potentially other libraries)
-        run: pip install requests beautifulsoup4 gzip # Added beautifulsoup4 and gzip based on your URLs
-
-      - name: Generate and upload cn.m3u8 (embedded Python with data handling)
+- name: Generate and upload cn.m3u8 (embedded Python with data handling)
         run: |
-          python -c '
-import requests
-import base64
-import os
-from bs4 import BeautifulSoup
-import gzip
-import re
+          # Everything below this line needs to be indented by two spaces
+          import requests
+          import base64
+          import os
+          from bs4 import BeautifulSoup
+          import gzip
+          import re
 
-# GitHub repository details
-repo_owner = "githubteck" # Replace with your GitHub username
-repo_name = "test"      # Replace with your repository name
-file_path = "cn.m3u8"
+          # GitHub repository details
+          repo_owner = "githubteck" # Replace with your GitHub username
+          repo_name = "test"      # Replace with your repository name
+          file_path = "cn.m3u8"
 
-# GitHub API endpoint for creating/updating content
-api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+          # GitHub API endpoint for creating/updating content
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
-# Get the GitHub token from environment variables
-# *** Using the environment variable name "MY_GITHUB_TOKEN" which is set below in the "env" section ***
-access_token = os.environ.get("MY_GITHUB_TOKEN")
+          # Get the GitHub token from environment variables
+          # *** Using the environment variable name "MY_GITHUB_TOKEN" which is set below in the "env" section ***
+          access_token = os.environ.get("MY_GITHUB_TOKEN")
 
-if not access_token:
-    print("Error: MY_GITHUB_TOKEN environment variable not found!")
-    exit(1)
+          if not access_token:
+              print("Error: MY_GITHUB_TOKEN environment variable not found!")
+              exit(1)
 
-headers = {
-    "Authorization": f"token {access_token}",
-    "Accept": "application/vnd.github.v3+json",
-}
+          headers = {
+              "Authorization": f"token {access_token}",
+              "Accept": "application/vnd.github.v3+json",
+          }
 
-# --- YOUR SPECIFIC DATA SOURCES ---
-channel_list_url = "https://raw.githubusercontent.com/ssili126/tv/refs/heads/main/itvlist.txt"
-logo_guide_url = "https://assets.livednow.com/guide.html"
-epg_urls = [
-    "https://epg.112114.xyz/pp.xml",
-    "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
-    "https://epg.112114.xyz/pp.xml.gz",
-    "https://raw.githubusercontent.com/sparkssssssssss/sparkssssssssss/main/pp.xml.gz"
-]
-# --- END OF YOUR SPECIFIC DATA SOURCES ---
+          # --- YOUR SPECIFIC DATA SOURCES ---
+          channel_list_url = "https://raw.githubusercontent.com/ssili126/tv/refs/heads/main/itvlist.txt"
+          logo_guide_url = "https://assets.livednow.com/guide.html"
+          epg_urls = [
+              "https://epg.112114.xyz/pp.xml",
+              "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
+              "https://epg.112114.xyz/pp.xml.gz",
+              "https://raw.githubusercontent.com/sparkssssssssss/sparkssssssssss/main/pp.xml.gz"
+          ]
+          # --- END OF YOUR SPECIFIC DATA SOURCES ---
 
-def fetch_data(url):
-    """Fetches data from a given URL."""
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        print(f"Successfully fetched data from {url}")
+          def fetch_data(url):
+              """Fetches data from a given URL."""
+              try:
+                  response = requests.get(url)
+                  response.raise_for_status()
+                  print(f"Successfully fetched data from {url}")
 
-        # Handle gzipped content if needed
-        if url.endswith(".gz"):
-            return gzip.decompress(response.content).decode("utf-8")
-        else:
-            return response.text
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching data from {url}: {e}")
-        return None
+                  # Handle gzipped content if needed
+                  if url.endswith(".gz"):
+                      return gzip.decompress(response.content).decode("utf-8")
+                  else:
+                      return response.text
+              except requests.exceptions.RequestException as e:
+                  print(f"Error fetching data from {url}: {e}")
+                  return None
 
-def parse_itvlist(raw_data):
-    """Parses the itvlist.txt format."""
-    channels = []
-    if raw_data:
-        lines = raw_data.strip().split("\\n") # Use \\n for newline
-        current_group = "Other"
-        for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-            if "#EXTINF" in line:
-                 # This format seems different from standard M3U
-                 # Assuming format like: #EXTINF:-1,Channel Name,URL
-                 parts = line.split(",")
-                 if len(parts) >= 3:
-                     channel_name = parts[1].strip()
-                     stream_url = parts[2].strip()
-                     channels.append({"name": channel_name, "url": stream_url, "group": current_group})
-            elif line.startswith("#"):
-                # Potentially a comment or group marker
-                pass # You might add logic here to parse groups if needed
-            else:
-                # Assuming format like: Channel Name,URL
-                parts = line.split(",")
-                if len(parts) == 2:
-                    channel_name = parts[0].strip()
-                    stream_url = parts[1].strip()
-                    channels.append({"name": channel_name, "url": stream_url, "group": current_group})
-                elif line.endswith(",#genre#"):
-                     current_group = line.replace(",#genre#", "").strip()
-                     print(f"Changing group to: {current_group}")
-    return channels
+          def parse_itvlist(raw_data):
+              """Parses the itvlist.txt format."""
+              channels = []
+              if raw_data:
+                  lines = raw_data.strip().split("\\n") # Use \\n for newline
+                  current_group = "Other"
+                  for line in lines:
+                      line = line.strip()
+                      if not line:
+                          continue
+                      if "#EXTINF" in line:
+                           # This format seems different from standard M3U
+                           # Assuming format like: #EXTINF:-1,Channel Name,URL
+                           parts = line.split(",")
+                           if len(parts) >= 3:
+                               channel_name = parts[1].strip()
+                               stream_url = parts[2].strip()
+                               channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                      elif line.startswith("#"):
+                          # Potentially a comment or group marker
+                          pass # You might add logic here to parse groups if needed
+                      else:
+                          # Assuming format like: Channel Name,URL
+                          parts = line.split(",")
+                          if len(parts) == 2:
+                              channel_name = parts[0].strip()
+                              stream_url = parts[1].strip()
+                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                          elif line.endswith(",#genre#"):
+                               current_group = line.replace(",#genre#", "").strip()
+                               print(f"Changing group to: {current_group}")
+              return channels
 
-def parse_logo_guide(raw_html):
-    """Parses the logo guide HTML."""
-    logos = {}
-    if raw_html:
-        soup = BeautifulSoup(raw_html, "html.parser")
-        # Find elements containing channel name and logo URL
-        # This is highly dependent on the HTML structure of the guide.html page.
-        # You NEED to inspect the HTML of https://assets.livednow.com/guide.html
-        # and adjust the CSS selectors below to match the actual structure.
+          def parse_logo_guide(raw_html):
+              """Parses the logo guide HTML."""
+              logos = {}
+              if raw_html:
+                  soup = BeautifulSoup(raw_html, "html.parser")
+                  # Find elements containing channel name and logo URL
+                  # This is highly dependent on the HTML structure of the guide.html page.
+                  # You NEED to inspect the HTML of https://assets.livednow.com/guide.html
+                  # and adjust the CSS selectors below to match the actual structure.
 
-        # --- PLACEHOLDER: Example parsing based on assumed structure ---
-        # Look for elements that contain channel names and associated image tags
-        for item in soup.select(".channel-item"): # Replace .channel-item with the correct selector
-            channel_name_element = item.select_one(".channel-name") # Replace .channel-name
-            logo_element = item.select_one(".channel-logo img") # Replace .channel-logo img
+                  # --- PLACEHOLDER: Example parsing based on assumed structure ---
+                  # Look for elements that contain channel names and associated image tags
+                  for item in soup.select(".channel-item"): # Replace .channel-item with the correct selector
+                      channel_name_element = item.select_one(".channel-name") # Replace .channel-name
+                      logo_element = item.select_one(".channel-logo img") # Replace .channel-logo img
 
-            if channel_name_element and logo_element and "src" in logo_element.attrs:
-                channel_name = channel_name_element.get_text(strip=True)
-                logo_url = logo_element["src"]
-                logos[channel_name] = logo_url
-                print(f"Found logo for {channel_name}: {logo_url}")
-        # --- END OF PLACEHOLDER ---
-    return logos
+                      if channel_name_element and logo_element and "src" in logo_element.attrs:
+                          channel_name = channel_name_element.get_text(strip=True)
+                          logo_url = logo_element["src"]
+                          logos[channel_name] = logo_url
+                          print(f"Found logo for {channel_name}: {logo_url}")
+                  # --- END OF PLACEHOLDER ---
+              return logos
 
-def convert_data_to_m3u8(channels, logos):
-    """Converts parsed channel data and logos into M3U8 format."""
-    m3u8_content = "#EXTM3U\\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\\n" # Add EPG URLs to header
+          def convert_data_to_m3u8(channels, logos):
+              """Converts parsed channel data and logos into M3U8 format."""
+              m3u8_content = "#EXTM3U\\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\\n" # Add EPG URLs to header
 
-    if not channels:
-        print("No channels to convert.")
-        return None
+              if not channels:
+                  print("No channels to convert.")
+                  return None
 
-    for channel in channels:
-        channel_name = channel.get("name", "Unknown Channel")
-        stream_url = channel.get("url")
-        group_title = channel.get("group", "Other")
-        logo_url = logos.get(channel_name, "") # Get logo URL if available
+              for channel in channels:
+                  channel_name = channel.get("name", "Unknown Channel")
+                  stream_url = channel.get("url")
+                  group_title = channel.get("group", "Other")
+                  logo_url = logos.get(channel_name, "") # Get logo URL if available
 
-        if stream_url:
-            # Add EXTINF line with attributes
-            m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\\n"
-            # Add the stream URL
-            m3u8_content += f"{stream_url}\\n" # Corrected variable name here
-        else:
-            print(f"Skipping channel {channel_name} due to missing URL.")
+                  if stream_url:
+                      # Add EXTINF line with attributes
+                      m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\\n"
+                      # Add the stream URL
+                      m3u8_content += f"{stream_url}\\n" # Corrected variable name here
+                  else:
+                      print(f"Skipping channel {channel_name} due to missing URL.")
 
-    if len(m3u8_content.splitlines()) <= 1:
-        print("Warning: No valid M3U8 entries were generated from the data.")
-        return None
+              if len(m3u8_content.splitlines()) <= 1:
+                  print("Warning: No valid M3U8 entries were generated from the data.")
+                  return None
 
-    return m3u8_content
+              return m3u8_content
 
-def upload_to_github(content):
-    """
-    Uploads the M3U8 content to the specified GitHub repository file.
-    """
-    if content is None:
-        print("No content to upload to GitHub.")
-        return
+          def upload_to_github(content):
+              """
+              Uploads the M3U8 content to the specified GitHub repository file.
+              """
+              if content is None:
+                  print("No content to upload to GitHub.")
+                  return
 
-    try:
-        # Check if the file exists to get its SHA (needed for updates)
-        response = requests.get(api_url, headers=headers)
-        sha = None
-        if response.status_code == 200:
-            sha = response.json()["sha"]
-            print(f"File {file_path} exists with SHA: {sha}")
-        elif response.status_code == 404:
-            print(f"File {file_path} does not exist. Will create.")
-        else:
-            response.raise_for_status()
+              try:
+                  # Check if the file exists to get its SHA (needed for updates)
+                  response = requests.get(api_url, headers=headers)
+                  sha = None
+                  if response.status_code == 200:
+                      sha = response.json()["sha"]
+                      print(f"File {file_path} exists with SHA: {sha}")
+                  elif response.status_code == 404:
+                      print(f"File {file_path} does not exist. Will create.")
+                  else:
+                      response.raise_for_status()
 
-        # Encode the content in Base64
-        encoded_content = base64.b64encode(content.encode()).decode()
+                  # Encode the content in Base64
+                  encoded_content = base64.b64encode(content.encode()).decode()
 
-        # Prepare the data for the API request
-        data = {
-            "message": "Update cn.m3u8 playlist [skip ci]", # Commit message
-            "content": encoded_content,
-        }
-        if sha:
-            data["sha"] = sha
+                  # Prepare the data for the API request
+                  data = {
+                      "message": "Update cn.m3u8 playlist [skip ci]", # Commit message
+                      "content": encoded_content,
+                  }
+                  if sha:
+                      data["sha"] = sha
 
-        # Make the API request to create or update the file
-        response = requests.put(api_url, json=data, headers=headers)
+                  # Make the API request to create or update the file
+                  response = requests.put(api_url, json=data, headers=headers)
 
-        response.raise_for_status()
+                  response.raise_for_status()
 
-        print(f"Successfully uploaded/updated {file_path} on GitHub.")
+                  print(f"Successfully uploaded/updated {file_path} on GitHub.")
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error uploading to GitHub: {e}")
-        exit(1)
+              except requests.exceptions.RequestException as e:
+                  print(f"Error uploading to GitHub: {e}")
+                  exit(1)
 
-# --- Main Execution Flow ---
-print("Starting M3U8 generation and upload process...")
+          # --- Main Execution Flow ---
+          print("Starting M3U8 generation and upload process...")
 
-# 1. Fetch the raw data from the sources
-raw_channel_data = fetch_data(channel_list_url)
-raw_logo_html = fetch_data(logo_guide_url)
+          # 1. Fetch the raw data from the sources
+          raw_channel_data = fetch_data(channel_list_url)
+          raw_logo_html = fetch_data(logo_guide_url)
 
-# 2. Parse the raw data
-channels = parse_itvlist(raw_channel_data)
-logos = parse_logo_guide(raw_logo_html)
+          # 2. Parse the raw data
+          channels = parse_itvlist(raw_channel_data)
+          logos = parse_logo_guide(raw_logo_html)
 
-# 3. Convert the parsed data into M3U8 format
-m3u8_content = convert_data_to_m3u8(channels, logos)
+          # 3. Convert the parsed data into M3U8 format
+          m3u8_content = convert_data_to_m3u8(channels, logos)
 
-if m3u8_content:
-    # 4. Upload the generated M3U8 content to GitHub
-    upload_to_github(m3u8_content)
-else:
-    print("M3U8 content generation failed or resulted in no entries.")
+          if m3u8_content:
+              # 4. Upload the generated M3U8 content to GitHub
+              upload_to_github(m3u8_content)
+          else:
+              print("M3U8 content generation failed or resulted in no entries.")
 
-print("Process finished.")
+          print("Process finished.")
 
           '
         env:
