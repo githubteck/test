@@ -1,4 +1,4 @@
-name: Generate M3U8 Playlist and Upload to Repo
+name: Generate M3U8 Playlist and Create File
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Needed if you were using the default token to commit
+      contents: write # Needed for the API call to write to the repository
 
     steps:
     - name: Checkout code
@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests beautifulsoup4 jq # Install jq here
+        pip install requests beautifulsoup4 jq # jq is still useful for payload creation
 
     - name: Run script and generate cn.m3u8
       run: |
@@ -40,30 +40,10 @@ jobs:
           exit 1
         fi
 
-    - name: Get file SHA if it exists
-      run: |
-        SHA=""
-        API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
-        RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ABC }}" "$API_URL")
-
-        # Check if the file exists and extract the SHA using jq
-        FILE_EXISTS=$(echo "$RESPONSE" | jq -e '.sha' > /dev/null 2>&1; echo $?)
-        if [ $FILE_EXISTS -eq 0 ]; then
-          SHA=$(echo "$RESPONSE" | jq -r '.sha')
-          echo "File exists. SHA: $SHA"
-          # Write the SHA to the GITHUB_ENV file to make it available to subsequent steps
-          echo "FILE_SHA=$SHA" >> $GITHUB_ENV
-        else
-          echo "File does not exist."
-          echo "FILE_SHA=" >> $GITHUB_ENV # Write an empty string if file doesn't exist
-        fi
-
-    - name: Upload/Update cn.m3u8 via GitHub API
+    - name: Create cn.m3u8 via GitHub API
       run: |
         FILE_CONTENT_BASE64=$(base64 -w 0 cn.m3u8) # Base64 encode the file content
-        # Access the SHA from the environment variable set in the previous step
-        SHA="${{ env.FILE_SHA }}"
-        COMMIT_MESSAGE="Update cn.m3u8"
+        COMMIT_MESSAGE="Create cn.m3u8"
         API_URL="https://api.github.com/repos/githubteck/test/contents/cn.m3u8"
 
         PAYLOAD='{
@@ -71,15 +51,10 @@ jobs:
           "content": "'"$FILE_CONTENT_BASE64"'"
         }'
 
-        # Add SHA to payload if the file exists (SHA is not empty)
-        if [ -n "$SHA" ]; then
-          PAYLOAD=$(echo "$PAYLOAD" | jq --arg sha "$SHA" '. + {sha: $sha}')
-        fi
-
-        # Use jq to format the payload correctly before sending
+        # Use jq to format the payload correctly before sending (optional but good practice)
         PAYLOAD=$(echo "$PAYLOAD" | jq tostring -c)
 
         curl -X PUT "$API_URL" \
           -H "Authorization: token ${{ secrets.ABC }}" \
           -H "Content-Type: application/json" \
-          -d "$PAYLOAD"
+          -d "$PAYLOAD
