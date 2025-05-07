@@ -103,7 +103,7 @@ jobs:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
-                  logo_url = f"https://assets.livednow.com/logo/{channel_name}.png"
+                  logo_url = f"https://live.fanmingming.cn/tv/{channel_name}.png"
                   if stream_url:
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
