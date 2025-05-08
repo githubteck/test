@@ -51,7 +51,7 @@ jobs:
               "Accept": "application/vnd.github.v3+json",
           }
 
-          channel_list_url = "https://raw.githubusercontent.com/ssili126/tv/refs/heads/main/itvlist.txt"
+          channel_list_url = "https://ua.fongmi.eu.org/box.php?url=https://tv.iill.top/m3u/Gather"
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
@@ -77,16 +77,14 @@ jobs:
               if raw_data:
                   lines = raw_data.strip().split("\n")
                   current_group = "Other"
-                  for line in lines:
-                      line = line.strip()
+                  for i in range(len(lines)):
+                      line = lines[i].strip()
                       if not line:
                           continue
                       if "#EXTINF" in line:
-                          parts = line.split(",")
-                          if len(parts) >= 3:
-                              channel_name = parts[1].strip()
-                              stream_url = parts[2].strip()
-                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                          extinf_line = line
+                          stream_url = lines[i+1].strip() if i + 1 < len(lines) else ""
+                          channels.append({"name": "Preformatted", "url": extinf_line + "\n" + stream_url, "group": current_group})
                       elif line.endswith(",#genre#"):
                           current_group = line.replace(",#genre#", "").strip()
                       else:
@@ -103,8 +101,10 @@ jobs:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
-                  logo_url = f"https://assets.livednow.com/logo/{channel_name}.png"
-                  if stream_url:
+                  if stream_url and stream_url.startswith("#EXTINF"):
+                      m3u8_content += stream_url + "\n"
+                  elif stream_url:
+                      logo_url = f"https://assets.livednow.com/logo/{channel_name}.png"
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
               return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
