@@ -82,22 +82,24 @@ https://tv.iill.top/migu/lsjd
 https://tv.iill.top/migu/zqfy
 #EXTINF:-1 tvg-id="咪咕24小时体育" tvg-name="咪咕24小时体育" tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「TV」",咪咕24小时体育台
 https://tv.iill.top/migu/mgty
+#EXTINF:-1 tvg-logo="https://epg.iill.top/logo/NBA.png" group-title="•咪咕「NBA」", 「NBA」07:00 -季后赛-尼克斯VS凯尔特人-24/25赛季季后赛全场集锦：尼克斯91:90凯尔特人（20250508）
+https://tv.iill.top/NBA/XtdKHd
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/NBA.png" group-title="•咪咕「NBA」", 「NBA」07:00 -季后赛-尼克斯VS凯尔特人-蔡凯臣 刘铁 秋童
-https://tv.iill.top/NBA/irEGPT
+https://tv.iill.top/NBA/CLUtib
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/NBA.png" group-title="•咪咕「NBA」", 「NBA」07:00 -季后赛-尼克斯VS凯尔特人-英文原声
-https://tv.iill.top/NBA/O5O8ly
+https://tv.iill.top/NBA/k7679U
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/NBA.png" group-title="•咪咕「NBA」", 「NBA」09:30 -季后赛-掘金VS雷霆-王晓晨 孔德昕 闫宇峰
-https://tv.iill.top/NBA/ezhJoJ
+https://tv.iill.top/NBA/eTIG9E
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/NBA.png" group-title="•咪咕「NBA」", 「NBA」09:30 -季后赛-掘金VS雷霆-英文原声
-https://tv.iill.top/NBA/RKzrTp
-#EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「斯诺克」02:00 -斯诺克元老世锦赛Day1：菲格雷多、卡纳万出战-菲格雷多、卡纳万出战-清流播出
-https://tv.iill.top/Migu/ApApmd
+https://tv.iill.top/NBA/xyF7UI
+#EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「斯诺克」02:00 -斯诺克元老世锦赛Day1：乔·佩里晋级 菲格雷多出局-乔·佩里晋级 菲格雷多出局-清流播出
+https://tv.iill.top/Migu/5HNnEu
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「LPL」16:30 -TT vs FPX-TT vs FPX-官方解说
-https://tv.iill.top/Migu/3ejB9P
-#EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「WTA」17:00 -WTA罗马站第三日-WTA罗马站第三日-清流播出
-https://tv.iill.top/Migu/V36L4o
+https://tv.iill.top/Migu/umxNrM
+#EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「WTA」17:00 -WTA罗马站女单第二轮：大坂直美出战、斯瓦泰克PK科恰雷托-大坂直美出战、斯瓦泰克PK科恰雷托-清流播出
+https://tv.iill.top/Migu/WcxqDR
 #EXTINF:-1 tvg-logo="https://epg.iill.top/logo/咪咕.png" group-title="•咪咕「体育」", 「LPL」20:00 -TES vs NIP-TES vs NIP-官方解说
-https://tv.iill.top/Migu/CYlpO4
+https://tv.iill.top/Migu/wt1mae
 #EXTINF:-1 tvg-id="凤凰中文" tvg-name="凤凰中文" tvg-logo="https://epg.iill.top/logo/凤凰中文.png" http-user-agent="FengWatch/5.4.14" group-title="•港澳「限制」",鳳凰衛視·中文「限UA」
 https://tv.iill.top/phenix/fhzw
 #EXTINF:-1 tvg-id="凤凰资讯" tvg-name="凤凰资讯" tvg-logo="https://epg.iill.top/logo/凤凰资讯.png" http-user-agent="FengWatch/5.4.14" group-title="•港澳「限制」",鳳凰衛視·資訊「限UA」
