@@ -51,7 +51,7 @@ jobs:
               "Accept": "application/vnd.github.v3+json",
           }
 
-          channel_list_url = "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u"
+          channel_list_url = "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt"
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
