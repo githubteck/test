@@ -388,3 +388,119 @@ http://108.181.20.197/livehttpplay?channel_id=20033
 http://108.181.20.197/livehttpplay?channel_id=20164
 #EXTINF:-1 tvg-id="" tvg-name="非凡新聞" tvg-logo="https://live.fanmingming.cn/tv/非凡新聞.png" group-title="Other",非凡新聞
 rtmp://f13h.mine.nu/sat/tv581
+#EXTINF:-1 tvg-id="" tvg-name="龙祥电影" tvg-logo="https://live.fanmingming.cn/tv/龙祥电影.png" group-title="Other",龙祥电影
+https://smart.pendy.dpdns.org/Smart.php?id=lungxiangtime_twn
+#EXTINF:-1 tvg-id="" tvg-name="纬来电影" tvg-logo="https://live.fanmingming.cn/tv/纬来电影.png" group-title="Other",纬来电影
+https://smart.pendy.dpdns.org/Smart.php?id=videolandmovie
+#EXTINF:-1 tvg-id="" tvg-name="中天新闻" tvg-logo="https://live.fanmingming.cn/tv/中天新闻.png" group-title="Other",中天新闻
+https://smart.pendy.dpdns.org/Smart.php?id=ctinews
+#EXTINF:-1 tvg-id="" tvg-name="tvbs新闻" tvg-logo="https://live.fanmingming.cn/tv/tvbs新闻.png" group-title="Other",tvbs新闻
+https://smart.pendy.dpdns.org/Smart.php?id=tvbs_n
+#EXTINF:-1 tvg-id="" tvg-name="年代新闻" tvg-logo="https://live.fanmingming.cn/tv/年代新闻.png" group-title="Other",年代新闻
+https://smart.pendy.dpdns.org/Smart.php?id=niandainews_twn
+#EXTINF:-1 tvg-id="" tvg-name="民视闽南" tvg-logo="https://live.fanmingming.cn/tv/民视闽南.png" group-title="Other",民视闽南
+https://smart.pendy.dpdns.org/Smart.php?id=ftvhd_taiwan
+#EXTINF:-1 tvg-id="" tvg-name="中视闽南" tvg-logo="https://live.fanmingming.cn/tv/中视闽南.png" group-title="Other",中视闽南
+https://smart.pendy.dpdns.org/Smart.php?id=zhongshihd_twn
+#EXTINF:-1 tvg-id="" tvg-name="华视闽南" tvg-logo="https://live.fanmingming.cn/tv/华视闽南.png" group-title="Other",华视闽南
+https://smart.pendy.dpdns.org/Smart.php?id=ctshd_twn
+#EXTINF:-1 tvg-id="" tvg-name="台视闽南" tvg-logo="https://live.fanmingming.cn/tv/台视闽南.png" group-title="Other",台视闽南
+https://smart.pendy.dpdns.org/Smart.php?id=ttv_taiwan
+#EXTINF:-1 tvg-id="" tvg-name="tvbs闽南" tvg-logo="https://live.fanmingming.cn/tv/tvbs闽南.png" group-title="Other",tvbs闽南
+https://smart.pendy.dpdns.org/Smart.php?id=tvbs
+#EXTINF:-1 tvg-id="" tvg-name="tvbs欢乐" tvg-logo="https://live.fanmingming.cn/tv/tvbs欢乐.png" group-title="Other",tvbs欢乐
+https://smart.pendy.dpdns.org/Smart.php?id=tvbshuanle_twn
+#EXTINF:-1 tvg-id="" tvg-name="公视台语" tvg-logo="https://live.fanmingming.cn/tv/公视台语.png" group-title="Other",公视台语
+https://smart.pendy.dpdns.org/Smart.php?id=ctv2_twn
+#EXTINF:-1 tvg-id="" tvg-name="台视综合" tvg-logo="https://live.fanmingming.cn/tv/台视综合.png" group-title="Other",台视综合
+https://smart.pendy.dpdns.org/Smart.php?id=ttvzhonghe
+#EXTINF:-1 tvg-id="" tvg-name="八大娱乐" tvg-logo="https://live.fanmingming.cn/tv/八大娱乐.png" group-title="Other",八大娱乐
+https://smart.pendy.dpdns.org/Smart.php?id=badaentertain
+#EXTINF:-1 tvg-id="" tvg-name="东森洋片" tvg-logo="https://live.fanmingming.cn/tv/东森洋片.png" group-title="Other",东森洋片
+https://smart.pendy.dpdns.org/Smart.php?id=ettvwestern
+#EXTINF:-1 tvg-id="" tvg-name="东森幼幼" tvg-logo="https://live.fanmingming.cn/tv/东森幼幼.png" group-title="Other",东森幼幼
+https://smart.pendy.dpdns.org/Smart.php?id=yoyo_twn
+#EXTINF:-1 tvg-id="" tvg-name="东森财经" tvg-logo="https://live.fanmingming.cn/tv/东森财经.png" group-title="Other",东森财经
+https://smart.pendy.dpdns.org/Smart.php?id=ettvcaijing_twn
+#EXTINF:-1 tvg-id="" tvg-name="寰宇财经" tvg-logo="https://live.fanmingming.cn/tv/寰宇财经.png" group-title="Other",寰宇财经
+https://smart.pendy.dpdns.org/Smart.php?id=huanyutaiwan_twn
+#EXTINF:-1 tvg-id="" tvg-name="华艺综合" tvg-logo="https://live.fanmingming.cn/tv/华艺综合.png" group-title="Other",华艺综合
+https://smart.pendy.dpdns.org/Smart.php?id=weishichinese_twn
+#EXTINF:-1 tvg-id="" tvg-name="阿里郎综" tvg-logo="https://live.fanmingming.cn/tv/阿里郎综.png" group-title="Other",阿里郎综
+https://smart.pendy.dpdns.org/Smart.php?id=arirang_twn
+#EXTINF:-1 tvg-id="" tvg-name="AXN电影" tvg-logo="https://live.fanmingming.cn/tv/AXN电影.png" group-title="Other",AXN电影
+https://smart.pendy.dpdns.org/Smart.php?id=axn_twn
+#EXTINF:-1 tvg-id="" tvg-name="CInemax" tvg-logo="https://live.fanmingming.cn/tv/CInemax.png" group-title="Other",CInemax
+https://smart.pendy.dpdns.org/Smart.php?id=cinemax_twn
+#EXTINF:-1 tvg-id="" tvg-name="HBo" tvg-logo="https://live.fanmingming.cn/tv/HBo.png" group-title="Other",HBo
+https://smart.pendy.dpdns.org/Smart.php?id=hbohd_twn
+#EXTINF:-1 tvg-id="" tvg-name="HBo家庭" tvg-logo="https://live.fanmingming.cn/tv/HBo家庭.png" group-title="Other",HBo家庭
+https://smart.pendy.dpdns.org/Smart.php?id=fyi_twn
+#EXTINF:-1 tvg-id="" tvg-name="好莱电影" tvg-logo="https://live.fanmingming.cn/tv/好莱电影.png" group-title="Other",好莱电影
+https://smart.pendy.dpdns.org/Smart.php?id=hollywoodmovies_twn
+#EXTINF:-1 tvg-id="" tvg-name="龙华经典" tvg-logo="https://live.fanmingming.cn/tv/龙华经典.png" group-title="Other",龙华经典
+https://smart.pendy.dpdns.org/Smart.php?id=lunghuajingdian_twn
+#EXTINF:-1 tvg-id="" tvg-name="龙华电影" tvg-logo="https://live.fanmingming.cn/tv/龙华电影.png" group-title="Other",龙华电影
+https://smart.pendy.dpdns.org/Smart.php?id=xingwei_movie
+#EXTINF:-1 tvg-id="" tvg-name="龙华偶像" tvg-logo="https://live.fanmingming.cn/tv/龙华偶像.png" group-title="Other",龙华偶像
+https://smart.pendy.dpdns.org/Smart.php?id=lunghuaidol_twn
+#EXTINF:-1 tvg-id="" tvg-name="龙华洋片" tvg-logo="https://live.fanmingming.cn/tv/龙华洋片.png" group-title="Other",龙华洋片
+https://smart.pendy.dpdns.org/Smart.php?id=lunghuawestern_twn
+#EXTINF:-1 tvg-id="" tvg-name="纬来日本" tvg-logo="https://live.fanmingming.cn/tv/纬来日本.png" group-title="Other",纬来日本
+https://smart.pendy.dpdns.org/Smart.php?id=videolandjapan
+#EXTINF:-1 tvg-id="" tvg-name="纬来综合" tvg-logo="https://live.fanmingming.cn/tv/纬来综合.png" group-title="Other",纬来综合
+https://smart.pendy.dpdns.org/Smart.php?id=videolandzonghe
+#EXTINF:-1 tvg-id="" tvg-name="纬来育乐" tvg-logo="https://live.fanmingming.cn/tv/纬来育乐.png" group-title="Other",纬来育乐
+https://smart.pendy.dpdns.org/Smart.php?id=videolandyule
+#EXTINF:-1 tvg-id="" tvg-name="纬来精彩" tvg-logo="https://live.fanmingming.cn/tv/纬来精彩.png" group-title="Other",纬来精彩
+https://smart.pendy.dpdns.org/Smart.php?id=videolandspecial_twn
+#EXTINF:-1 tvg-id="" tvg-name="靖天国际" tvg-logo="https://live.fanmingming.cn/tv/靖天国际.png" group-title="Other",靖天国际
+https://smart.pendy.dpdns.org/Smart.php?id=jingtianintl_twn
+#EXTINF:-1 tvg-id="" tvg-name="靖天卡通" tvg-logo="https://live.fanmingming.cn/tv/靖天卡通.png" group-title="Other",靖天卡通
+https://smart.pendy.dpdns.org/Smart.php?id=jingtiancartoon_twn
+#EXTINF:-1 tvg-id="" tvg-name="大爱壹" tvg-logo="https://live.fanmingming.cn/tv/大爱壹.png" group-title="Other",大爱壹
+https://smart.pendy.dpdns.org/Smart.php?id=daai_twn
+#EXTINF:-1 tvg-id="" tvg-name="大爱贰" tvg-logo="https://live.fanmingming.cn/tv/大爱贰.png" group-title="Other",大爱贰
+https://smart.pendy.dpdns.org/Smart.php?id=daai2_twn
+#EXTINF:-1 tvg-id="" tvg-name="好消息贰" tvg-logo="https://live.fanmingming.cn/tv/好消息贰.png" group-title="Other",好消息贰
+https://smart.pendy.dpdns.org/Smart.php?id=good2_twn
+#EXTINF:-1 tvg-id="" tvg-name="三立闽南" tvg-logo="https://live.fanmingming.cn/tv/三立闽南.png" group-title="Other",三立闽南
+https://smart.pendy.dpdns.org/Smart.php?id=sanlitaiwan
+#EXTINF:-1 tvg-id="" tvg-name="ELta影剧" tvg-logo="https://live.fanmingming.cn/tv/ELta影剧.png" group-title="Other",ELta影剧
+https://smart.pendy.dpdns.org/Smart.php?id=eltayingju_twn
+#EXTINF:-1 tvg-id="" tvg-name="ELta综合" tvg-logo="https://live.fanmingming.cn/tv/ELta综合.png" group-title="Other",ELta综合
+https://smart.pendy.dpdns.org/Smart.php?id=eltazonghe_twn
+#EXTINF:-1 tvg-id="" tvg-name="ELTA体1" tvg-logo="https://live.fanmingming.cn/tv/ELTA体1.png" group-title="Other",ELTA体1
+https://smart.pendy.dpdns.org/Smart.php?id=eltasport_twn
+#EXTINF:-1 tvg-id="" tvg-name="ELTA体3" tvg-logo="https://live.fanmingming.cn/tv/ELTA体3.png" group-title="Other",ELTA体3
+https://smart.pendy.dpdns.org/Smart.php?id=eltasport3_twn
+#EXTINF:-1 tvg-id="" tvg-name="Eleven一" tvg-logo="https://live.fanmingming.cn/tv/Eleven一.png" group-title="Other",Eleven一
+https://smart.pendy.dpdns.org/Smart.php?id=golfchannel_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯无限" tvg-logo="https://live.fanmingming.cn/tv/博斯无限.png" group-title="Other",博斯无限
+https://smart.pendy.dpdns.org/Smart.php?id=bosiunlimited_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯网球" tvg-logo="https://live.fanmingming.cn/tv/博斯网球.png" group-title="Other",博斯网球
+https://smart.pendy.dpdns.org/Smart.php?id=bositennis_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯运动壹特" tvg-logo="https://live.fanmingming.cn/tv/博斯运动壹特.png" group-title="Other",博斯运动壹特
+https://smart.pendy.dpdns.org/Smart.php?id=bosisport1_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯运动贰特" tvg-logo="https://live.fanmingming.cn/tv/博斯运动贰特.png" group-title="Other",博斯运动贰特
+https://smart.pendy.dpdns.org/Smart.php?id=bosisport2_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯高球壹特" tvg-logo="https://live.fanmingming.cn/tv/博斯高球壹特.png" group-title="Other",博斯高球壹特
+https://smart.pendy.dpdns.org/Smart.php?id=bosigolf1_twn
+#EXTINF:-1 tvg-id="" tvg-name="博斯高球贰特" tvg-logo="https://live.fanmingming.cn/tv/博斯高球贰特.png" group-title="Other",博斯高球贰特
+https://smart.pendy.dpdns.org/Smart.php?id=bosigolf2_twn
+#EXTINF:-1 tvg-id="" tvg-name="探索亚洲" tvg-logo="https://live.fanmingming.cn/tv/探索亚洲.png" group-title="Other",探索亚洲
+https://smart.pendy.dpdns.org/Smart.php?id=discoverytwn_twn
+#EXTINF:-1 tvg-id="" tvg-name="野生动物" tvg-logo="https://live.fanmingming.cn/tv/野生动物.png" group-title="Other",野生动物
+https://smart.pendy.dpdns.org/Smart.php?id=natgeowild_twn
+#EXTINF:-1 tvg-id="" tvg-name="亚洲美食" tvg-logo="https://live.fanmingming.cn/tv/亚洲美食.png" group-title="Other",亚洲美食
+https://smart.pendy.dpdns.org/Smart.php?id=afc_twn
+#EXTINF:-1 tvg-id="" tvg-name="亚洲旅游" tvg-logo="https://live.fanmingming.cn/tv/亚洲旅游.png" group-title="Other",亚洲旅游
+https://smart.pendy.dpdns.org/Smart.php?id=asiatravel_twn
+#EXTINF:-1 tvg-id="" tvg-name="亚洲TLC" tvg-logo="https://live.fanmingming.cn/tv/亚洲TLC.png" group-title="Other",亚洲TLC
+https://smart.pendy.dpdns.org/Smart.php?id=tlc_twn
+#EXTINF:-1 tvg-id="" tvg-name="EYE-旅游" tvg-logo="https://live.fanmingming.cn/tv/EYE-旅游.png" group-title="Other",EYE-旅游
+https://smart.pendy.dpdns.org/Smart.php?id=eyetvtravel_twn
+#EXTINF:-1 tvg-id="" tvg-name="EYE-戏剧" tvg-logo="https://live.fanmingming.cn/tv/EYE-戏剧.png" group-title="Other",EYE-戏剧
+https://smart.pendy.dpdns.org/Smart.php?id=eyetvxiju_twn
+#EXTINF:-1 tvg-id="" tvg-name="MTv" tvg-logo="https://live.fanmingming.cn/tv/MTv.png" group-title="Other",MTv
+https://smart.pendy.dpdns.org/Smart.php?id=mtvhd_twn
