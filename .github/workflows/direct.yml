@@ -27,4 +27,4 @@ jobs:
         env:
           ABC: ${{ secrets.ABC }}  # GitHub secret access token
         run: |
-          python scripts/direct.py
+          python direct.py
