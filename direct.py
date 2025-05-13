@@ -1,13 +1,17 @@
 import requests
 from base64 import b64encode
+import os
 
-# GitHub repo info
-repo_owner = 'githubteck'
-repo_name = 'test'
-file_path = 'direct.text'
-access_token = '${{ secrets.ABC }}'  # Use GitHub secrets in actual GitHub Actions
+# GitHub repository details
+repo_owner = 'githubteck'        # Your GitHub username
+repo_name = 'test'               # Your GitHub repo name
+file_path = 'direct.text'        # File path in the repo
+access_token = os.getenv('ABC')  # Get token from environment (GitHub secret)
 
-# M3U8 file setup
+if not access_token:
+    raise ValueError("GitHub token not found. Make sure the 'ABC' environment variable is set.")
+
+# Base URL and file list
 base_url = 'https://aseanic.github.io/hls/'
 files = [
     '26.m3u8', '28.m3u8', '92.m3u8', '98.m3u8', '99.m3u8', '100.m3u8',
@@ -20,20 +24,20 @@ files = [
     '287.m3u8', '288.m3u8', '314.m3u8'
 ]
 
-# Extract stream URLs
+# Fetch and extract stream URLs
 output_lines = []
 for file in files:
     url = base_url + file
     try:
-        r = requests.get(url)
+        r = requests.get(url, timeout=10)
         r.raise_for_status()
         lines = r.text.split('\n')
         stream_url = next((line for line in lines if line.startswith('http')), 'Not found')
     except Exception as e:
-        stream_url = f'Fetch error: {e}'
+        stream_url = f'Fetch error: {str(e)}'
     output_lines.append(f'{url} => {stream_url}')
 
-# Save to a text file (optional local save)
+# Save to local file (optional)
 with open('direct.text', 'w') as f:
     f.write('\n'.join(output_lines))
 
@@ -41,29 +45,30 @@ with open('direct.text', 'w') as f:
 def upload_to_github():
     api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
 
-    # Check if file already exists to get SHA
-    get_resp = requests.get(api_url, headers={
+    # Get file SHA if it already exists
+    headers = {
         'Authorization': f'token {access_token}',
         'Accept': 'application/vnd.github.v3+json'
-    })
-    sha = get_resp.json().get('sha') if get_resp.status_code == 200 else None
+    }
+    response = requests.get(api_url, headers=headers)
+    sha = response.json().get('sha') if response.status_code == 200 else None
 
+    # Prepare upload payload
+    content_base64 = b64encode('\n'.join(output_lines).encode()).decode()
     data = {
-        'message': 'Upload direct.text',
-        'content': b64encode('\n'.join(output_lines).encode()).decode(),
+        'message': 'Update direct.text with extracted stream URLs',
+        'content': content_base64,
         'branch': 'main'
     }
     if sha:
         data['sha'] = sha
 
-    put_resp = requests.put(api_url, headers={
-        'Authorization': f'token {access_token}',
-        'Accept': 'application/vnd.github.v3+json'
-    }, json=data)
+    put_resp = requests.put(api_url, headers=headers, json=data)
 
     if put_resp.status_code in [200, 201]:
-        print('✅ File uploaded successfully.')
+        print('✅ File uploaded successfully to GitHub.')
     else:
-        print(f'❌ Failed to upload file: {put_resp.json()}')
+        print(f'❌ Failed to upload file: {put_resp.status_code} - {put_resp.json()}')
 
+# Run the upload
 upload_to_github()
