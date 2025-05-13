@@ -53,7 +53,7 @@ jobs:
           }
 
           channel_list_url = "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/refs/heads/main/%E4%B8%93%E5%8C%BA/%E2%99%AA%E5%8F%B0%E6%B9%BE%E5%8F%B0.txt"
-          logo_list_url = "https://raw.githubusercontent.com/githubteck/test/refs/heads/main/logo.txt"
+          logo_reference_url = "https://raw.githubusercontent.com/githubteck/test/refs/heads/main/logo.txt"
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
@@ -64,27 +64,15 @@ jobs:
               try:
                   response = requests.get(url)
                   response.raise_for_status()
-                  print(f"Fetched: {url}")
-                  if url.endswith(".gz"):
-                      return gzip.decompress(response.content).decode("utf-8")
-                  else:
-                      return response.text
-              except requests.RequestException as e:
+                  return response.text
+              except Exception as e:
                   print(f"Failed to fetch {url}: {e}")
                   return None
 
-          def fetch_logo_list():
-              data = fetch_data(logo_list_url)
-              return [line.strip() for line in data.splitlines() if line.strip()] if data else []
-
-          def get_best_logo_match(channel_name, logo_list):
-              matches = difflib.get_close_matches(channel_name, logo_list, n=1, cutoff=0.6)
-              return matches[0] if matches else None
-
-          def parse_itvlist(raw_data):
+          def parse_channels(data):
               channels = []
-              if raw_data:
-                  lines = raw_data.strip().split("\n")
+              if data:
+                  lines = data.strip().splitlines()
                   current_group = "Other"
                   for line in lines:
                       line = line.strip()
@@ -93,68 +81,62 @@ jobs:
                       if "#EXTINF" in line:
                           parts = line.split(",")
                           if len(parts) >= 3:
-                              channel_name = parts[1].strip()
-                              stream_url = parts[2].strip()
-                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                              name = parts[1].strip()
+                              url = parts[2].strip()
+                              channels.append({"name": name, "url": url, "group": current_group})
                       elif line.endswith(",#genre#"):
                           current_group = line.replace(",#genre#", "").strip()
                       else:
                           parts = line.split(",")
                           if len(parts) == 2:
-                              channel_name = parts[0].strip()
-                              stream_url = parts[1].strip()
-                              channels.append({"name": channel_name, "url": stream_url, "group": current_group})
+                              name = parts[0].strip()
+                              url = parts[1].strip()
+                              channels.append({"name": name, "url": url, "group": current_group})
               return channels
 
-          def convert_data_to_m3u8(channels, logo_list):
-              m3u8_content = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
-              for channel in channels:
-                  channel_name = channel.get("name", "Unknown Channel")
-                  stream_url = channel.get("url")
-                  group_title = channel.get("group", "Other")
+          def fetch_logo_names():
+              content = fetch_data(logo_reference_url)
+              return [line.strip() for line in content.splitlines() if line.strip()] if content else []
 
-                  matched_logo = get_best_logo_match(channel_name, logo_list)
-                  if matched_logo:
-                      logo_url = f"https://raw.githubusercontent.com/githubteck/test/main/assets/logo/{matched_logo}.png"
-                  else:
-                      logo_url = f"https://live.fanmingming.cn/tv/{channel_name}.png"
+          def best_logo_name(channel_name, logo_list):
+              matches = difflib.get_close_matches(channel_name, logo_list, n=1, cutoff=0.6)
+              return matches[0] if matches else channel_name  # fallback to original name
 
-                  if stream_url:
-                      m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
-                      m3u8_content += f"{stream_url}\n"
-              return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
+          def build_m3u8(channels, logo_list):
+              m3u = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
+              for ch in channels:
+                  name = ch["name"]
+                  url = ch["url"]
+                  group = ch.get("group", "Other")
+                  logo_base = best_logo_name(name, logo_list)
+                  logo_url = f"https://live.fanmingming.cn/tv/{logo_base}.png"
+                  m3u += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{name}\" tvg-logo=\"{logo_url}\" group-title=\"{group}\",{name}\n{url}\n"
+              return m3u
 
           def upload_to_github(content):
-              if content is None:
-                  print("No content to upload.")
-                  return
-              try:
-                  response = requests.get(api_url, headers=headers)
-                  sha = response.json()["sha"] if response.status_code == 200 else None
-
-                  encoded_content = base64.b64encode(content.encode()).decode()
-                  data = {
-                      "message": "Update tw.m3u8 playlist [skip ci]",
-                      "content": encoded_content,
-                  }
-                  if sha:
-                      data["sha"] = sha
-
-                  response = requests.put(api_url, json=data, headers=headers)
-                  response.raise_for_status()
+              encoded = base64.b64encode(content.encode()).decode()
+              response = requests.get(api_url, headers=headers)
+              sha = response.json().get("sha") if response.status_code == 200 else None
+              data = {
+                  "message": "Update tw.m3u8 [auto]",
+                  "content": encoded
+              }
+              if sha:
+                  data["sha"] = sha
+              upload = requests.put(api_url, json=data, headers=headers)
+              if upload.status_code in [200, 201]:
                   print("✅ Upload successful.")
-              except requests.RequestException as e:
-                  print(f"❌ Upload error: {e}")
-                  exit(1)
+              else:
+                  print(f"❌ Upload failed: {upload.status_code} {upload.text}")
 
-          print("🚀 Start process...")
-          raw_channel_data = fetch_data(channel_list_url)
-          logo_list = fetch_logo_list()
-          channels = parse_itvlist(raw_channel_data)
-          m3u8_content = convert_data_to_m3u8(channels, logo_list)
-          upload_to_github(m3u8_content)
-          print("✅ Finished.")
-
+          # Run it all
+          print("🚀 Generating m3u8 playlist...")
+          raw_channels = fetch_data(channel_list_url)
+          logo_list = fetch_logo_names()
+          channels = parse_channels(raw_channels)
+          playlist = build_m3u8(channels, logo_list)
+          upload_to_github(playlist)
+          print("✅ Done.")
           EOF
 
           python generate_m3u8.py
