@@ -34,57 +34,67 @@ jobs:
         python3 <<EOF
         import requests
         import base64
-        
-        repo_owner = 'githubteck'  # Your GitHub username
-        repo_name = 'test'  # Your GitHub repository name
-        file_path = '123.m3u8'  # Path in the GitHub repository where the file will be uploaded
-        access_token = "${{ secrets.ABC }}"  # Access the token securely from GitHub Secrets
-        
-        # Fetch raw data
+
+        repo_owner = 'githubteck'
+        repo_name = 'test'
+        file_path = '123.m3u8'
+        access_token = "${{ secrets.ABC }}"
+
+        # Fetch the direct.text mapping file from your GitHub repo
+        def fetch_mapping():
+            url = 'https://raw.githubusercontent.com/githubteck/test/refs/heads/main/direct.text'
+            response = requests.get(url)
+            if response.status_code != 200:
+                raise Exception(f"Failed to fetch direct.text: {response.status_code}")
+            mapping = {}
+            for line in response.text.strip().split('\\n'):
+                if '=>' in line:
+                    original, resolved = map(str.strip, line.split('=>', 1))
+                    mapping[original] = resolved
+            return mapping
+
+        # Fetch the TV file data
         def fetch_tv_data():
             data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
             response = requests.get(data_url)
             return response.text if response.status_code == 200 else None
-        
-        # Parse data
-        def parse_channels(data):
-            """Parse the TV data and convert it to the required format."""
+
+        # Parse and transform TV data using the direct mapping
+        def parse_channels(data, mapping):
             lines = data.split('\\n')
             transformed_lines = []
-        
+
             for line in lines:
                 stripped_line = line.strip()
-                if stripped_line == '':
-                    transformed_lines.append('')  # Preserve empty lines
+                if not stripped_line:
+                    transformed_lines.append('')
                     continue
 
-                # Insert user-agent line before the authorization header
+                # Replace mapped URLs
+                for original, resolved in mapping.items():
+                    if original in stripped_line:
+                        stripped_line = stripped_line.replace(original, resolved)
+
+                # Existing transformation logic preserved
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=authorization=Bearer"):
                     transformed_lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile')
-                
-                # Check for user-agent line and transform it
+
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=user-agent="):
                     user_agent = stripped_line.split('=')[-1].strip()
                     transformed_lines.append(f'#EXTVLCOPT:http-user-agent={user_agent}')
                     continue
-                
-                # Handle #KODIPROP for authorization
+
                 if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
                     headers = stripped_line.split('=')
-                    if len(headers) > 2:  # Ensure we have more than one '='
-                        auth_header = '='.join(headers[2:]).strip()  # Get everything after the first '='
-                        if auth_header.startswith("Bearer "):  # Check if it starts with "Bearer"
-                            token = auth_header[len("Bearer "):]  # Extract the token by removing "Bearer "
+                    if len(headers) > 2:
+                        auth_header = '='.join(headers[2:]).strip()
+                        if auth_header.startswith("Bearer "):
+                            token = auth_header[len("Bearer "):]
                             transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
-                        else:
-                            print("Unexpected authorization format")
-                    continue  # Skip to the next iteration
-        
-                # Handle #KODIPROP for drm_legacy (common formats)
+                    continue
+
                 elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
                     parts = stripped_line.split('=')[1].strip().split(',')
-
-                    # Check for ClearKey
                     if 'org.w3.clearkey' in stripped_line:
                         license_key = {}
                         for part in parts:
@@ -94,52 +104,50 @@ jobs:
                                 license_key[clean_key.strip()] = value.strip()
                         transformed_lines.append('#KODIPROP:inputstream.adaptive.manifest_type=dash')
                         transformed_lines.append('#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey')
-                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {", ".join([f"\\"{k}\\": \\"{v}\\" " for k, v in license_key.items()])} }}')
-                    
-                    # Check for Widevine
+                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {", ".join([f"\\"{k}\\": \\"{v}\\"" for k, v in license_key.items()])} }}')
                     elif 'com.widevine.alpha' in stripped_line:
-                        widevine_license_url = stripped_line.split('|')[1].strip()  # Capture the license URL
+                        widevine_license_url = stripped_line.split('|')[1].strip()
                         transformed_lines.append('#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha')
                         transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={widevine_license_url}')
-                        
                     continue
-                
-                # For any lines that don't match the transformation criteria, keep them unchanged
+
                 transformed_lines.append(stripped_line)
-        
+
             return '\\n'.join(transformed_lines)
-        
-        # Upload data to GitHub
+
         def upload_to_github(content):
             file_content = base64.b64encode(content.encode()).decode()
             api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
             headers = {'Authorization': f'token {access_token}'}
             response = requests.get(api_url, headers=headers)
-            
             sha = response.json().get('sha') if response.status_code == 200 else None
-        
+
             if sha:
                 existing_content = requests.get(api_url, headers=headers).json().get('content')
                 if existing_content and base64.b64decode(existing_content).decode() == content:
                     print("No changes detected. Skipping upload.")
                     return
-        
+
             data = {'message': 'Update channels.m3u8 file', 'content': file_content}
             if sha:
                 data['sha'] = sha
-        
+
             upload_response = requests.put(api_url, json=data, headers=headers)
-        
+
             if upload_response.status_code in [200, 201]:
                 print("File uploaded successfully!")
             else:
                 print(f"Failed to upload file. Status Code: {upload_response.status_code}")
                 print(f"Response Content: {upload_response.text}")
-        
+
         # Main execution
-        raw_data = fetch_tv_data()
-        if raw_data:
-            channels = parse_channels(raw_data)
-            upload_to_github(channels)
-        
+        try:
+            mapping = fetch_mapping()
+            raw_data = fetch_tv_data()
+            if raw_data:
+                transformed = parse_channels(raw_data, mapping)
+                upload_to_github(transformed)
+        except Exception as e:
+            print(f"❌ Error: {e}")
+
         EOF
