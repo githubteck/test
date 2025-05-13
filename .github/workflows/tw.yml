@@ -55,8 +55,8 @@ jobs:
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
-              "https://epg.112114.xyz/pp.xml.gz",
-              "https://raw.githubusercontent.com/sparkssssssssss/sparkssssssssss/main/pp.xml.gz"
+              "https://live.fanmingming.cn/e.xml"
+              
           ]
 
           def fetch_data(url):
