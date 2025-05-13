@@ -34,6 +34,7 @@ jobs:
           import base64
           import os
           import gzip
+          import difflib
 
           repo_owner = "githubteck"
           repo_name = "test"
@@ -52,11 +53,11 @@ jobs:
           }
 
           channel_list_url = "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/refs/heads/main/%E4%B8%93%E5%8C%BA/%E2%99%AA%E5%8F%B0%E6%B9%BE%E5%8F%B0.txt"
+          logo_list_url = "https://raw.githubusercontent.com/githubteck/test/refs/heads/main/logo.txt"
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
               "https://live.fanmingming.cn/e.xml"
-              
           ]
 
           def fetch_data(url):
@@ -71,6 +72,14 @@ jobs:
               except requests.RequestException as e:
                   print(f"Failed to fetch {url}: {e}")
                   return None
+
+          def fetch_logo_list():
+              data = fetch_data(logo_list_url)
+              return [line.strip() for line in data.splitlines() if line.strip()] if data else []
+
+          def get_best_logo_match(channel_name, logo_list):
+              matches = difflib.get_close_matches(channel_name, logo_list, n=1, cutoff=0.6)
+              return matches[0] if matches else None
 
           def parse_itvlist(raw_data):
               channels = []
@@ -97,13 +106,19 @@ jobs:
                               channels.append({"name": channel_name, "url": stream_url, "group": current_group})
               return channels
 
-          def convert_data_to_m3u8(channels):
+          def convert_data_to_m3u8(channels, logo_list):
               m3u8_content = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
               for channel in channels:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
-                  logo_url = f"https://live.fanmingming.cn/tv/{channel_name}.png"
+
+                  matched_logo = get_best_logo_match(channel_name, logo_list)
+                  if matched_logo:
+                      logo_url = f"https://raw.githubusercontent.com/githubteck/test/main/assets/logo/{matched_logo}.png"
+                  else:
+                      logo_url = f"https://live.fanmingming.cn/tv/{channel_name}.png"
+
                   if stream_url:
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
@@ -119,7 +134,7 @@ jobs:
 
                   encoded_content = base64.b64encode(content.encode()).decode()
                   data = {
-                      "message": "Update cn.m3u8 playlist [skip ci]",
+                      "message": "Update tw.m3u8 playlist [skip ci]",
                       "content": encoded_content,
                   }
                   if sha:
@@ -127,17 +142,19 @@ jobs:
 
                   response = requests.put(api_url, json=data, headers=headers)
                   response.raise_for_status()
-                  print("Upload successful.")
+                  print("✅ Upload successful.")
               except requests.RequestException as e:
-                  print(f"Upload error: {e}")
+                  print(f"❌ Upload error: {e}")
                   exit(1)
 
-          print("Start process...")
+          print("🚀 Start process...")
           raw_channel_data = fetch_data(channel_list_url)
+          logo_list = fetch_logo_list()
           channels = parse_itvlist(raw_channel_data)
-          m3u8_content = convert_data_to_m3u8(channels)
+          m3u8_content = convert_data_to_m3u8(channels, logo_list)
           upload_to_github(m3u8_content)
-          print("Finished.")
+          print("✅ Finished.")
+
           EOF
 
           python generate_m3u8.py
