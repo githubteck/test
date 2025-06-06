@@ -231,50 +231,51 @@
     }
 
     function searchTree() {
-      const term = document.getElementById("searchInput").value.trim().toLowerCase();
+  const term = document.getElementById("searchInput").value.trim().toLowerCase();
 
-      // Reset all highlights and hide all nodes
-      document.querySelectorAll(".node-box").forEach((span) =>
-        span.classList.remove("highlight")
-      );
-      document.querySelectorAll(".tree li").forEach((li) => li.classList.add("hidden"));
-      document.querySelectorAll(".tree ul").forEach((ul) => ul.classList.add("hidden"));
+  // Hide everything
+  document.querySelectorAll(".tree li").forEach(li => li.classList.add("hidden"));
+  document.querySelectorAll(".tree ul").forEach(ul => ul.classList.add("hidden"));
 
-      if (!term) {
-        expandAll();
-        return;
+  if (!term) {
+    expandAll();
+    return;
+  }
+
+  Object.keys(nodeMap).forEach(name => {
+    if (name.toLowerCase().includes(term)) {
+      const related = new Set([name]);
+
+      const parent = parentMap[name];
+      if (parent) related.add(parent);
+
+      if (relations[name]) {
+        relations[name].forEach(child => {
+          related.add(child);
+          if (relations[child]) {
+            relations[child].forEach(grandchild => related.add(grandchild));
+          }
+        });
       }
 
-      Object.keys(nodeMap).forEach((name) => {
-        if (name.toLowerCase().includes(term)) {
-          const related = new Set([name]);
+      related.forEach(n => {
+        const li = liMap[n];
+        if (li) {
+          li.classList.remove("hidden");
 
-          const parent = parentMap[name];
-          if (parent) related.add(parent);
-
-          if (relations[name]) {
-            relations[name].forEach((child) => related.add(child));
+          // Ensure parents and container ULs are visible
+          let el = li.parentElement;
+          while (el && el !== document.body) {
+            if (el.tagName === "UL") el.classList.remove("hidden");
+            const parentLi = el.closest("li");
+            if (parentLi) parentLi.classList.remove("hidden");
+            el = parentLi?.parentElement;
           }
-
-          related.forEach((n) => {
-            const li = liMap[n];
-            if (li) {
-              li.classList.remove("hidden");
-              nodeMap[n].classList.add("highlight");
-
-              // Reveal chain up to root
-              let el = li.parentElement;
-              while (el && el !== document.body) {
-                if (el.tagName === "UL") el.classList.remove("hidden");
-                const parentLi = el.closest("li");
-                if (parentLi) parentLi.classList.remove("hidden");
-                el = parentLi?.parentElement;
-              }
-            }
-          });
         }
       });
     }
+  });
+}
   </script>
 </body>
 </html>
