@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Family Tree Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 15px;
+      font-family: monospace;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      margin-top: 5px;
+    }
+
+    .tree ul {
+      list-style-type: none;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .tree li {
+      margin: 0.5em 0;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .tree li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.2em;
+      width: 1em;
+      height: 2px;
+      background: #000;
+    }
+
+    .node-box {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .level-1 {
+      background-color: #3b82f6;
+    }
+    .level-2 {
+      background-color: #16a34a;
+    }
+    .level-3 {
+      background-color: #f59e0b;
+    }
+    .level-4 {
+      background-color: #ef4444;
+    }
+    .level-default {
+      background-color: #6b7280;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .highlight {
+      outline: 3px solid #facc15;
+      background-color: #fde68a !important;
+      color: #000 !important;
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body * {
+        visibility: hidden;
+      }
+      #treeContainer,
+      #treeContainer * {
+        visibility: visible;
+      }
+      #treeContainer {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Paste Your Family Tree Data</h2>
+  <p>Format: <strong>Level, Parent, Child</strong> (tab-separated)</p>
+
+  <textarea
+    id="dataInput"
+    placeholder="Paste your tab-separated data here..."
+  ></textarea>
+  <br />
+  <button onclick="generateTree()">Generate Tree</button>
+  <button onclick="expandAll()">Expand All</button>
+  <button onclick="window.print()">Print</button>
+  <br /><br />
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search for a name..."
+    oninput="searchTree()"
+  />
+
+  <h2>Family Tree</h2>
+  <div id="treeContainer" class="tree"></div>
+
+  <script>
+    let nodeMap = {};
+    let parentMap = {};
+    let levels = {};
+    let relations = {};
+    let liMap = {};
+
+    function generateTree() {
+      const input = document.getElementById("dataInput").value.trim();
+      const lines = input.split("\n");
+      const header = lines.shift();
+
+      nodeMap = {};
+      parentMap = {};
+      levels = {};
+      relations = {};
+      liMap = {};
+
+      const allNodes = new Set();
+      const children = new Set();
+
+      for (const line of lines) {
+        const [levelStr, parent, child] = line.split("\t");
+        const level = parseInt(levelStr.trim());
+        const parentName = (parent || "").trim();
+        const childName = (child || "").trim();
+
+        if (!relations[parentName]) relations[parentName] = [];
+        relations[parentName].push(childName);
+        levels[childName] = level;
+        if (parentName && !levels[parentName]) levels[parentName] = level - 1;
+
+        parentMap[childName] = parentName;
+        allNodes.add(childName);
+        if (parentName) allNodes.add(parentName);
+        children.add(childName);
+      }
+
+      const roots = [...allNodes].filter(
+        (node) => !children.has(node) && node !== ""
+      );
+
+      const container = document.getElementById("treeContainer");
+      container.innerHTML = "";
+
+      roots.forEach((root) => {
+        const rootUl = document.createElement("ul");
+        const rootLi = createNode(root);
+        rootUl.appendChild(rootLi);
+        container.appendChild(rootUl);
+      });
+    }
+
+    function createNode(name) {
+      const li = document.createElement("li");
+      const level = levels[name] || 0;
+      const levelClass = `level-${level <= 4 ? level : "default"}`;
+
+      const span = document.createElement("span");
+      span.className = `node-box ${levelClass}`;
+      span.textContent = name;
+      li.appendChild(span);
+
+      nodeMap[name] = span;
+      liMap[name] = li;
+
+      // Toggle only direct children visibility on click
+      span.onclick = () => {
+        const ul = li.querySelector("ul");
+        if (ul) {
+          const childrenLis = [...ul.children];
+          const anyVisible = childrenLis.some(
+            (childLi) => !childLi.classList.contains("hidden")
+          );
+          if (anyVisible) {
+            childrenLis.forEach((childLi) => childLi.classList.add("hidden"));
+          } else {
+            childrenLis.forEach((childLi) => childLi.classList.remove("hidden"));
+          }
+        }
+      };
+
+      if (relations[name]) {
+        const ul = document.createElement("ul");
+        relations[name].forEach((child) => {
+          const childNode = createNode(child);
+          childNode.classList.add("hidden");
+          ul.appendChild(childNode);
+        });
+        li.appendChild(ul);
+      }
+
+      return li;
+    }
+
+    function expandAll() {
+      document.querySelectorAll(".tree ul").forEach((ul) => ul.classList.remove("hidden"));
+      document.querySelectorAll(".tree li").forEach((li) => li.classList.remove("hidden"));
+    }
+
+    function searchTree() {
+      const term = document.getElementById("searchInput").value.trim().toLowerCase();
+
+      // Reset all highlights and hide all nodes
+      document.querySelectorAll(".node-box").forEach((span) =>
+        span.classList.remove("highlight")
+      );
+      document.querySelectorAll(".tree li").forEach((li) => li.classList.add("hidden"));
+      document.querySelectorAll(".tree ul").forEach((ul) => ul.classList.add("hidden"));
+
+      if (!term) {
+        expandAll();
+        return;
+      }
+
+      Object.keys(nodeMap).forEach((name) => {
+        if (name.toLowerCase().includes(term)) {
+          const related = new Set([name]);
+
+          const parent = parentMap[name];
+          if (parent) related.add(parent);
+
+          if (relations[name]) {
+            relations[name].forEach((child) => related.add(child));
+          }
+
+          related.forEach((n) => {
+            const li = liMap[n];
+            if (li) {
+              li.classList.remove("hidden");
+              nodeMap[n].classList.add("highlight");
+
+              // Reveal chain up to root
+              let el = li.parentElement;
+              while (el && el !== document.body) {
+                if (el.tagName === "UL") el.classList.remove("hidden");
+                const parentLi = el.closest("li");
+                if (parentLi) parentLi.classList.remove("hidden");
+                el = parentLi?.parentElement;
+              }
+            }
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
