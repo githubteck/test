@@ -526,3 +526,5 @@ https://smart.pendy.dpdns.org/Smart.php?id=mtvhd_twn
 http://37.27.111.214:8080/live/27/hls.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="HITs电影" tvg-logo="https://live.fanmingming.cn/tv/HITs电影.png" group-title="Other",HITs电影
 http://37.27.111.214:8080/live/28/hls.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="大立电视" tvg-logo="https://live.fanmingming.cn/tv/大爱电视.png" group-title="Other",大立电视
+http://www.dalitv.com.tw:4568/live/dali/index.m3u8
