@@ -3,43 +3,43 @@ name: Generate and Upload M3U8
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'  # Optional: hourly
+    - cron: '0 * * * *'  # Optional: every hour
 
 jobs:
-  upload_m3u8:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+        run: pip install requests
 
-      - name: Generate and Upload M3U8 File via GitHub API
+      - name: Write and run Python script
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}  # <-- Your personal access token
         run: |
-          python3 <<EOF
+          cat << 'EOF' > generate_m3u8.py
           import requests
           import base64
-          import json
+          import os
 
-          # Repo details
+          # Config
           repo_owner = "githubteck"
           repo_name = "test"
           file_path = "456.m3u8"
           branch = "main"
           token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
-          github_token = "${{ secrets.ABC }}"
+          github_token = os.environ.get("MY_GITHUB_TOKEN")
 
-          # Get token from external API
+          # Get the latest token from external API
           token = requests.get(token_url).text.strip()
 
-          # Generate M3U8 content
-          content = f\"\"\"#EXTM3U
+          # Create the playlist content
+          content = f"""#EXTM3U
           #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
           #EXTHTTP:{{"Authorization":"Bearer {token}"}}
@@ -51,33 +51,16 @@ jobs:
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
           #KODIPROP:inputstream.adaptive.license_key={{"655b6df8085d4fe6b3f71c0f4288f98a":"5f0d4251e05e0a3a661218169ee84181","d66e2fe5f045426195d432802f9ba807":"6fe283a6f1f3a3fb69f82c4340e0dde2"}}
           https://l04.dp.sooka.my/2400/linear/index.mpd
-          \"\"\"
+          """
 
-          # Encode to Base64 for GitHub API
-          encoded_content = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+          # Encode file in base64 for GitHub API
+          encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
 
-          # Check if file exists
-          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+          # Prepare headers
           headers = {
               "Authorization": f"Bearer {github_token}",
               "Accept": "application/vnd.github.v3+json"
           }
-          get_resp = requests.get(api_url, headers=headers)
-          sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
-          # Prepare payload
-          payload = {
-              "message": "Auto-update 456.m3u8 with dynamic token",
-              "content": encoded_content,
-              "branch": branch
-          }
-          if sha:
-              payload["sha"] = sha
-
-          # Push via GitHub API
-          response = requests.put(api_url, headers=headers, json=payload)
-          if response.status_code in [200, 201]:
-              print("✅ 456.m3u8 uploaded successfully.")
-          else:
-              print("❌ Failed to upload file:", response.text)
-          EOF
+          # Check if file exists to get its SHA
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_
