@@ -29,7 +29,7 @@ jobs:
 
       - name: Fetch and process M3U8 data
         env:
-          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
+          MY_GITHUB_TOKEN: ${{ secrets.DEF }}
         run: |
           python3 <<EOF
           import requests
