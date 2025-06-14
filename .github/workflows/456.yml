@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # ✅ Required for file updates via GitHub API
+      contents: write  # 🔑 Required for pushing content
 
     steps:
       - name: Checkout code
@@ -48,13 +48,16 @@ jobs:
               print("❌ GitHub token not found!")
               exit(1)
 
-          # Fetch token from external source
+          # Fetch token from external URL
           try:
-              token = requests.get(token_url).text.strip()
+              token = requests.get(token_url)
+              token.raise_for_status()
+              token = token.text.strip()
           except Exception as e:
-              print(f"❌ Failed to fetch external token: {e}")
+              print(f"❌ Failed to fetch token: {e}")
               exit(1)
 
+          # Generate .m3u8 content
           content = f"""#EXTM3U
           #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
@@ -69,7 +72,7 @@ jobs:
           https://l04.dp.sooka.my/2400/linear/index.mpd
           """
 
-          encoded = base64.b64encode(content.encode()).decode()
+          encoded_content = base64.b64encode(content.encode()).decode()
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
           headers = {
@@ -77,21 +80,29 @@ jobs:
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Check for existing file
-          r = requests.get(api_url, headers=headers)
-          sha = r.json().get("sha") if r.status_code == 200 else None
+          # Check if file already exists
+          response = requests.get(api_url, headers=headers)
+          if response.status_code == 200:
+              sha = response.json().get("sha")
+              print("📄 Existing file found. Will update.")
+          else:
+              sha = None
+              print("📄 File does not exist. Will create.")
 
           payload = {
-              "message": "Update 456.m3u8 [auto]",
-              "content": encoded,
+              "message": "Auto-create or update 456.m3u8",
+              "content": encoded_content,
               "branch": branch
           }
-          if sha:
-              payload["sha"] = sha
 
-          res = requests.put(api_url, headers=headers, json=payload)
-          if res.status_code in [200, 201]:
-              print("✅ Upload successful.")
+          if sha:
+              payload["sha"] = sha  # needed to update existing file
+
+          upload = requests.put(api_url, headers=headers, data=json.dumps(payload))
+
+          if upload.status_code in [200, 201]:
+              print("✅ Upload successful: 456.m3u8 created or updated.")
           else:
-              print(f"❌ Upload failed: {res.status_code} {res.text}")
+              print(f"❌ Upload failed: {upload.status_code} {upload.text}")
+              exit(1)
           EOF
