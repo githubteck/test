@@ -29,12 +29,12 @@ jobs:
           import json
 
           # Config
-          repo_owner = "githubteck"
-          repo_name = "test"
-          file_path = "456.m3u8"
-          branch = "main"
+          repo_owner = 'githubteck'
+          repo_name = 'test'
+          file_path = '123.m3u8'
+          access_token = "${{ secrets.ABC }}"
           token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
-          github_token = os.environ.get("MY_GITHUB_TOKEN")
+          
 
           # Get the latest token from external API
           token = requests.get(token_url).text.strip()
