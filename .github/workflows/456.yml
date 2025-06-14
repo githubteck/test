@@ -3,7 +3,7 @@ name: Generate and Upload M3U8
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'  # Optional: every hour
+    - cron: '0 * * * *'  # Every hour
 
 jobs:
   generate:
@@ -20,12 +20,13 @@ jobs:
 
       - name: Write and run Python script
         env:
-          MY_GITHUB_TOKEN: ${{ secrets.ABC }}  # <-- Your personal access token
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}  # Your GitHub personal access token
         run: |
           cat << 'EOF' > generate_m3u8.py
           import requests
           import base64
           import os
+          import json
 
           # Config
           repo_owner = "githubteck"
@@ -53,14 +54,37 @@ jobs:
           https://l04.dp.sooka.my/2400/linear/index.mpd
           """
 
-          # Encode file in base64 for GitHub API
+          # Encode the content
           encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
 
-          # Prepare headers
+          # GitHub API URL
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+
           headers = {
               "Authorization": f"Bearer {github_token}",
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Check if file exists to get its SHA
-          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_
+          # Check if file exists
+          response = requests.get(api_url, headers=headers)
+          if response.status_code == 200:
+              sha = response.json()['sha']
+          else:
+              sha = None
+
+          # Prepare payload
+          data = {
+              "message": "Update M3U8 playlist",
+              "content": encoded_content,
+              "branch": branch
+          }
+          if sha:
+              data["sha"] = sha
+
+          # Upload file
+          put_response = requests.put(api_url, headers=headers, data=json.dumps(data))
+          if put_response.status_code in [200, 201]:
+              print("File uploaded successfully.")
+          else:
+              print("Failed to upload file:", put_response.text)
+          EOF
