@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # 🔑 Required for pushing content
+      contents: write  # Required to create or update repo content
 
     steps:
       - name: Checkout code
@@ -37,31 +37,36 @@ jobs:
           import os
           import json
 
+          # Config
           repo_owner = "githubteck"
           repo_name = "test"
           file_path = "456.m3u8"
+          branch = "main"
           token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
           github_token = os.getenv("MY_GITHUB_TOKEN")
-          branch = "main"
 
           if not github_token:
               print("❌ GitHub token not found!")
               exit(1)
 
-          # Fetch token from external URL
+          # Fetch and extract token
           try:
-              token = requests.get(token_url)
-              token.raise_for_status()
-              token = token.text.strip()
+              response = requests.get(token_url)
+              response.raise_for_status()
+              token_data = response.json()
+              token = token_data.get("token", "").strip()
+              if not token:
+                  print("❌ Token not found in response.")
+                  exit(1)
           except Exception as e:
-              print(f"❌ Failed to fetch token: {e}")
+              print(f"❌ Failed to fetch or parse token: {e}")
               exit(1)
 
           # Generate .m3u8 content
           content = f"""#EXTM3U
           #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
-          #EXTHTTP:{{"Authorization":"Bearer {token}"}}
+          #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:contentlookup=False
           #KODIPROP:mimetype=application/dash+xml
@@ -72,7 +77,7 @@ jobs:
           https://l04.dp.sooka.my/2400/linear/index.mpd
           """
 
-          encoded_content = base64.b64encode(content.encode()).decode()
+          encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
           headers = {
@@ -80,28 +85,28 @@ jobs:
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Check if file already exists
+          # Check if the file exists to determine if we need to include "sha"
           response = requests.get(api_url, headers=headers)
           if response.status_code == 200:
               sha = response.json().get("sha")
-              print("📄 Existing file found. Will update.")
+              print("📄 File exists. Updating it...")
           else:
               sha = None
-              print("📄 File does not exist. Will create.")
+              print("📄 File does not exist. Creating new...")
 
           payload = {
-              "message": "Auto-create or update 456.m3u8",
+              "message": "Auto-update or create 456.m3u8",
               "content": encoded_content,
               "branch": branch
           }
 
           if sha:
-              payload["sha"] = sha  # needed to update existing file
+              payload["sha"] = sha
 
           upload = requests.put(api_url, headers=headers, data=json.dumps(payload))
 
           if upload.status_code in [200, 201]:
-              print("✅ Upload successful: 456.m3u8 created or updated.")
+              print("✅ Upload successful.")
           else:
               print(f"❌ Upload failed: {upload.status_code} {upload.text}")
               exit(1)
