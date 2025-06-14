@@ -1,45 +1,60 @@
-name: Generate and Upload M3U8
+name: Generate and Upload 456.m3u8
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 * * * *'  # Every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # ✅ Required for file updates via GitHub API
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install dependencies
         run: pip install requests
 
-      - name: Write and run Python script
+      - name: Generate and upload 456.m3u8
         env:
-          MY_GITHUB_TOKEN: ${{ secrets.ABC }}  # Your GitHub personal access token
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
         run: |
-          cat << 'EOF' > generate_m3u8.py
+          python3 <<EOF
           import requests
           import base64
           import os
           import json
 
-          # Config
-          repo_owner = 'githubteck'
-          repo_name = 'test'
-          file_path = '456.m3u8'
-          access_token = "${{ secrets.ABC }}"
+          repo_owner = "githubteck"
+          repo_name = "test"
+          file_path = "456.m3u8"
           token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
-          
+          github_token = os.getenv("MY_GITHUB_TOKEN")
+          branch = "main"
 
-          # Get the latest token from external API
-          token = requests.get(token_url).text.strip()
+          if not github_token:
+              print("❌ GitHub token not found!")
+              exit(1)
 
-          # Create the playlist content
+          # Fetch token from external source
+          try:
+              token = requests.get(token_url).text.strip()
+          except Exception as e:
+              print(f"❌ Failed to fetch external token: {e}")
+              exit(1)
+
           content = f"""#EXTM3U
           #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
@@ -54,37 +69,29 @@ jobs:
           https://l04.dp.sooka.my/2400/linear/index.mpd
           """
 
-          # Encode the content
-          encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
-
-          # GitHub API URL
+          encoded = base64.b64encode(content.encode()).decode()
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
           headers = {
-              "Authorization": f"Bearer {github_token}",
+              "Authorization": f"token {github_token}",
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Check if file exists
-          response = requests.get(api_url, headers=headers)
-          if response.status_code == 200:
-              sha = response.json()['sha']
-          else:
-              sha = None
+          # Check for existing file
+          r = requests.get(api_url, headers=headers)
+          sha = r.json().get("sha") if r.status_code == 200 else None
 
-          # Prepare payload
-          data = {
-              "message": "Update M3U8 playlist",
-              "content": encoded_content,
+          payload = {
+              "message": "Update 456.m3u8 [auto]",
+              "content": encoded,
               "branch": branch
           }
           if sha:
-              data["sha"] = sha
+              payload["sha"] = sha
 
-          # Upload file
-          put_response = requests.put(api_url, headers=headers, data=json.dumps(data))
-          if put_response.status_code in [200, 201]:
-              print("File uploaded successfully.")
+          res = requests.put(api_url, headers=headers, json=payload)
+          if res.status_code in [200, 201]:
+              print("✅ Upload successful.")
           else:
-              print("Failed to upload file:", put_response.text)
+              print(f"❌ Upload failed: {res.status_code} {res.text}")
           EOF
