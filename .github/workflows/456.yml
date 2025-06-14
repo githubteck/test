@@ -31,7 +31,7 @@ jobs:
           # Config
           repo_owner = 'githubteck'
           repo_name = 'test'
-          file_path = '123.m3u8'
+          file_path = '456.m3u8'
           access_token = "${{ secrets.ABC }}"
           token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
           
