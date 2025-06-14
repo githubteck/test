@@ -1,4 +1,4 @@
-name: Update M3U8 File
+name: Generate and Upload M3U8
 
 on:
   push:
@@ -22,132 +22,81 @@ jobs:
       with:
         python-version: '3.x'
 
-    # Step 3: Install necessary Python dependencies
+    # Step 3: Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install requests
 
-    # Step 4: Run the Python script to fetch, parse, and upload M3U8 data
-    - name: Run Python script
+    # Step 4: Run Python script to generate and upload the M3U8 file
+    - name: Generate and upload 456.m3u8
+      env:
+        MY_GITHUB_TOKEN: ${{ secrets.ABC }}
       run: |
         python3 <<EOF
         import requests
         import base64
+        import os
+        import json
 
-        repo_owner = 'githubteck'
-        repo_name = 'test'
-        file_path = '123.m3u8'
-        access_token = "${{ secrets.ABC }}"
+        # Config
+        repo_owner = "githubteck"
+        repo_name = "test"
+        file_path = "456.m3u8"
+        branch = "main"
+        token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
+        github_token = os.getenv("MY_GITHUB_TOKEN")
 
-        # Fetch the direct.text mapping file from your GitHub repo
-        def fetch_mapping():
-            url = 'https://raw.githubusercontent.com/githubteck/test/refs/heads/main/direct.text'
-            response = requests.get(url)
-            if response.status_code != 200:
-                raise Exception(f"Failed to fetch direct.text: {response.status_code}")
-            mapping = {}
-            for line in response.text.strip().split('\\n'):
-                if '=>' in line:
-                    original, resolved = map(str.strip, line.split('=>', 1))
-                    mapping[original] = resolved
-            return mapping
-
-        # Fetch the TV file data
-        def fetch_tv_data():
-            data_url = 'https://raw.githubusercontent.com/aseanic/aseanic.github.io/refs/heads/main/tv'
-            response = requests.get(data_url)
-            return response.text if response.status_code == 200 else None
-
-        # Parse and transform TV data using the direct mapping
-        def parse_channels(data, mapping):
-            lines = data.split('\\n')
-            transformed_lines = []
-
-            for line in lines:
-                stripped_line = line.strip()
-                if not stripped_line:
-                    transformed_lines.append('')
-                    continue
-
-                # Replace mapped URLs
-                for original, resolved in mapping.items():
-                    if original in stripped_line:
-                        stripped_line = stripped_line.replace(original, resolved)
-
-                # Existing transformation logic preserved
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=authorization=Bearer"):
-                    transformed_lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile')
-
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers=user-agent="):
-                    user_agent = stripped_line.split('=')[-1].strip()
-                    transformed_lines.append(f'#EXTVLCOPT:http-user-agent={user_agent}')
-                    continue
-
-                if stripped_line.startswith("#KODIPROP:inputstream.adaptive.common_headers="):
-                    headers = stripped_line.split('=')
-                    if len(headers) > 2:
-                        auth_header = '='.join(headers[2:]).strip()
-                        if auth_header.startswith("Bearer "):
-                            token = auth_header[len("Bearer "):]
-                            transformed_lines.append(f'#EXTHTTP:{{"Authorization":"Bearer {token}"}}')
-                    continue
-
-                elif stripped_line.startswith("#KODIPROP:inputstream.adaptive.drm_legacy="):
-                    parts = stripped_line.split('=')[1].strip().split(',')
-                    if 'org.w3.clearkey' in stripped_line:
-                        license_key = {}
-                        for part in parts:
-                            key, value = part.split(':')
-                            clean_key = key.replace('org.w3.clearkey|', '')
-                            if clean_key and value:
-                                license_key[clean_key.strip()] = value.strip()
-                        transformed_lines.append('#KODIPROP:inputstream.adaptive.manifest_type=dash')
-                        transformed_lines.append('#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey')
-                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={{ {", ".join([f"\\"{k}\\": \\"{v}\\"" for k, v in license_key.items()])} }}')
-                    elif 'com.widevine.alpha' in stripped_line:
-                        widevine_license_url = stripped_line.split('|')[1].strip()
-                        transformed_lines.append('#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha')
-                        transformed_lines.append(f'#KODIPROP:inputstream.adaptive.license_key={widevine_license_url}')
-                    continue
-
-                transformed_lines.append(stripped_line)
-
-            return '\\n'.join(transformed_lines)
-
-        def upload_to_github(content):
-            file_content = base64.b64encode(content.encode()).decode()
-            api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
-            headers = {'Authorization': f'token {access_token}'}
-            response = requests.get(api_url, headers=headers)
-            sha = response.json().get('sha') if response.status_code == 200 else None
-
-            if sha:
-                existing_content = requests.get(api_url, headers=headers).json().get('content')
-                if existing_content and base64.b64decode(existing_content).decode() == content:
-                    print("No changes detected. Skipping upload.")
-                    return
-
-            data = {'message': 'Update channels.m3u8 file', 'content': file_content}
-            if sha:
-                data['sha'] = sha
-
-            upload_response = requests.put(api_url, json=data, headers=headers)
-
-            if upload_response.status_code in [200, 201]:
-                print("File uploaded successfully!")
-            else:
-                print(f"Failed to upload file. Status Code: {upload_response.status_code}")
-                print(f"Response Content: {upload_response.text}")
-
-        # Main execution
+        # Get the latest token from external API
         try:
-            mapping = fetch_mapping()
-            raw_data = fetch_tv_data()
-            if raw_data:
-                transformed = parse_channels(raw_data, mapping)
-                upload_to_github(transformed)
+            token = requests.get(token_url).text.strip()
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print("Error fetching token:", e)
+            exit(1)
 
+        # Generate M3U8 content
+        content = f"""#EXTM3U
+        #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
+        #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+        #EXTHTTP:{{"Authorization":"Bearer {token}"}}
+        #KODIPROP:inputstream.adaptive.manifest_type=dash
+        #KODIPROP:contentlookup=False
+        #KODIPROP:mimetype=application/dash+xml
+        #KODIPROP:inputstream=inputstream.adaptive
+        #KODIPROP:inputstream.adaptive.manifest_type=dash
+        #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+        #KODIPROP:inputstream.adaptive.license_key={{"655b6df8085d4fe6b3f71c0f4288f98a":"5f0d4251e05e0a3a661218169ee84181","d66e2fe5f045426195d432802f9ba807":"6fe283a6f1f3a3fb69f82c4340e0dde2"}}
+        https://l04.dp.sooka.my/2400/linear/index.mpd
+        """
+
+        encoded_content = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+        api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+
+        headers = {
+            "Authorization": f"Bearer {github_token}",
+            "Accept": "application/vnd.github.v3+json"
+        }
+
+        # Check if file exists
+        response = requests.get(api_url, headers=headers)
+        if response.status_code == 200:
+            sha = response.json()["sha"]
+        else:
+            sha = None
+
+        payload = {
+            "message": "Automated update of 456.m3u8",
+            "content": encoded_content,
+            "branch": branch
+        }
+        if sha:
+            payload["sha"] = sha
+
+        result = requests.put(api_url, headers=headers, data=json.dumps(payload))
+
+        if result.status_code in [200, 201]:
+            print("✅ M3U8 file uploaded successfully.")
+        else:
+            print("❌ Upload failed:", result.status_code, result.text)
+            exit(1)
         EOF
