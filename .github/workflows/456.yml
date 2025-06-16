@@ -1,12 +1,8 @@
 name: Generate and Upload 456.m3u8
 
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+    - cron: '0 * * * *'  # Run every hour
 
 jobs:
   build:
@@ -49,7 +45,7 @@ jobs:
               print("❌ GitHub token not found!")
               exit(1)
 
-          # Fetch and extract token
+          # Fetch token
           try:
               response = requests.get(token_url)
               response.raise_for_status()
@@ -62,20 +58,20 @@ jobs:
               print(f"❌ Failed to fetch or parse token: {e}")
               exit(1)
 
-          # Generate .m3u8 content
+          # Generate content
           content = f"""#EXTM3U
-          #EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
-          #EXTHTTP:{{"Authorization":"{token}"}}
-          #KODIPROP:inputstream.adaptive.manifest_type=dash
-          #KODIPROP:contentlookup=False
-          #KODIPROP:mimetype=application/dash+xml
-          #KODIPROP:inputstream=inputstream.adaptive
-          #KODIPROP:inputstream.adaptive.manifest_type=dash
-          #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-          #KODIPROP:inputstream.adaptive.license_key={{"655b6df8085d4fe6b3f71c0f4288f98a":"5f0d4251e05e0a3a661218169ee84181","d66e2fe5f045426195d432802f9ba807":"6fe283a6f1f3a3fb69f82c4340e0dde2"}}
-          https://l04.dp.sooka.my/2400/linear/index.mpd
-          """
+#EXTINF:-1 tvg-id="306" tvg-name="Astro AEC" tvg-logo="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" group-title="🇲🇾 MALAYSIA",Astro AEC
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+#EXTHTTP:{{"Authorization":"{token}"}}
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:contentlookup=False
+#KODIPROP:mimetype=application/dash+xml
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={{"655b6df8085d4fe6b3f71c0f4288f98a":"5f0d4251e05e0a3a661218169ee84181","d66e2fe5f045426195d432802f9ba807":"6fe283a6f1f3a3fb69f82c4340e0dde2"}}
+https://l04.dp.sooka.my/2400/linear/index.mpd
+"""
 
           encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
@@ -85,26 +81,31 @@ jobs:
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Check if the file exists to determine if we need to include "sha"
+          # Fetch current file to compare
           response = requests.get(api_url, headers=headers)
           if response.status_code == 200:
-              sha = response.json().get("sha")
-              print("📄 File exists. Updating it...")
+              existing_data = response.json()
+              existing_content = existing_data.get("content", "").replace("\n", "").strip()
+              sha = existing_data.get("sha")
+
+              if existing_content == encoded_content:
+                  print("⏩ No changes detected. Skipping update.")
+                  exit(0)
+              print("✏️ Content has changed. Updating...")
           else:
               sha = None
-              print("📄 File does not exist. Creating new...")
+              print("📄 File does not exist. Creating new file...")
 
+          # Upload/update file
           payload = {
               "message": "Auto-update or create 456.m3u8",
               "content": encoded_content,
               "branch": branch
           }
-
           if sha:
               payload["sha"] = sha
 
           upload = requests.put(api_url, headers=headers, data=json.dumps(payload))
-
           if upload.status_code in [200, 201]:
               print("✅ Upload successful.")
           else:
