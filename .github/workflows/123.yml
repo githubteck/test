@@ -59,8 +59,8 @@ jobs:
               if line.lstrip().startswith("##"):
                   continue
               filtered_lines.append(line)
-              if line.strip() == "#KODIPROP:inputstream.adaptive.license_type=clearkey":
-                  filtered_lines.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 14; ...)")
+              if line.strip() == "#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey":
+                  filtered_lines.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)")
 
           content = "\n".join(filtered_lines)
           encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
