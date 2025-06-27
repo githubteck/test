@@ -68,7 +68,7 @@ jobs:
               if line.strip() == "#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey":
                   processed_lines_1.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)")
 
-          separator = "#EXTINF:-1, ------------------------------ END OF SOURCE 1 ------------------------------"
+          separator = "------------------------------ END OF SOURCE 1 ------------------------------"
           processed_lines_1.append(separator)
 
           # Combine content
