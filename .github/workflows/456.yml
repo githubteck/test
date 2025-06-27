@@ -2,7 +2,7 @@ name: Generate and Upload 456.m3u8
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Run every hour
+    - cron: '*/30 * * * *'  # Run every 30min
   workflow_dispatch:
 
 jobs:
