@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Needed to commit to the repo
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -44,27 +44,38 @@ jobs:
               print("❌ GitHub token not found!")
               exit(1)
 
-          source_url = "https://raw.githubusercontent.com/mystery75/streaming/refs/heads/app/TV"
+          source_url_1 = "https://raw.githubusercontent.com/mystery75/streaming/refs/heads/app/TV"
+          source_url_2 = "https://raw.githubusercontent.com/kiki4177/iptv/refs/heads/main/Kiki"
 
           try:
-              response = requests.get(source_url)
-              response.raise_for_status()
-              raw_lines = response.text.splitlines()
+              res1 = requests.get(source_url_1)
+              res1.raise_for_status()
+              raw_lines_1 = res1.text.splitlines()
+
+              res2 = requests.get(source_url_2)
+              res2.raise_for_status()
+              raw_data_2 = res2.text
           except Exception as e:
               print(f"❌ Failed to fetch source: {e}")
               exit(1)
 
-          # Clean lines
-          filtered_lines = []
-          for line in raw_lines:
+          # Process source 1
+          processed_lines_1 = []
+          for line in raw_lines_1:
               if line.lstrip().startswith("##"):
                   continue
-              filtered_lines.append(line)
+              processed_lines_1.append(line)
               if line.strip() == "#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey":
-                  filtered_lines.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)")
+                  processed_lines_1.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)")
 
-          content = "\n".join(filtered_lines)
-          encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+          separator = "#EXTINF:-1, ------------------------------ END OF SOURCE 1 ------------------------------"
+          processed_lines_1.append(separator)
+
+          # Combine content
+          final_content = "\n".join(processed_lines_1) + "\n" + raw_data_2
+
+          # Encode for GitHub API
+          encoded_content = base64.b64encode(final_content.encode('utf-8')).decode('utf-8')
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
           headers = {
@@ -72,21 +83,23 @@ jobs:
               "Accept": "application/vnd.github.v3+json"
           }
 
-          # Get current file to compare
+          # Fetch current file from repo
           response = requests.get(api_url, headers=headers)
           if response.status_code == 200:
               existing_data = response.json()
               existing_content = existing_data.get("content", "").replace("\n", "").strip()
               sha = existing_data.get("sha")
 
+              # Compare the actual base64 content
               if existing_content == encoded_content:
-                  print("⏩ No changes. Skipping update.")
+                  print("⏩ No changes in either source. Skipping update.")
                   exit(0)
-              print("✏️ Content has changed. Updating...")
+              print("✏️ At least one source changed. Updating...")
           else:
               sha = None
-              print("📄 File does not exist. Creating...")
+              print("📄 File does not exist. Creating new one...")
 
+          # Upload updated file
           payload = {
               "message": "Auto-update 123.m3u8",
               "content": encoded_content,
