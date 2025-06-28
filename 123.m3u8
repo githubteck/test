@@ -25,7 +25,7 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/TV2.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="103.unifi" ch-number="103" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202007/20200701/202007010436159112u3.png" group-logo="" group-title="Malaysia",TV3 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225724/3221225724.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=rHCk8LM%2FH0GWVQNQ6Y6chS0SavdCSiXHQ7EI2r9QBoU%2BMpScwcAFcS5LunHU05VsuUoLoMOgavNi1xuK5zp4bhdbOjAsT9qAnaY9sR1XeLOFpFYyAcZJVtQ7FDlT2%2BGpf6b5e94e9c4f5ec9a0c980244058d38e%3A20250627040359%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040359%2Curn%3AHuawei%3AliveTV%3Aiptv182%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C43361030%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwW7CMBBE_8ZHax1iEg4-gZCQqrRSAtdq8W5MFCemdoLUvy8BKq4z80Zvimj5sDOKgAoAsKuyzFt9RlQMOWnYrHWuiETinyqYTFj0vhtdFWjBTvX2W4EEmeUrqbK1aJa_vUf3mlbzcOb45mqOt86yodTKGyaJzkV2OHVhlF8ef4_RvyaCm3-3QiuAcqMLXZRiWtIGU39vxAXTNgxXjEwfwT0A06JPLK5oe3Rc4cBmnL1_cp-R7jZ_G4Wff_UAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225724/3221225724.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=SORJsE0JpOX%2FFWPTavg%2BqC1OxpiqAHPpzQwLmDLlfc%2F%2B9yZkMBZM6VJwTJc97AxvpPzVeJFkP5QfRmD%2Fk%2Fo6OUvC395kSQyWClMtRTGP21%2Fiz0Y7axMbwkoneS%2FBv9r15c8133d65a61983edf1a52149637e7ef%3A20250628032243%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032243%2Curn%3AHuawei%3AliveTV%3Aiptv182%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C43361030%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOyw6CMBRE_6bLpg9AWHSlMTExaAK6NZf2UomFagsm_r2iJG5n5kzOGEDjbqOgyLRMMyiSJk-0zBqRC4681alsTcIlifgovRJEg3PdYEtvZuxcrS-cUUZFIikXGannv60Du0zLqW8w_LkKw7PTqExs6RMiBWsDWhg7P9Cjg9cpuGVCsF7c-CrlrBBFzgTLyTinNcTbpyFXiGvf3yGg2Xv7BVQLLiK5g76BxRJ6VMPk3I87BPOxeQO5yoTf9QAAAA
 
 
 #EXTINF:-1 tvg-id="TV6.my" tvg-logo="https://rtm-images.glueapi.io/110x0/live_channel/tv6_Trans.png" group-logo="" group-title="Malaysia",TV6
@@ -81,7 +81,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5021/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="120.unifi" ch-number="120" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202204/20220422/2022042207284940668e.png" group-logo="" group-title="Malaysia",Degup
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225748/3221225748.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=kv2Wm8P6UlB4PjMNU6cmhoMPMYxbeAX%2BRyynxQuV8KhoO9FEKBD4BtsxiHDacexhD0kBaj5TgefeFvzeqhxKdwNxya0vkKhFT5YvGnnv08h8qxpCQ%2BqY2Qsd7S5u3Shibd0887976490b18f661ab0e5759fccb6%3A20250627040442%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040442%2Curn%3AHuawei%3AliveTV%3AXTV55631601%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C88%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C55633563%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwYrDIBRF_8alqDExWbhqKQwMmYGm3Q5PfbGhJnY0Dczft-kEur33nsuZE1j82GtjhFFloQpsuJTO1AwaIbmztldV6SqS8beNWhALIQyTb6NbsfNx98MZZVTIgnJRkW79OwTw27S9jwbTmztiWgaL2uWeLpApeJ_QwzzEiX4H-DulsE0IdpsbVyVnrG54I6Ui85p2kK_Phlwg7-J4g4TuM_oXoHsIGckN7BU8tjCinu4h_HNfyT1tHgPsOQ31AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225748/3221225748.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=%2B3IGb8ssrdgrneSANdMTFVcQCTrAcRUZBCgNzLCM8F46R89UG5qErhR%2F6K8h7UO1QHSa59L2UGAXppIODyXCHgeIGLQadUBFBd08Ucu2JPCTSH986adKGU4cCRqa%2FExeda1c753b84cce663573dcac0a0405c7e%3A20250628032324%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032324%2Curn%3AHuawei%3AliveTV%3AXTV55631601%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C88%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C55633563%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWO0QqCMBiF32aXY5uZerErIwjCgqzb-Nv-LXG62kzo7dMSuj3nfIdvCKBwt5EmN2tWJMhzAasiy_Kk0JynyAxjKmEFifisvBREgXNNbyuvZ-xyKq-cUUbFKqFcrEk9_20d2GVavbobhj93wjA2CqWOho4QKVgb0MLQ-J4eHbzPwS0TgvXixrOUT25McJEKMsxpDbGdGnKHWPruAQH13tsvIA24iOQBqgWLFXQo-5dzP-4Q9GTzAZwR4eb1AAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -112,7 +112,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live32.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="116.unifi" ch-number="116" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202209/20220901/20220901155400159gcw.png" group-logo="" group-title="Malaysia",Sensasi
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225762/3221225762.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=M2GUr88BND%2FxGLv0BwcHYS6P36XgqlRIG%2BKve40QZYt8bcmX2eN9rYd%2BjpuBpAIySPp4bxoze3O3JnzhJEpdsUXCXK2Cin9qcblcRZQXc44RmfS%2BSglfP3%2FczOWe8e%2FX42a498004df577a860d8338172d69df7%3A20250627040523%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040523%2Curn%3AHuawei%3AliveTV%3ASP000004015718%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38675409%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwWrDMBBE_0ZHsXIdKT3olFIoFDcQt9cyltaqiWylkhPI3zdODL3OzBvenOH47cV2qveVhmd0ptbagJSr0W-82RrtqRaFf5tkK-EQ4zCFJvkF-zrsvhVJklX9JFWlRbv8vUaEddqcx47zP3fgfBkcW196eUGRCCFzwDykSe4jrp85rhPB7eqmzEYRPROR3moxL2mLcrw14gdll8YTMvv3FO6A7RELixPcEYEbjGync4wP7iP7m80focNEQPUAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225762/3221225762.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=0K22FHqzRqXcLAmYZHzoNgxtHZhCx7rOO%2BPbgMGxZXJu5KqD31KKMgoCuk7K3NoAku4pEJ18vyes35G6u11y6Zm3FUKQp6CeBYu7%2BzyblZTZVW%2Bcm26mQriKY86%2Bvmdqaa0b6e0c2312123f602123fecce3aa17%3A20250628032359%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032359%2Curn%3AHuawei%3AliveTV%3ASP000004015718%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38675409%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwWrDMBQE_0ZHIcm23Bx0SgkEihuI22tYS8-KiWwlkhPo3zduDL3u7iwzJ1javxsoXVrhhNRSl0LVXVlD95uiE-pN9ihYplsTjWIWIQyTb6JbsO_j9iQFF1yVBZdKs3b52wX4ddrcx47SP3ek9BgsGZd7_kDm8D6RxzzEiR8Cfr5SWCeM2tVN1pUUm0JUWtUVm5e0Rb48G3ZG3sbxikTuI_o_wPQImdgV9gJPDUYy0z2EF_eZ3NPmF47W0571AAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -128,7 +128,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live31.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"ZU8tJaW/snyeWuCFJYShZg", "kid":"hL+a1oSL59sg+dFoI97vEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="108.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroCitra_2024.png" group-logo="" group-title="Malaysia",Citra
-https://mt05.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413HtMT_ihEenIVn7lK1FJZs0veXO9txDkVEWo33uhXyo=Ufeo/dash-wv/jitp-dashisowm/2700/default_ott.mpd
+https://mt05.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413HtMT_ihEenIVn7lK1FJZqE0Y0knHRKiTcUBtO4fQQk=lT7N/dash-wv/jitp-dashisowm/2700/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -258,14 +258,14 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5600/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="233.unifi" ch-number="233" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/201907/20190716/201907160641140646da.png" group-logo="" group-title="Cina",Now Jelli
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225727/3221225727.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=GcAwqzrecNplp%2FTyICk7xBiaZUrkQw6RTLOGXLtKz4Iy0XedprXKxfbmYCMqqg7tCQTUWWQj%2FG3N9KHV%2BBjDXnlmASmsq6qmaxbdeiPX4CX24xodCbTj1D4MAJbVNQdSccae68147a78c4743d5404b48d7d23cd%3A20250627040608%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040608%2Curn%3AHuawei%3AliveTV%3Aiptv28981%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610077%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOy2rDMBRE_0ZLoYdfWmiVUigUpxC32zKRblQT2UokJ9C_b9waup2ZM5wlw9HLkz161UhXSd_WrjKqgzbGaA2o2jWdFqzQtU9WMYcYxzn0ya_Yx2H3KQUXXFWaS9WwYf17jgjbtL9NR8r_3IHyfXRkfTnxOwpHCJkCljHN_C3i-z3HbcJo2NxkW0shOiMa3Rq2rOmAcn407Atll6YLMvnXFH4Be0IsxC5wZwTqMZGdbzH-cfvsHzY_5zlPoPUAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225727/3221225727.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=jYrQ1GxV92DtM5VFnnM3iG5SrPId0nYtbhPhWJ8dUUS4DdhzSQzKKUcvUMsf1hesU9maIQJXZcOtM7lUm5IwJA2jV8Ki7B23GyKborniE7VgV6LMVxrbonurbPZPra70743c1ad178c0a0ec7f7e97afd51d93bd%3A20250628032446%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032446%2Curn%3AHuawei%3AliveTV%3Aiptv28981%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610077%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOywrCMBRE_ybLkIe1cZGVIghSBatbuU1uYzFtalIF_95WC25n5gxniGBwt9F5xiVTStSVNQtuVJXJHNRSmlopiViRhI8iaEEMeN90rgh2wi6n9ZUzyqhYSMrFkpTT39aDm6fFs60w_rkTxldjUNtU0xckCs5FdDA0oaNHD-9z9POEYDm78VGOrSRnUjJBhiktId3HhtwgrUPbQ0S7D-4L6Bp8QtKDuYPDAlrU3dP7H3eIdrT5AInuIMb1AAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="239.unifi" ch-number="239" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/201907/20190708/20190708073838956juy.png" group-logo="" group-title="Cina",SETI
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225739/3221225739.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=74s1xsrvqmxAT69KAoMwCWHiJJaf7ImF2Ysjv1EZ5IiU1vW9gSyMpcAVFQGrIYdUh4Yl9gtq%2FwgagDY8ms0Lqj5narURCiyLV5%2F5zmgOCES96jM8EbQtZBeaEatPVaYx8d087d9e8a42c918c46464fbe43ed37b%3A20250627040647%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040647%2Curn%3AHuawei%3AliveTV%3Aiptv8417%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38499775%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwWrDMBQE_0ZHIcmyEx90SikUilOIm2tYS8-qiWwlkhPo3zdODL3u7iwzJ1j6eDOl3LiSlC2o07rTrra2B7aqcrXSHSqW6dpEo5hFCMPkm-gW7HjYnaTggitdcKkq1i5_7wF-nTa3saP0zx0o3QdLxuWe35E5vE_kMQ9x4l8Bv98prBNG7eomN6UUohbbotaSzUvaIp8fDftB3sXxgkTuM_onYHqETOwCe4anBiOZ6RbCi9sn97D5A9oZ7Eb1AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225739/3221225739.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=QbmZNSeio0zOcw1wjGiKBjPu2whAFR5IYMWnw4YjLJk5M5s6ihuVYxToS3H3f17sYxLdIn9C7Fj1FHiQsSxTstpO1vvUWpaJiow1qY8OH%2FQyOkxIUjdoDYn6PdsHQIn6a949e98cbe51573abc4d00c3afaa8c70%3A20250628032520%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032520%2Curn%3AHuawei%3AliveTV%3Aiptv8417%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38499775%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOywrCMBRE_ybLkEc1dpGVIghShVa3cpvcxmLaaNIK_r1WC25n5gxniGBwt9G1hQyNyVVWrzJRq5wp3gjJl3LBlF0pkvBRBC2IAe_b3hXBTti5XF84o4yKTFIulqSa_rYe3Dwtxq7G-OdKjM_WoLapoU9IFJyL6GBoQ0-PHl6n6OcJwWp242rBWS65VFJKMkxpBen2acgV0jp0d4ho98F9Ad2AT0juYG7gsIAOdT96_-MO0X5s3j7g76v1AAAA
 
 
 
@@ -291,7 +291,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2109/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"tUFjJhFKE+kGYqT7rzxTKw", "kid":"ckmcatRMw32VqQdUIJEREA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="201.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroVaanavil_2024.png" group-logo="" group-title="India",Vaanavil
-https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41kh1nfIyxoNY7CMBsuPCOSdw0xR9-9UvDfowM1jbi3GE=SBqk/dash-wv/jitp-dashisowm/2309/default_ott.mpd
+https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41kh1nfIyxoNY7CMBsuPCOSclgr-K1potOS49-ULUpyu4=uKM_/dash-wv/jitp-dashisowm/2309/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -466,7 +466,7 @@ https://cdn08jtedge.indihometv.com/dassdvr/194/maxstream/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="141.unifi" ch-number="141" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/201907/20190716/201907160659062937ij.png" group-logo="" group-title="Indonesia",Pesona
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225704/3221225704.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=2LljR5TWQKPqFa5iQenEkR%2FCyXRk0Iad8ri8432%2BeW19flIWMgQA5Cd7ZkO2hvz38q%2BGrDDi6szPzP5B1mJrSWx9tYcq4bNbWEQ9RPVzICOsDYLUO%2B9j4uiWaD%2Fbg2IA9a044aed995447749d6f76e617d7d3c7%3A20250627040902%3AUTC%2C1005926113%2C210.186.230.232%2C20250627040902%2Curn%3AHuawei%3AliveTV%3Aiptv8997%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38730038%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOywrCMBRE_ybLkKSP6CIrRRCkCla3cpPcxtK00aQK_r1WC25n5gxnjGBwu1baGisLa5BLnusGNSsLARpEvtANlxlJeK-CEsSA9-3gqmAn7HxcXTijjIo8o1yUpJ7-Nh7cPK0evcb4544Yn61BZVNDn5AoOBfRwdiGgR48vE7RzxOC9ezGZcEZW4qSZ7kk45TWkLpPQ66QVqG_QUS7C-4LqAZ8QnID04HDCnpUw8P7H7eP9mPzBmi4gV_1AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225704/3221225704.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=zm9YSPhZLfuRlxh6S3syKPAiQTeU%2FNd%2FsoIHqJlUz3KMf7UshS40G7UTkQJodQmMerCHxF9aOqymwLptAH2b6y%2BlpeIEQ4aPoa3K%2FS%2FaAZJlSAPcswGea%2B0uW1X9wAwH8a690051dddaa80ab69f9880cec9bfaa%3A20250628032618%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032618%2Curn%3AHuawei%3AliveTV%3Aiptv8997%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38730038%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwYrCMBRF_ybLkKStJousFGFA6oB1tsMz7yVTTBtNqjB_r50puL33nsuZMjj62FqNjXbKeX0mrNEZrYQipEagN8YrzQrd2mQVcxBjP4Y24Yx9HTffUnDBVV1xqVasm_92EcIybe_DmfKbO1J-9I4sFs8fUDiEkCnA1KeRf0b4PeW4TBh1i5tcN1KYSpqmWtdsmtMOyuXVsB8omzRcIRPuU_gDrIdYiF3BXSBQCwPZ8R7jP3fI-LJ5AuyjnB71AAAA
 
 
 
@@ -647,7 +647,7 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/MSPHERE.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="474.unifi" ch-number="474" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202309/20230913/20230913232606376llq.png" group-logo="" group-title="Movies",Rock Action
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225714/3221225714.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=R7tYh%2BhQcBk43nW0bEAy20nbwCyVbWxegd1jJ%2BW6zULGC9LLzpWx2%2BxtfuzfWwKSmbdb8hOZ%2F%2F9ujmPjddcUb8%2BXzI5YkVQ5S%2Fv0wawJ297IrqWOnFIOd4BOpChLdEc%2B98cf40206150fa1184ec2487803fa01e%3A20250627041002%3AUTC%2C1005926113%2C210.186.230.232%2C20250627041002%2Curn%3AHuawei%3AliveTV%3ASP000002372888%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729863%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwWrDMBQE_0ZHIbm2ZR90SgkEiluI22tZS0-KiWylkhPo3zdODL3u7iyzJBg6vOrBuKauUZeOXDlY0aq2okJYWKXQSMcy_XRRF8wghHH2XbQr9nXcfUvBBS_KFy6LmvXr3z7Ab9PuOg2U_rkjpdtoSNvs-A2Zw_tEHssYZ_4R8PuZwjZh1G9uUlVSiFY0VVsqtqxpj3y-N-yEvIvTBYnsW_QPQDuETOwCc4anDhPp-RrCk3tP9m7zB7dXJUn1AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225714/3221225714.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=uIbOv6VY7d%2Ft4iyGkmq1taGuYLrNf9cFJxH2BCDt0ZuuZdjandS7QtHfD4Y1IvE2Z2ILIOrG9UHW9F8pgx15g7zX2S%2F0pn7HJoh7i667INagzF2DqTxuxmvaDHvP4RPue90662b9a75db95c1bced01371256a21%3A20250628032733%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032733%2Curn%3AHuawei%3AliveTV%3ASP000002372888%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729863%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwYrCMBRF_ybL0JemrS6ychAEqYJ1tvKavMTStNGkCv69dizM9t57LmeKqGn3o3KQuQGQrbGtLEWFuBYF2krbsiRZAEt0r4MSTKP33ejqYGbs97S5QMYzLmTOQZSsmf-2Ht0yrR9DS_GfO1F8dpqUSZY_MXF0LpLDqQsjP3p8naNfJoyaxQ2qArJ1LqpMwopNc9pg6j8Nu2LahOGGkcw-uD9AWfSJ2A11j45qHEiND--_3CGaj80bV2sYbPUAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -748,14 +748,14 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/OUTERSPHERE.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="473.unifi" ch-number="473" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202109/20210902/20210902163927011u1k.png" group-logo="" group-title="Entertainment",Rock Entertainment 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225706/3221225706.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=aOESNqtWPnABNANMfaPOWsgwafX40l5gIx1oA0e3TAtvwRfdKAAzCzXzd809wH2SzzGhkvwn93eLUHVaHqjmYnIsNu%2BFFmOYw%2BoQdo%2B3oOWIDPUNPL4%2Fb3T06fmr2xA138142707e64f274db867adcf6e06c32b%3A20250627041209%3AUTC%2C1005926113%2C210.186.230.232%2C20250627041209%2Curn%3AHuawei%3AliveTV%3Aiptv42337%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729829%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwYrDIBRF_8alqLEmWbhKKQwMmYGm3Q5PfbGhJnY0LczfN-kEur33nsuZE1j82GvhaixMxYWouVQGwElrlGFlL8qi2HGS8beNWhALIQyTb6NbsfOx-eGMMipkQblQpFv_DgH8Nm3vo8H05o6YHoNF7XJPH5ApeJ_QwzzEiX4H-DulsE0IdpsbL3ecsVrKSqmKzGvaQb4uDblAbuJ4g4TuM_oXoHsIGckN7BU8tjCinu4h_HNfyS02TxnI9lr1AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225706/3221225706.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=qaIS%2FyvgIOzEVOQqf%2FzS5ICP1KVvJ453UW3bOyifwVSSGpgWWzHGyKQGRpYhwVAOHIw5uNcEIVM9tiVH7AaptK5TCrJgGh6JtD9AGWWb5snvx645ZYw8GmC4%2BwwoSHVq8207e3f20ed0f26a8a709aa540e02c56%3A20250628032820%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032820%2Curn%3AHuawei%3AliveTV%3Aiptv42337%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729829%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOyw6CMBRE_6bLhj4AWXSlMTExaCK6NRd6qYRCsUUS_15QErczcyZn9FDhYae01gIQMozKREqGZSoyZJwLueGSZ4IEfOZOcVKBtU1vcqcX7HbZ3llEI8qloIwnpFj-9hbMOs1fXYn-z13QT02FSoeaThAoGOPRwNi4np4tvK_erhOCxerG0phFmRAslTEj45IWENq5IQ8IW9cN4FEfnfkCqgYbkAxQtWAwhw5V_7L2x528nm0-W2PkDPUAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="451.unifi" ch-number="451" tvg-logo="https://playtv.unifi.com.my:7218/CPS/images/universal/film/logo/201907/20190716/20190716071834181bzk.png" group-logo="" group-title="Entertainment",Warner TV 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=UW8coukjd48F9iw80T2IGZMKvgDpwBiVvtFjh0tauefoWXmjOuc3P0DtTcH%2FkLjMFDEBWyREqjREwiAO%2FcZInZDmkwdqSDQIVoFSG19oQBhPsNDuLevh9bVZGYo70dRDdf25fe07b77f62e412adb6d5434d3bf5%3A20250627041245%3AUTC%2C1005926113%2C210.186.230.232%2C20250627041245%2Curn%3AHuawei%3AliveTV%3ASP000001956583%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38695908%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOQUvEMBhE_02OIUnbdHPIaUUQpApbvco0-RrLps2adBf892614HVm3vDWDEdPD9bg4EZqlKl8VWtS0JC-GRojWqdxGFihry5ZxRxinJbQJb9h76fjhxRccFVXXCrN-u3vMSLs0-46D5T_uRPl2-TI-jLyGwpHCJkC1ikt_DXi-y3HfcKo391k20ghTN0qbRRbt7RHOd8b9olyTPMFmfxzCr-AHRELsQvcGYE6zGSXa4x_3Ev2d5sfsg17bPUAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=JfK7gJsVrLri7geP%2FA%2F6lFwn8Q3duqgK4iEJ%2BvH5jg9rwee2tHP56C6NLs%2BiK%2FAC8gVC%2BJw%2BrAUyo36NpREO0GgTZxhIUP19Do9eGn7iHZtKydjX3yjyVSwxJNDMLOfo7a104fc7a76ed79d49b5974e9dc1e76b%3A20250628032857%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032857%2Curn%3AHuawei%3AliveTV%3ASP000001956583%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38695908%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOTWvDMBiD_42Pxs6X54NPHYXByArNdh2K_cYLdeLWTgv790u2wHSU9AgtCZZeno1WT1raQUDpusKqunGysaWFFlr1Pct0a6MpmEUI4-zb6Dbs43z4lIILXlQll0XDum3vGOD3anufekr_3JnSY7RkXB74A5nD-0Qeyxhnfgr4fk9hrzDq9m9S1VLosqyrSjVs2dwO-bIm7Av5EKcrErnX6H8BMyBkYlfYCzy1mMjM9xD-uLfk1jc_CLyOEPUAAAA
 
 
 
@@ -772,7 +772,7 @@ https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=web
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="472.unifi" ch-number="472" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202208/20220811/20220811020901814w9o.png" group-logo="" group-title="Kids",Animax 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225740/3221225740.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=xUUmPv1geigFDym7%2F6BQe%2FGWkBBJ%2BzRgHWTy33QlUXyUvSM949YRyl54jfb1GAONd8OpPtFs7VcEtMZJXFNI25J7k1jGYgIMk%2F%2BLNTRLv0ktyMnAKhoCvWO4l7gh2TQ%2Be4b7fdcf17892440a5be45db8299a400%3A20250627041324%3AUTC%2C1005926113%2C210.186.230.232%2C20250627041324%2Curn%3AHuawei%3AliveTV%3AXTV57622558%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C88%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C57622568%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOy2rDMBRE_0ZLoVfieKFVSqBQ3ELcbsOtNFJNZCuVnED_vnFryHZmznDmQg7PT1Zr2W6bYGCa1jRK7xSUQAggHeDhWMV3l61ijlIapthlv2Afx_1JCi64MppLtWX98ndIFNdpdx0_UR7cEeU2OFhfA79R5RRjQaR5yBN_S_TzXtI6YehXN9lspBCtVhtjdmxe0p7q-d6wL6r7PF6owL_k-AfYQKmCXcidKaKjEXa6pvTPvRZ_t_kF6lyjePUAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225740/3221225740.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=CrWRuyTvByARd1pYHxyQU20sEz54Y5IbMMzLx1XQMfDcaNsHKZVlRCMgNAm1LhtHZHc3nHv7du35M4xuydslZza6JLdPiyD0ntpCaPxNgEASDOnmevwTK8SpLZu9k0vmbd520a1a8120b83e6cadb1b7e3ad3feb%3A20250628032939%3AUTC%2C1005926113%2C210.186.230.232%2C20250628032939%2Curn%3AHuawei%3AliveTV%3AXTV57622558%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C88%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C57622568%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOTYvCMBRF_02WIR9NNYusHAYGho5gdSsvyWumNG2cpAr-e60WZnvvPZczZ3D49WEseC941YHVtnKMW7VVtUfOlUYphSYF_5pkBHEQYz-FJvkFOx12Z84oo6KSlIuatMvfZ4SwTpvraDH_cwfMt96h8aWjNygUQsgYYO7TRPcR7scc1wnBdnXjG8WZllLXitVkXtIWyvBsyC-UXRovkNF_p_ACTAexILmAGyBgAyOa6Rrjm_vJ_mnzAKXeU271AAAA
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -821,7 +821,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2606/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="550.unifi" ch-number="550" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202011/20201125/202011250800095510sa.png" group-logo="" group-title="Kids",DreamWorks 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225776/3221225776.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=pB4d5ILuBM2YxdQZ3KvnjQByrBzK7AmfCXxb6ITPc5N848bJpDU0%2FchQdpFA4IAZ287zSSiRNFKcJODN76seJ%2Bds1i5YjialAqJNoXzbecUZM7AYDDJQc5l0oGMUIIxO49611096bd6e576afb63886788d07da7%3A20250627041402%3AUTC%2C1005926113%2C210.186.230.232%2C20250627041402%2Curn%3AHuawei%3AliveTV%3ASP0010745304%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610254%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOwW7CMBQE_8ZHyzEOSQ4-USEhVSkSaa_V2n4xEU4MdkDi7yEtVa-7O6uZEyzt3nThpAEao8jUqlGmdqrvV65WxpZYV8QyXdqoJbMIYZh8G92CfR0234Xggku14oVcs2752wb417S9jobSP3egdBssaZd7fkPm8D6RxzzEie8D7p8pvCaMuj-3qiyEaEohKlmyeUk75NOzYUfkTRzPSOTeo_8BdI-QiZ1hT_DUYiQ9XUP45T6Se9o8AMyq_ZL1AAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225776/3221225776.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=2&icpid=&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=RPm4qdfVZdDaIFi0Jf2AblaECMo2xQ3KKZ9y1b4%2FI%2FJS0bGIUfXyX8maKTXHBYrjq5tkGGRM52hH0D3m5tQDOX6dp3Aigt9YGFWDPMwjpNa5AEvXBnLQeOj09MlGanEa8419bbfd213cd12397fa1a8ecc62876a%3A20250628033016%3AUTC%2C1005926113%2C210.186.230.232%2C20250628033016%2Curn%3AHuawei%3AliveTV%3ASP0010745304%2C1005926113%2C-1%2C0%2C1%2C%2C%2C7%2C812%2C%2C%2C4%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610254%2CEND&GuardEncType=2&it=H4sIAAAAAAAAAEWOyw6CMBRE_6bLpi8QFl1pTEwMmohuzaVcKqFQbdHEvxeUxO3MnMkZAxjcbXSaGMVyzlUmUqWUyCVDyBjypjKiyTIS8VF4LYgB59rBFr6esctpfeWMMiqUpFykpJz_tg7sMi2efYXhz50wvFqDuo4NfUGkYG1AC2PrB3p08D4Ht0wIlosbXyWc5VJJmYicjHNaQuymhtwgrn1_h4D13tsvoBtwEckdTAcWC-hRD0_nftwh1JPNB_gBIlX1AAAA
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -904,7 +904,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5057/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"g3KLRwGavbs3qjbtXylRvQ", "kid":"b/DgQNVE7D8CJDhlmQ8MEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="815.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroBadminton_2024.png" group-title="Sports",Astro Badminton
-https://linearjitp-playback.astro.com.my/dash-wv/linear/5170/default_ott.mpd
+https://mt32.aa.astro.com.my/linears2-playback.astro.com.my/vsg/418ac9wSuQY5l_PP_Bk8u5lmnIxdDMhh908iOCuA_N0aM=RcTB/dash-wv/jitp-dashisowm/5170/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -1125,7 +1125,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5060/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1135,7 +1135,7 @@ https://l18.dp.sooka.my/1000/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1145,7 +1145,7 @@ https://l16.dp.sooka.my/1004/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1155,7 +1155,7 @@ https://l04.dp.sooka.my/2400/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey 
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1165,7 +1165,7 @@ https://l01.dp.sooka.my/2507/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1175,7 +1175,7 @@ https://l01.dp.sooka.my/5099/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1185,7 +1185,7 @@ https://l02.dp.sooka.my/5100/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1195,7 +1195,7 @@ https://l17.dp.sooka.my/5170/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1205,7 +1205,7 @@ https://l03.dp.sooka.my/2701/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1215,7 +1215,7 @@ https://l01.dp.sooka.my/601/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1225,7 +1225,7 @@ https://l02.dp.sooka.my/2104/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
@@ -1235,7 +1235,7 @@ https://l18.dp.sooka.my/1601/linear/index.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; DV9110 Build/ST; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile
-#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTA5ODIzNjgsImlzcyI6IlZSIiwiZXhwIjoxNzUxMDYzNDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.AEL69CG_c8oX6CV1sMg-hErQ2veCDqo1QruLjj4QKjo"}
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTEwNjk3MTUsImlzcyI6IlZSIiwiZXhwIjoxNzUxMTQ5ODAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiZjE3MWU4OGItYmJkNi00ZGE3LWFhZWEtZmU1YmE1M2UwZjllIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9MjE2MCl8fCh0eXBlPT1cImF1ZGlvXCImJmZvdXJDQyE9XCJhYy0zXCIpfHwodHlwZSE9XCJ2aWRlb1wiJiZ0eXBlIT1cImF1ZGlvXCIpIn0.z-SzxFZ2GWRoGQqi76R5gblF7DcBRusL7JdA_yvIlKY"}
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
