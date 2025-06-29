@@ -128,7 +128,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live31.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"ZU8tJaW/snyeWuCFJYShZg", "kid":"hL+a1oSL59sg+dFoI97vEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="108.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroCitra_2024.png" group-logo="" group-title="Malaysia",Citra
-https://mt05.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413HtMT_ihEenIVn7lK1FJZr9yf1ggT3QcDlBNLuGcrCI=lMyl/dash-wv/jitp-dashisowm/2700/default_ott.mpd
+https://mt05.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413HtMT_ihEenIVn7lK1FJZjLn6_nsO4Y89iAIE13wts0=SOhY/dash-wv/jitp-dashisowm/2700/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -291,7 +291,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2109/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"tUFjJhFKE+kGYqT7rzxTKw", "kid":"ckmcatRMw32VqQdUIJEREA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="201.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroVaanavil_2024.png" group-logo="" group-title="India",Vaanavil
-https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41kh1nfIyxoNY7CMBsuPCOSeIiRFV-JMiDitqUAnwb6MM=vEw1/dash-wv/jitp-dashisowm/2309/default_ott.mpd
+https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41kh1nfIyxoNY7CMBsuPCOSd9hKTyXEnqDoft1HB8AkKo=C0Qz/dash-wv/jitp-dashisowm/2309/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -904,7 +904,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5057/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"g3KLRwGavbs3qjbtXylRvQ", "kid":"b/DgQNVE7D8CJDhlmQ8MEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="815.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroBadminton_2024.png" group-title="Sports",Astro Badminton
-https://mt32.aa.astro.com.my/linears2-playback.astro.com.my/vsg/418ac9wSuQY5l_PP_Bk8u5liYp-2YP1tq4ugglCt-trFk=90TM/dash-wv/jitp-dashisowm/5170/default_ott.mpd
+https://mt32.aa.astro.com.my/linears2-playback.astro.com.my/vsg/418ac9wSuQY5l_PP_Bk8u5lrAfyvBo_VKvxsEmtm3oaFA=fJLJ/dash-wv/jitp-dashisowm/5170/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
