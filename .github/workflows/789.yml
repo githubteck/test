@@ -1,0 +1,144 @@
+name: Generate and Update M3U8 Playlist
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Write and run Python script
+        run: |
+          cat << 'EOF' > generate_m3u8.py
+          import requests
+          import base64
+          import os
+          import gzip
+          import difflib
+
+          repo_owner = "githubteck"
+          repo_name = "test"
+          file_path = "789.m3u8"
+
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+          access_token = os.environ.get("MY_GITHUB_TOKEN")
+
+          if not access_token:
+              print("Error: MY_GITHUB_TOKEN environment variable not found!")
+              exit(1)
+
+          headers = {
+              "Authorization": f"token {access_token}",
+              "Accept": "application/vnd.github.v3+json",
+          }
+
+          channel_list_url = "https://api.cors.lol/?url=http://herissmon.zabc.net/jiekou/live1.txt"
+          logo_reference_url = "https://raw.githubusercontent.com/githubteck/test/refs/heads/main/logo.txt"
+          epg_urls = [
+              "https://epg.112114.xyz/pp.xml",
+              "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
+              "https://live.fanmingming.cn/e.xml"
+          ]
+
+          def fetch_data(url):
+              try:
+                  response = requests.get(url)
+                  response.raise_for_status()
+                  return response.text
+              except Exception as e:
+                  print(f"Failed to fetch {url}: {e}")
+                  return None
+
+          def parse_channels(data):
+              channels = []
+              if data:
+                  lines = data.strip().splitlines()
+                  current_group = "Other"
+                  for line in lines:
+                      line = line.strip()
+                      if not line:
+                          continue
+                      if "#EXTINF" in line:
+                          parts = line.split(",")
+                          if len(parts) >= 3:
+                              name = parts[1].strip()
+                              url = parts[2].strip()
+                              channels.append({"name": name, "url": url, "group": current_group})
+                      elif line.endswith(",#genre#"):
+                          current_group = line.replace(",#genre#", "").strip()
+                      else:
+                          parts = line.split(",")
+                          if len(parts) == 2:
+                              name = parts[0].strip()
+                              url = parts[1].strip()
+                              channels.append({"name": name, "url": url, "group": current_group})
+              return channels
+
+          def fetch_logo_names():
+              content = fetch_data(logo_reference_url)
+              return [line.strip() for line in content.splitlines() if line.strip()] if content else []
+
+          def best_logo_name(channel_name, logo_list):
+              matches = difflib.get_close_matches(channel_name, logo_list, n=1, cutoff=0.6)
+              return matches[0] if matches else channel_name  # fallback to original name
+
+          def build_m3u8(channels, logo_list):
+              m3u = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
+              for ch in channels:
+                  name = ch["name"]
+                  url = ch["url"]
+                  group = ch.get("group", "Other")
+                  logo_base = best_logo_name(name, logo_list)
+                  logo_url = f"https://live.fanmingming.cn/tv/{logo_base}.png"
+                  m3u += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{name}\" tvg-logo=\"{logo_url}\" group-title=\"{group}\",{name}\n{url}\n"
+              return m3u
+
+          def upload_to_github(content):
+              encoded = base64.b64encode(content.encode()).decode()
+              response = requests.get(api_url, headers=headers)
+              sha = response.json().get("sha") if response.status_code == 200 else None
+              data = {
+                  "message": "Update tw.m3u8 [auto]",
+                  "content": encoded
+              }
+              if sha:
+                  data["sha"] = sha
+              upload = requests.put(api_url, json=data, headers=headers)
+              if upload.status_code in [200, 201]:
+                  print("✅ Upload successful.")
+              else:
+                  print(f"❌ Upload failed: {upload.status_code} {upload.text}")
+
+          # Run it all
+          print("🚀 Generating m3u8 playlist...")
+          raw_channels = fetch_data(channel_list_url)
+          logo_list = fetch_logo_names()
+          channels = parse_channels(raw_channels)
+          playlist = build_m3u8(channels, logo_list)
+          upload_to_github(playlist)
+          print("✅ Done.")
+          EOF
+
+          python generate_m3u8.py
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
