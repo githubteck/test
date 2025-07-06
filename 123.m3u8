@@ -152,7 +152,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/dashiso/1000/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"N2sAl5bkrVDqj2jXlmdmkg", "kid":"P3Jv1cu/WURDek2/q0MbEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="104.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroRia_2024.png" group-logo="" group-title="Malaysia",Ria  
-https://linearjitp-playback.astro.com.my/dash-wv/linear/1004/default_ott.mpd
+https://tcb.homesecuritymac.com/ria.html?t=1745595182
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
