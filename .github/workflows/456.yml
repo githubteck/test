@@ -62,7 +62,8 @@ jobs:
           # Generate content
           content = f"""#EXTM3U
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -71,7 +72,8 @@ jobs:
           https://l18.dp.sooka.my/1601/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -80,7 +82,8 @@ jobs:
           https://l18.dp.sooka.my/1000/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -89,7 +92,8 @@ jobs:
           https://l16.dp.sooka.my/1004/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -98,7 +102,8 @@ jobs:
           https://l04.dp.sooka.my/2400/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -107,7 +112,8 @@ jobs:
           https://l13.dp.sooka.my/2505/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -116,7 +122,8 @@ jobs:
           https://l01.dp.sooka.my/2507/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -125,7 +132,8 @@ jobs:
           https://l15.dp.sooka.my/5050/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -134,7 +142,8 @@ jobs:
           https://l13.dp.sooka.my/606/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -143,7 +152,8 @@ jobs:
           https://l16.dp.sooka.my/1006/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -152,7 +162,8 @@ jobs:
           https://l14.dp.sooka.my/401/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -161,7 +172,8 @@ jobs:
           https://l14.dp.sooka.my/5021/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -170,7 +182,8 @@ jobs:
           https://l14.dp.sooka.my/403/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -179,7 +192,8 @@ jobs:
           https://l14.dp.sooka.my/400/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -188,7 +202,8 @@ jobs:
           https://l14.dp.sooka.my/5017/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -197,7 +212,8 @@ jobs:
           https://l01.dp.sooka.my/408/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -206,7 +222,8 @@ jobs:
           https://l02.dp.sooka.my/5066/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -215,7 +232,8 @@ jobs:
           https://l03.dp.sooka.my/2705/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -224,7 +242,8 @@ jobs:
           https://l15.dp.sooka.my/2110/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -233,7 +252,8 @@ jobs:
           https://l15.dp.sooka.my/2303/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -242,7 +262,8 @@ jobs:
           https://l03.dp.sooka.my/2604/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -251,7 +272,8 @@ jobs:
           https://l04.dp.sooka.my/5057/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -260,7 +282,8 @@ jobs:
           https://l12.dp.sooka.my/5072/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -269,7 +292,8 @@ jobs:
           https://l11.dp.sooka.my/5027/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -278,7 +302,8 @@ jobs:
           https://l11.dp.sooka.my/2306/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -287,7 +312,8 @@ jobs:
           https://l11.dp.sooka.my/2100/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -296,7 +322,8 @@ jobs:
           https://l01.dp.sooka.my/5060/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -305,7 +332,8 @@ jobs:
           https://l02.dp.sooka.my/2504/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -314,7 +342,8 @@ jobs:
           https://l13.dp.sooka.my/5016/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -323,7 +352,8 @@ jobs:
           https://l13.dp.sooka.my/5015/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -332,7 +362,8 @@ jobs:
           https://l11.dp.sooka.my/1001/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -341,7 +372,8 @@ jobs:
           https://l13.dp.sooka.my/2600/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -350,7 +382,8 @@ jobs:
           https://l12.dp.sooka.my/2702/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -359,7 +392,8 @@ jobs:
           https://l12.dp.sooka.my/2305/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -368,7 +402,8 @@ jobs:
           https://l16.dp.sooka.my/5094/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -378,7 +413,8 @@ jobs:
           https://l11.dp.sooka.my/5025/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -387,7 +423,8 @@ jobs:
           https://l01.dp.sooka.my/5099/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -396,7 +433,8 @@ jobs:
           https://l04.dp.sooka.my/5079/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -405,7 +443,8 @@ jobs:
           https://l03.dp.sooka.my/5058/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -414,7 +453,8 @@ jobs:
           https://l16.dp.sooka.my/605/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -423,7 +463,8 @@ jobs:
           https://l15.dp.sooka.my/5096/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -432,7 +473,8 @@ jobs:
           https://l16.dp.sooka.my/5095/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -441,7 +483,8 @@ jobs:
           https://l14.dp.sooka.my/5009/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -450,7 +493,8 @@ jobs:
           https://l11.dp.sooka.my/2406/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -459,7 +503,8 @@ jobs:
           https://l17.dp.sooka.my/5093/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -468,7 +513,8 @@ jobs:
           https://l17.dp.sooka.my/5067/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -477,7 +523,8 @@ jobs:
           https://l12.dp.sooka.my/9983/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -486,7 +533,8 @@ jobs:
           https://l13.dp.sooka.my/5110/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -495,7 +543,8 @@ jobs:
           https://l03.dp.sooka.my/2701/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -504,7 +553,8 @@ jobs:
           https://l01.dp.sooka.my/601/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -513,7 +563,8 @@ jobs:
           https://l02.dp.sooka.my/2104/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -522,7 +573,8 @@ jobs:
           https://l04.dp.sooka.my/2506/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -531,7 +583,8 @@ jobs:
           https://l17.dp.sooka.my/5170/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -540,7 +593,8 @@ jobs:
           https://l16.dp.sooka.my/5171/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -549,7 +603,8 @@ jobs:
           https://l02.dp.sooka.my/5100/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -558,7 +613,8 @@ jobs:
           https://l12.dp.sooka.my/711/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -567,7 +623,8 @@ jobs:
           https://l15.dp.sooka.my/5051/linear/index.mpd
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
-          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
