@@ -63,7 +63,7 @@ jobs:
           content = f"""#EXTM3U
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -73,7 +73,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -83,7 +83,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -93,7 +93,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -103,7 +103,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -113,7 +113,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -123,7 +123,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -133,7 +133,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -143,7 +143,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -153,7 +153,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -163,7 +163,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -173,7 +173,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -183,7 +183,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -193,7 +193,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -203,7 +203,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -213,7 +213,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -223,7 +223,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -233,7 +233,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -243,7 +243,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -253,7 +253,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -263,7 +263,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -273,7 +273,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -283,7 +283,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -293,7 +293,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -303,7 +303,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -313,7 +313,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -323,7 +323,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -333,7 +333,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -343,7 +343,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -353,7 +353,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -363,7 +363,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -373,7 +373,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -383,7 +383,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -393,7 +393,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -403,7 +403,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -414,7 +414,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -424,7 +424,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -434,7 +434,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -444,7 +444,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -454,7 +454,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -464,7 +464,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -474,7 +474,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -484,7 +484,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -494,7 +494,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -504,7 +504,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -514,7 +514,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -524,7 +524,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -534,7 +534,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -544,7 +544,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -554,7 +554,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -564,7 +564,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -574,7 +574,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -584,7 +584,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -594,7 +594,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -604,7 +604,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -614,7 +614,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
@@ -624,7 +624,7 @@ jobs:
           
           #KODIPROP:inputstreamaddon=inputstream.adaptive
           #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
-          #EXTVLCOPT:http-referrer=https://tcb.homesecuritymac.com/
+          #EXTVLCOPT:http-referrer=
           #EXTHTTP:{{"Authorization":"{token}"}}
           #KODIPROP:inputstream.adaptive.manifest_type=dash
           #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
