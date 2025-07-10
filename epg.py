@@ -1,13 +1,14 @@
 import requests
 from base64 import b64encode
+import base64
 import os
 from lxml import etree
 
 # --- GitHub Repo Info ---
 repo_owner = 'githubteck'
 repo_name = 'test'
-target_file_path = 'epg.xml'       # ✅ GitHub filename
-access_token = os.getenv('ABC')    # ✅ GitHub token in environment
+target_file_path = 'epg.xml'       # GitHub filename
+access_token = os.getenv('ABC')    # GitHub token from environment
 
 # --- EPG URLs ---
 epg_urls = [
@@ -43,16 +44,28 @@ def filter_and_merge(epg_roots, timezone='+0800'):
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
 def upload_to_github(owner, repo, path, content, token):
-    print(f"Uploading {path} to GitHub repo {owner}/{repo}")
+    print(f"Checking existing {path} in GitHub repo {owner}/{repo}")
     api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}"
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/vnd.github+json"
     }
 
-    # Check if file exists to get SHA
     get_resp = requests.get(api_url, headers=headers)
-    sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
+    if get_resp.status_code == 200:
+        existing_file = get_resp.json()
+        sha = existing_file.get("sha")
+        existing_content_b64 = existing_file.get("content", "").strip()
+        existing_content = base64.b64decode(existing_content_b64)
+
+        if existing_content == content:
+            print("No changes detected in epg.xml — skipping upload.")
+            return
+        else:
+            print("Changes detected — will update epg.xml.")
+    else:
+        sha = None
+        print(f"No existing {path} found — creating new file.")
 
     data = {
         "message": "Update epg.xml with +0800 filtered programmes",
