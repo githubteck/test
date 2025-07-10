@@ -39,7 +39,7 @@ jobs:
           repo_name = "test"
           file_path = "456.m3u8"
           branch = "main"
-          token_url = "https://api.npoint.io/be2f8f200b5bb9130bdb"
+          token_url = "https://api.npoint.io/df845c76b121d4d5a671"
           github_token = os.getenv("MY_GITHUB_TOKEN")
 
           if not github_token:
