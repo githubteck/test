@@ -5,6 +5,7 @@ import os
 from lxml import etree
 from datetime import datetime, timezone, timedelta
 import re
+from copy import deepcopy
 
 # --- GitHub Repo Info ---
 repo_owner = 'githubteck'
@@ -56,20 +57,21 @@ def filter_and_merge_all_with_plus0800(epg_roots):
     channel_ids = set()
 
     for root in epg_roots:
-        # Add unique channels
+        # Add unique channels (deepcopy!)
         for channel in root.xpath("//channel"):
             ch_id = channel.attrib.get("id")
             if ch_id and ch_id not in channel_ids:
-                merged_root.append(channel)
+                merged_root.append(deepcopy(channel))
                 channel_ids.add(ch_id)
 
-        # Add all programmes with start time converted to +0800
+        # Add all programmes with start time converted to +0800 (deepcopy + modify)
         for programme in root.xpath("//programme"):
-            start = programme.attrib.get("start")
+            prog_copy = deepcopy(programme)
+            start = prog_copy.attrib.get("start")
             if start:
                 new_start = convert_to_plus0800(start)
-                programme.attrib["start"] = new_start
-            merged_root.append(programme)
+                prog_copy.attrib["start"] = new_start
+            merged_root.append(prog_copy)
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
