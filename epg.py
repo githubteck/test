@@ -52,6 +52,33 @@ def is_today(time_str):
     # Compare only the date part
     return dt_local.date() == datetime.now(tz=target_offset).date()
 
+def convert_to_timezone(time_str, offset_hours=8):
+    """
+    Convert an EPG time string to the given timezone offset (e.g., +0800).
+    Returns string in same format: 'YYYYMMDDHHMMSS +0800'
+    """
+    match = re.match(r"(\d{14})\s?([+\-]\d{4})?", time_str)
+    if not match:
+        return time_str  # fallback to original if malformed
+
+    dt_str = match.group(1)
+    tz_str = match.group(2) or "+0000"
+
+    # Parse original timezone
+    sign = 1 if tz_str[0] == '+' else -1
+    hours_offset = int(tz_str[1:3])
+    minutes_offset = int(tz_str[3:])
+    original_tz = timezone(timedelta(hours=sign * hours_offset, minutes=sign * minutes_offset))
+
+    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S").replace(tzinfo=original_tz)
+
+    # Convert to target timezone
+    new_tz = timezone(timedelta(hours=offset_hours))
+    shifted_dt = dt.astimezone(new_tz)
+
+    # Format back to XMLTV datetime format
+    return shifted_dt.strftime("%Y%m%d%H%M%S") + f" +{offset_hours:02}00"
+
 def filter_and_merge_today(epg_roots):
     print("Merging channels and today's programmes only (with time shift to +0800)")
 
@@ -69,7 +96,17 @@ def filter_and_merge_today(epg_roots):
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
             if start and is_today(start):
-                merged_root.append(deepcopy(programme))
+                prog_copy = deepcopy(programme)
+
+                # Convert and update start time
+                prog_copy.attrib['start'] = convert_to_timezone(prog_copy.attrib['start'], offset_hours=8)
+
+                # Convert and update stop time if present
+                stop = prog_copy.attrib.get("stop")
+                if stop:
+                    prog_copy.attrib['stop'] = convert_to_timezone(stop, offset_hours=8)
+
+                merged_root.append(prog_copy)
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
