@@ -12,7 +12,7 @@ repo_name = 'test'
 target_file_path = 'epg.xml'
 access_token = os.getenv('ABC')
 
-# --- EPG URLs (no timezone parameter, source provides +0000 by default) ---
+# --- EPG URLs ---
 epg_urls = [
     'https://epg.pw/xmltv/epg_TW.xml',
     'https://epg.pw/xmltv/epg_HK.xml'
@@ -24,33 +24,33 @@ def fetch_epg(url):
     response.raise_for_status()
     return etree.fromstring(response.content)
 
-def is_today(time_str):
+def is_today_utc8(time_str):
     """
-    Check if the start time is today in local (UTC+8) time.
+    Check if the start time (in UTC) is today in UTC+8.
     """
     match = re.match(r"(\d{14})", time_str)
     if not match:
         return False
     dt_str = match.group(1)
     dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
-    # Assume the time is in UTC, shift to UTC+8 for date comparison
-    dt += timedelta(hours=8)
-    return dt.date() == datetime.now().date()
+    dt_utc8 = dt + timedelta(hours=8)
+    return dt_utc8.date() == (datetime.utcnow() + timedelta(hours=8)).date()
 
-def shift_time_back_8_hours(time_str):
+def shift_to_utc8(time_str):
     """
-    Shift a datetime string back by 8 hours.
-    Keep format: 'YYYYMMDDHHMMSS +0000'
+    Convert a UTC datetime string to UTC+8 format and add +0800.
+    Input: '20250713120000' or '20250713120000 +0000'
+    Output: '20250713200000 +0800'
     """
-    match = re.match(r"(\d{14})\s?([+\-]\d{4})?", time_str)
+    match = re.match(r"(\d{14})", time_str)
     if not match:
         return time_str
     dt = datetime.strptime(match.group(1), "%Y%m%d%H%M%S")
-    dt_shifted = dt - timedelta(hours=8)
-    return dt_shifted.strftime("%Y%m%d%H%M%S") + " +0000"
+    dt_utc8 = dt + timedelta(hours=8)
+    return dt_utc8.strftime("%Y%m%d%H%M%S") + " +0800"
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and today's programmes only (shifting -8 hours)")
+    print("Merging channels and today's programmes only (shifted to +0800)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
@@ -67,12 +67,12 @@ def filter_and_merge_today(epg_roots):
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
-            if start and is_today(start):
+            if start and is_today_utc8(start):
                 prog_copy = deepcopy(programme)
-                prog_copy.attrib['start'] = shift_time_back_8_hours(start)
+                prog_copy.attrib['start'] = shift_to_utc8(start)
                 stop = prog_copy.attrib.get('stop')
                 if stop:
-                    prog_copy.attrib['stop'] = shift_time_back_8_hours(stop)
+                    prog_copy.attrib['stop'] = shift_to_utc8(stop)
                 merged_root.append(prog_copy)
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
@@ -90,7 +90,7 @@ def upload_to_github(owner, repo, path, content, token):
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
     data = {
-        "message": "Update epg.xml with today's EPG data (shifted -8h)",
+        "message": "Update epg.xml with today's EPG data in UTC+8 format",
         "content": b64encode(content).decode('utf-8'),
         "branch": "main"
     }
