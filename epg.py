@@ -2,10 +2,9 @@ import requests
 import os
 from lxml import etree
 from datetime import datetime, timezone, timedelta
-import re
-from copy import deepcopy
+from base64 import b64encode
 
-# --- GitHub Repo Info (for token/env if needed) ---
+# --- GitHub Repo Info ---
 repo_owner = 'githubteck'
 repo_name = 'test'
 target_file_path = 'epg.xml'
@@ -24,9 +23,6 @@ def fetch_epg(url):
     return etree.fromstring(response.content)
 
 def parse_xmltv_datetime(time_str):
-    """
-    Parse XMLTV datetime string (YYYYMMDDHHMMSS ±zzzz) to datetime with tzinfo.
-    """
     match = re.match(r"(\d{14})( ?)([+\-]\d{4})", time_str)
     if not match:
         dt_str = time_str[:14]
@@ -43,9 +39,6 @@ def parse_xmltv_datetime(time_str):
     return dt
 
 def is_today_plus0800(time_str):
-    """
-    Check if the XMLTV time string falls on today's date in +0800 timezone.
-    """
     dt = parse_xmltv_datetime(time_str)
     plus8 = timezone(timedelta(hours=8))
     dt_plus8 = dt.astimezone(plus8)
@@ -53,9 +46,6 @@ def is_today_plus0800(time_str):
     return dt_plus8.date() == today_plus8
 
 def convert_to_plus0800(time_str):
-    """
-    Convert XMLTV time string to +0800 timezone formatted string.
-    """
     dt = parse_xmltv_datetime(time_str)
     plus8 = timezone(timedelta(hours=8))
     dt_plus8 = dt.astimezone(plus8)
@@ -67,7 +57,6 @@ def filter_and_merge_today_with_plus0800(epg_roots):
     merged_root = etree.Element("tv")
     channel_ids = set()
 
-    # Add all unique channels first
     for root in epg_roots:
         for channel in root.xpath("//channel"):
             ch_id = channel.attrib.get("id")
@@ -75,7 +64,6 @@ def filter_and_merge_today_with_plus0800(epg_roots):
                 merged_root.append(deepcopy(channel))
                 channel_ids.add(ch_id)
 
-    # Add only today's programmes (in +0800)
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
@@ -86,15 +74,39 @@ def filter_and_merge_today_with_plus0800(epg_roots):
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
-def save_locally(content):
-    with open(target_file_path, 'wb') as f:
-        f.write(content)
-    print(f"Saved {target_file_path} locally.")
+def upload_to_github(owner, repo, path, content, token):
+    print(f"Uploading {path} to GitHub repo {owner}/{repo}")
+    api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}"
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json"
+    }
+
+    get_resp = requests.get(api_url, headers=headers)
+    sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
+
+    data = {
+        "message": "Update epg.xml with today's EPG data",
+        "content": b64encode(content).decode('utf-8'),
+        "branch": "main"
+    }
+    if sha:
+        data["sha"] = sha
+
+    put_resp = requests.put(api_url, headers=headers, json=data)
+    if put_resp.status_code in [200, 201]:
+        print("✅ epg.xml uploaded successfully.")
+    else:
+        print("❌ Failed to upload:", put_resp.status_code, put_resp.text)
 
 def main():
+    if not access_token:
+        print("❌ GitHub token not found in environment variable 'ABC'")
+        return
+
     roots = [fetch_epg(url) for url in epg_urls]
     merged_xml = filter_and_merge_today_with_plus0800(roots)
-    save_locally(merged_xml)
+    upload_to_github(repo_owner, repo_name, target_file_path, merged_xml, access_token)
 
 if __name__ == "__main__":
     main()
