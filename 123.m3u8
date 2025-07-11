@@ -685,7 +685,7 @@ https://webr24.hypp.tv:443/PLTV/88888888/224/3221225714/3221225714.mpd?rrsip=web
 https://linearjitp-playback.astro.com.my/dash-wv/linear/5054/default_ott.mpd
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/SonyPixV3.png" group-title="Movies",Sony Pix
-http://83.142.30.171:8080/live/vip_3klp0es8/wg3piwEs/2688.ts
+https://tataplay.slivcdn.com/hls/live/2011748/PIXHD/master.m3u8
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/StarMovies.png" group-title="Movies",Star Movies
 http://83.142.30.171:8080/live/vip_3klp0es8/wg3piwEs/2687.ts
@@ -1450,8 +1450,23 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2605/default_ott.mpd
 #EXTINF:-1 tvg-id="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Astro_logo_-_Magenta_-_Copy.png/120px-Astro_logo_-_Magenta_-_Copy.png" group-logo="https://astrogo.astro.com.my/staticFiles/images/icons/astroLogo.png" group-title="Test",Active 14
 https://linearjitp-playback.astro.com.my/dash-wv/linear/2100/default_ott.mpd
 
+#EXTINF:-1 tvg-id="andflixhd.in" tvg-name="& flix (4K)" tvg-logo="http://openboxv8s.com/india/and-flix-in.png" group-title="Test",& flix (4K)
+https://bdixtv.life/bdixtv.php?id=109962
 
+#EXTINF:-1 tvg-id="hbohd.in" tvg-name="& Prive (4K)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/%26priv%C3%A9_HD.svg/800px-%26priv%C3%A9_HD.svg.png" group-title="Test",& Prive (4K)
+https://bdixtv.life/bdixtv.php?id=109963
 
+#EXTINF:-1 tvg-id="sonyten3hd.in" tvg-name="MN+ (4K)" tvg-logo="https://tvwiz.in/images/channel-images/MN+%20HD.v2.w132.png" group-title="Test",MN+ (4K)
+https://bdixtv.life/bdixtv.php?id=109965
+
+#EXTINF:-1 tvg-id="" tvg-name="SONY PIX (4K)" tvg-logo="http://openboxv8s.com/india/sony_pix_in.png" group-title="Test",SONY PIX (4K)
+https://bdixtv.life/bdixtv.php?id=109966
+
+#EXTINF:-1 tvg-id="moviesnowhd.in" tvg-name="Movies Now (4K)" tvg-logo="http://openboxv8s.com/india/movies_now.png" group-title="Test",Movies Now (4K)
+https://bdixtv.life/bdixtv.php?id=109968
+
+#EXTINF:-1 tvg-id="sonyten3hd.in" tvg-name="STAR MOVIES (4K)" tvg-logo="http://openboxv8s.com/india/star_movies_in_hd.jpg" group-title="Test",STAR MOVIES (4K)
+https://bdixtv.life/bdixtv.php?id=109970
 ------------------------------ END OF SOURCE 1 ------------------------------
 #EXTM3U billed-msg="1 ID 1 DEVICE"
 ##########################################################################################################################
