@@ -1,7 +1,7 @@
 import requests
 import os
 from lxml import etree
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from base64 import b64encode
 from copy import deepcopy
 import re
@@ -26,61 +26,30 @@ def fetch_epg(url):
 
 def is_today(time_str):
     """
-    Check if the given EPG time string falls on today's date after converting to UTC+8.
-    Example input: "20250711120000 +0800"
+    Check if the time (in format YYYYMMDDHHMMSS +0000 or similar) falls on today.
+    Only checks the datetime portion, assumes time is already in correct local time.
     """
-    match = re.match(r"(\d{14})\s?([+\-]\d{4})?", time_str)
+    match = re.match(r"(\d{14})", time_str)
     if not match:
         return False
 
     dt_str = match.group(1)
-    tz_str = match.group(2) or "+0000"
+    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
 
-    # Convert timezone offset string to timedelta
-    sign = 1 if tz_str[0] == '+' else -1
-    hours_offset = int(tz_str[1:3])
-    minutes_offset = int(tz_str[3:])
-    source_offset = timezone(timedelta(hours=sign * hours_offset, minutes=sign * minutes_offset))
+    return dt.date() == datetime.now().date()
 
-    # Parse datetime with source timezone
-    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S").replace(tzinfo=source_offset)
-
-    # Convert to target timezone +0800 (Asia/Singapore)
-    target_offset = timezone(timedelta(hours=8))
-    dt_local = dt.astimezone(target_offset)
-
-    # Compare only the date part
-    return dt_local.date() == datetime.now(tz=target_offset).date()
-
-def convert_to_timezone(time_str, offset_hours=8):
+def relabel_timezone(time_str):
     """
-    Convert an EPG time string to the given timezone offset (e.g., +0800).
-    Returns string in same format: 'YYYYMMDDHHMMSS +0800'
+    Change the timezone offset in the EPG datetime string to '+0800'
+    without altering the datetime itself.
     """
-    match = re.match(r"(\d{14})\s?([+\-]\d{4})?", time_str)
-    if not match:
-        return time_str  # fallback to original if malformed
-
-    dt_str = match.group(1)
-    tz_str = match.group(2) or "+0000"
-
-    # Parse original timezone
-    sign = 1 if tz_str[0] == '+' else -1
-    hours_offset = int(tz_str[1:3])
-    minutes_offset = int(tz_str[3:])
-    original_tz = timezone(timedelta(hours=sign * hours_offset, minutes=sign * minutes_offset))
-
-    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S").replace(tzinfo=original_tz)
-
-    # Convert to target timezone
-    new_tz = timezone(timedelta(hours=offset_hours))
-    shifted_dt = dt.astimezone(new_tz)
-
-    # Format back to XMLTV datetime format
-    return shifted_dt.strftime("%Y%m%d%H%M%S") + f" +{offset_hours:02}00"
+    match = re.match(r"^(\d{14})(\s?[+\-]\d{4})?$", time_str)
+    if match:
+        return f"{match.group(1)} +0800"
+    return time_str
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and today's programmes only (with time shift to +0800)")
+    print("Merging channels and today's programmes only (relabel +0000 → +0800)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
@@ -98,13 +67,9 @@ def filter_and_merge_today(epg_roots):
             if start and is_today(start):
                 prog_copy = deepcopy(programme)
 
-                # Convert and update start time
-                prog_copy.attrib['start'] = convert_to_timezone(prog_copy.attrib['start'], offset_hours=8)
-
-                # Convert and update stop time if present
-                stop = prog_copy.attrib.get("stop")
-                if stop:
-                    prog_copy.attrib['stop'] = convert_to_timezone(stop, offset_hours=8)
+                # Relabel timezone to +0800 (no shifting)
+                prog_copy.attrib['start'] = relabel_timezone(prog_copy.attrib.get('start', ''))
+                prog_copy.attrib['stop'] = relabel_timezone(prog_copy.attrib.get('stop', ''))
 
                 merged_root.append(prog_copy)
 
