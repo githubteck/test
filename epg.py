@@ -1,7 +1,7 @@
 import requests
 import os
 from lxml import etree
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from base64 import b64encode
 from copy import deepcopy
 import re
@@ -14,8 +14,8 @@ access_token = os.getenv('ABC')
 
 # --- EPG URLs with timezone set to Asia/Singapore ---
 epg_urls = [
-    'https://epg.pw/xmltv/epg_TW.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D',
-    'https://epg.pw/xmltv/epg_HK.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D'
+    'https://epg.pw/xmltv/epg_TW.xml,
+    'https://epg.pw/xmltv/epg_HK.xml
 ]
 
 def fetch_epg(url):
@@ -25,16 +25,35 @@ def fetch_epg(url):
     return etree.fromstring(response.content)
 
 def is_today(time_str):
-    # Example: "20250711120000 +0800"
-    match = re.match(r"(\d{14})", time_str)
+    """
+    Check if the given EPG time string falls on today's date after converting to UTC+8.
+    Example input: "20250711120000 +0800"
+    """
+    match = re.match(r"(\d{14})\s?([+\-]\d{4})?", time_str)
     if not match:
         return False
+
     dt_str = match.group(1)
-    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
-    return dt.date() == datetime.now().date()
+    tz_str = match.group(2) or "+0000"
+
+    # Convert timezone offset string to timedelta
+    sign = 1 if tz_str[0] == '+' else -1
+    hours_offset = int(tz_str[1:3])
+    minutes_offset = int(tz_str[3:])
+    source_offset = timezone(timedelta(hours=sign * hours_offset, minutes=sign * minutes_offset))
+
+    # Parse datetime with source timezone
+    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S").replace(tzinfo=source_offset)
+
+    # Convert to target timezone +0800 (Asia/Singapore)
+    target_offset = timezone(timedelta(hours=8))
+    dt_local = dt.astimezone(target_offset)
+
+    # Compare only the date part
+    return dt_local.date() == datetime.now(tz=target_offset).date()
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and today's programmes only (no time shift)")
+    print("Merging channels and today's programmes only (with time shift to +0800)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
