@@ -45,11 +45,11 @@ def relabel_timezone(time_str):
     """
     match = re.match(r"^(\d{14})(\s?[+\-]\d{4})?$", time_str)
     if match:
-        return f"{match.group(1)} +0800"
+        return f"{match.group(1)} -0800"
     return time_str
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and today's programmes only (relabel +0000 → +0800)")
+    print("Merging channels and today's programmes only (relabel +0000 → -0800)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
@@ -67,7 +67,7 @@ def filter_and_merge_today(epg_roots):
             if start and is_today(start):
                 prog_copy = deepcopy(programme)
 
-                # Relabel timezone to +0800 (no shifting)
+                # Relabel timezone to -0800 (no shifting)
                 prog_copy.attrib['start'] = relabel_timezone(prog_copy.attrib.get('start', ''))
                 prog_copy.attrib['stop'] = relabel_timezone(prog_copy.attrib.get('stop', ''))
 
