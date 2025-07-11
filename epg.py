@@ -3,6 +3,8 @@ import os
 from lxml import etree
 from datetime import datetime, timezone, timedelta
 from base64 import b64encode
+from copy import deepcopy
+import re
 
 # --- GitHub Repo Info ---
 repo_owner = 'githubteck'
@@ -23,8 +25,10 @@ def fetch_epg(url):
     return etree.fromstring(response.content)
 
 def parse_xmltv_datetime(time_str):
+    # Format example: "20230711120000 +0800"
     match = re.match(r"(\d{14})( ?)([+\-]\d{4})", time_str)
     if not match:
+        # fallback: parse without timezone, treat as UTC
         dt_str = time_str[:14]
         dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
         dt = dt.replace(tzinfo=timezone.utc)
@@ -82,6 +86,7 @@ def upload_to_github(owner, repo, path, content, token):
         "Accept": "application/vnd.github+json"
     }
 
+    # Check if file exists to get SHA for update
     get_resp = requests.get(api_url, headers=headers)
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
