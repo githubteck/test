@@ -14,8 +14,8 @@ access_token = os.getenv('ABC')
 
 # --- EPG URLs with timezone set to Asia/Singapore ---
 epg_urls = [
-    'https://epg.pw/xmltv/epg_TW.xml,
-    'https://epg.pw/xmltv/epg_HK.xml
+    'https://epg.pw/xmltv/epg_TW.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D',
+    'https://epg.pw/xmltv/epg_HK.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D'
 ]
 
 def fetch_epg(url):
