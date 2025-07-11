@@ -1,7 +1,7 @@
 import requests
 import os
 from lxml import etree
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
 from base64 import b64encode
 from copy import deepcopy
 import re
@@ -12,10 +12,10 @@ repo_name = 'test'
 target_file_path = 'epg.xml'
 access_token = os.getenv('ABC')
 
-# --- EPG URLs ---
+# --- EPG URLs with timezone set to Asia/Singapore ---
 epg_urls = [
-    'https://epg.pw/xmltv/epg_TW.xml',
-    'https://epg.pw/xmltv/epg_HK.xml'
+    'https://epg.pw/xmltv/epg_TW.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D',
+    'https://epg.pw/xmltv/epg_HK.xml?timezone=QXNpYS9TaW5nYXBvcmU%3D'
 ]
 
 def fetch_epg(url):
@@ -24,39 +24,17 @@ def fetch_epg(url):
     response.raise_for_status()
     return etree.fromstring(response.content)
 
-def parse_xmltv_datetime(time_str):
-    # Format example: "20230711120000 +0800"
-    match = re.match(r"(\d{14})( ?)([+\-]\d{4})", time_str)
+def is_today(time_str):
+    # Example: "20250711120000 +0800"
+    match = re.match(r"(\d{14})", time_str)
     if not match:
-        # fallback: parse without timezone, treat as UTC
-        dt_str = time_str[:14]
-        dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
-        dt = dt.replace(tzinfo=timezone.utc)
-    else:
-        dt_str, _, offset_str = match.groups()
-        dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
-        sign = 1 if offset_str[0] == '+' else -1
-        offset_hours = int(offset_str[1:3])
-        offset_minutes = int(offset_str[3:])
-        offset = timedelta(hours=sign*offset_hours, minutes=sign*offset_minutes)
-        dt = dt.replace(tzinfo=timezone(offset))
-    return dt
+        return False
+    dt_str = match.group(1)
+    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
+    return dt.date() == datetime.now().date()
 
-def is_today_plus0800(time_str):
-    dt = parse_xmltv_datetime(time_str)
-    plus8 = timezone(timedelta(hours=8))
-    dt_plus8 = dt.astimezone(plus8)
-    today_plus8 = datetime.now(tz=plus8).date()
-    return dt_plus8.date() == today_plus8
-
-def convert_to_plus0800(time_str):
-    dt = parse_xmltv_datetime(time_str)
-    plus8 = timezone(timedelta(hours=8))
-    dt_plus8 = dt.astimezone(plus8)
-    return dt_plus8.strftime("%Y%m%d%H%M%S +0800")
-
-def filter_and_merge_today_with_plus0800(epg_roots):
-    print("Merging channels and today's programmes only, converting start times to +0800")
+def filter_and_merge_today(epg_roots):
+    print("Merging channels and today's programmes only (no time shift)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
@@ -71,10 +49,8 @@ def filter_and_merge_today_with_plus0800(epg_roots):
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
-            if start and is_today_plus0800(start):
-                prog_copy = deepcopy(programme)
-                prog_copy.attrib["start"] = convert_to_plus0800(start)
-                merged_root.append(prog_copy)
+            if start and is_today(start):
+                merged_root.append(deepcopy(programme))
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
@@ -86,7 +62,6 @@ def upload_to_github(owner, repo, path, content, token):
         "Accept": "application/vnd.github+json"
     }
 
-    # Check if file exists to get SHA for update
     get_resp = requests.get(api_url, headers=headers)
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
@@ -110,7 +85,7 @@ def main():
         return
 
     roots = [fetch_epg(url) for url in epg_urls]
-    merged_xml = filter_and_merge_today_with_plus0800(roots)
+    merged_xml = filter_and_merge_today(roots)
     upload_to_github(repo_owner, repo_name, target_file_path, merged_xml, access_token)
 
 if __name__ == "__main__":
