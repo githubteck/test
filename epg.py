@@ -40,7 +40,7 @@ def is_today(time_str):
 
 def relabel_timezone(time_str):
     """
-    Change the timezone offset in the EPG datetime string to '+0800'
+    Change the timezone offset in the EPG datetime string to '-0800'
     without altering the datetime itself.
     """
     match = re.match(r"^(\d{14})(\s?[+\-]\d{4})?$", time_str)
