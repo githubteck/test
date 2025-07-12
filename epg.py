@@ -24,33 +24,23 @@ def fetch_epg(url):
     response.raise_for_status()
     return etree.fromstring(response.content)
 
-def is_today_utc8(time_str):
+def is_today_after_offset(time_str, offset_hours=8):
     """
-    Check if the start time (in UTC) is today in UTC+8.
+    Check if the datetime (in UTC) minus offset_hours falls within today in UTC+8.
+    For example: 20250714020000 - 8h = 20250713180000 → still today in UTC+8
     """
     match = re.match(r"(\d{14})", time_str)
     if not match:
         return False
-    dt_str = match.group(1)
-    dt = datetime.strptime(dt_str, "%Y%m%d%H%M%S")
-    dt_utc8 = dt + timedelta(hours=8)
-    return dt_utc8.date() == (datetime.utcnow() + timedelta(hours=8)).date()
 
-def shift_to_utc8(time_str):
-    """
-    Convert a UTC datetime string to UTC+8 format and add +0800.
-    Input: '20250713120000' or '20250713120000 +0000'
-    Output: '20250713200000 +0800'
-    """
-    match = re.match(r"(\d{14})", time_str)
-    if not match:
-        return time_str
-    dt = datetime.strptime(match.group(1), "%Y%m%d%H%M%S")
-    dt_utc8 = dt + timedelta(hours=8)
-    return dt_utc8.strftime("%Y%m%d%H%M%S") + " +0800"
+    dt_utc = datetime.strptime(match.group(1), "%Y%m%d%H%M%S")
+    dt_adjusted = dt_utc - timedelta(hours=offset_hours)
+
+    today_utc8 = datetime.utcnow() + timedelta(hours=offset_hours)
+    return dt_adjusted.date() == today_utc8.date()
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and today's programmes only (shifted to +0800)")
+    print("Merging channels and programmes that fall on today's date in UTC+8 (kept in UTC +0000)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
@@ -63,17 +53,12 @@ def filter_and_merge_today(epg_roots):
                 merged_root.append(deepcopy(channel))
                 channel_ids.add(ch_id)
 
-    # Filter and adjust today's programmes
+    # Filter and include programmes falling in today (UTC+8), but keep original UTC times
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
-            if start and is_today_utc8(start):
-                prog_copy = deepcopy(programme)
-                prog_copy.attrib['start'] = shift_to_utc8(start)
-                stop = prog_copy.attrib.get('stop')
-                if stop:
-                    prog_copy.attrib['stop'] = shift_to_utc8(stop)
-                merged_root.append(prog_copy)
+            if start and is_today_after_offset(start):
+                merged_root.append(deepcopy(programme))
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
@@ -90,7 +75,7 @@ def upload_to_github(owner, repo, path, content, token):
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
     data = {
-        "message": "Update epg.xml with today's EPG data in UTC+8 format",
+        "message": "Update epg.xml with today's EPG data (filtered using UTC+8 day, but kept in UTC)",
         "content": b64encode(content).decode('utf-8'),
         "branch": "main"
     }
