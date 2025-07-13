@@ -6,6 +6,9 @@ from base64 import b64encode
 from copy import deepcopy
 import re
 
+# Python 3.9+ required for zoneinfo
+from zoneinfo import ZoneInfo
+
 # --- GitHub Repo Info ---
 repo_owner = 'githubteck'
 repo_name = 'test'
@@ -18,34 +21,43 @@ epg_urls = [
     'https://epg.pw/xmltv/epg_HK.xml'
 ]
 
+# --- Timezone info ---
+sg_tz = ZoneInfo("Asia/Singapore")
+
 def fetch_epg(url):
     print(f"Fetching {url}")
     response = requests.get(url)
     response.raise_for_status()
     return etree.fromstring(response.content)
 
-def is_today_after_offset(time_str, offset_hours=8):
+def is_today_sgt(time_str):
     """
-    Check if the datetime (in UTC) minus offset_hours falls within today in UTC+8.
-    For example: 20250714020000 - 8h = 20250713180000 → still today in UTC+8
+    Check if datetime string falls on today's date in Singapore timezone.
     """
     match = re.match(r"(\d{14})", time_str)
     if not match:
         return False
 
-    dt_utc = datetime.strptime(match.group(1), "%Y%m%d%H%M%S")
-    dt_adjusted = dt_utc - timedelta(hours=offset_hours)
+    dt_utc = datetime.strptime(match.group(1), "%Y%m%d%H%M%S").replace(tzinfo=ZoneInfo("UTC"))
+    dt_sgt = dt_utc.astimezone(sg_tz)
+    today_sgt = datetime.now(sg_tz).date()
 
-    today_utc8 = datetime.utcnow() + timedelta(hours=offset_hours)
-    return dt_adjusted.date() == today_utc8.date()
+    return dt_sgt.date() == today_sgt
+
+def convert_to_sgt_string(dt_str):
+    """
+    Convert UTC datetime string (YYYYMMDDHHMMSS) to SGT (UTC+8) formatted string.
+    """
+    dt_utc = datetime.strptime(dt_str, "%Y%m%d%H%M%S").replace(tzinfo=ZoneInfo("UTC"))
+    dt_sgt = dt_utc.astimezone(sg_tz)
+    return dt_sgt.strftime("%Y%m%d%H%M%S") + " +0800"
 
 def filter_and_merge_today(epg_roots):
-    print("Merging channels and programmes that fall on today's date in UTC+8 (kept in UTC +0000)")
+    print("Merging channels and programmes for today's date in Singapore Time")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
 
-    # Add unique channels
     for root in epg_roots:
         for channel in root.xpath("//channel"):
             ch_id = channel.attrib.get("id")
@@ -53,12 +65,22 @@ def filter_and_merge_today(epg_roots):
                 merged_root.append(deepcopy(channel))
                 channel_ids.add(ch_id)
 
-    # Filter and include programmes falling in today (UTC+8), but keep original UTC times
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
-            if start and is_today_after_offset(start):
-                merged_root.append(deepcopy(programme))
+            stop = programme.attrib.get("stop")
+            if start and is_today_sgt(start):
+                prog_copy = deepcopy(programme)
+
+                # Convert times to Singapore time
+                new_start = convert_to_sgt_string(re.match(r"(\d{14})", start).group(1))
+                new_stop = convert_to_sgt_string(re.match(r"(\d{14})", stop).group(1)) if stop else None
+
+                prog_copy.attrib["start"] = new_start
+                if new_stop:
+                    prog_copy.attrib["stop"] = new_stop
+
+                merged_root.append(prog_copy)
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
@@ -70,12 +92,11 @@ def upload_to_github(owner, repo, path, content, token):
         "Accept": "application/vnd.github+json"
     }
 
-    # Check if file exists
     get_resp = requests.get(api_url, headers=headers)
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
     data = {
-        "message": "Update epg.xml with today's EPG data (filtered using UTC+8 day, but kept in UTC)",
+        "message": "Update epg.xml with today's EPG (Singapore Time, UTC+8)",
         "content": b64encode(content).decode('utf-8'),
         "branch": "main"
     }
