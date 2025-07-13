@@ -1,0 +1,120 @@
+name: Generate and Upload 456.m3u8
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Run daily at 9:00 AM
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required to create or update repo content
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate and upload 456.m3u8
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
+        run: |
+          python3 <<EOF
+          import requests
+          import base64
+          import os
+          import json
+
+          # Config
+          repo_owner = "githubteck"
+          repo_name = "test"
+          file_path = "456.m3u8"
+          branch = "main"
+          token_url = "https://api.npoint.io/7e93761c917b3db793b3"
+          github_token = os.getenv("MY_GITHUB_TOKEN")
+
+          if not github_token:
+              print("❌ GitHub token not found!")
+              exit(1)
+
+          # Fetch token
+          try:
+              response = requests.get(token_url)
+              response.raise_for_status()
+              token_data = response.json()
+              token = token_data.get("token", "").strip()
+              if not token:
+                  print("❌ Token not found in response.")
+                  exit(1)
+          except Exception as e:
+              print(f"❌ Failed to fetch or parse token: {e}")
+              exit(1)
+
+          # Generate content
+          content = f"""#EXTM3U
+
+          
+          #KODIPROP:inputstreamaddon=inputstream.adaptive
+          #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+          #EXTVLCOPT:http-referrer=
+          #EXTHTTP:{{"Authorization":"{token}"}}
+          #KODIPROP:inputstream.adaptive.manifest_type=dash
+          #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+          #KODIPROP:inputstream.adaptive.license_key={{"655b6df8085d4fe6b3f71c0f4288f98a":"5f0d4251e05e0a3a661218169ee84181","d66e2fe5f045426195d432802f9ba807":"6fe283a6f1f3a3fb69f82c4340e0dde2"}}
+          #EXTINF:-1  tvg-id="AstroAEC" tvg-logo="https://images.sgp2.ott.kaltura.com/Service.svc/GetImage/p/3209/entry_id/948bafbe79e1483ca678e88b9e11dff9/version/1/width/500/height/280" group-title="🇲🇾 MALAYSIA",Astro AEC
+          https://l04.dp.sooka.my/2400/linear/index.mpd
+          
+          
+
+          
+          #EXTM3U url-tvg="https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/unifitv.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/astro.xml,https://raw.githubusercontent.com/azimabid00/epg/main/unifi_epg.xml,https://i.mjh.nz/PlutoTV/all.xml,https://i.mjh.nz/SamsungTVPlus/us.xml,https://i.mjh.nz/SamsungTVPlus/kr.xml,https://epg.pw/xmltv/epg_MY.xml,https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/indonesia.xml" refresh="1440"
+          """
+
+          encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+          api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+
+          headers = {
+              "Authorization": f"token {github_token}",
+              "Accept": "application/vnd.github.v3+json"
+          }
+
+          # Fetch current file to compare
+          response = requests.get(api_url, headers=headers)
+          if response.status_code == 200:
+              existing_data = response.json()
+              existing_content = existing_data.get("content", "").replace("\n", "").strip()
+              sha = existing_data.get("sha")
+
+              if existing_content == encoded_content:
+                  print("⏩ No changes detected. Skipping update.")
+                  exit(0)
+              print("✏️ Content has changed. Updating...")
+          else:
+              sha = None
+              print("📄 File does not exist. Creating new file...")
+
+          # Upload/update file
+          payload = {
+              "message": "Auto-update or create 456.m3u8",
+              "content": encoded_content,
+              "branch": branch
+          }
+          if sha:
+              payload["sha"] = sha
+
+          upload = requests.put(api_url, headers=headers, data=json.dumps(payload))
+          if upload.status_code in [200, 201]:
+              print("✅ Upload successful.")
+          else:
+              print(f"❌ Upload failed: {upload.status_code} {upload.text}")
+              exit(1)
+          EOF
