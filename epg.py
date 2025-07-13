@@ -27,6 +27,7 @@ def fetch_epg(url):
 def is_today_after_offset(time_str, offset_hours=8):
     """
     Check if the datetime (in UTC) minus offset_hours falls within today in UTC+8.
+    For example: 20250714020000 - 8h = 20250713180000 → still today in UTC+8
     """
     match = re.match(r"(\d{14})", time_str)
     if not match:
@@ -38,21 +39,13 @@ def is_today_after_offset(time_str, offset_hours=8):
     today_utc8 = datetime.utcnow() + timedelta(hours=offset_hours)
     return dt_adjusted.date() == today_utc8.date()
 
-def convert_utc_to_sgt_str(time_str):
-    """
-    Convert a UTC datetime string (YYYYMMDDHHMMSS) to SGT formatted string +0800.
-    """
-    dt_utc = datetime.strptime(time_str, "%Y%m%d%H%M%S")
-    dt_sgt = dt_utc + timedelta(hours=8)
-    return dt_sgt.strftime("%Y%m%d%H%M%S") + " +0800"
-
 def filter_and_merge_today(epg_roots):
-    print("Merging EPG for today's date in Singapore Time (UTC+8)")
+    print("Merging channels and programmes that fall on today's date in UTC+8 (timestamps kept, timezone changed to +0800)")
 
     merged_root = etree.Element("tv")
     channel_ids = set()
 
-    # Add unique <channel> elements
+    # Add unique channels
     for root in epg_roots:
         for channel in root.xpath("//channel"):
             ch_id = channel.attrib.get("id")
@@ -60,28 +53,28 @@ def filter_and_merge_today(epg_roots):
                 merged_root.append(deepcopy(channel))
                 channel_ids.add(ch_id)
 
-    # Filter and convert <programme> entries
+    # Filter and include programmes falling in today (UTC+8), then patch time zone string
     for root in epg_roots:
         for programme in root.xpath("//programme"):
             start = programme.attrib.get("start")
             stop = programme.attrib.get("stop")
 
             if start and is_today_after_offset(start):
-                match_start = re.match(r"(\d{14})", start)
-                match_stop = re.match(r"(\d{14})", stop) if stop else None
+                prog_copy = deepcopy(programme)
 
-                if not match_start:
-                    continue
+                # Replace +0000 with +0800 (without adjusting actual time)
+                if '+0000' in start:
+                    prog_copy.attrib['start'] = start.replace('+0000', '+0800')
+                elif re.match(r"\d{14}$", start):
+                    prog_copy.attrib['start'] = start + ' +0800'
 
-                new_prog = deepcopy(programme)
-                new_start = convert_utc_to_sgt_str(match_start.group(1))
-                new_prog.attrib["start"] = new_start
+                if stop:
+                    if '+0000' in stop:
+                        prog_copy.attrib['stop'] = stop.replace('+0000', '+0800')
+                    elif re.match(r"\d{14}$", stop):
+                        prog_copy.attrib['stop'] = stop + ' +0800'
 
-                if match_stop:
-                    new_stop = convert_utc_to_sgt_str(match_stop.group(1))
-                    new_prog.attrib["stop"] = new_stop
-
-                merged_root.append(new_prog)
+                merged_root.append(prog_copy)
 
     return etree.tostring(merged_root, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
@@ -98,7 +91,7 @@ def upload_to_github(owner, repo, path, content, token):
     sha = get_resp.json().get("sha") if get_resp.status_code == 200 else None
 
     data = {
-        "message": "Update epg.xml with today's EPG data (in Singapore Time UTC+8)",
+        "message": "Update epg.xml with today's EPG data (timezone suffix changed to +0800)",
         "content": b64encode(content).decode('utf-8'),
         "branch": "main"
     }
