@@ -3,7 +3,7 @@ name: Update EPG
 on:
   workflow_dispatch:         # ✅ Allows manual run
   schedule:
-    - cron: '0 2 * * *'       # ✅ Runs daily at 2 AM UTC
+    - cron: '0 18 * * *'       # ✅ Runs daily at 2 AM UTC
 
 jobs:
   extract-and-upload:
