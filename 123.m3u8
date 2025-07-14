@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml,https://raw.githubusercontent.com/azimabid00/epg/main/unifi_epg.xml,https://raw.githubusercontent.com/Jerrie-Aries/epg/master/epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml,https://raw.githubusercontent.com/AqFad2811/myiptv/main/singapore.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/all.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/Plex/all.xml,https://www.open-epg.com/files/philippines2.xml,https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz,https://raw.githubusercontent.com/mitthu786/tvepg/main/tataplay/epg.xml.gz" refresh="1440" max-conn="1" refresh="24"
+#EXTM3U url-tvg="https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml,https://raw.githubusercontent.com/azimabid00/epg/main/unifi_epg.xml,https://raw.githubusercontent.com/Jerrie-Aries/epg/master/epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml,https://raw.githubusercontent.com/AqFad2811/myiptv/main/singapore.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/all.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/Plex/all.xml,https://www.open-epg.com/files/philippines2.xml,https://raw.githubusercontent.com/BuddyChewChew/My-Streams/heads/main/epgs/Backup-epg.xml,https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/main/playlists/xumo_epg.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz,https://raw.githubusercontent.com/mitthu786/tvepg/main/tataplay/epg.xml.gz" refresh="1440" max-conn="1" refresh="24"
 
 https://raw.githubusercontent.com/AqFad2811/epg/main/rtmklik.xml
 https://xmltv.tvkaista.net/guides/indihometv.com.xml
@@ -570,11 +570,11 @@ http://83.142.30.171:8080/live/vip_3klp0es8/wg3piwEs/2685.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/&privé.png" group-title="Movies",&privé  
 http://83.142.30.171:8080/live/vip_3klp0es8/wg3piwEs/2686.ts
 
-#EXTINF:-1  tvg-name="AMC HD" tvg-id="amc-eastern-feed" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/amc-us.png?raw=true" group-title="TheTVApp",AMC HD
+#EXTINF:-1  tvg-name="AMC HD" tvg-id="AMC.-.Eastern.Feed.us" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/Amc.png" group-title="Movies",AMC 
 https://v4.thetvapp.to/hls/AMCEast/tracks-v1a1/mono.m3u8?token=RNrArBoBE8FHzGg13V4ksQ&expires=1752517927&user_id=SGtUdkRSWjlSc2R6emJXSHhMdjl3QVNEb05pNnBDQXhhTnc0V2g0OQ==
 
-#EXTINF:-1 tvg-id="99951377" tvg-name="AMC Thrillers" tvg-logo="https://image.xumo.com/v1/channels/channel/99951377/168x168.png?type=color_onBlack" group-title="Movies",AMC Thrillers
-https://d3pxo1qcgzxtxs.cloudfront.net/10005/99951377/hls/playlist.m3u8?ads.xumo_channelId=99951377&ads.channelId=99951377&ads.csid=xumo_web_AMCAMCThrillers_ssai&ads._fw_is_lat=0&ads._fw_us_privacy=&ads._fw_coppa=0&ads._fw_did=:568e6389-eb70-45d7-bf33-1c2c7ea8b762&ads._fw_content_category=&ads._fw_content_language=en&ads._fw_content_genre=&ads._fw_content_rating=&ads.xumo_contentId=4174&ads.xumo_contentName=AMCAMCThrillers&ads.xumo_providerId=4174&ads.xumo_providerName=AMCAMCThrillers&ads._fw_deviceMake=GitHubAction&ads._fw_device_model=PythonScript&ads._fw_deviceType=3-Connected_TV&ads.xumo_platform=web&ads.appVersion=1.0.0&ads._fw_app_bundle=web.xumo.com&ads._fw_app_store_url=
+#EXTINF:-1 tvg-id="99951377" tvg-name="AMC Thrillers" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/AmcThrill.png" group-title="Movies",AMC Thrillers
+https://raw.githubusercontent.com/mystery75/m3u8/main/AMCTRILL.m3u8
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -622,14 +622,12 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5055/default_ott.mpd
 #EXTINF:-1 tvg-id="Hbosign.ph" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/HBO_Signature_Asia.png/400px-HBO_Signature_Asia.png" group-title="Movies",HBO Signature
 https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cg_hbosign.mpd
 
-#KODIPROP:inputstreamaddon=inputstream.adaptive 
-#KODIPROP:inputstream.adaptive.manifest_type=dash 
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"AQHURlafg8JSmECHohNOUw","k":"aAvjS0qckmR3GxmDsf3JnA"},{"kty":"oct","kid":"AQJZdTB7XAUB6HEDAHSqzg","k":"sBBTAsuuI9lRvrEmkAVlNg"},{"kty":"oct","kid":"AQBGyruYoH5M3wnD77PBIQ","k":"GbD4P1ZiDyfxV5qB2-bIjQ"}],"type":"temporary"}
+#EXTINF:-1 tvg-id="hbo-signature-hbo-3-eastern" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/HBO_Signature_Asia.png/400px-HBO_Signature_Asia.png" group-title="Movies",HBO Signature 2
+https://v13.thetvapp.to/hls/HBOSignatureEast/tracks-v1a1/mono.m3u8?token=JMQ4Ag550qucZYbV2iZVMA&expires=1752524684&user_id=VWlyaUZKdXpwWkkwb1lwZVRSeWRTYlQ4S1Rna3BLeGxFZ2ZuSEI2Sw==
+
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36
-#EXTINF:-1 tvg-id="052" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/Hbozone.png" group-title="Movies",HBO Zone
-https://gcp.live.na.prd.media.max.com/live/use1/e91_CixhY2EwNjZmYi05OGJiLTU3NmItYjg2YS0zZDRhZmVkN2ZiOGUtdXMtZWFzdBINYm9sdC1nbG8tcHJvZBoTEhFwYWNrYWdlci1tcDQtY2VuYw/fallback.mpd
+#EXTINF:-1 tvg-id="HBO.Zone.HD.-.East.us" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/Hbozone.png" group-title="Movies",HBO Zone
+https://v12.thetvapp.to/hls/HBOZoneEast/tracks-v1a1/mono.m3u8?token=f-6gZIrqZ6H4kLiiAPU1gQ&expires=1752524693&user_id=VWlyaUZKdXpwWkkwb1lwZVRSeWRTYlQ4S1Rna3BLeGxFZ2ZuSEI2Sw==
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -773,7 +771,7 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/HERSPHERE.m3u8
 #EXTINF:-1 tvg-id="USBD1200007FE" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/OuterSphereByLionsgate.png" group-logo="" group-title="Entertainment",OuterSphere by Lionsgate
 https://raw.githubusercontent.com/mystery75/m3u8/main/OUTERSPHERE.m3u8
 
-#EXTINF:-1 tvg-id="sundancetv-usa-east" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/SunDance.png" group-logo="" group-title="Entertainment",Sundance
+#EXTINF:-1 tvg-id="SundanceTV.USA.-.East.us" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/SunDance.png" group-logo="" group-title="Entertainment",Sundance
 https://v13.thetvapp.to/hls/SundanceTVEast/tracks-v1a1/mono.m3u8?token=B88dt3rZYpJNar7SMK-7Dw&expires=1752518785&user_id=SGtUdkRSWjlSc2R6emJXSHhMdjl3QVNEb05pNnBDQXhhTnc0V2g0OQ==
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -850,6 +848,15 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5093/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"Dw6mw1Q8Kdf1E+uIbrdPiA", "kid":"tuYMoNKOj5c5Xwe04uU6EA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="611.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroCeria_2024.png" group-logo="" group-title="Kids",Ceria    
 https://linearjitp-playback.astro.com.my/dash-wv/linear/2606/default_ott.mpd
+
+#EXTINF:-1 tvg-id="disney-eastern-feed" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/screen-bug/disney-channel-bug-us.png?raw=true" group-title="Kids",Disney Channel 
+https://v18.thetvapp.to/hls/DisneyChannelEast/tracks-v1a1/mono.m3u8?token=i6jUEIP_2Y_7L8eq3Sy4zw&expires=1752524435&user_id=VWlyaUZKdXpwWkkwb1lwZVRSeWRTYlQ4S1Rna3BLeGxFZ2ZuSEI2Sw==
+
+#EXTINF:-1 tvg-id="disney-junior-usa-east" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/disney-jr-us.png?raw=true" group-title="Kids",Disney Junior 
+https://v17.thetvapp.to/hls/DisneyJuniorEast/tracks-v1a1/mono.m3u8?token=8tZXtMDF7aWrV_FQumW-GQ&expires=1752524445&user_id=VWlyaUZKdXpwWkkwb1lwZVRSeWRTYlQ4S1Rna3BLeGxFZ2ZuSEI2Sw==
+
+#EXTINF:-1 tvg-id="disney-xd-usa-eastern-feed" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/disney-xd-us.png?raw=true" group-title="Kids",Disney XD 
+https://v5.thetvapp.to/hls/DisneyXDEast/tracks-v1a1/mono.m3u8?token=9C0FLFSt1HyKlbRC-l8T6g&expires=1752524454&user_id=VWlyaUZKdXpwWkkwb1lwZVRSeWRTYlQ4S1Rna3BLeGxFZ2ZuSEI2Sw==
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash
