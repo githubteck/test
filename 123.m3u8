@@ -128,7 +128,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live31.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"ZU8tJaW/snyeWuCFJYShZg", "kid":"hL+a1oSL59sg+dFoI97vEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="108.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroCitra_2024.png" group-logo="" group-title="Malaysia",Citra
-https://mt05.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413HtMT_ihEenIVn7lK1FJZqj9oCVZjKkF5SdWbR65dGg=Lz6V/dash-wv/jitp-dashisowm/2700/default_ott.mpd
+http://83.142.30.171:8080/live/vip_3klp0es8/wg3piwEs/2679.ts
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -411,12 +411,6 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/9983/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"Red+aounZ7Y8rP2wHvKsKQ", "kid":"2P45jHkGUXP6l4jyJgVlEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="393.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/ONE_HD_v2.png" group-logo="" group-title="Korea",One  
 https://linearjitp-playback.astro.com.my/dash-wv/linear/2702/default_ott.mpd
-
-#EXTINF:-1 tvg-id="99991386" tvg-name="NEW Korean MOVIES & SERIES" tvg-logo="https://image.xumo.com/v1/channels/channel/99991386/168x168.png?type=color_onBlack" group-title="Korea",NEW Korean MOVIES & SERIES
-https://live-content.xumo.com/1825/content/XM0YNXGVXMYZL0/24443193/master.m3u8
-
-#EXTINF:-1 tvg-id="KR1200002QR" tvg-logo="https://raw.githubusercontent.com/mystery75/logo/main/Playychuseok.png" group-title="Korea",PLAYY Chuseok
-https://raw.githubusercontent.com/mystery75/m3u8/main/PLAYY한가위특집.m3u8
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
