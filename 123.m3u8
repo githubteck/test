@@ -25,7 +25,7 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/TV2.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="103.unifi" ch-number="103" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202007/20200701/202007010436159112u3.png" group-logo="" group-title="Malaysia",TV3 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225724/3221225724.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=eSiGun9RbHe4JoJ8CjSRFrSOSOXwhUJ2eofhafJi07EbBivuDFoatqGJn3Mpoi4wuyO53vjGmm%2FbpzFDyWFBd33m4kVb86XzqIqk9MQuIdHQRa85OH4fYdAKWT3EH%2BgO2637011b373b8cc16d9d06d9955e3e48%3A20250805023035%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023035%2Curn%3AHuawei%3AliveTV%3Aiptv182%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C43361030%2CEND&GuardEncType=2&RTS=1754361036&from=28&hms_devid=64&online=1754361036&mag_hms=64,65&it=H4sIAAAAAAAAAy2MvQrCMBgA36ZjyG9Nh0xKwSUIVVf5mi8NgdhgUgu-vVY6HtzdUsD588kgA4pU44HpSQKXuhNSsU7J1ik-Mmyqf9lsROMgpTgHm3HL7sPxwSihhEtBGG-b6_brEwTD_6p9P0dfdvh1gy9rdN5gncgKlUAIxQdYYp7JJcHnVtKufAHEmCLFmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225724/3221225724.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=5KjUk40xzwtZwmkDExeoqF9CiWLvp9DqGCeD3DYN8OkX%2B2sior4HR9l86PBlY9qIFZiNqPIjYJK9VaS8fb3n%2F2FNXGY5schUyf8K8ut9NIn3jONM%2Byv%2BC3c5gSzFymWS5ac2e523dbdce656044f341e89969040%3A20250807032333%3AUTC%2C1005926113%2C118.100.28.224%2C20250807032333%2Curn%3AHuawei%3AliveTV%3Aiptv182%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C43361030%2CEND&GuardEncType=2&RTS=1754537013&from=28&hms_devid=64&online=1754537013&mag_hms=64,65&it=H4sIAAAAAAAAAy2MywrCMBQF_ybLkFc1WWSlCG6CUHUr1-Q2BGKDSS3497bSsxuYOVMFj-ejxcAMojSC77WCwKAT0gzLtNYgO0Uavl2xknjIOY3RlbBm9_7w4IwyKpSkXOzIdf07ZYhW_FX3eT2xbrB0PdY5ebShDXSGRiHGihGmVEZ6yfC91bwpP-gJ66yaAAAA
 
 
 #EXTINF:-1 tvg-id="TV6.my" tvg-logo="https://rtm-images.glueapi.io/110x0/live_channel/tv6_Trans.png" group-logo="" group-title="Malaysia",TV6
@@ -81,7 +81,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5021/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="120.unifi" ch-number="120" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202204/20220422/2022042207284940668e.png" group-logo="" group-title="Malaysia",Degup
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225748/3221225748.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=33RIdHYXjk%2BviSSDrw%2B2WxescXmQUVhHODPU85AxlwzkM%2BYYjjJLcciugr9Pj51CGQr3N%2BQIUB8VuSRL7XsMqdHZLpSZr%2FBk1kcgAeagoUn6fh1faNE2iUnuqLVd4sCe4934e7be415e74bcbc67940cda8e994b%3A20250805023131%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023131%2Curn%3AHuawei%3AliveTV%3AXTV55631601%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C55633563%2CEND&GuardEncType=2&RTS=1754361091&from=28&hms_devid=64&online=1754361091&mag_hms=64,65&it=H4sIAAAAAAAAAy2MwQoCIRQA_8ajqKuyHTwVQZcl2Ooaz-dLBFtJt4X-vjb2ODAzcwWk08HZ3ktvIVgjlDZkPe6AgjEaDcpeIWv0GorrGELOaYpDCWt2G_d3KbjgSndcKssu6--YITr1V4f301Pd4NeNVJeE5EJ78AUahxgrRZhTmfg5w-da86Z8AYUErpOaAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225748/3221225748.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=PnlMw6Ljayvg48lvZ%2F3Ih%2B8aPsORB1ulQlnxxKbHGnIBwaXrQYu3eROcWXeF3XeSLkKstGIISs58uloNJByVF%2FF6eHPcA4xWuSXO2hrjuzYPmbiR5p2CIMqmE%2BWu6%2B4Aa7164327221f759b466bfc9fc52ecf54%3A20250807032559%3AUTC%2C1005926113%2C118.100.28.224%2C20250807032559%2Curn%3AHuawei%3AliveTV%3AXTV55631601%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C55633563%2CEND&GuardEncType=2&RTS=1754537162&from=28&hms_devid=64&online=1754537162&mag_hms=64,65&it=H4sIAAAAAAAAAy2MSwrCMBQAb5NlyKfpZ5GVIrgJQtWtvCYvIRAbTGrB22uly4GZWQpYPB-17wcnvRDWd7ZpOeuBIYhOTcwrPiggFV8ma0kspBTnYLLbsvt4eHBGGRWNpFy05Lr9TgmCFn_VvJ8Tlh1-3YhljRa1q56uUCmEUDDAEvNMLwk-t5J25QsCO3W0mgAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -112,7 +112,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live32.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="116.unifi" ch-number="116" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202209/20220901/20220901155400159gcw.png" group-logo="" group-title="Malaysia",Sensasi
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225762/3221225762.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=q%2F5csFTJ0FcMFGUHTxSBpefQZSZJIqvyKv7WCULFd12Str3Ca7t2qdYeIAWz%2FsXB8Tmerd4O3YjH5tajlRCXxkr7K9D3KA05qclPgTdj6fZ7W69zd%2FOSjW2qwlz0SymMe92c3c56ecb22222ce1f16bd4886cf80%3A20250805023220%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023220%2Curn%3AHuawei%3AliveTV%3ASP000004015718%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38675409%2CEND&GuardEncType=2&RTS=1754361141&from=28&hms_devid=65&online=1754361141&mag_hms=65,64&it=H4sIAAAAAAAAAy2MvQrCMBgA36Zj-PLTNB0yKYJLEKqu8jVJQyA2mNSCb6-Vjgd3txS0_nzUruMggeGosBfQoWqVaHsHFClFO8mm-pfJmjcWU4pzMNlt2X04PCgQIExwQplsrtvvlDBo9lfN-zn6ssOvG3xZo_Xa1YmsWAmGUHzAJeaZXBJ-biXtyhfdQOjYmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225762/3221225762.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=Sk9sR2HqSagZ%2BNlHmbEo58RTGCEOohH59ym4SUnqdQdNK9wUeIUNVRGliacFbv811%2B9OUzg5y4ZS1s45MsJ8inNqr11bbqbRoKVVbRlzFCJL1kcRO7AfhpJRpKBq7xHFf59e320547db7ed6d04684d839c3ecab%3A20250807032716%3AUTC%2C1005926113%2C118.100.28.224%2C20250807032716%2Curn%3AHuawei%3AliveTV%3ASP000004015718%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38675409%2CEND&GuardEncType=2&RTS=1754537237&from=28&hms_devid=65&online=1754537237&mag_hms=65,64&it=H4sIAAAAAAAAAy2MywrCMBAA_ybHJS-rHnJSBC9BqHqVbbIJgdhgUgv-vVZ6HJiZqaKj89Eovh0IiULYBI3O7f3OK85JdloJTcgavWwxijnMOY3RFr9k9_7wEBw4SK1AyI5dl98pYzTyr9r3c6C6wq_rqc7JkfEtwIwNMMZKEadURrhk_NxqXpUv8jLm15oAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -128,7 +128,7 @@ https://unifi-live07.secureswiftcontent.com/UnifiHD/live31.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"ZU8tJaW/snyeWuCFJYShZg", "kid":"hL+a1oSL59sg+dFoI97vEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="108.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroCitra_2024.png" group-logo="" group-title="Malaysia",Citra
-https://linears2-playback.astro.com.my/vsg/41MgP8xcDuTzecD_Hk2nh2KIf5OoGLCswJxOsVJNW4P84=_GUj/dash-wv/jitp-dashisowm/2700/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/41MgP8xcDuTzecD_Hk2nh2KBWBzKXckhEKBJmjHx8GVpc=UiI8/dash-wv/jitp-dashisowm/2700/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -152,7 +152,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2505/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"hBL0RP++NQzy7OBR+RUukA", "kid":"C2Uyau3j7b6B5vtAMX1TEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="105.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/AstroPrima_2024.png" group-logo="" group-title="Malaysia",Prima
-https://linears2-playback.astro.com.my/vsg/41b9I9IK2KUz80nJrXdKYkSQzkPVwiuob7C4yXeg5tGBQ=jSlZ/dash-wv/jitp-dashisowm/1000/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/41b9I9IK2KUz80nJrXdKYkSeAT6gwYOtwjxt3kx3aCFcA=gTs1/dash-wv/jitp-dashisowm/1000/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -160,7 +160,7 @@ https://linears2-playback.astro.com.my/vsg/41b9I9IK2KUz80nJrXdKYkSQzkPVwiuob7C4y
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"N2sAl5bkrVDqj2jXlmdmkg", "kid":"P3Jv1cu/WURDek2/q0MbEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="104.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroRia_2024.png" group-logo="" group-title="Malaysia",Ria  
-https://linears2-playback.astro.com.my/vsg/4101ZxP1xiR8fKrbu-EzpoHQY02HRjXYPEuXCNwrqJ9H8=u4Ek/dash-wv/jitp-linearwm/1004/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/4101ZxP1xiR8fKrbu-EzpoHa67DC-sZHC3qWosTWf0lRg=WaAX/dash-wv/jitp-linearwm/1004/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -206,7 +206,7 @@ https://827f31c3f2824c0c95c7a5190e96e284.mediatailor.ap-southeast-1.amazonaws.co
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"51Fl04uQlWfAM1OuSye2+A", "kid":"AesRaCCJQPiycLTgmUVw5w" },{ "kty":"oct", "k":"jacsqFAaTetL/Dgf4XN+9A", "kid":"BighV9pOj5diOnDtAX+tEA" } ], "type":"temporary" } 
 #KODIPROP:mimetype=application/dash+xml
 #EXTINF:-1 tvg-id="306.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/AstroAEC_2024.png" group-logo="" group-title="Cina",AEC
-https://mt13.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41nAB47Z-XF-f3Hv_-R6ptzvLE1qH-SkUCAITBa0nBxjU=bvaI/dash-wv/jitp-dashisowm/2400/default_ott.mpd
+https://mt13.aa.astro.com.my/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -317,7 +317,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/401/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="239.unifi" ch-number="239" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/201907/20190708/20190708073838956juy.png" group-logo="" group-title="Cina",SETI
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225739/3221225739.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=q%2F5csFTJ0FcMFGUHTxSBpefQZSZJIqvyKv7WCULFd12Str3Ca7t2qdYeIAWz%2FsXB8Tmerd4O3YjH5tajlRCXxkr7K9D3KA05qclPgTdj6fZ7W69zd%2FOSjW2qwlz0SymMe92c3c56ecb22222ce1f16bd4886cf80%3A20250805023220%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023220%2Curn%3AHuawei%3AliveTV%3ASP000004015718%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38675409%2CEND&GuardEncType=2&RTS=1754361141&from=28&hms_devid=65&online=1754361141&mag_hms=65,64&it=H4sIAAAAAAAAAy2MvQrCMBgA36Zj-PLTNB0yKYJLEKqu8jVJQyA2mNSCb6-Vjgd3txS0_nzUruMggeGosBfQoWqVaHsHFClFO8mm-pfJmjcWU4pzMNlt2X04PCgQIExwQplsrtvvlDBo9lfN-zn6ssOvG3xZo_Xa1YmsWAmGUHzAJeaZXBJ-biXtyhfdQOjYmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225739/3221225739.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=u7BnO3s%2Bxq7mACenXfffiO77W8%2BFxBd9ytfIppMnr%2B6dxcA%2Bt8TaYRViiu5ycU2eWijup5kfo5i7W24Vw3EmeE73N8Gv8AmGEc%2FmTxr0R%2FVK3%2BUUgduUO%2FImv%2BaR74Udf392427daab2f55fbb527dc316c5de8f%3A20250807032836%3AUTC%2C1005926113%2C118.100.28.224%2C20250807032836%2Curn%3AHuawei%3AliveTV%3Aiptv8417%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38499775%2CEND&GuardEncType=2&RTS=1754537316&from=28&hms_devid=64&online=1754537316&mag_hms=64,65&it=H4sIAAAAAAAAAy2MvQrCMBgA36ZjyB9JHDIpgksQqq7y5ZdA2mBSC769Vjoe3N3SwIXLSQtFpOWSKEYOXDBrKacqMokVROqJGHp4marZ4KCUPCdT_ZY9xuOTYIQR5QwRKobb9jsXSJr-VfOebGg7_LoxtDW7oH2PaIWOIKUWEiy5zuha4HNvZVe-j0kbGJoAAAA
 
 
 
@@ -423,7 +423,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2109/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"tUFjJhFKE+kGYqT7rzxTKw", "kid":"ckmcatRMw32VqQdUIJEREA" } ], "type":"temporary" }
 #KODIPROP:mimetype=application/dash+xml
 #EXTINF:-1 tvg-id="201.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroVaanavil_2024.png" group-logo="" group-title="India",Vaanavil
-https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413ApAdYsfdQfy3qkAw1NAn2j_jc5jX0urYRwFrih2BW0=BecN/dash-wv/jitp-dashisowm/2309/default_ott.mpd
+https://mt09.aa.astro.com.my/linears2-playback.astro.com.my/vsg/413ApAdYsfdQfy3qkAw1NAn8WbVCUKOeVNL9VE2suZnIQ=gloE/dash-wv/jitp-dashisowm/2309/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -742,15 +742,14 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/OUTERSPHERE.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="473.unifi" ch-number="473" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202109/20210902/20210902163927011u1k.png" group-logo="" group-title="Entertainment",Rock Entertainment 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225706/3221225706.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=9VbiLGNBudKdfl8OwvXl5xJJTte%2B43MbLz7dtUw%2FKfm3dJ4U39Lq39holsoBzvUC3ivoGSW%2FiGKDuuHgFCnpfqc6nRXooQru4vjBeQwGwXykMwlDXjN4kpGZ51PqiTgtb5d95ad587227c5aaf1ae1603db9c791%3A20250805023500%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023500%2Curn%3AHuawei%3AliveTV%3Aiptv42337%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729829%2CEND&GuardEncType=2&RTS=1754361301&from=28&hms_devid=64&online=1754361301&mag_hms=64,65&it=H4sIAAAAAAAAAy2MQQvCIBhA_41HcbrcPHgqBl0kWHWNT_cpgk3SNejf12LHB--9pYDD80nb_uA9d7IXzLXIlVLWIwePouuElUAqvkzWgjhIKc7B5GnL7uPx0TDKKG8Fbbgk1-03JAia_1XzflosO_y6EcsaHeqperpCpRBCwQBLzDO9JPjcStqVL4jyM_SaAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225706/3221225706.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=rgMCmHNGPDqWcmg6emtg6YhvsVK5UgRX51tbiWQxBGaCrWlgV7q81YZMPG9BVyd%2Fd%2BotkG3FQTi95SJ%2BfQr1M7YU2hiFJ5KsORYQVESXPgk2Sd63Iaw01PqIkBwYpCfJ817c7720d00b78eeb7ea5c0f6524b657%3A20250807033157%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033157%2Curn%3AHuawei%3AliveTV%3Aiptv42337%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729829%2CEND&GuardEncType=2&RTS=1754537518&from=28&hms_devid=65&online=1754537518&mag_hms=65,64&it=H4sIAAAAAAAAAy2MywrCMBAA_ybHkJeBHnJSBC9BqHqVTXYbAmmLSS3491rpcWBmlgqRLieHQ5CIgsAoYcgeOhuF6pCQgtQoFGv08rPTLEIpeUp-xi179MenFFxwZTSXyrLb9jsXSE79Vf8eA9Udfl1Pdc2RHLaBr9A4pFQpwZLniV8LfO617MoXIY-BUpoAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="451.unifi" ch-number="451" tvg-logo="http://playtv.unifi.com.my:7120/CPS/images/universal/film/logo/201907/20190716/20190716071834181bzk.png" group-logo="" group-title="Entertainment",Warner  
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=OQYRl4nZ8WSsPkCHGYKw2QoK5h%2F2bzaqiXeQMhDj1IRZqB9PzaVDtcm%2Fj0HXHIEABn4RcipOpEPE%2F7dB1I1idxP71jL8%2Fwd%2BMVQ7YQhIaIJ%2BpzPl0V9efI74D4cli2%2FLe80642294e4af9fe4a3e0935d5da87c6%3A20250805023549%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023549%2Curn%3AHuawei%3AliveTV%3ASP000001956583%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38695908%2CEND&GuardEncType=2&RTS=1754361349&from=28&hms_devid=65&online=1754361349&mag_hms=65,64&it=H4sIAAAAAAAAAy2MsQrCMBQA_yZjaNq0jUMmpeBShKqrvLy8hEBsMKkF_14rHQ_ubsmAdD5pKY1E0SlAB9I6Y2zfoGgVVnholepZodeYdMMQYgyzH5Pdsvt0fIiKV7yWDRd1x67bb4jgdf1Xx_fTUN7h102U14CkbXF8hcLB-0welpBmfonwueW4K18myxYNmgAAAA
-
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=zNAaaRsgfoCrQjvF3HUlFWo7CO4QyJzlqhs%2FEUnMhkdhFH3AvFmIC6xut9Gx5%2B0qSEK1OUPMPeLWxVXUWkw1jMxUEOp5OACwrHjql7RW5uiCHAPa%2FqYHZ%2B8AhfPG9sp2defb25cb1740871511792b2c38e855a2%3A20250807033254%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033254%2Curn%3AHuawei%3AliveTV%3ASP000001956583%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38695908%2CEND&GuardEncType=2&RTS=1754537575&from=28&hms_devid=65&online=1754537575&mag_hms=65,64&it=H4sIAAAAAAAAAy2MywrCMBAA_ybHJc2j6iEnRfAShKpXWZNNCMQGk1rw77XS48DMTBUdnQ6GK0eSSBNhUFLvUEgfaLNFz7FHrlmjly1GMoc5pzHa4pfsNuzvHQcOQknoRM8uy--YMRrxV-37-aC6wq8bqM7JkfEtwIwNMMZKEadURjhn_FxrXpUv-YZO45oAAAA
 
 
 
@@ -766,7 +765,7 @@ https://webr24.hypp.tv:443/PLTV/88888888/224/3221225782/3221225782.mpd?rrsip=web
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="472.unifi" ch-number="472" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202208/20220811/20220811020901814w9o.png" group-logo="" group-title="Kids",Animax 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225740/3221225740.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=H7B9mqVT6PZ3Hjj%2Fpn6i7JRo1NjK0CTIH%2BXMY2g6gLzI5tMcZPwxOVmE8O7bbkGJJ3BOUn7OvUwY%2FNrSo82mNi62j3pTSLCoDp2Lty22vCJrPxfeNWKdnZ5EebrvqYr4c814389b34c74943abb73708d18a875d%3A20250805023632%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023632%2Curn%3AHuawei%3AliveTV%3AXTV57622558%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C57622568%2CEND&GuardEncType=2&RTS=1754361393&from=28&hms_devid=64&online=1754361393&mag_hms=64,65&it=H4sIAAAAAAAAAy2MQQvCIBhA_82OH-rE2MFTEXSRYNU1PvVTBDdJ16B_X4sdH7z3loqOLietPAnHFXf-gFIGa2lwwQ5SMLTcM-wavUzRfecw5zRHU_yWPcbjkzNgIGQPXKjutv3OGaMWf9W8J0t1h183Ul2TI-1bgBUbYIyVIi6pzHDN-LnXvCtf2-Gha5oAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225740/3221225740.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=A2XW2QxmCheOBya%2FEiq6XxS2yFzDTfgZn7Ma7zRnRwRHJucrSStAU3ZmO5HMcttdtx%2BRBW0fRzZkGeHQx2fMSL3VBdZAR%2Fpfp7GoqGcvKQ%2F4XTPwzZ6qfd%2BepoK%2FRzni31ef0fc73ff64205ce8d3e4833341ce5%3A20250807033346%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033346%2Curn%3AHuawei%3AliveTV%3AXTV57622558%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C88%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C57622568%2CEND&GuardEncType=2&RTS=1754537626&from=28&hms_devid=64&online=1754537626&mag_hms=64,65&it=H4sIAAAAAAAAAy2MTwvCIBxAv41HUSf-OXgqgi4SrLrGb-43EWySrkHfvhY7PnjvLRUCno_OSG0ZE1YwPknNLVhtrVIyoDGDDpI0fPniOhIg5zRHX8Ytu_eHB2eUUSE7yoUi1-13yhCd-Kv-_Ryw7vDreqxrCujGNtEVGoUYK0ZYUpnpJcPnVvOufAFDZulOmgAAAA
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -815,7 +814,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2606/default.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="550.unifi" ch-number="550" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202011/20201125/202011250800095510sa.png" group-logo="" group-title="Kids",DreamWorks 
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225776/3221225776.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=jUSHDOtyIYDXj2sKO62UTyumYHj05GRUJ6hb6pTN5hohdbpJSSRSf1JDpWzwiAwj%2FEyErRN4e4YYyNceBaXRN%2Fw13P7bGXrVPtrwd%2FuKDBT4wtM5nELcwQxTfATINDgi86af52e9796deee5b2e44d846111ff97%3A20250805023736%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023736%2Curn%3AHuawei%3AliveTV%3ASP0010745304%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610254%2CEND&GuardEncType=2&RTS=1754361457&from=28&hms_devid=64&online=1754361457&mag_hms=64,65&it=H4sIAAAAAAAAAy2MvQrCMBgA36ZjyE8b0yGTUnAJQtVVviRfQyA2mNSCb6-Vjgd3txRweD5px7qDZd5JVL4VvLcehVW09xPKTinRVHyZrEXjIKU4B5P9lt3H44NRQglvBWFcNtftNyQImv9V835aLDv8uhHLGh1qXyeyQiUQQsEAS8wzuST43EralS8HsK0XmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225776/3221225776.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=LBTSHGqmTfWDXb%2FM0HBE7WNsGFiyTVn%2BhE3MGnsS6o9inuaj5Fb%2F%2FgAdzOZqcOMk9Wi50PH9N84Lv8GGIQUyi%2FJ7u1AMBm2BaJIA%2FNPld%2BDFNp71QeQ1R1F1kfwbTBdYacd02c17e580f00833bfacb5daa17815%3A20250807033516%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033516%2Curn%3AHuawei%3AliveTV%3ASP0010745304%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38610254%2CEND&GuardEncType=2&RTS=1754537720&from=28&hms_devid=64&online=1754537720&mag_hms=64,65&it=H4sIAAAAAAAAAy2MQQvCIBhA_82O4pzadvBUDLpIsOoan_opgk3SNejf12LHB--9pYDF80mB8xYNB45W8oMRQ4_U9JL6QTgOTjQVXzqrrrGQUpyDzm7L7tPx0VJCCeMdaZlsrttvTBAU-6v6_TRYdvh1E5Y1WlSuerJCJRBCwQBLzDO5JPjcStqVL6xfumSaAAAA
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -896,7 +895,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/603/default_ott.mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="411.astro" ch-number="550" tvg-logo="https://playtv.unifi.com.my:7218/CPS/images/universal/film/logo/202308/20230809/20230809082222536837.png" group-logo="" group-title="Movies",Hbo
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225792/3221225792.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=hbqdqmiMPmGd7lkJbN1J7swZFuj8F76JdTSheY594ES7V99ihY%2FHUZvdSPu49M16MG95SdoX%2Fw01RDXxoCr4aujrVkYs60AnXv4qojPJJC49Q1tJYuOG1ph6qzpMLfn9488b6be9d97cdecb7e7f8ca8ad78541d%3A20250805023843%3AUTC%2C1005926113%2C118.100.28.224%2C20250805023843%2Curn%3AHuawei%3AliveTV%3AXTV64139408%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C64139418%2CEND&GuardEncType=2&RTS=1754361524&from=28&hms_devid=64&online=1754361524&mag_hms=64,65&it=H4sIAAAAAAAAAy2MywrCMBQF_ybLkFdLu8hKEdwEoepWbpObEEgbTGrBv7eVnt3AzFkKWLyeNaiOCQ8N432vto3MM6kQXSdb0aAkFd8ma0kspBTnYLLbs-dwenFGGRVKUi5act__LgmCFn_VfKYRywFbN2BZo0XtqqcrVAohFAywxDzTW4Lvo6RD-QHUzSjjmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225792/3221225792.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=nniuw9cE0LF964EepCuhbTjOT8gea9fMwPOgqQrTtFGMUTIwMQz9men1zZSii3mUNN5OfLSmmJUtmZZBveuFQxgTKE6Yz1MxAPMMyHODkpwpecPlgXTJGJ%2B%2FFcdMK0lU70269d15f6c426627503a7e61f9c891d%3A20250807033641%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033641%2Curn%3AHuawei%3AliveTV%3AXTV64139408%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C64139418%2CEND&GuardEncType=2&RTS=1754537802&from=28&hms_devid=64&online=1754537802&mag_hms=64,65&it=H4sIAAAAAAAAAy2MywrCMBAA_ybHJa8-POSkFLwUoepVNskmBGKLaS3491rpcWBmloKOzidjhQqNCwrbSmkvna0bQt5WQrfy4BSxmV79ZBRzmHMaYz_5LbsPx4fgwEFqBULW7Lr9uozRyL_av5-Wyg6_bqCyJkfGzwFWnAFjLBRxSdMIl4yfW8m78gXWLIXPmgAAAA
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
@@ -958,7 +957,7 @@ https://raw.githubusercontent.com/mystery75/m3u8/main/MSPHERE.m3u8
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://ottweb.hypp.tv:8064/?deviceId=M2E0MDgyMmYtMzFkNi0zYWFkLTgyODYtZTA5MDFiNjUyNmZh
 #EXTINF:-1 tvg-id="474.unifi" ch-number="474" tvg-logo="https://playtv.unifi.com.my:7220/CPS/images/universal/film/logo/202309/20230913/20230913232606376llq.png" group-logo="" group-title="Movies",Rock Action
-https://webr24.hypp.tv:443/PLTV/88888888/224/3221225714/3221225714.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=f0r7MVfJ9zhjMq6us63cb%2Bh9iubapHJ6AGjFJUqWOxVBUlOjLZhxL%2BtMIJHGKyg1eLcsmLOZm3MDgsEp2WI9snJh80p%2B6SLUl0LKNJRThWe%2BC%2FBtKRZOcpS90brpE1tVdc5277b82d0034077d421d0577139035%3A20250805024022%3AUTC%2C1005926113%2C118.100.28.224%2C20250805024022%2Curn%3AHuawei%3AliveTV%3ASP000002372888%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729863%2CEND&GuardEncType=2&RTS=1754361623&from=28&hms_devid=64&online=1754361623&mag_hms=64,65&it=H4sIAAAAAAAAAy2MsQrCMBQA_6ZjSJPYJEMmpeBShKqrvJe-hkBsMK0F_14rHQ_ubing6XxyutFohFSjoUFZtIgekNsDR_DKSF3N9Oqyk5WHlOIUujxs2b0_PmrOOBNKslo01XX7tQmCE3-1ez-Ryg6_rqeyRk9umEe2wswghEIBlpgndknwuZW0K19gh4yRmgAAAA
+https://webr24.hypp.tv:443/PLTV/88888888/224/3221225714/3221225714.mpd?rrsip=webr24.hypp.tv:443&zoneoffset=0&servicetype=1&icpid=88888888&limitflux=-1&limitdur=-1&tenantId=6001&accountinfo=zd26RhnwejP6wRn%2BOVYL4864bZ%2FE7VRxEMW2HhkirdnvuvyPLA9CwjBMHr71SPpP9DSt%2FIRWfLIY5ft0lBrEGbilzqCb9vpFElmR%2BAjLABprGtt1Lc32UcwvIDbPJwB73182ed2eebafb91e6a06362cc8cb328d%3A20250807033735%3AUTC%2C1005926113%2C118.100.28.224%2C20250807033735%2Curn%3AHuawei%3AliveTV%3Aiptv42337%2C1005926113%2C-1%2C0%2C1%2C%2C%2C2%2C812%2C%2C%2C2%2C1615850%2C0%2C521145%2C2126030268%2C%2C%2C2%2C1%2C38729829%2CEND&GuardEncType=2&RTS=1754537855&from=28&hms_devid=64&online=1754537855&mag_hms=64,65&it=H4sIAAAAAAAAAy2MQQvCIBhA_82O4pybevBUBF0kWHWNb_opgk3SNejf12LHB--9pYDF81FL5dCjoEwJxQVQOfS945Iyby1MgjUVXybrrrGQUpyDyW7L7uPh0VJCCeMdadnQXLffKUHQ7K-a93PCssOvG7Gs0aJ21ZMVKoEQCgZYYp7JJcHnVtKufAHENVRWmgAAAA
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -1124,7 +1123,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5087/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"4VG7gUaKhCbWqxKGDTFKow", "kid":"SZqPNoBksRzAkrewE9sHEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="803.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroArenaBola_2024.png" group-logo="" group-title="Sports",Arena Bola
-https://linears2-playback.astro.com.my/vsg/41vEnWSEPVxSGiuJHz0E1clyVQd1iwRmNIakB_uX2PhgA=k2Ld/dash-wv/jitp-dashisowm/5099/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/41vEnWSEPVxSGiuJHz0E1cl1IsoNpEcFdyBU5tTn6ICFY=G3S4/dash-wv/jitp-dashisowm/5099/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -1132,7 +1131,7 @@ https://linears2-playback.astro.com.my/vsg/41vEnWSEPVxSGiuJHz0E1clyVQd1iwRmNIakB
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"se/6nlHPOLOuZ2vCZJN++w", "kid":"Yqe3kXqtUSPNTfZcVhxwEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="804.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroArenaBola2_2024.png" group-logo="" group-title="Sports",Arena Bola 2
-https://linears2-playback.astro.com.my/vsg/416NK1ufuXxcgwslWlIX9Rl1jcFh-LP9cp2JoTOeg7eu0=7_Xl/dash-wv/jitp-linearwm/5100/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/416NK1ufuXxcgwslWlIX9Rlx0UZkiDH-n_GRbO4wnULGE=J1y_/dash-wv/jitp-linearwm/5100/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -1156,7 +1155,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5057/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"g3KLRwGavbs3qjbtXylRvQ", "kid":"b/DgQNVE7D8CJDhlmQ8MEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="815.astro" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroBadminton_2024.png" group-title="Sports",Astro Badminton
-https://mt32.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41Q3ie3mZoKIU_ctINwW6MMqxNuFwEJmMIMWBsPtRVAQ8=-She/dash-wv/jitp-dashisowm/5170/default_ott.mpd
+https://mt32.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41Q3ie3mZoKIU_ctINwW6MMmMBT-7_v3cMCrIoJxZtsW4=D5iC/dash-wv/jitp-dashisowm/5170/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
@@ -1180,7 +1179,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2506/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"Fo8/rfxzC6PfyTL3xDDifQ", "kid":"W+Zqb4jv7j1uMPcqnFjjEA" } ], "type":"temporary" }
 #EXTINF:-1 tvg-id="810.astro" ch-number="813" tvg-logo="http://linear-poster.astro.com.my/prod/logo/AstroGrandstand_2024.png" group-title="Sports",Astro Grandstand 
-https://mt28.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41q5vQhXP8hw8JYPMx1hh6IvHUn7N9r9UBxEYHXjaaWbw=lQsc/dash-wv/jitp-dashisowm/2701/default_ott.mpd
+https://mt28.aa.astro.com.my/linears2-playback.astro.com.my/vsg/41q5vQhXP8hw8JYPMx1hh6It_lAWQlCrRFgAi65vmO-dM=_yeL/dash-wv/jitp-dashisowm/2701/default_ott.mpd
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
