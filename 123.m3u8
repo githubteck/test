@@ -1817,7 +1817,7 @@ https://iili.io/H7B4QYF.png
 #KODIPROP:inputstream.adaptive.license_key=499a8f368064b11cc092b7b013db0710:e151bb81468a8426d6ab12860d314aa3
 #EXTINF:-1 tvg-id="803.astro" tvg-name="ARENA BOLA" group-title="SPORTS" tvg-logo="https://i.ibb.co/DRvRqg9/Astro-Arena-Bola-1-2024.png" ch-number="803",803 Astro Arena Bola HD
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
-https://2da559d4c1d24884a735abbc512e6181.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH24-dash/vsg/41zeCPN5tsjmXgDffPUQw17egmjXmH2GpHK0DymFktyGk=kRQn/dash-wv/jitp-dashisowm/5099/default_ott.mpd?aws.sessionId=e0204e75-8801-4b4e-8eee-4144b95df0c7
+https://2da559d4c1d24884a735abbc512e6181.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH24-dash/vsg/41zeCPN5tsjmXgDffPUQw17YG3QofqNyiq2Pb96wQPtys=Qzoy/dash-wv/jitp-dashisowm/5099/default_ott.mpd?aws.sessionId=bece8b42-3750-424e-bc1d-88e87fd28820
 
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTYwNDQyMzcsImlzcyI6IlZSIiwiZXhwIjoxNzU2MDc0NjAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiMjc0YWMxOTYtZGVhMS00NTE2LThhNzMtYzQyNWU0OTcwOWY4IiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9NzIwKXx8KHR5cGU9PVwiYXVkaW9cIiYmZm91ckNDIT1cImFjLTNcIil8fCh0eXBlIT1cInZpZGVvXCImJnR5cGUhPVwiYXVkaW9cIikiLCJwYXR0ZXJuIjoiNTA5OSJ9.4VC7AI2CsukMdgI9T3Mr6wxTO0vNenyDfmmw1kWQURA"}
@@ -1841,7 +1841,7 @@ https://2da559d4c1d24884a735abbc512e6181.mediatailor.ap-southeast-1.amazonaws.co
 #KODIPROP:inputstream.adaptive.license_key=62a7b7917aad5123cd4df65c561c7010:b1effa9e51cf38b3ae676bc264937efb
 #EXTINF:-1 tvg-id="AstroArenaBola2" ch-number="804" tvg-logo="https://i.ibb.co/4Wk65pX/Astro-Arena-Bola-2-2024.png" group-title="Sports",804 Astro Arena Bola 2 HD
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
-https://linears2-playback.astro.com.my/vsg/41ON25HtzIozJ9cNzLagXMl207B4qVvNGACkseaZZWHWc=DNyk/dash-wv/jitp-linearwm/5100/default_ott.mpd
+https://linears2-playback.astro.com.my/vsg/41ON25HtzIozJ9cNzLagXMl6MBhGRg8wUXfFq7KTdiCcM=yc2S/dash-wv/jitp-linearwm/5100/default_ott.mpd
 
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTU2Njk1OTQsImlzcyI6IlZSIiwiZXhwIjoxNzU1NzI5MDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiMjc0YWMxOTYtZGVhMS00NTE2LThhNzMtYzQyNWU0OTcwOWY4IiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9NzIwKXx8KHR5cGU9PVwiYXVkaW9cIiYmZm91ckNDIT1cImFjLTNcIil8fCh0eXBlIT1cInZpZGVvXCImJnR5cGUhPVwiYXVkaW9cIikiLCJwYXR0ZXJuIjoiNTEwMCJ9.tWp_LK3k9sQajhBy9bOh7dGZHk8RhY7GWESw-lsv-HE"}
@@ -1864,7 +1864,7 @@ https://linears2-playback.astro.com.my/vsg/41ON25HtzIozJ9cNzLagXMl207B4qVvNGACks
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"TxVBP35HZ7UMSOGbf5ovzA", "kid":"90mrcfInmZv7CY9zNZqsEA" } ], "type":"temporary" }
 #EXTHTTP:{"User-agent":"Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)"}
-https://53308ba99bd1418388e4bff908902bf9.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH26-dash/vsg/41RqspQBcK6kUSK4BJreyRFwfc5s_BiXRWy02Nke-dDLI=yLVi/dash-wv/jitp-dashisowm/601/default_ott.mpd?aws.sessionId=f36ed8e4-6d38-4fcc-bc2b-7e8269021b29
+https://53308ba99bd1418388e4bff908902bf9.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH26-dash/vsg/41RqspQBcK6kUSK4BJreyRFzmFZDkJhvqHWDKsbSvq8rE=9-qb/dash-wv/jitp-dashisowm/601/default_ott.mpd?aws.sessionId=4af3f4e3-9f3a-4ee4-846a-61a4cad52f91
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -1896,7 +1896,7 @@ https://53308ba99bd1418388e4bff908902bf9.mediatailor.ap-southeast-1.amazonaws.co
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"3fpujVSbTVF3qcref5oLIw", "kid":"wdyS8HifESUDwNs73i8SEA" } ], "type":"temporary" }
 #EXTHTTP:{"User-agent":"Mozilla/5.0 (Linux; Android 10; Astro UHD 4K Build/1.0)"}
-https://09494360a707453480cd47f514ea1800.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH27-dash/vsg/41sreUgXggkf7zmcUtNRWYoSxwN-XEah6LIIo1i1UrtdM=TN--/dash-wv/jitp-dashisowm/2104/default_ott.mpd?aws.sessionId=921cfdae-37f6-4d85-af0d-fabcfc2bf4c7
+https://09494360a707453480cd47f514ea1800.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH27-dash/vsg/41sreUgXggkf7zmcUtNRWYoXevOSr4vq0Gcquy-1Dh_Qc=UKyr/dash-wv/jitp-dashisowm/2104/default_ott.mpd?aws.sessionId=06104519-6957-45c1-b18c-ff81157c9a17
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -1928,7 +1928,7 @@ https://09494360a707453480cd47f514ea1800.mediatailor.ap-southeast-1.amazonaws.co
 #KODIPROP:inputstream.adaptive.license_type=clearkey 
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"g3KLRwGavbs3qjbtXylRvQ","kid":"b/DgQNVE7D8CJDhlmQ8MEA"}],"type":"temporary"} 
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 12; Pixel 3a XL Build/SP2A.220505.008; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5715.0 Mobile Safari/537.36
-https://11d1b8e3842949bcbcf26e20ed80c3d3.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH32-dash/vsg/41M3Q4rxXywqH2By1wtH-rWN3YKQU8WANdKBiSEUZlSnI=2m7Y/dash-wv/jitp-dashisowm/5170/default_ott.mpd?aws.sessionId=6712de2a-1a01-42de-b1ff-065d4d94a3a1
+https://11d1b8e3842949bcbcf26e20ed80c3d3.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH32-dash/vsg/41M3Q4rxXywqH2By1wtH-rWOP2d9NCzLNXbNWjk6Y6YcQ=DnbX/dash-wv/jitp-dashisowm/5170/default_ott.mpd?aws.sessionId=616b6824-6616-4a9b-af80-fb3de33b26f9
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTM0OTU4NjMsImlzcyI6IlZSIiwiZXhwIjoxNzUzNTY5MDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiMjc0YWMxOTYtZGVhMS00NTE2LThhNzMtYzQyNWU0OTcwOWY4IiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9NzIwKXx8KHR5cGU9PVwiYXVkaW9cIiYmZm91ckNDIT1cImFjLTNcIil8fCh0eXBlIT1cInZpZGVvXCImJnR5cGUhPVwiYXVkaW9cIikiLCJwYXR0ZXJuIjoiNTE3MCJ9.bkfimVEiig4NoxYXJvRqUpGseyhnNxj1dnSbnuaQaI4"}
@@ -1954,6 +1954,21 @@ https://11d1b8e3842949bcbcf26e20ed80c3d3.mediatailor.ap-southeast-1.amazonaws.co
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key=1bca05447d354cb4913a66e125fb75ef:45253aa554c444961fb6a4432abb6b1c
 #https://get.perfecttv.net/jwt.mpd?username=vip_3klp0es8&password=wg3piwEs&channel=badmintonfhd
+
+##524
+#EXTINF:-1 group-logo="https://i.ibb.co/k41FFxG/image.png"
+#KODIPROP:inputstreamaddon=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"X842T7xEmYVll7GalvRGSA", "kid":"O8Pw5Riu2S6AqYEY5bwsEA" } ], "type":"temporary" }
+#EXTINF:-1 tvg-id="TV3" ch-number="103" tvg-name="TV3" group-title="MYTV" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/106_144.png",103 TV3 SD ((Server 1))
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
+https://linearjitp-playback.astro.com.my/dash-wv/linear/809/default_primary.mpd
+
+#EXTINF:-1 tvg-id="TV3" ch-number="103" tvg-name="TV3" group-title="MYTV" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/106_144.png",103 TV3 HD ((Server 2))
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+https://mifntechnology.github.io/siaranMy/channels/Tv3/index.m3u8
+#https://live-ssar-02.tonton.com.my/1756447762/0x6f6db9eadad5a1f637d075c316f53730a704e058466288daadb2f412dfab547f/stream-tv3/master_1080.m3u8?bpkio_serviceid=6c0958d82a830a02ca0936d9cfab8311&bpkio_sessionid=10e3b11b78-0c0401f8-aa5a-4aef-ad81-e81f8d0e6b4b&category=all&did=ed841c97-a3df-7190-aa5f-a25a295b1dcd&dnt=0&ifatype=sessionid&lot_auds=ca_336,ca_364,all,ca_987,ca_323,ca_060,ca_394,ca_286,ca_777,ca_958,ca_038,ca_752,ca_027,ca_362,ca_080,ca_1023,ca_1000,ca_347,ca_807,ca_047,ca_417,ca_252,ca_994,ca_328,ca_042,ca_939,ca_074,ca_1040,ca_780,ca_009,ca_232,ca_163,ca_365,ca_672,ca_051,ca_717,ca_354,ca_356,ca_327,ca_353,ca_803,ca_384,ca_972,ca_784,ca_023,ca_062,ca_261,ca_730,ca_358,ca_897,ca_006,ca_1003,ca_962,ca_789,ca_797,ca_1016,ca_1011,ca_068,ca_342,ca_321,ca_1096,,ca_253,ca_267,ca_066,ca_948,ca_329,ca_359,ca_335,ca_351,ca_202,ca_350,ca_360,ca_964,ca_355,ca_1034,ca_251,ca_141,ca_083,ca_348,ca_071,ca_302,ca_344,ca_291,ca_338,ca_061,ca_378,ca_775,ca_156,ca_1056,ca_376,ca_1101,ca_779,ca_330,ca_020,ca_332,ca_072,ca_363,ca_046,ca_959,ca_015,ca_013,ca_1007,ca_069,ca_304,ca_782,ca_236,ca_216,ca_1035,ca_239,ca_357,ca_324,ca_773,ca_787,ca_288,ca_724,ca_305,ca_788,ca_325,ca_050,ca_420,ca_333,ca_317,ca_285,ca_991&mm_sp&plt=web&ttd_uid2=A4AAABX2JNn07Cp8ykWYJSHdFrkPErGepJVYM0BGclDFTmUDedaCGmXn7yQkj-JimbU39sh6mifmQWinMhvaBY15T30lmFnLjmhE2sI6GWD6rpOvAl6K5fMSgAukeem9WixztUPxqBDe1iK1MEZa8W8zo0JH_KoPPj4jcBm1NcgLtBRm77w4kSHbc74P3yj959WVp5sUJpC6ciWWxiWRq3N0bw
 
 ###AFSB117
 
@@ -2029,23 +2044,6 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/2604/default_ott.mpd
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 
 #https://linearjitp-playback.astro.com.my/dash-wv/linear/5057/default_ott.mpd
 https://linearjitp-playback.astro.com.my/dash-wv/linear/5057/default_ott.mpd?PID=&PAID=5057&deviceIdType=%5BdevIdType%5D&deviceId=71be0d5043f7a2ab1b1b26b5de0c05a5&appId=astrogo.astro.com.my&appName=%5BappName%5D&devModel=%5BdevModel%5D&playerWidth=%5BplayerWidth%5D&playerHeight=%5BplayerHeight%5D&sessionId=abr-linear-2e476fb6-c0c3-462e-836e-0c2f1887d3dd&optin=true&hhid=126ed83851cdc77d641fbbdda3c97d0e&kvp=genre%7EHD%2CSPORTS%2CALL&daiEnabled=true
-
-
-
-##524
-#EXTINF:-1 group-logo="https://i.ibb.co/k41FFxG/image.png"
-#KODIPROP:inputstreamaddon=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"X842T7xEmYVll7GalvRGSA", "kid":"O8Pw5Riu2S6AqYEY5bwsEA" } ], "type":"temporary" }
-#EXTINF:-1 tvg-id="TV3" ch-number="103" tvg-name="TV3" group-title="MYTV" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/106_144.png",103 TV3 SD ((Server 1))
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
-https://linearjitp-playback.astro.com.my/dash-wv/linear/809/default_primary.mpd
-
-#EXTINF:-1 tvg-id="TV3" ch-number="103" tvg-name="TV3" group-title="MYTV" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/106_144.png",103 TV3 HD ((Server 2))
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
-https://mifntechnology.github.io/siaranMy/channels/Tv3/index.m3u8
-#https://live-ssar-02.tonton.com.my/1755537538/0xa43a19eeb884e290b5469d6e8c84cbc2f32ba819317637dcdedf2d269083498f/stream-tv3/master_1080.m3u8?bpkio_serviceid=6c0958d82a830a02ca0936d9cfab8311&bpkio_sessionid=10f3c43b111-c170f69b-2ba0-41a0-87c2-a65b126ad3b0&category=all&did=8ce5e9c8-4f58-54f1-7dd5-cd433a9e2f22&dnt=0&ifatype=sessionid&lot_auds=ca_253,ca_163,ca_338,ca_038,ca_964,ca_1016,ca_348,ca_353,ca_347,ca_332,ca_074,ca_363,ca_358,ca_267,ca_362,ca_239,ca_046,ca_939,ca_1023,ca_1056,ca_803,ca_051,ca_360,ca_959,ca_972,ca_304,ca_1035,ca_291,ca_354,ca_080,ca_355,ca_773,ca_027,ca_788,ca_897,ca_047,ca_066,ca_779,ca_201,all,ca_1007,ca_1000,ca_344,ca_060,ca_072,ca_342,ca_948,ca_083,ca_288,ca_1011,ca_384,ca_050,ca_364,ca_350,ca_1034,ca_394,ca_1101,ca_351,ca_249,ca_261,ca_789,ca_357,ca_232,ca_807,ca_042,ca_782,ca_336,ca_327,ca_987,ca_724,ca_378,ca_329,ca_286,ca_202,ca_958,ca_009,ca_305,ca_252,ca_752,ca_775,ca_013,ca_330,ca_335,ca_672,ca_797,ca_216,ca_068,,ca_365,ca_420,ca_141,ca_251,ca_784,ca_006,ca_1096,ca_780,ca_302,ca_069,ca_236,ca_777,ca_730,ca_321,ca_1040,ca_179,ca_376,ca_356,ca_994,ca_015,ca_991&mm_sp&plt=web&ttd_uid2=A4AAABRA2RBJANdlT9I6Lv0QZcWJrKFb0O2vVtE5FZMmSiLA2vsRsadhqUCFpTCoXE8E8EP_Iv5SZpyVPXFcy6w-0jnqGV-Qihx9s16JqL0jbYvBbUR7FD032qwpd0Mn1lnkmbK0SpqkIzDZGrGK32CveGicGhB28q-QvW6aJwwYKuNZ4ML9-NUBkbU1ldPeC9lBVqwzQZ812sTBruWQMDQ9ww
 
 
 
@@ -2259,7 +2257,7 @@ http://exm3u.extraott.com:80/live/ZUL96376/UG4VTW4E/153729.m3u8
 #EXTINF:-1 group-title="Sports" group-logo="" tvg-id="LFCTV.HD.uk" tvg-logo="https://pictr.com/images/2024/04/22/EDzj3Y.png",LFC TV
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1
 #EXTVLCOPT:http-referrer=https://webxzplay.cfd/
-https://ddy6new.newkso.ru/ddy6/premium826/mono.m3u8
+#https://ddy6new.newkso.ru/ddy6/premium826/mono.m3u8
 
 
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="https://dl.dropboxusercontent.com/s/aqb7snrx7sg3862/realmadridtv.png" group-title="Sports",Real Madrid TV
@@ -2280,6 +2278,7 @@ https://unifi-live11.secureswiftcontent.com/UnifiHD/live11.mpd
 #EXTINF:-1 tvg-id="TVSUKAN" ch-number="111" tvg-name="SUKAN RTM" group-title="Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/02/RTM_HD_Sports.png",Sukan RTM
 #EXTVLCOPT:http-referrer=https://rtm-player.glueapi.io/
 https://d25tgymtnqzu8s.cloudfront.net/smil:sukan/playlist.m3u8?id=4
+
 
 
 #############################################################################UNIFI##########################################################################################
@@ -2960,14 +2959,15 @@ group-logo="https://iili.io/H7B4QYF.png"
 #EXTINF:-1 tvg-id="AstroCeria" tvg-name="CERIA HD" group-title="KIDS" tvg-logo="https://i.ibb.co/k2YzxRLm/Astro-Ceria-2024.png" ch-number="611",611 Ceria HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"Dw6mw1Q8Kdf1E+uIbrdPiA", "kid":"tuYMoNKOj5c5Xwe04uU6EA" } ], "type":"temporary" }
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; ZTE A7030 Build/RP1A.201005.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.121 Mobile Safari/537.36
-https://linears2-playback.astro.com.my/vsg/41Ee7PmQKYWYnvQPPbR9jmvNaTBhIVxstOI1aC1TB-qoU=kTed/dash-wv/jitp-linearwm/2606/default_ott.mpd
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
+https://linears2-playback.astro.com.my/vsg/41Ee7PmQKYWYnvQPPbR9jmvMRM8lCLPuv0mJnocBdF8lo=y0Eh/dash-wv/jitp-linearwm/2606/default_ott.mpd
 
 #EXTINF:-1 group-logo="https://iili.io/H7B4QYF.png"
-#EXTINF:-1 tvg-id="AstroCeria" tvg-name="CERIA HD" group-title="KIDS" tvg-logo="https://i.ibb.co/k2YzxRLm/Astro-Ceria-2024.png" ch-number="611",611 Ceria HD 
+#EXTINF:-1 tvg-id="AstroCeria" tvg-name="CERIA HD" group-title="KIDS" tvg-logo="https://i.ibb.co/k2YzxRLm/Astro-Ceria-2024.png" ch-number="611",611 Ceria HD ((Backup))
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11; Philips Google TV TA7 Build/RTM5.220609.199; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key=b6e60ca0d28e8f97395f07b4e2e53a10:0f0ea6c3543c29d7f513eb886eb74f88
-#https://get.perfecttv.net/1080ceria.mpd?username=vip_3klp0es8&password=wg3piwEs&channel=ceria|User-Agent=Mozilla/5.0 (Linux; Android 14; SMRV076G Build/UKQ1.240805.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6950.85 Mobile Safari/537.366
+#https://get.perfecttv.net/1080ceria.mpd?username=vip_3klp0es8&password=wg3piwEs&channel=ceria
 
 
 #EXTINF:-1 tvg-id="AstroTutorTV" tvg-logo="https://aqfadtv.xyz/logos/Astro Tutor TV (2024).png" group-title="KIDS"" group-logo="https://aqfadtv.xyz/images/education.png" ch-number="603",Astro Tutor TV
