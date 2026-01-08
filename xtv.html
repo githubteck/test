@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .icon {
+            width: 120px; /* Fixed width of the icon container */
+            height: 120px; /* Fixed height to match icons and text */
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #ccc; /* Border around each icon */
+            border-radius: 10px; /* Rounded corners for the border */
+            display: flex; /* Flexbox to center content */
+            flex-direction: column; /* Align items in a column */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+            position: relative;
+            transition: border-color 0.3s;
+            outline: none; /* Remove default focus outline */
+        }
+        .icon img {
+            max-width: 60%; /* Make the image smaller */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 5px; /* Space between image and text */
+        }
+        .icon p {
+            margin: 0; /* Remove margin for text */
+            font-size: 14px; /* Set font size for text */
+        }
+        /* Optional: Hover effect for icons */
+        .icon a {
+            text-decoration: none;
+            color: black;
+            transition: transform 0.3s;
+            width: 100%; /* Ensure link takes full width */
+            height: 100%; /* Ensure link takes full height */
+            display: flex; /* Use flex to center items */
+            flex-direction: column; /* Align items vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+        }
+        .icon a:hover {
+            transform: scale(1.05); /* Slightly scale up on hover */
+        }
+        .selected {
+            border-color: blue; /* Change border color for selected icon */
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Add glow effect */
+        }
+    </style>
+	</head>
+<body>
+
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/mtv.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/mtv-live-streaming-online.webp" alt="Icon 1">
+            <p>MTV Live HD</p>
+        </a>
+   </div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/cinem.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/cinemax-live-streaming-online.webp" alt="Icon 5">
+            <p>Cinemax</p>
+        </a> 
+    </div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/axn.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/axn-hd-live-streaming-online.webp" alt="Icon 5">
+            <p>AXN</p>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hbo.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hbo-live-streaming-online.webp" alt="Icon 6">
+            <p>HBO</p>
+		</a>
+	</div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hbohits.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hbo-hits-asia-live-streaming-online.webp" alt="Icon 6">
+            <p>HBO Hits</p>
+        </a>
+    </div>
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hbofamily.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hbo-family-live-streaming-online.webp" alt="Icon 7">
+            <p>HBO Family</p>
+		  </a>
+    </div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hbosignature.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hbo-signature-live-streaming-online.webp" alt="Icon 8">
+            <p>HBO Signature</p>
+			  </a>
+	</div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/tvn.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/tvn-hd-live-streaming-online.webp" alt="Icon 3">
+            <p>tvN</p>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/tvnmovies.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/tvn-movies-live-streaming-online.webp" alt="Icon 4">
+            <p>tvN Movies</p>
+        </a>
+    </div>	
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/kplus.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/k-plus-hd-live-streaming-online.webp" alt="Icon 9">
+            <p>K-Plus HD</p>
+			</a>
+    </div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/kbsworld.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/kbs-world-hd-live-streaming-online.webp" alt="Icon 10">
+            <p>KBS World</p>
+			</a>
+    </div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hits.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hits-hd-live-streaming-online.webp" alt="Icon 11">
+            <p>HITS</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hitsmov.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hits-movies-live-streaming-online.webp" alt="Icon 12">
+            <p>HITS Movies</p>
+			</a>
+	</div>
+    <div class="icon">
+        <a href="https://kwangsoo.myeffect.net/hitsnow.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/hits-now-hd-live-streaming-online.webp" alt="Icon 6">
+            <p>HITS Now</p>
+			</a>
+	</div>
+    <div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/astro-aec.html" target="_blank">
+            <img src="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" alt="Icon 2">
+            <p>Astro AEC</p>
+        </a>	   
+	    </div>
+    <div class="icon">
+        <a href="https://jsm6dv.csb.app/" target="_blank">
+            <img src="https://mediaready.vr.ctrp.astro.com.my/astro/image/fetch/f_auto,fl_lossy,q_100,h_auto,w_300/https://datastore.vr.ctrp.sooka.my/content/images/016969AstroAEC_2024_IVP_LAND_1280x720.jpg" alt="Icon 2">
+            <p>Astro AEC (backup)</p>
+        </a>
+	     </div>
+    <div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/astro-qj.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/astro-qj-live-streaming-online.webp" alt="Icon 2">
+            <p>Astro QJ</p>
+        </a>
+	</div>			
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/hua-hee-dai.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/astro-hua-hee-dai-live-streaming-online.webp" alt="Icon 13">
+            <p>Hua Hee Dai</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/iqiyi.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/iqiyi-hd-live-streaming-online.webp" alt="Icon 14">
+            <p>iQIYI HD</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/ccm.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/celestial-classic-movies-live-streaming-online.webp" alt="Icon 15">
+            <p>Celestial Classic Movies</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/celestial-movies-hd.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/celestial-movies-live-streaming-online.webp" alt="Icon 16">
+            <p>Celestial Movies HD</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/carnet.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/cartoon-network-live-streaming-online.webp" alt="Icon 1">
+            <p>Cartoon Network HD</p>
+			</a>	
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/nicklo.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/nickelodeon-live-streaming-online.webp" alt="Icon 1">
+            <p>Nickelodeon HD</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/nickjr.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/nick-jr-live-streaming-online.webp" alt="Icon 1">
+            <p>Nick Jr.</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/dreamworks.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/dreamworks-hd-live-streaming-online.webp" alt="Icon 1">
+            <p>Dreamworks.</p>
+			</a>
+	</div>			
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/moonbug.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/moonbug-kids-live-streaming-online.webp" alt="Icon 1">
+            <p>Moonbug Kids</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/ceebies.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/cbeebies-live-streaming-online.webp" alt="Icon 1">
+            <p>CBeebies</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/history.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/history-hd-live-streaming-online.webp" alt="Icon 1">
+            <p>History</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/discov.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/discovery-live-streaming-online.webp" alt="Icon 1">
+            <p>Discovery</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/discoasia.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/discovery-asia-live-streaming-online.webp" alt="Icon 1">
+            <p>Discovery Asia</p>
+			</a>		
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/lifetime.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/lifetime-live-streaming-online.webp" alt="Icon 1">
+            <p>Lifetime</p>
+			</a>		
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/animpla.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/animal-planet-live-streaming-online.webp" alt="Icon 1">
+            <p>Animal Planet</p>
+			</a>	
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/asian-food-network.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/asian-food-network-live-streaming-online.webp" alt="Icon 1">
+            <p>Asian Food Network</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/arena.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/astro-arena-live-streaming-online.webp" alt="Icon 1">
+            <p>Arena</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/arena2.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/astro-arena-2-live-streaming-online.webp" alt="Icon 1">
+            <p>Arena 2</p>
+			</a>
+		</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/sports/arenabola1.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/arena-bola-live-streaming-online.webp" alt="Icon 1">
+            <p>Arena Bola</p>
+			</a>
+		</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/sports/arenabola2.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/arena-bola-2-live-streaming-online.webp" alt="Icon 1">
+            <p>Arena Bola 2</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/warner.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/warner-tv-live-streaming-online.webp" alt="Icon 1">
+            <p>Warner</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/rock-entertainment.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/rockent.webp" alt="Icon 1">
+            <p>Rock Entertainment</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/rock-action.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/rockaction.webp" alt="Icon 1">
+            <p>Rock Action</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://kwangsoo.myeffect.net/one.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/one-hd-live-streaming-online.webp" alt="Icon 1">
+            <p>One HD</p>
+			</a>
+	</div>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/tv1.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/tv1-live-streaming-online.webp" alt="Icon 1">
+            <p>TV 1</p>
+			</a>
+	</div>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/tv2.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/tv2-live-streaming-online.webp" alt="Icon 1">
+            <p>TV 2</p>
+			</a>
+	</div>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/tv3.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/tv3-live-streaming-online.webp" alt="Icon 1">
+            <p>TV 3</p>
+			</a>
+	</div>
+	</div>		
+	<div class="icon">
+        <a href="https://www.tvmalaysia.live/channel/tv8live.html" target="_blank">
+            <img src="https://www.tvmalaysia.live/images/8tv-live-streaming-online.webp" alt="Icon 1">
+            <p>8TV</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://55npsg.csb.app/" target="_blank">
+            <img src="https://i.imgur.com/awIDugE.png" alt="Icon 1">
+            <p>cna</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://githubteck.github.io/test/ch8.html" target="_blank">
+            <img src="https://poster.starhubgo.com/Linear_channels2/103_1920x1080_HTV.png" alt="Icon 1">
+            <p>Channel 8</p>
+			</a>
+	</div>		
+	<div class="icon">
+        <a href="https://githubteck.github.io/test/ch5.html" target="_blank">
+            <img src="https://poster.starhubgo.com/Linear_channels2/102_1920x1080_HTV.png" alt="Icon 1">
+            <p>Channel 5</p>
+			</a>		
+	</div>		
+	<div class="icon">
+        <a href="https://githubteck.github.io/test/chU.html" target="_blank">
+            <img src="https://poster.starhubgo.com/Linear_channels2/107_1920x1080_HTV.png" alt="Icon 1">
+            <p>Channel U</p>
+			</a>		
+	 </div>
+    
+    <script>
+    // JavaScript to manage the selected state and keyboard navigation
+    const icons = document.querySelectorAll('.icon');
+    let selectedIndex = 0;
+
+    // Function to update the selected icon
+    const updateSelection = (index) => {
+        icons.forEach((icon, i) => {
+            icon.classList.remove('selected');
+            if (i === index) {
+                icon.classList.add('selected');
+                icon.focus(); // Focus on the selected icon
+            }
+        });
+    };
+
+    // Initial selection
+    updateSelection(selectedIndex);
+
+    // Function to calculate the number of icons per row dynamically
+    const getIconsPerRow = () => {
+        const container = document.body; // Adjust as necessary to the parent of the icons
+        const iconWidth = icons[0].offsetWidth + 20; // Width of a single icon + margin (left & right combined)
+        const containerWidth = container.offsetWidth; // Width of the container
+        return Math.floor(containerWidth / iconWidth); // Calculate icons per row
+    };
+
+    document.addEventListener('keydown', (e) => {
+        const iconsPerRow = getIconsPerRow(); // Get the number of icons per row dynamically
+
+        if (e.key === 'ArrowRight') {
+            selectedIndex = (selectedIndex + 1) % icons.length; // Cycle right
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowLeft') {
+            selectedIndex = (selectedIndex - 1 + icons.length) % icons.length; // Cycle left
+            updateSelection(selectedIndex);
+        } else if (e.key === 'ArrowDown') {
+            const nextIndex = selectedIndex + iconsPerRow; // Move down by the number of icons in a row
+            if (nextIndex < icons.length) {
+                selectedIndex = nextIndex; // Move down
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'ArrowUp') {
+            const prevIndex = selectedIndex - iconsPerRow; // Move up by the number of icons in a row
+            if (prevIndex >= 0) {
+                selectedIndex = prevIndex; // Move up
+                updateSelection(selectedIndex);
+            }
+        } else if (e.key === 'Enter') {
+            // Navigate to the link of the selected icon
+            const selectedIcon = icons[selectedIndex].querySelector('a');
+            if (selectedIcon) {
+                window.open(selectedIcon.href, '_blank'); // Open link in a new tab
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
