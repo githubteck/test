@@ -63,6 +63,7 @@ jobs:
               try:
                   response = requests.get(url)
                   response.raise_for_status()
+                  return response.content.decode('utf-8', errors='replace')
                   print(f"Fetched: {url}")
                   if url.endswith(".gz"):
                       return gzip.decompress(response.content).decode("utf-8")
