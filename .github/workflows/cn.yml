@@ -34,45 +34,46 @@ jobs:
           import base64
           import os
           import gzip
-
+          
           repo_owner = "githubteck"
           repo_name = "test"
           file_path = "cn.m3u8"
-
+          
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
           access_token = os.environ.get("MY_GITHUB_TOKEN")
-
+          
           if not access_token:
               print("Error: MY_GITHUB_TOKEN environment variable not found!")
               exit(1)
-
+          
           headers = {
               "Authorization": f"token {access_token}",
               "Accept": "application/vnd.github.v3+json",
           }
-
-          channel_list_url = "http://iptv.ruyitv.cc/m3u/tv.txt"
+          
+          # List of channel list sources
+          channel_list_sources = [
+              "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",
+              "http://iptv.ruyitv.cc/m3u/tv.txt"
+          ]
+          
+          # EPG URLs
           epg_urls = [
               "https://epg.112114.xyz/pp.xml",
               "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
               "https://live.fanmingming.cn/e.xml"
-              
           ]
-
+          
           def fetch_data(url):
               try:
                   response = requests.get(url)
                   response.raise_for_status()
+                  # Decode response with utf-8 to fix character encoding issues
                   return response.content.decode('utf-8', errors='replace')
-                  print(f"Fetched: {url}")
-                  if url.endswith(".gz"):
-                      return gzip.decompress(response.content).decode("utf-8")
-                  else:
-                      return response.text
               except requests.RequestException as e:
                   print(f"Failed to fetch {url}: {e}")
                   return None
-
+          
           def parse_itvlist(raw_data):
               channels = []
               if raw_data:
@@ -95,7 +96,7 @@ jobs:
                               stream_url = parts[1].strip()
                               channels.append({"name": channel_name, "url": stream_url, "group": current_group})
               return channels
-
+          
           def convert_data_to_m3u8(channels):
               m3u8_content = "#EXTM3U\nx-tvg-url=\"" + ",".join(epg_urls) + "\"\n"
               for channel in channels:
@@ -109,7 +110,7 @@ jobs:
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
               return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
-
+          
           def upload_to_github(content):
               if content is None:
                   print("No content to upload.")
@@ -117,7 +118,7 @@ jobs:
               try:
                   response = requests.get(api_url, headers=headers)
                   sha = response.json()["sha"] if response.status_code == 200 else None
-
+          
                   encoded_content = base64.b64encode(content.encode()).decode()
                   data = {
                       "message": "Update cn.m3u8 playlist [skip ci]",
@@ -125,19 +126,35 @@ jobs:
                   }
                   if sha:
                       data["sha"] = sha
-
+          
                   response = requests.put(api_url, json=data, headers=headers)
                   response.raise_for_status()
                   print("Upload successful.")
               except requests.RequestException as e:
                   print(f"Upload error: {e}")
                   exit(1)
-
+          
           print("Start process...")
-          raw_channel_data = fetch_data(channel_list_url)
+          
+          # Fetch data from all sources
+          raw_data_list = []
+          for url in channel_list_sources:
+              data = fetch_data(url)
+              if data:
+                  raw_data_list.append(data)
+          
+          # Combine all channel list data
+          raw_channel_data = "\n".join(raw_data_list)
+          
+          # Parse the combined data
           channels = parse_itvlist(raw_channel_data)
+          
+          # Generate the m3u8 playlist content
           m3u8_content = convert_data_to_m3u8(channels)
+          
+          # Upload to GitHub
           upload_to_github(m3u8_content)
+          
           print("Finished.")
           EOF
 
