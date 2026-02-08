@@ -53,7 +53,7 @@ jobs:
           
           # List of channel list sources
           channel_list_sources = [
-              "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",
+              ///"https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",//
               "http://iptv.ruyitv.cc/m3u/tv.txt"
           ]
           
