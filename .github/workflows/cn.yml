@@ -58,8 +58,6 @@ jobs:
               "http://iptv.ruyitv.cc/m3u/tv.txt"
           ]
 
-          epg_urls = []
-
           def fetch_data(url):
               try:
                   response = requests.get(url, timeout=15)
@@ -69,6 +67,7 @@ jobs:
                   print(f"Failed to fetch {url}: {e}")
                   return None
 
+          # ✅ Load convert mapping (3 columns)
           def load_convert_mapping():
               mapping = {}
               raw = fetch_data(convert_url)
@@ -77,19 +76,26 @@ jobs:
 
               lines = raw.strip().split("\n")
 
-              # Skip header
+              # Skip header row
               for line in lines[1:]:
                   parts = line.strip().split("\t")
-                  if len(parts) == 2:
+                  if len(parts) >= 2:
                       source = parts[0].strip()
                       target = parts[1].strip()
-                      mapping[source] = target
+                      logo = parts[2].strip() if len(parts) >= 3 else ""
+
+                      mapping[source] = {
+                          "name": target,
+                          "logo": logo
+                      }
 
               print(f"Loaded {len(mapping)} convert mappings.")
               return mapping
 
+
           def parse_itvlist(raw_data, convert_map):
               channels = []
+
               if raw_data:
                   lines = raw_data.strip().split("\n")
                   current_group = "Other"
@@ -105,7 +111,8 @@ jobs:
                           channels.append({
                               "name": "Preformatted",
                               "url": extinf_line + "\n" + stream_url,
-                              "group": current_group
+                              "group": current_group,
+                              "logo": ""
                           })
 
                       elif line.endswith(",#genre#"):
@@ -116,19 +123,23 @@ jobs:
                           if len(parts) == 2:
                               channel_name = parts[0].strip()
                               stream_url = parts[1].strip()
+                              logo_url = ""
 
-                              # Apply conversion if matched
+                              # ✅ Apply conversion + logo
                               if channel_name in convert_map:
-                                  print(f"Convert: {channel_name} -> {convert_map[channel_name]}")
-                                  channel_name = convert_map[channel_name]
+                                  print(f"Convert: {channel_name} -> {convert_map[channel_name]['name']}")
+                                  logo_url = convert_map[channel_name]["logo"]
+                                  channel_name = convert_map[channel_name]["name"]
 
                               channels.append({
                                   "name": channel_name,
                                   "url": stream_url,
-                                  "group": current_group
+                                  "group": current_group,
+                                  "logo": logo_url
                               })
 
               return channels
+
 
           def convert_data_to_m3u8(channels):
               m3u8_content = "#EXTM3U\n"
@@ -137,17 +148,20 @@ jobs:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
+                  logo_url = channel.get("logo", "")
 
                   if stream_url and stream_url.startswith("#EXTINF"):
                       m3u8_content += stream_url + "\n"
                   elif stream_url:
                       m3u8_content += (
                           f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" "
+                          f"tvg-logo=\"{logo_url}\" "
                           f"group-title=\"{group_title}\",{channel_name}\n"
                       )
                       m3u8_content += f"{stream_url}\n"
 
               return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
+
 
           def upload_to_github(content):
               if content is None:
@@ -175,6 +189,7 @@ jobs:
               except requests.RequestException as e:
                   print(f"Upload error: {e}")
                   exit(1)
+
 
           print("Start process...")
 
