@@ -25,40 +25,41 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests
 
-      - name: Write and run Python script
+      - name: Generate M3U8 and Upload
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
         run: |
           cat << 'EOF' > generate_m3u8.py
           import requests
           import base64
           import os
-          
+
           repo_owner = "githubteck"
           repo_name = "test"
           file_path = "cn.m3u8"
-          
+
           api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
           convert_url = "https://raw.githubusercontent.com/githubteck/test/refs/heads/main/convert.txt"
-          
+
           access_token = os.environ.get("MY_GITHUB_TOKEN")
-          
+
           if not access_token:
               print("Error: MY_GITHUB_TOKEN environment variable not found!")
               exit(1)
-          
+
           headers = {
               "Authorization": f"token {access_token}",
               "Accept": "application/vnd.github.v3+json",
           }
-          
-          # Channel list sources
+
           channel_list_sources = [
               "http://iptv.ruyitv.cc/m3u/tv.txt"
           ]
-          
+
           epg_urls = []
-          
+
           def fetch_data(url):
               try:
                   response = requests.get(url, timeout=15)
@@ -67,37 +68,37 @@ jobs:
               except requests.RequestException as e:
                   print(f"Failed to fetch {url}: {e}")
                   return None
-          
-          # ✅ NEW: Load convert mapping
+
           def load_convert_mapping():
               mapping = {}
               raw = fetch_data(convert_url)
               if not raw:
                   return mapping
-          
+
               lines = raw.strip().split("\n")
-              for line in lines[1:]:  # Skip header row
+
+              # Skip header
+              for line in lines[1:]:
                   parts = line.strip().split("\t")
                   if len(parts) == 2:
                       source = parts[0].strip()
                       target = parts[1].strip()
                       mapping[source] = target
-          
+
               print(f"Loaded {len(mapping)} convert mappings.")
               return mapping
-          
-          
+
           def parse_itvlist(raw_data, convert_map):
               channels = []
               if raw_data:
                   lines = raw_data.strip().split("\n")
                   current_group = "Other"
-          
+
                   for i in range(len(lines)):
                       line = lines[i].strip()
                       if not line:
                           continue
-          
+
                       if "#EXTINF" in line:
                           extinf_line = line
                           stream_url = lines[i+1].strip() if i + 1 < len(lines) else ""
@@ -106,38 +107,37 @@ jobs:
                               "url": extinf_line + "\n" + stream_url,
                               "group": current_group
                           })
-          
+
                       elif line.endswith(",#genre#"):
                           current_group = line.replace(",#genre#", "").strip()
-          
+
                       else:
                           parts = line.split(",")
                           if len(parts) == 2:
                               channel_name = parts[0].strip()
                               stream_url = parts[1].strip()
-          
-                              # ✅ Apply conversion if matched
+
+                              # Apply conversion if matched
                               if channel_name in convert_map:
                                   print(f"Convert: {channel_name} -> {convert_map[channel_name]}")
                                   channel_name = convert_map[channel_name]
-          
+
                               channels.append({
                                   "name": channel_name,
                                   "url": stream_url,
                                   "group": current_group
                               })
-          
+
               return channels
-          
-          
+
           def convert_data_to_m3u8(channels):
               m3u8_content = "#EXTM3U\n"
-          
+
               for channel in channels:
                   channel_name = channel.get("name", "Unknown Channel")
                   stream_url = channel.get("url")
                   group_title = channel.get("group", "Other")
-          
+
                   if stream_url and stream_url.startswith("#EXTINF"):
                       m3u8_content += stream_url + "\n"
                   elif stream_url:
@@ -146,84 +146,55 @@ jobs:
                           f"group-title=\"{group_title}\",{channel_name}\n"
                       )
                       m3u8_content += f"{stream_url}\n"
-          
+
               return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
-          
-          
+
           def upload_to_github(content):
               if content is None:
                   print("No content to upload.")
                   return
-          
+
               try:
                   response = requests.get(api_url, headers=headers)
                   sha = response.json()["sha"] if response.status_code == 200 else None
-          
+
                   encoded_content = base64.b64encode(content.encode()).decode()
-          
+
                   data = {
                       "message": "Update cn.m3u8 playlist [skip ci]",
                       "content": encoded_content,
                   }
-          
+
                   if sha:
                       data["sha"] = sha
-          
+
                   response = requests.put(api_url, json=data, headers=headers)
                   response.raise_for_status()
                   print("Upload successful.")
-          
+
               except requests.RequestException as e:
                   print(f"Upload error: {e}")
                   exit(1)
-          
-          
-          print("Start process...")
-          
-          # ✅ Load convert mapping
-          convert_map = load_convert_mapping()
-          
-          # Fetch channel data
-          raw_data_list = []
-          for url in channel_list_sources:
-              data = fetch_data(url)
-              if data:
-                  raw_data_list.append(data)
-          
-          raw_channel_data = "\n".join(raw_data_list)
-          
-          # ✅ Pass convert_map into parser
-          channels = parse_itvlist(raw_channel_data, convert_map)
-          
-          m3u8_content = convert_data_to_m3u8(channels)
-          
-          upload_to_github(m3u8_content)
-          
-          print("Finished.")
 
-          
-          # Fetch data from all sources
+          print("Start process...")
+
+          convert_map = load_convert_mapping()
+
           raw_data_list = []
           for url in channel_list_sources:
               data = fetch_data(url)
               if data:
                   raw_data_list.append(data)
-          
-          # Combine all channel list data
+
           raw_channel_data = "\n".join(raw_data_list)
-          
-          # Parse the combined data
-          channels = parse_itvlist(raw_channel_data)
-          
-          # Generate the m3u8 playlist content
+
+          channels = parse_itvlist(raw_channel_data, convert_map)
+
           m3u8_content = convert_data_to_m3u8(channels)
-          
-          # Upload to GitHub
+
           upload_to_github(m3u8_content)
-          
+
           print("Finished.")
           EOF
 
           python generate_m3u8.py
-        env:
-          MY_GITHUB_TOKEN: ${{ secrets.ABC }}
