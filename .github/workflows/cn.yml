@@ -59,9 +59,9 @@ jobs:
           
           # EPG URLs
           epg_urls = [
-              "https://epg.112114.xyz/pp.xml",
-              "https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
-              "https://live.fanmingming.cn/e.xml"
+              #"https://epg.112114.xyz/pp.xml",
+              #"https://raw.githubusercontent.com/sparkssssssssss/epg/main/pp.xml",
+              #"https://live.fanmingming.cn/e.xml"
           ]
           
           def fetch_data(url):
@@ -106,7 +106,7 @@ jobs:
                   if stream_url and stream_url.startswith("#EXTINF"):
                       m3u8_content += stream_url + "\n"
                   elif stream_url:
-                      logo_url = f"https://live.fanmingming.cn/tv/{channel_name}.png"
+                      logo_url = f" "
                       m3u8_content += f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_title}\",{channel_name}\n"
                       m3u8_content += f"{stream_url}\n"
               return m3u8_content if len(m3u8_content.splitlines()) > 1 else None
